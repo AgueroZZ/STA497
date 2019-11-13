@@ -1,0 +1,105 @@
+> set.seed(520)
+> N = 200
+> library(coxed)
+> simdata <- sim.survdata(N=N, T=120, xvars=3, censor=.3, num.data.frames = 1)
+
+
+
+
+> #True Beta
+> simdata$betas
+            [,1]
+[1,]  0.03737155
+[2,]  0.05394197
+[3,] -0.15939580
+
+
+
+
+
+
+> Coxph
+> model <- coxph(Surv(y, failed) ~ X1+X2+X3, data=simdata$data)
+> model$coefficients
+        X1         X2         X3 
+ 0.2601130 -0.0695357 -0.1823612 
+
+
+
+
+
+
+> INLA
+> Inlaresult$summary.fixed
+                   mean        sd 0.025quant    0.5quant 0.975quant        mode          kld
+(Intercept) -7.13468104 0.6507657 -8.6966517 -7.03355861 -6.1519677 -6.85236619 3.557751e-03
+X1           0.21396535 0.1714323 -0.1215076  0.21358016  0.5512662  0.21282513 1.051783e-06
+X2          -0.04202829 0.1504957 -0.3377189 -0.04195746  0.2529836 -0.04180276 6.896650e-07
+X3          -0.17549746 0.1840485 -0.5373595 -0.17532645  0.1850618 -0.17496871 9.132033e-07
+
+
+
+
+
+
+
+
+> sim1opt <- optimize_all_thetas_parallel(
++   theta = thetagrid,
++   # theta = -6,
++   model_data = model_data,
++   startingvals = rep(0,model_data$Wd),
++   optcontrol = control1,
++   doparallel = PARALLEL_EXECUTION
++ )
+Performing optimization, start time:  16:17:39 
+Optimizing with theta = 0 
+Beginning optimization
+
+iter          f        nrm_gr                     status          rad     CG iter                  CG result
+   1   622.353973   11.298277   Continuing - TR contract    10.000000           8         Negative curvature
+   2   622.353973   11.298277   Continuing - TR contract     1.000000           8         Negative curvature
+   3   621.848232   69.948158     Continuing - TR expand     5.000000           8         Negative curvature
+   4   621.848232   69.948158   Continuing - TR contract     0.500000           9         Negative curvature
+   5   621.733815  203.308152     Continuing - TR expand     2.500000           8         Intersect TR bound
+   6   620.924541   95.250252                 Continuing     2.500000           9         Negative curvature
+   7   620.924541   95.250252   Continuing - TR contract     0.250000           9         Negative curvature
+   8   620.855782   14.722755     Continuing - TR expand     1.250000           9         Negative curvature
+   9   620.855782   14.722755   Continuing - TR contract     0.125000           9         Negative curvature
+  10   620.847677   12.774424     Continuing - TR expand     0.625000           7         Intersect TR bound
+  11   620.798372   56.902888                 Continuing     0.625000           8         Negative curvature
+  12   620.784787   49.566916                 Continuing     0.625000           9         Negative curvature
+  13   620.784787   49.566916   Continuing - TR contract     0.062500          10         Negative curvature
+  14   620.776586   14.662857     Continuing - TR expand     0.312500           9         Intersect TR bound
+  15   620.776586   14.662857   Continuing - TR contract     0.031250           9         Negative curvature
+  16   620.775595    3.163682     Continuing - TR expand     0.156250           9         Negative curvature
+  17   620.774730    5.257190                 Continuing     0.156250           9         Negative curvature
+  18   620.774296    5.119567                 Continuing     0.156250           9         Negative curvature
+  19   620.774296    5.119567   Continuing - TR contract     0.015625           9         Negative curvature
+  20   620.774129    1.094582     Continuing - TR expand     0.078125           9         Negative curvature
+  21   620.774129    1.094582   Continuing - TR contract     0.007812           9         Negative curvature
+  22   620.774095    1.931646     Continuing - TR expand     0.039062           9         Negative curvature
+  23   620.773998    1.635284                 Continuing     0.039062           9         Negative curvature
+  24   620.773900    1.581518                 Continuing     0.039062           9         Negative curvature
+  25   620.773900    1.581518   Continuing - TR contract     0.003906           9         Intersect TR bound
+
+iter          f        nrm_gr                     status          rad     CG iter                  CG result
+  26   620.773887    0.356403     Continuing - TR expand     0.019531           9         Intersect TR bound
+  27   620.773864    0.427707                 Continuing     0.019531           9         Negative curvature
+  28   620.773849    0.274831                 Continuing     0.019531           9         Negative curvature
+  29   620.773843    0.619372                 Continuing     0.019531           9         Negative curvature
+  30   620.773843    0.619372   Continuing - TR contract     0.001953          10         Negative curvature
+  31   620.773841    0.262930     Continuing - TR expand     0.009766           9         Intersect TR bound
+  32   620.773841    0.262930   Continuing - TR contract     0.000977          10         Negative curvature
+
+Iteration has terminated
+  32   620.773841    0.262930Radius of trust region is less than stop.trust.radius
+
+Time taken for optimization with  1  values of theta: 434.5 seconds.
+
+
+
+
+
+> compute_marginal_means(c(N,N+1,N+2),sim1opt,model_data)
+[1]  0.24974884 -0.07207096 -0.17469159

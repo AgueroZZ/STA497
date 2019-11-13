@@ -1,0 +1,77 @@
+> set.seed(520)
+> N = 200
+> library(coxed)
+> simdata <- sim.survdata(N=N, T=80, xvars=1, censor=.3, num.data.frames = 1)
+
+
+
+
+> #True Beta
+> simdata$betas
+            [,1]
+[1,] -0.01369515
+
+
+
+
+> #Coxph
+> model <- coxph(Surv(y, failed) ~ X, data=simdata$data)
+> model$coefficients
+          X 
+-0.05188919 
+
+
+
+
+
+> #INLA
+> formula <- inla.surv(y,failed) ~ X
+> Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),data = simdata$data, family = "coxph",
++                    control.hazard = list(model="rw2",n.intervals = 20))
+> Inlaresult$summary.fixed
+                   mean        sd 0.025quant    0.5quant 0.975quant        mode          kld
+(Intercept) -4.23786530 0.2245144 -4.7231995 -4.22227016 -3.8416523 -4.19205490 1.163594e-04
+X           -0.05635354 0.1746411 -0.3989415 -0.05646067  0.2865165 -0.05666071 6.675186e-07
+
+
+
+
+> sim1opt <- optimize_all_thetas_parallel(
++   theta = thetagrid,
++   # theta = -6,
++   model_data = model_data,
++   startingvals = rep(0,model_data$Wd),
++   optcontrol = control1,
++   doparallel = PARALLEL_EXECUTION
++ )
+Performing optimization, start time:  15:40:42 
+Optimizing with theta = 0 
+Beginning optimization
+
+iter          f        nrm_gr                     status          rad     CG iter                  CG result
+   1   624.209274   11.064503   Continuing - TR contract    10.000000           7         Negative curvature
+   2   624.209274   11.064503   Continuing - TR contract     1.000000           7         Negative curvature
+   3   624.209274   11.064503   Continuing - TR contract     0.100000           7         Negative curvature
+   4   624.204179   28.266541     Continuing - TR expand     0.500000           7         Negative curvature
+   5   624.174173   24.810846                 Continuing     0.500000           7         Negative curvature
+   6   624.174173   24.810846   Continuing - TR contract     0.050000           5         Negative curvature
+   7   624.170830    2.943112     Continuing - TR expand     0.250000           5         Negative curvature
+   8   624.167318    9.423650                 Continuing     0.250000           7         Negative curvature
+   9   624.167318    9.423650   Continuing - TR contract     0.025000           8         Negative curvature
+  10   624.166997    1.517108     Continuing - TR expand     0.125000           8         Negative curvature
+  11   624.166997    1.517108   Continuing - TR contract     0.012500           9         Negative curvature
+  12   624.166997    1.517108   Continuing - TR contract     0.001250           9         Negative curvature
+  13   624.166990    0.403691     Continuing - TR expand     0.006250           9         Negative curvature
+  14   624.166990    0.403691   Continuing - TR contract     0.000625           7         Intersect TR bound
+
+Iteration has terminated
+  14   624.166990    0.403691Radius of trust region is less than stop.trust.radius
+  
+Time taken for optimization with  1  values of theta: 184.422 seconds.
+
+
+
+> compute_marginal_means(N,sim1opt,model_data)
+[1] -0.05041244
+
+

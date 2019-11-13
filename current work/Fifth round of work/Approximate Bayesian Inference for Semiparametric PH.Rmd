@@ -1,0 +1,813 @@
+---
+title: "Approximate Bayesian Inference for Semi-parametric Proportional Hazard Models"
+author: "Ziang Zhang"
+date: "11/09/2019"
+output:
+  pdf_document:
+    keep_tex: true
+    number_sections: true
+    fig_caption: yes
+header_includes:
+  - \newcommand{\ed}{\overset{d}{=}}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(INLA)
+library(survival)
+```
+
+# Survival Analysis Model:
+
+## Introduction to Survival Analysis:
+
+Survival analysis refers to situations in which the response variable of interest is the time until the occurrence of a particular event. Examples include time to death of patients with a specific kind of disease, time to failure of a lightbulb, add one more example.. Models for analyzing time to event data quantify the association between treatments or risk factors and the time to an event. For example, we may quantify any relationship between the lifetimes of patients with the types of medicine they are using, to conclude whether a certain type of medicine is associated with a change in the overall survival times of patients. 
+
+Let T be a continuous non-negative random variable representing the time to some event, defined over the interval $[0,\infty)$. Let the probability density function of T be denoted as $f(t)$ and its cumulative distribution function be $F(t)$. The survivor function $S(t)$ of T can be defined as:
+\begin{equation}\begin{aligned}\label{eqn:survivor}
+S(t) = P(T > t) = \int_{t}^{\infty} f(x) dx = 1- F(t)
+\end{aligned}\end{equation}
+Notice that $S(t)$ is the probability of an observation to survive to time t, and therefore it is a monotone decreasing function with $S(0) = 1$ and $S(\infty) = \lim_{t\to\infty} S(x) = 0$. 
+
+The hazard function, denoted h(t), is defined as instantaneous rate of occurrence at a specific time t given that the event does not occur before t, which can be written as:
+\begin{equation}\begin{aligned}\label{eqn:hazard}
+h(t) = \lim_{s\to 0} \frac{P(t\le T \le t+s |T\ge t)}{s} = \frac{f(t)}{S(t)} = -\frac{\partial}{\partial t}\text{log}[S(t)]
+\end{aligned}\end{equation}
+
+The corresponding cumulative hazard function $H(t)$ will be defined by:
+\begin{equation}\begin{aligned}\label{eqn:chazard}
+H(t) = \int_{0}^{t} h(u) du = -\text{log}[S(t)]
+\end{aligned}\end{equation}
+Cumulative hazard function is an alternative measure of risk of occurrence, and will be more convenient to use in some cases.
+
+Event times are often only partially observed. Right censoring occurs when it is only known that an event occurred after some fixed timepoint, such as patients in a medical study who are lost to follow up. Left truncation occurs when event times are only included in the dataset conditional on having surpassed some threshold, such as patients joining a medical study only after having a disease for several weeks or months. Interval censoring refers to the presence of both right censoring and left truncation in the same observed event times. Partially observed observations present challenges in the analysis of survival data, and are too common to be ignored. We expand on these challenges in Section 1.2.
+
+
+## Types of Censoring and Truncation:
+
+In survival analysis, we are mainly dealing with the problem of right-censoring, interval-censoring and left truncation. Right-censoring is when an individual's lifetime $T_i$ is not exactly known because the individual is still alive when the study terminates at $C_i$, so we are only sure about that $T_i > C_i$ but not sure what exactly $T_i$ is. Interval-censoring on the other hand, rises when the survival time is only known to be in an interval $(L_i,U_i)$, and the left truncation problem happens when some survival times are not recorded unless they are bigger than a specified start time $t^{tr}$, so all the data with survival times less than $t^{tr}$ are missed.
+
+In general, we use the term "censoring" to refer to the scenarios where some lifetimes are only known to exceed their cutting times $C_i$, but we do not know how long do they last exactly. On the other hand, the term "truncation" mostly refer to a data collected problem where only lifetimes greater than the start time $t^{tr}$ are collected and observed. So these terms should be used in different situations depending on what kind of survival data are we dealing with.
+
+There are two types of right-censoring that appear most frequently in the context of survival analysis, which are Type-I and Type-II right-censoring.
+
+Type-I right-censoring occurs when each individual's censoring time $C_i$ is fixed and known beforehand. That means when we collect a bunch of survival times, we know whether each survival time is right-censored and when is it censored exactly. For example, in a medical study, we may give each individual 30 minutes of observation time after each of them took a specific type of medicine, and the $C_i$ in this case is fixed to be 30 minutes for all i.
+
+For this type of censoring mechanism, we will be able to write our original data-set $\{ T_i,C_i:i=1,...,n \}$ as $\{ t_i,\delta_i:i=1,...,n \}$ where:
+
+\begin{equation}\begin{aligned}\label{eqn:transformed data}
+t_i = \text{min}\{T_i,C_i \},  \qquad  \delta_i = I(T_i \leq C_i)
+\end{aligned}\end{equation}
+
+Many statistical procedures dealing with right censoring are assuming this is the underlying censoring mechanism (Kwan, 1997), so we will focus on this type of censoring for the rest of the paper.
+
+Type-II right-censoring occurs when we only observed the r smallest survival times in our sample. So the survival times that we can observed will be like $t_{(1)}<t_{(2)}<...<t_{(r)}$, and the other survival times will be censored so we don't know the exact numbers. In this scenario, we have a censoring time $t_{(r)}$ that is itself random. For example, in an engineering study, we can measure the length of time for each component to become defective, and we will end the study after collecting ten defectives in our sample. In this case, the censoring time will be $t_{10}$, and all the times after this will not be observable.
+
+Lastly, independent random censoring happens when both the ith survival time $T_i$ and the ith censoring time $C_i$ are random variable that are independent.For example, if we want to measure the lifetimes of patients in a hospital, then it is possible that some patients are going to switch to anther hospital before the study ends. In this case, if we assume that switching hospital does not have relationship with the severity of the deterioration of diseases, then the censoring times will be independent with the lifetimes of patients.
+
+\newpage
+
+## Cox Proportional Hazard Model:
+
+In most survival analysis study, we are interested in incorporating some covariates $\tilde{X} =\{X_1,X_2,...,X_p\}$ into the distribution of survival time $T$, and studying their associations with the survival time $T$.Define $u_{qi}$ be the covariates that are modelled semi-parametrically using unknown smooth functions $\gamma_q$. Therefore, to specify the dependence of T on $\tilde{X}$,the proportional hazard model introduced by Cox(1972) is the a popular choice.
+
+Let $h(t|\tilde{x})$ denote the hazard function of $T$ at time t for a subject with covariates $\tilde{x} = (x_1,x_2,...,x_p)$. The Cox Proportional Hazard Model can be specified as follows:
+\begin{equation}\begin{aligned}\label{eqn:CoxHazardModel}
+h(t|\tilde{x}) = h_0(t)\text{exp}(\beta_1x_1+...+\beta_px_p+\sum_{q=1}^{R} \gamma_q(u_{qi}))
+\end{aligned}\end{equation}
+where $h_0(t)$ is an arbitrary baseline hazard function that does only depend on time, and $\beta_i$'s are the unknown parameters that we are interested in estimating. The reason that it is called a "proportional" hazard model is because for any two subjects, the ratio of their hazard function will be constant over time. This is a model assumption, and it should be checked before adopting the Cox proportional hazard model.
+
+Notice that the baseline hazard function is left to be arbitrary, which implies that the Cox Proportional Hazard Model will be a semi-parametric model. To specify the baseline hazard functions, we are going to use the piece-wise constant baseline hazard model, and I will introduce it in details in the next section.
+
+## Proportional Hazard Model with Piece-wise Constant Baseline Hazard:
+
+Firstly, we break the time axis into K intervals with endpoints $0=s_0<s_1<...<s_K < \text{max}\{t_i:i=1,...,n\}$, and assumes that the baseline hazard function is constant in each interval, i.e: $h_0(t) = b_k$ for $t\in(s_{k-1},s_k), \ k=1,2, ...,K$.
+
+Let $\eta_{ik} = \text{log}(b_k)+\tilde{x_i}^T\tilde{\beta}+\sum_{q=1}^{R} \gamma_q(u_{qi})$, the model that we will be focusing on will be the semi-parametric proportional hazard model, specified at below:
+\begin{equation}\begin{aligned}\label{eqn:phmodel}
+h(t_i) &= h_0(t_i)\text{exp}[\tilde{x_i}^T\tilde{\beta}+\sum_{q=1}^{R} \gamma_q(u_{qi})]\\
+       &= \text{exp}[\text{log}(b_k)+\tilde{x_i}^T\tilde{\beta}+\sum_{q=1}^{R} \gamma_q(u_{qi})] \qquad t_i\in(s_{k-1},s_k] \\
+       &= \text{exp}(\eta_{ik})
+\end{aligned}\end{equation}
+
+
+Using this information, we can derive the likelihood for that single observation to be:
+\begin{equation}\begin{aligned}\label{eqn:singlelike}
+\pi\big[(t_i,\delta_i )  | \eta_{i1} ... \eta_{ik} \big] &= f(t_i)^{\delta_i}S(t_i)^{(1- \delta_i)}\\
+  &= h(t_i)^{\delta_i}S(t_i) \\
+  &= \text{exp}(\delta_i \eta_{ik})\bigg\{ \text{exp} \big[ -\int_{0}^{t_i} h(u) du\big ] \bigg\} \\
+  &= \text{exp}(\delta_i \eta_{ik})\bigg \{\text{exp}\big[-\sum_{j=1}^{k-1} (s_{j}-s_{j-1})\text {exp} (\eta_{ij}) - (t_i-s_{k-1})\text{exp}(\eta_{ik})\big]\bigg \}\\
+\end{aligned}\end{equation}
+
+Therefore, the full-likelihood of the data-set will be:
+\begin{equation}\begin{aligned}\label{eqn:fulllike}
+L &=  \prod_{i=1}^{n} \text{exp}(\delta_i \eta_{ik_{(i)}}) \text{exp} \bigg\{-\sum_{j=1}^{k_{(i)}-1} (s_{j}-s_{j-1})\text{exp}(\eta_{ij})-(t_i - s_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}})\bigg \} \\
+  &= \prod_{i=1}^{n} \text{exp} \big \{\delta_i \eta_{ik_{(i)}} -\sum_{j=1}^{k_{(i)}-1} (s_{j}-s_{j-1})\text{exp}(\eta_{ij})-(t_i - s_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}}) \big \}
+\end{aligned}\end{equation}
+
+I emphasize the subscript for $k_{(i)}$ because each survival time will correspond to a different value of $k_{(i)}$, depending on which interval the survival time lies in. More specifically, $k_{(i)}$ denotes which one of the k sub-intervals the observation is in.
+
+
+By taking the logarithm, the log-likelihood function for the $i^{th}$ observation $t_i \in (s_{k-1},s_k]$ can be written as :
+\begin{equation}\begin{aligned}\label{eqn:loglike}
+l &= \text{log}[f(t_i)^{\delta_i}S(t_i)^{(1-\delta_i)}] \\
+  &= \text{log}[h(t_i)^{\delta_i}S(t_i)]\\
+  &= \delta_i \eta_{ik} - (t_i-s_{k-1})\text{exp}(\eta_{ik})-\sum_{j=1}^{k-1} [(s_{j}-s_{j-1})\text{exp}(\eta_{ij})]
+\end{aligned}\end{equation}
+
+Similarly, the full log-likelihood can be derived as:
+\begin{equation}\begin{aligned}\label{eqn:fullloglike1}
+l = \sum_{i=1}^{n} \bigg \{ \delta_i \eta_{ik_{(i)}} - (t_i-s_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}})-\sum_{j=1}^{{k_{(i)}}-1} [(s_{j}-s_{j-1})\text{exp}(\eta_{ij})]\bigg \}
+\end{aligned}\end{equation}
+
+It can see from the above expression that by considering a piece-wise constant baseline hazard, we make the corresponding log-likelihood much easier to work with, since the integral $\int_{0}^{t_i} h(u)du$ can be replaced by a sum.
+
+
+
+# INLA's Inference Methodology:
+In this section, I will briefly introduce what INLA actually does to do the approximate Bayesian inference for Cox proportional hazard model, and show what are the current limitations of INLA for this type of problem.
+
+## Data Augmentation Using Poisson Likelihood:
+
+For Cox proportional hazard model, the INLA algorithm cannot directly be applied, because if we look at the log-likelihood of a single survival time $\{t_i,\delta_i\}$, we can find that it depends on more than one $\eta$. To use INLA, we required a conditional independent latent field together with a sparse Hessian matrix for the log-likelihood. That means we need to make sure that for a single data point, the log-likelihood should be free of terms from latent field once we condition on one of the term from the latent field.
+
+To solve this puzzle, INLA utilizes a data "augmentation" trick to transform the log-likelihood of a single data point into the form that INLA likes. Notice that if we are looking at a random variable $X_i$ that follows a Poisson distribution with mean $(t_i-s_{k-1})\text{exp}(\eta_{ik})$, then the log-likelihood corresponding to a single data point $\{X_i = 0 \}$ will be:
+\begin{equation}\begin{aligned}\label{eqn:loglike1}
+l &= \text{log}\bigg \{P\big [X_i =0|\lambda = (t_i-s_{k-1})\text{exp}(\eta_{ik}) \big]\bigg \}\\
+  &= 0\times \text{ln}[(t_i-s_{k-1})\text{exp}(\eta_{ik})] - (t_i-s_{k-1})\text{exp}(\eta_{ik}) - \text{ln}(0!)\\
+  &= - (t_i-s_{k-1})\text{exp}(\eta_{ik})
+\end{aligned}\end{equation}
+Similarly, when $X_i = 1$, the log-likelihood of this single data point is:
+\begin{equation}\begin{aligned}\label{eqn:loglike2}
+l &= \text{log}\bigg(P(X_i =1|\lambda = (t_i-s_{k-1})\text{exp}(\eta_{ik}))\bigg)\\
+  &= 1\times \text{ln}((t_i-s_{k-1})\text{exp}(\eta_{ik})) - (t_i-s_{k-1})\text{exp}(\eta_{ik}) - \text{ln}(1!)\\
+  &= \text{ln}(t_i-s_{k-1})+\eta_{ik}-(t_i-s_{k-1})\text{exp}(\eta_{ik})\\
+  &\propto \eta_{ik}-(t_i-s_{k-1})\text{exp}(\eta_{ik})
+\end{aligned}\end{equation}
+
+Here we can basically ignore the term $\text{ln}(t_i-s_{k-1})$ as it does not depend on any term from the latent field. So when we later take derivative, this term will just disappear which means it won't affect our C matrix.
+
+We showed that the first two terms of the log-likelihood of a single data point $\{t_i,\delta_i\}$ can be viewed as the log-likelihood of a single data point $X_i\sim \text{Poisson}\big[\lambda =(t_i-s_{k-1})\text{exp}(\eta_{ik})\big]$ being $0$ when $\delta_i = 0$ and being 1 when $\delta_i = 1$.
+
+Next step will be to figure out a similar way to deal with the last term in equation (3). Notice that for a Poisson random variable $Y_j$ with mean $(s_{j}-s_{j-1})\text{exp}(\eta_{ij})$, the log-likelihood for observing it being $0$ will be:
+\begin{equation}\begin{aligned}\label{eqn:loglike3}
+l &= \text{log}\bigg \{P\big [Y_j =0|\lambda = (s_{j}-s_{j-1})\text{exp}(\eta_{ij})\big ]\bigg \}\\
+  &= -(s_{j}-s_{j-1})\text{exp}(\eta_{ij})
+\end{aligned}\end{equation}
+
+Similarly, if we gather a sample of $\{Y_{i_{1}}=0,Y_{i_{2}} =0, ..., Y_{i_{k}}=0 \}$ where each $Y_{i_j} \sim \text{Poisson}\big[\lambda = (s_{j}-s_{j-1})\text{exp}(\eta_{ij})\big]$ is independent of others, then the log-likelihood of this sample will simply be the sum of log-likelihood of each term due to independence, which sums to be $\sum_{j=1}^{k-1} (s_{j}-s_{j-1})\text{exp}(\eta_{ij})$,that is exactly what we want.
+  
+Putting these two pieces information together, which means if we have a sample being $\{X_i =\delta_i,Y_{i_{1}}=0,Y_{i_{2}} =0, ..., Y_{i_{k}}=0 \}$, and all the terms in this sample being mutually independent, then the log-likelihood of this sample will just be the log-likelihood of the single data point $\{t_i,\delta_i\}$. Doing this for all the data points $\{t_i,\delta_i|i=1,...,n\}$. We retrieve the original log-likelihood from the log-likelihood of a sample of $\sum_{i=1}^{n}{k_{(i)}}$ number of independent, but non-identical Poisson random variables. In other words, we augment our original data-set $\{t_i,\delta_i|i=1,...,n\}$ into a huge data-set$\{x_i ,y_{i_{1}},y_{i_{2}}, ..., y_{i_{k_{(i)}}}|i=1,2,...n\}$, where all the terms in this new data-set are mutually independent. This is the cure for our problem since the log-likelihood of each term from this new "augmented" data-set, will only depend on the latent field through one $\eta$.
+
+## Derivation of the Negated Hessian Matrix:
+
+Here I will present how the Bayesian approximation can be carried out using an INLA-type of algorithm. Firstly, to make 
+the covariance matrix of the joint Gaussian latent field non-singular, and to simplify the Hessian matrix that we are going to derive later, we will assume that for each $\eta_{ij}$, a normal random noise $\epsilon_{ij}$ is added. We assume that $\epsilon_{ij} \sim N(0,\sigma^2_{\epsilon})$ being mutually independent across different i and j. In other words, we will write $\eta_{ik} = \text{log}(b_k)+\tilde{x_i}^T\tilde{\beta}+\sum_{q=1}^{R} \gamma_q(u_{qi})+\epsilon_{ik}$.
+Let $U_q = \{U_{ql},l=1,...,M_q\}$ be an ordered vector of all unique values of $u_{ql}$. Define $\Gamma_q = \{\gamma_{q}(U_{ql}), l=1,...,M_q\}$, and $\Gamma = \{\Gamma_q, q=1,...,R\}$.
+
+Then, the latent field can be denoted as:
+\begin{equation}\begin{aligned}\label{eqn:field1}
+\tilde W = \big[\eta_{11},\eta_{12},...,\eta_{1k},\eta_{2k},...,\eta_{nk},\Gamma_1,...,\Gamma_R,\beta_1,...,\beta_p,\text{log}(b_1),...,\text{log}(b_k)\big]^T\\
+\end{aligned}\end{equation}
+which has dimension $nk+\sum_{q=1}^{R}M_q + p +k$.
+
+Besides assume that $\tilde W$ is a Gaussian Markov Random Field, we also assume that $\text{log}(b_{k+1})-\text{log}(b_k)$ follows $N(0,\tau^{-1})$, a random walk with order 1. So we will just use $\tilde \theta$ to denote the hyper-parameter vector that determines the precision matrix of our latent field.
+
+Now, let's derive the negated Hessian matrix of the log-likelihood with respect to the latent field. To do that, let's first consider the log-likelihood consider only one survival time $\{t_i,\delta_i\}$ where $t_i \in (s_{k_{(i)}-1},s_{k_{(i)}}]$. In this case, the log-likelihood for this data point will be:
+\begin{equation}\begin{aligned}\label{eqn:loglikeagain}
+l = \delta_i \eta_{ik_{(i)}} - (t_i-s_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}})-\sum_{j=1}^{k_{(i)}-1} [(s_{j}-s_{j-1})\text{exp}(\eta_{ij})]
+\end{aligned}\end{equation}
+The derivative with respect to $\eta_{ik_{(i)}}$ will be  
+\begin{equation}\begin{aligned}\label{eqn:hessian}
+\frac{\partial l}{\partial \eta_{ik_{(i)}}}= \delta_i -(t_i-s_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}})
+\end{aligned}\end{equation}
+That means the negated second derivative will be:
+\begin{equation}\begin{aligned}\label{eqn:hessian1}
+-\frac{\partial^2 l}{\partial {\eta_{ik_{(i)}}}^2} = (t_i-s_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}})
+\end{aligned}\end{equation}
+
+For first and negated second derivatives with $\eta_{ij}$ where $j<k_{(i)}$, we have:
+\begin{equation}\begin{aligned}\label{eqn:hessian2}
+\frac{\partial l}{\partial \eta_{ij}}= -(s_{j}-s_{j-1})\text{exp}(\eta_{ij})\\
+-\frac{\partial^2 l}{\partial {\eta_{ij}}^2} = (s_{j}-s_{j-1})\text{exp}(\eta_{ij})
+\end{aligned}\end{equation}
+
+Apparently, for $\eta_{ij}$ where $j>k_{(i)}$, we have the second derivatives of log-likelihood being 0's. Combine them together, we know that the negated Hessian matrix for the log-likelihood of $\{t_i,\delta_i\}$, $C_i$ will be:
+\begin{equation}
+\begin{bmatrix}
+(s_1-s_0)\text{exp}(\eta_{i1})  & 0  & 0 & \cdots & \cdots & \cdots & 0 \\
+0  & (s_2-s_1)\text{exp}(\eta_{i2})  & 0  & \ddots & && &  \\
+0 & 0  & \ddots &   & \ddots & &  &  \\
+\vdots & \cdots & \cdots & (s_{k_{(i)}-1}-s_{k_{(i)}-2})\text{exp}(\eta_{i(k_{(i)}-1)}) & \ddots & \vdots &  &  \\
+\vdots & & \ddots & 0 & (t_i-s_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}}) & \cdots & \vdots& \\
+\vdots  & & & \ddots &   & \ddots  &  \vdots\\
+\vdots  & && & \cdots & \cdots & \vdots\\
+0 & \cdots &  \cdots & \cdots & \cdots & \cdots & 0\\
+\end{bmatrix}
+\end{equation}
+This is a very sparse matrix with only diagonal terms. It is a $k\times k$ matrix, but only the diagonal terms at the first $k_{(i)}$ rows are non-zero.
+
+Repeating this procedure for the rest data points, using the property of independence, we can get the negated Hessian matrix C for the full log-likelihood will be:
+\begin{equation}
+C = \begin{pmatrix} 
+C_1 & 0 & 0 & \cdots & & \\ 
+0 & C_2 & 0 & \cdots & & \\
+  & \cdots & \ddots &  & & \\
+& & & & C_n & \cdots & \vdots \\ 
+& & & \ddots & &&\vdots \\
+& & & & & & 0
+\end{pmatrix}
+\end{equation}
+
+Here we build a block diagonal matrix C using each block $C_i$ obtained from above procedures. The negated Hessian matrix is sparse and diagonal, which is exactly what it has to be to be fitted using INLA. 
+This full matrix has dimension $(nk+\sum_{q=1}^{R}M_q + p +k)$ $\times$ $(nk+\sum_{q=1}^{R}M_q + p +k)$, and each block matrix $H_{i}$ has different patterns of zeros but same dimension.
+
+However, in a lot of cases, the data augmentation trick that INLA does will not work, and the negated Hessian matrix is not diagonal. For example, if we want to only use the partial likelihood instead of the full likelihood, because the baseline function is not of interest, then the resulting negated Hessian matrix will be sparse but not diagonal. INLA is currently not applicable to this type of problem, and here we are suggesting a novel method that will be general enough to be applicable even when the data augmentation trick cannot work.
+
+
+
+# Proposed Methodology for Approximation:
+
+In the paper "Approximate Bayesian Inference for Case-Crossover Models", Stringer et al.(2019) suggested a new type of algorithm to do the approximation while allowing the log-likelihood of each observation to be dependent on more than one element from the latent field, which means the ad-hoc method using "data augmentation" is no longer needed. Here we will demonstrate how that algorithm can be used to estimate the parameters in Cox Proportional Hazard Model, and when this new algorithm will be preferred than INLA's algorithm.
+
+## Approximation using Partial Likelihood with Right censoring only:
+For simplicity, let's assume that our main interests are the components in the linear predictor $\eta$, but not the baseline hazard $h_0(t)$, and the only type of censoring present is right-censoring. Let the C-matrix denote the negated Hessian matrix of the log-likelihood with respects to the latent field $\tilde{W}$.
+
+Assume that $\{t_i:i=1,...,k\}$ is a set of k distinct lifetimes that we actually $observed$, such that $t_{(1)} < t_{(2)} < ... <t_{(k)}$, and the result n-k lifetimes are the censored lifetimes that are not observed. Let $R_i = R(t_{(i)})$ be the set of individuals who are alive and uncensored prior to time $t_{(i)}$ (including the i-th individual who dies at $t_{(i)}$).
+
+Define the hazard function for the i-th individual to be $h_0(t)\text{exp}(\eta_i)$, and let $\Delta_{i,j}$ = $\eta_i -\eta_j$, then the partial likelihood for Cox Proportional Hazard Model can be written as:
+\begin{equation}\begin{aligned}\label{eqn:partial}
+L^{partial} &= \prod_{i=1}^{k} \bigg\{\frac{\text{exp}[\eta_{(i)}]}{{\sum_{l\in R_i}^{}\text{exp}[\eta_{(l)}]}}\bigg \} \\
+         &= \prod_{i=1}^{k} \bigg\{\frac{1}{{\sum_{l\in R_i}^{}\text{exp}[\eta_{(l)}-\eta_{(i)}]}}\bigg \} \\
+         &= \prod_{i=1}^{k} \bigg\{\frac{1}{{\sum_{l\in R_i}^{}\text{exp}[\Delta_{l,i}]}}\bigg \} \\
+         &= \prod_{i=1}^{k} \bigg\{\frac{1}{{1 + \sum_{l\in R_i , l \neq i}^{}\text{exp}[\Delta_{l,i}]}}\bigg \} \\
+\end{aligned}\end{equation}
+
+Which can be written as:
+\begin{equation}\begin{aligned}\label{eqn:partialagain}
+&= \prod_{i=1}^{k} \bigg\{\frac{1}{{1 + \sum_{l\in R_i , l \neq i}^{}\text{exp}[(\Delta_{1,i}-\Delta_{1,l})]}}\bigg \} \\
+\end{aligned}\end{equation}
+
+Because:
+\begin{equation}\begin{aligned}\label{eqn:partialagain2}
+\Delta_{i,j} = \eta_i-\eta_j = \eta_1-\eta_j-(\eta_1-\eta_i)=\Delta_{1,j}-\Delta_{1,i} 
+\end{aligned}\end{equation}
+\newline
+
+Define $\Delta:=(\Delta_{1,2},\Delta_{1,3},...,\Delta_{1,n})^T$, which are all the $\Delta_{ij}$'s that will contribute to the likelihood.
+\newline
+
+Notice that this partial likelihood does not include any information on the baseline hazard function $h_0(t)$, meaning that all of the information are used to estimate the regression parameters in the model, which should result in a more precise estimation for them. Here it is shown that the partial likelihood only depend on those "differenced linear predictors" $\{\Delta_{1,i}-\Delta_{1,j}\}$, so our latent field in this case will be $\{ \Delta,\beta,\Gamma \}$. More importantly, because we are not estimating those baseline hazards, the algorithm's convergence rate is expected to be faster.
+INLA does not allow this type of approximation because using partial likelihood to ignore the baseline hazard invalidates the "Poisson data-augmentation" trick that INLA does to make the C-matrix diagonal. While non-diagonal C matrix is not feasible in INLA's algorithm, it will be feasible in the new proposed algorithm.
+
+
+
+
+### Derivation of Hessian matrix and Precision matrix:
+
+For i-th observation, the partial log-likelihood will be:
+\begin{equation}\begin{aligned}\label{eqn:ithPart}
+l &= -\text{ln}(1+{\sum_{j\in R_i, j \ne i}^{}\text{exp}[\Delta_{j,i}]}) \\
+  &= -\text{ln}(1+{\sum_{j\in R_i, j \ne i}^{}\text{exp}[(\Delta_{1,i}-\Delta_{1,j})]})\\
+\end{aligned}\end{equation}
+
+Therefore, taking derivative with respect to $\Delta_{1,i}$, we can get:
+\begin{equation}\begin{aligned}\label{eqn:derivofPart}
+\frac{\partial l}{\partial \Delta_{1,i}} &= -\frac{\sum_{j\in R_i, j \ne i}^{}{}\text{exp}[(\Delta_{1,i}-\Delta_{1,j})]}{1+\sum_{j\in R_i, j \ne i}^{}{}\text{exp}[(\Delta_{1,i}-\Delta_{1,j})]} \\
+\end{aligned}\end{equation}
+
+Similarly, we can see that:
+
+\begin{equation}\begin{aligned}\label{eqn:secderivofPart}
+\frac{\partial^2 l}{\partial \Delta_{1,i}^2} &= -\frac{\sum_{j\in R_i, j \ne i}^{}{}\text{exp}[(\Delta_{1,i}-\Delta_{1,j})]}{\big \{1+\sum_{j\in R_i, j \ne i}^{}{}\text{exp}[(\Delta_{1,i}-\Delta_{1,j})]\big \}^2 }
+\\
+\end{aligned}\end{equation}
+
+Suppose that $w\ne i$,  if $w\notin R_i$ then we have:
+\begin{equation}\begin{aligned}\label{eqn:easyderiveforwnotini}
+\frac{\partial l}{\partial \Delta_{1,w}} = 0
+\end{aligned}\end{equation}
+
+If $w\in R_i$ then we have:
+\begin{equation}\begin{aligned}\label{eqn:secderivofPart3}
+\frac{\partial l}{\partial \Delta_{1,w}} = \frac{\text{exp}[(\Delta_{1,i}-\Delta_{1,w})]}{1+\sum_{j\in R_i, j \ne i}^{}{}\text{exp}[(\Delta_{1,i}-\Delta_{1,j})]}
+\end{aligned}\end{equation}
+
+Similarly, we get the following result for $w\in R_i$:
+\begin{equation}\begin{aligned}\label{eqn:result_forsecdr}
+\frac{\partial^2 l}{\partial \Delta_{1,i} \partial \Delta_{1,w}} = \frac{\text{exp}(\Delta_{1,i}-\Delta_{1,w})}{\big\{1+\sum_{j\in R_i, j \ne i}^{}{}\text{exp}[(\Delta_{1,i}-\Delta_{1,j})]\big \}^2}
+\end{aligned}\end{equation}
+
+\begin{equation}\begin{aligned}\label{eqn:result_forsecdr2}
+\frac{\partial^2 l}{\partial \Delta_{1,w}^2} = -\frac{\big[\sum_{j \in R_i, j \neq i,w}^{} \text{exp} (2\Delta_{1,i}-\Delta_{1,w}-\Delta_{1,j}) \big] + \text{exp}(\Delta_{1,i}-\Delta_{1,w})}{\big \{1+\sum_{j\in R_i, j \ne i}^{}{}\text{exp}[(\Delta_{1,i}-\Delta_{1,j})]\big\}^2}
+\end{aligned}\end{equation}
+
+If $M \in R_i$ but $M\neq i, M\neq w$, then:
+\begin{equation}\begin{aligned}\label{eqn:result_forsecdrlast}
+\frac{\partial^2 l}{\partial \Delta_{1,w} \partial \Delta_{1,M}} = \frac{\text{exp}(2\Delta_{1,i}-\Delta_{1,w}-\Delta_{1,M})}{\big\{1+\sum_{j\in R_i, j \ne i}^{}{}\text{exp}[(\Delta_{1,i}-\Delta_{1,j})]\big \}^2}
+\end{aligned}\end{equation}
+
+From the information above, we can derive the negated Hessian matrix of log-likelihood of the i-th observation, with respect to $\Delta$ being:
+
+\begin{equation}
+C_{i} = -\begin{pmatrix}
+\frac{\partial^{2}l}{\partial \Delta_{1,2}^{2}} & \frac{\partial^{2}l}{\partial \Delta_{1,2}\Delta_{1,3}} & \cdots & \frac{\partial^{2}l}{\partial \Delta_{1,2}\Delta_{1,n}} \\
+\frac{\partial^{2}l}{\partial \Delta_{1,3}\Delta_{1,2}} & \frac{\partial^{2}l}{\partial \Delta_{1,3}^2} & \cdots & \vdots \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial^{2}l}{\partial \Delta_{1,n}\Delta_{1,2}} & \cdots & \cdots & \frac{\partial^{2}l}{\partial \Delta_{1,n}^2}
+\end{pmatrix}
+\end{equation}
+
+For each $i \in\{1,...,n\}$, the corresponding $C_i$ matrix will be $(n-1)\times(n-1)$. Since the log-likelihood of the sample will be the sum of log-likelihood of each data, the negated Hessian matrix $C^\Delta$ of the full log-likelihood with respect to $\Delta$ will be the sum of each $C_i$ matrix, i.e.: $C^\Delta = C_1 + ...+C_k$.
+
+Therefore, the negated Hessian matrix C of the full log-likelihood with respect to the whole latent field will be:
+
+\begin{equation}\label{eqn:thehessian}
+C = \begin{pmatrix}
+C^{\Delta} & & & & & \\
+& 0 & & & & \\
+& & 0 & & & \\
+& & & 0 & & \\
+& & & & \ddots & & \\
+& & & & & 0 \\
+\end{pmatrix}
+\end{equation}
+
+
+To get the vector $\Delta=(\Delta_{1,2},\Delta_{1,3},..., \Delta_{1,n})^T$, we need to apply a linear transformation on the vector $\eta=(\eta_1,...,\eta_n)^T$, in other words:
+
+\begin{equation}\begin{aligned}\label{eqn:D1}
+\Delta &= \begin{pmatrix}\eta_{1} - \eta_{2} \\ \vdots \\ \eta_{1} - \eta_{n} \end{pmatrix} = D\eta \\
+\end{aligned}\end{equation}
+Where $D$ is the differencing matrix defined as:
+\begin{equation}\begin{aligned}\label{eqn:D2}
+D &= \begin{pmatrix}
+1 & -1 & 0 & \cdots & 0 \\
+1 & 0 & -1 & \cdots & 0 \\
+  &    & \ddots &   &   \\
+1 &    &       & 0 & -1 \\
+\end{pmatrix}
+\end{aligned}\end{equation}
+In this case, D will be a matrix with dimension $(n-1)\times n$ and rank $n-1$. Therefore, $DD^T$ will be an invertible matrix.
+
+Using the differenced matrix D defined above, we can proceed to get the precision matrix Q. The rest procedures will be identical to the procedures Stringer did in the paper "Approximate Bayesian Inference for Case-Crossover Models" (Stringer et al,2019).
+
+### Adjustments of Likelihood for tied observations 
+
+Throughout our discussion on how to use partial likelihood for doing approximate Bayesian Inference, we made an important assumption that the uncensored lifetimes are all unique, in other words $t_{(i)} \ne t_{(j)}$ for all $i\neq j$. However, in real life applications, there will be some cases where this assumption is not met. For example, we might use a "discretized" measure of lifetime when we are recording both 12.11 hours and 12.12 hours as 12.1 hours in the study of sustainability of a certain type of battery. That means, we should be able to deal with "ties" in our observed lifetimes. Here we will focus on Efron and Breslow's methods of approximation.
+
+From now, let's assume that for an observed lifetime $t_j$, there are $d_{(j)}$ number of other observed lifetimes are "tied" with it. Let $D_{(j)}$ be the set of all the individuals with lifetimes tied at $t_j$, that means there will be $d_{(j)}$ number of elements in $D_{(j)}$.
+
+Breslow's method of approximation will be the easiest and fastest method to use, when accuracy of estimations is not extremely required. The main idea of Breslow approximation is to include all the events occured at $t_j$ in the risk set $R(t_j)$. Therefore, we can write the partial likelihood at $t_j$ as:
+
+\begin{equation}\begin{aligned}\label{eqn:tie1forBres}
+L_j^B = \frac{\prod_{i \in D_{(j)}} \text{exp}(\eta_i)}{\big[ \sum_{i\in R_{j}} \text{exp}(\eta_i) \big]^{d_{(j)}}}
+\end{aligned}\end{equation}
+
+The use of Breslow method is really convenient, because its partial likelihood has the same form of our ordinary partial likelihood when all the observations are distinct. When the number of ties in the data-set is not a lot, Breslow's method does give a fairly accurate result, and its computation time is exactly the same as no ties in the set. However, despite its appealing efficiency, if too many ties occuring at the same time, then its accuracy will be influenced comparatively heavily. In that case, we would like to consider an alternative method, which is Efron method of approximation.
+
+Efron initially suggested this method as an approximation for the case when these ties are "exactly continuous". However, Efron's method in general gives very accurate estimates, and is computationally fast enough, even when the number of ties is very large. The main idea of this approach is to give a partial approximation to the contribution to $R(t_j)$ of each tied occurence, and it uses a partial likelihood in the form below:
+
+\begin{equation}\begin{aligned}\label{eqn:tie1forEf}
+L_j^{Ef} = \frac{\prod_{i \in D_{(j)}} \text{exp}(\eta_i)}{\prod_{h = 1}^{d_{(j)}} \bigg \{\sum_{i\in R_{j}} \text{exp}(\eta_i) - \frac{h-1}{d_j}\sum_{k\in D_{j}} \text{exp}(\eta_k) \bigg \}}
+\end{aligned}\end{equation}
+
+Although the partial likelihood of Efron's approximation is not as easy as the partial likelihood of Breslow's method, it is still not bad for our computational efficiency. In the case of a lot of ties occuring at a specific time, it gives a more accurate result than Breslow's method.
+
+There are other exact methods to deal with ties such as D.Cox's "exact discrete" method and Kalbfleisch and Prentice’s "exact continuous" method, but they are computationally too heavy to be used for our purpose. So we choose to not use them for now.
+
+#### Adjustment to C-matrix using Breslow's Method:
+
+If Breslow's method is used to adjust for the effect of tied observations at time $t_{(j)}$, then the form of C-matrix will be very similar to the C-matrix under regular setting derived in section 3.1.1. However, there will be some small changes we need to add to the C-matrix.
+
+Firstly, the partial likelihood at time $t_{(j)}$ will be:
+\begin{equation}\begin{aligned}\label{eqn:moreonBresl}
+L_j^B = \prod_{i\in D_{(j)}}^{}\bigg[ \frac{1}{\sum_{k\in R_j}^{}\text{exp}(\Delta_{k,i})} \bigg]
+\end{aligned}\end{equation}
+
+Therefore, its logarithm will be:
+\begin{equation}\begin{aligned}\label{eqn:moreonBresl2}
+l_j^B &= \sum_{i\in D_{(j)}}^{}\text{log}\bigg[ \frac{1}{1+\sum_{k\in R_j,k\neq i}^{}\text{exp}(\Delta_{k,i})} \bigg]\\
+&= -\sum_{i\in D_{(j)}}\text{log}\bigg[ {1+\sum_{k\in R_j,k\neq i}^{}\text{exp}(\Delta_{k,i})} \bigg]\\
+&= -\sum_{i\in D_{(j)}}\text{log}\bigg[ {1+\sum_{k\in R_j,k\neq i}^{}\text{exp}(\Delta_{1,i}-\Delta_{1,k})} \bigg]\\
+\end{aligned}\end{equation}
+
+That means, for the subject $i$ such that $i\in D_{(j)}$, we have its log-likelihood being:
+\begin{equation}\begin{aligned}\label{eqn:moreonBresl2fori}
+l_{j(i)}^B = -\text{log}(1+\sum_{k\in R_{j},k\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,k}))
+\end{aligned}\end{equation}
+The negated Hessian matrix $C_{j_{(i)}}$ of this log-likelihood with respect to $\Delta$ can be computed using the same procedures in section 3.1.1. 
+
+Consequently, the negated Hessian matrix of the log-likelihood at time $t_{(j)}$ will be:
+\begin{equation}\begin{aligned}\label{eqn:moreonBresllast}
+C_j = \sum_{i \in D_{(j)}}C_{j_{(i)}}
+\end{aligned}\end{equation}
+
+Similarly, we are able to get negated Hessian matrix $C_i$ at each observed time point $t_{(i)}$, and combing them using the method from section 3.1.1 gives our final C matrix of the sample.
+
+
+#### Adjustment to C matrix using Efron's Method:
+
+Define the vector $\tilde{h}=(1,2,...,d_{(j)})^T$, where $h_i$ is its $i$th component, then the partial likelihood at time $t_{(j)}$ can be written as:
+\begin{equation}\begin{aligned}\label{eqn:Efron1}
+L_j^{Ef} = \prod_{i \in D_{(j)}} \frac{1}{\sum_{k\in R_j}\text{exp}(\Delta_{k,i})-\frac{h_i -1}{d_{(j)}}\sum_{m\in D_{(j)}}\text{exp}(\Delta_{m,i})}
+\end{aligned}\end{equation}
+
+where for the $i$th subject such that $i\in D_{(j)}$, its partial likelihood will be:
+\begin{equation}\begin{aligned}\label{eqn:Efron2}
+L_{j_{(i)}}^{Ef} =\frac{1}{\sum_{k\in R_j}\text{exp}(\Delta_{k,i})-\frac{h_i -1}{d_{(j)}}\sum_{m\in D_{(j)}}\text{exp}(\Delta_{m,i})}
+\end{aligned}\end{equation}
+and its logarithm will be:
+\begin{equation}\begin{aligned}\label{eqn:Efron3}
+l_{j_{(i)}}^{Ef} = -\text{log}\bigg \{1+ \sum_{k\in R_j, k\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,k})- \frac{h_i-1}{d_{(j)}}\big[\sum_{m\in D_{(j)}, m\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,m})\big] \bigg\}
+\end{aligned}\end{equation}
+
+From this log-likelihood, we can derive that:
+\begin{equation}\begin{aligned}\label{eqn:Efron4}
+\frac{\partial l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,i}} = -\frac{\sum_{k\in R_j, k\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,k})-\frac{h_i-1}{d_{(j)}}\big[\sum_{m\in D_{(j)}, m\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,m})\big]}{\bigg\{1+\sum_{k\in R_j, k\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,k})-\frac{h_i-1}{d_{(j)}}\big[1+\sum_{m\in D_{(j)}, m\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,m})\big]\bigg\}}
+\end{aligned}\end{equation}
+
+If $w \notin R_{(j)}$, then the derivative just simplifies to: 
+\begin{equation}\begin{aligned}\label{eqn:Efron6}
+\frac{\partial l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,w}} = 0
+\end{aligned}\end{equation}
+
+Therefore, assumes $w \in D_{(j)}$, then we have:
+\begin{equation}\begin{aligned}\label{eqn:Efron7}
+\frac{\partial l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,w}} = -\frac{-\text{exp}(\Delta_{1,i}-\Delta_{1,w})+\frac{h_i-1}{d_{(j)}}\text{exp}(\Delta_{1,i}-\Delta_{1,w})}{\bigg\{1+\sum_{k\in R_j, k\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,k})-\frac{h_i-1}{d_{(j)}}\big[1+\sum_{m\in D_{(j)}, m\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,m})\big]\bigg\}}
+\end{aligned}\end{equation}
+
+Define the notation $\iota$ as below:
+\begin{equation}\begin{aligned}\label{eqn:DefEfron1}
+\iota = -\text{exp}(\Delta_{1,i}-\Delta_{1,w})+\frac{h_i-1}{d_{(j)}}\text{exp}(\Delta_{1,i}-\Delta_{1,w})
+\end{aligned}\end{equation}
+
+Therefore, we know that:
+\begin{equation}\begin{aligned}\label{eqn:DefEfron1know}
+\frac{\partial\iota}{\partial\Delta_{1,w}}=\text{exp}(\Delta_{1,i}-\Delta_{1,w})-\frac{h_i-1}{d_{(j)}}\text{exp}(\Delta_{1,i}-\Delta_{1,w}) = \iota
+\end{aligned}\end{equation}
+and 
+\begin{equation}\begin{aligned}\label{eqn:DefEfron1know2}
+\frac{\partial\iota}{\partial\Delta_{1,i}}=\iota
+\end{aligned}\end{equation}
+
+Define the notation $\zeta$ as below:
+\begin{equation}\begin{aligned}\label{eqn:DefEfron2}
+\zeta = \sum_{k\in R_j, k\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,k})-\frac{h_i-1}{d_{(j)}}\big[\sum_{m\in D_{(j)}, m\neq i}\text{exp}(\Delta_{1,i}-\Delta_{1,m})\big]
+\end{aligned}\end{equation}
+It can be shown that $\frac{\partial\zeta}{\partial \Delta_{1,w}}=\iota$, $\frac{\partial\zeta}{\partial \Delta_{1,i}}=\zeta$ and similarly that:
+\begin{equation}\begin{aligned}\label{eqn:DefEfron2back}
+\frac{\partial l_{j_{(i)}}^{Ef}}{\partial\Delta_{1,w}} = -\frac{\iota}{\zeta+\frac{d_{(j)}-h_i+1}{d_{(j)}}} \\
+\frac{\partial l_{j_{(i)}}^{Ef}}{\partial\Delta_{1,i}} = -\frac{\zeta}{\zeta+\frac{d_{(j)}-h_i+1}{d_{(j)}}} \\
+\end{aligned}\end{equation}
+
+Consequently, the second derivatives of log-likelihood can be shown to be:
+
+\begin{equation}\begin{aligned}\label{eqn:Efron8}
+\frac{\partial^2 l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,w} \partial \Delta_{1,i}} = -\frac{\iota[\frac{d_{(j)}-h_i+1}{d_{(j)}}]}{\bigg[\zeta+\frac{d_{(j)}-h_i+1}{d_{(j)}}\bigg]^2}
+\end{aligned}\end{equation}
+
+\begin{equation}\begin{aligned}\label{eqn:Efron9}
+\frac{\partial^2 l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,w}^2} &= -\frac{\frac{\partial\iota}{\partial\Delta_{1,w}}[\zeta+\frac{d_{(j)}-h_i+1}{d_{(j)}}]-\iota^2}{\bigg[\zeta+\frac{d_{(j)}-h_i+1}{d_{(j)}}\bigg]^2} \\
+\\
+&= \frac{\iota \big[\zeta + \frac{d_{(j)}-h_i+1}{d_{(j)}}\big]+\iota^2}{\bigg[\zeta+\frac{d_{(j)}-h_i+1}{d_{(j)}}\bigg]^2}
+\end{aligned}\end{equation}
+
+For $M \in D_{(i)}$ and $M \neq i,k$, we have:
+\begin{equation}\begin{aligned}\label{eqn:Efron10}
+\frac{\partial^2 l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,w} \partial \Delta_{1,M}} = \frac{\iota\bigg[-\text{exp}(\Delta_{1,i}-\Delta_{1,M})+\frac{h_i-1}{d_{(j)}}\text{exp}(\Delta_{1,i}-\Delta_{1,M})\bigg]}{\bigg[\zeta+\frac{d_{(j)}-h_i+1}{d_{(j)}}\bigg]^2}
+\end{aligned}\end{equation}
+
+Finally, for $M \in R_j$ but $M \notin D_j$, we have:
+\begin{equation}\begin{aligned}\label{eqn:Efron11}
+\frac{\partial l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,M}} = -\frac{\text{exp}(\Delta_{1,i}-\Delta_{1,M})}{\zeta + \frac{d_j-h_i+1}{d_j}}
+\end{aligned}\end{equation}
+
+\begin{equation}\begin{aligned}\label{eqn:Efron12}
+\frac{\partial^2 l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,M}^2} = \frac{-\text{exp}(\Delta_{1,i}-\Delta_{1,M})[\zeta+\frac{d_j-h_i+1}{d_j}]+\text{exp}(2\Delta_{1,i}-2\Delta_{1,M})}{\bigg[\zeta + \frac{d_j-h_i+1}{d_j}\bigg]^2}
+\end{aligned}\end{equation}
+
+\begin{equation}\begin{aligned}\label{eqn:Efron13}
+\frac{\partial^2 l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,M}\partial \Delta_{1,i}} = \frac{\text{exp}(\Delta_{1,i}-\Delta_{1,M})\frac{d_j-h_i+1}{d_j}}{\bigg[\zeta + \frac{d_j-h_i+1}{d_j}\bigg]^2}
+\end{aligned}\end{equation}
+
+\begin{equation}\begin{aligned}\label{eqn:Efron14}
+\frac{\partial^2 l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,M}\partial \Delta_{1,w}} = \frac{-\text{exp}(\Delta_{1,i}-\Delta_{1,M})\iota}{\bigg[\zeta + \frac{d_j-h_i+1}{d_j}\bigg]^2}
+\end{aligned}\end{equation}
+
+Now, assumes that $a\in R_j$ but $a \notin D_j$, then:
+\begin{equation}\begin{aligned}\label{eqn:Efron15}
+\frac{\partial^2 l_{j_{(i)}}^{Ef}}{\partial \Delta_{1,M}\partial \Delta_{1,a}} = \frac{\text{exp}(2\Delta_{1,i}-\Delta_{1,M}-\Delta_{1,a})\iota}{\bigg[\zeta + \frac{d_j-h_i+1}{d_j}\bigg]^2}
+\end{aligned}\end{equation}
+
+Using these information above, we can construct the negated Hessian matrix $C_{j_{(i)}}$ for this $i$th subject, and therefore construct the negated Hessian matrix $C_j$ of the log-likelihood at time $t_{(j)}$, which is $C_j = \sum_{i\in D_{(j)}}C_{j_{(i)}}$. Consequently, we are able to get the C matrix of the full sample by summing these $C_j$ matrixes at different observed times.
+
+### Reduction of dimension of C-matrix:
+
+It is worth noticing that in the above derivations, the C-matrix will have a dimension that is more than $n\times n$. Since the sample size n in modern data-set will be super large, the C-matrix will also have a very large dimension with non-sparse components. That will cause some troubles in storage cost and computation time, which is a major concern during the application. Therefore, the Ph.D student Alex Stringer proposed a method that can greatly reduce the dimension of C-matrix. That can be a solution for the computational problems listed above. The idea of the proposed method will be described at below.
+
+
+Redefine $\eta$ as $\eta_i := \tilde{X_i}\beta + \sum_{q=1}^{R}{\gamma_q(u_{qi})}$, which means $\tilde{\eta}= X\beta+A\Gamma$, and we redefine the latent field $\tilde{W} = (\Gamma,\beta)$. 
+
+
+Notice that, $\eta$ can be linearly transformed into $\Delta:=(\Delta_{1,2},\Delta_{1,3},...,\Delta_{1,n})^T$ by $D\eta$, where $D$ is the differencing matrix defined at previous section. Also, $\eta = \bigg(A,X\bigg)W$.Therefore, we know that $\Delta = D\bigg(A,X\bigg)W = \bigg(DA,DX\bigg)W$. Define $DA = A^*$ and $DX = X^*$, then $\Delta =\bigg(DA,DX\bigg)W$.
+
+
+Now, define matrix $C$ as the Hessian matrix of the log-likelihood with respect to $\Delta$, which is already derived in section $3.1.1$, and the Hessian matrix of the log-likelihood with respect to $W$ (i.e. $D_w(\nabla_wl)$ the jocobian matrix of the gradient) is of interest. Since log-likelihood $l$ only depends on $W$ through $\Delta$, we can implement chain rule to simplify the computation:
+
+
+Note that:
+\begin{equation}\begin{aligned}\label{eqn:ReductofD1}
+D_w{(\Delta)} = \begin{pmatrix} A^{*} & X^{*} \end{pmatrix} \\
+D_\Delta (\nabla_\Delta l \ ) = C
+\end{aligned}\end{equation}
+
+
+Using chain rule we get:
+\begin{equation}\begin{aligned}\label{eqn:ReductofD2}
+\nabla_w l &= D_w(l)^T \\
+            &= D_w(\Delta)^T \nabla_{\Delta}l \\
+            &= \begin{pmatrix} A^{*T} \\ X^{*T} \end{pmatrix} \nabla_{\Delta}l
+\end{aligned}\end{equation}
+
+
+Then, if we compute the Jocobian matrix of $\nabla_wl$ with respect to $W$, we can get the Hessian matrix of $l$ with respect to $W$ as following:
+\begin{equation}\begin{aligned}\label{eqn:ReductofD3}
+D_w(\nabla_w l \ ) &= \begin{pmatrix} A^{*T} \\ X^{*T} \end{pmatrix} D_\Delta (\nabla_\Delta l \ ) D_w (\Delta)  \\
+                    &= \begin{pmatrix} A^{*T} \\ X^{*T} \end{pmatrix} D_\Delta (\nabla_\Delta l \ ) \begin{pmatrix} A^{*} , X^{*} \end{pmatrix} \\
+                    &= \begin{pmatrix} A^{*T} C A^* & A^{*T} C X^* \\ X^{*T} C A^* & X^{*T} C X^* \end{pmatrix} \\
+\end{aligned}\end{equation}
+
+The main problem here is that matrix C is highly non-sparse, and has a very big dimension, so the computation of the four matrix cross-products will be challenging when sample size is large. To solve that, procedures below are suggested.
+
+Let $C_{ij}$ denotes the ij th component of matrix $C$, and $a_i^*$, $x_i^*$ denote the $i^{th}$ columns of matrix A and X, then the matrix C only affects the Hessian matrix $D_w(\nabla_w l\ )$ through the relationships below:
+\begin{equation}\begin{aligned}\label{eqn:EstimationMethod1forCross}
+\bigg[A^{*T} C A^* \bigg]_{ij} = a_i^{*T} C a_j^* = \sum_{k=1}^{N} \sum_{l=1}^{N} A_{ik}^* A_{jl}^* C_{kl} \\
+\bigg[X^{*T} C A^* \bigg]_{ij} = x_i^{*T} C a_j^* = \sum_{k=1}^{N} \sum_{l=1}^{N} X_{ik}^* A_{jl}^* C_{kl} \\
+\bigg[A^{*T} C X^* \bigg]_{ij} = a_i^{*T} C x_j^* = \sum_{k=1}^{N} \sum_{l=1}^{N} A_{ik}^* X_{jl}^* C_{kl} \\
+\bigg[X^{*T} C X^* \bigg]_{ij} = x_i^{*T} C x_j^* = \sum_{k=1}^{N} \sum_{l=1}^{N} X_{ik}^* X_{jl}^* C_{kl} \\
+\end{aligned}\end{equation}
+
+The first three sums only consists of a small number of non-zero terms because of the sparsity of matrix A. The last sum will consist of a lot of non-zero terms because matrix X is not as sparse as matrix A in most settings. But that sum can be estimated using random approximation method as below:
+
+\begin{equation}\begin{aligned}\label{eqn:RandomApproxi}
+\sum_{k=1}^{N} \sum_{l=1}^{N} X_{ik}^* X_{jl}^* C_{kl} &= N^2 \times \bigg[\frac{1}{N^2}\sum_{k=1}^{N} \sum_{l=1}^{N} X_{ik}^* X_{jl}^* C_{kl}\bigg] \\
+                                                       &\approx N^2 \times \bigg[\frac{1}{|S|^2}\sum_{k,l \in S}^{} X_{ik}^* X_{jl}^* C_{kl}\bigg] \\
+\end{aligned}\end{equation}
+Here S is a random sample, which has sample size $|S|\ll N$. If S is randomly selected with enough sample size, then by weak law of large number it is known that this approximation will be very close to the true value of $\big[X^{*T}CX^{*}\big]_{ij}$.
+
+
+## Approximation using full-likelihood with left-truncation:
+
+If there are both right-censoring and left-truncations in our data-set, the "data augmentation trick" that INLA uses actually still works theoretically, but the software does not actually allow the user to run the approximation under this scenario. Fortunately, it can be solved using the package of the new proposed algorithm.
+
+Recall that left-truncation happens when we cannot observed the i-th individual lifetime $t_i$, unless it is greater than the entry time $u_i$. Under this setup, all the observed lifetimes $t_i$'s are known to be greater than their corresponding entry times $u_i$'s. In other words, we should use conditional probability given $t_i > u_i$ to form our likelihood. For simplicity, let's still consider the same semi-parametric proportional hazard model with piece-wise constant basline hazard.
+
+Denote the i-th lifetime as $t_i$, the i-th left truncation time is $u_i$, and assume that $t_i \in (s_{k_{(i)}-1},s_{k_{(i)}}]$, $u_i \in (s_{m_{(i)}-1},s_{m_{(i)}}]$. Therefore, we have the likelihood being:
+
+\begin{equation}\begin{aligned}\label{eqn:lt}
+L &= \prod_{i=1}^{n} {\bigg[\frac{f(t_i)}{S(u_i)}\bigg]^{\delta_i}\bigg[\frac{S(t_i)}{S(u_i)}\bigg]^{1- \delta_i}} \\
+  &= \prod_{i=1}^{n} {f(t_i)^{\delta_i}}{\frac{S(t_i)^{1-\delta_i}}{S(u_i)}} \\
+  &= \prod_{i=1}^{n} {h(t_i)^{\delta_i}}{\frac{S(t_i)}{S(u_i)}} \\
+\end{aligned}\end{equation}
+
+Using the likelihood above, we can easily derive the log-likelihood being:
+
+\begin{equation}\begin{aligned}\label{eqn:lt_log}
+l &= \sum_{i=1}^{n} {{\delta_i}\text{log}[h(t_i)]} + \sum_{i=1}^{n} {\big[\text{log}S(t_i)-\text{log}S(u_i)\big]}  \\
+\end{aligned}\end{equation}
+
+Recall that if $t_i \in (s_{k_{(i)}-1},s_{k_{(i)}}]$, and $u_i \in (s_{m_{(i)}-1},s_{m_{(i)}}]$, we have the followings:
+\begin{equation}\begin{aligned}\label{eqn:ltcase1}
+\text{log}S(t_i) &= -\int_{0}^{t_i} h(x) dx \\
+                 &= -\sum_{j=1}^{k_{(i)}-1} (S_j-S_{j-1})\text{exp}(\eta_{ij})-(t_i-S_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}}) \\
+\end{aligned}\end{equation}
+
+Similarly:
+
+\begin{equation}\begin{aligned}\label{eqn:ltcase2}
+\text{log}S(u_i) &= -\int_{0}^{u_i} h(x) dx \\
+                 &= -\sum_{j=1}^{m_{(i)}-1} (S_j-S_{j-1})\text{exp}(\eta_{ij})-(u_i-S_{m_{(i)}-1})\text{exp}(\eta_{im_{(i)}}) \\
+\end{aligned}\end{equation}
+
+Therefore, the difference between this two terms can be written as:
+\begin{equation}\begin{aligned}\label{eqn:diff}
+\text{log}S(t_i)-\text{log}S(u_i) = -\int_{u_i}^{t_i} h(x) dx \\
+\end{aligned}\end{equation}
+Whereas:
+\begin{equation}\begin{aligned}\label{eqn:diff2}
+-\int_{u_i}^{t_i} h(x) dx = -\sum_{j=m_{(i)}+1}^{k_{(i)}-1} (S_j-S_{j-1})\text{exp}(\eta_{ij}) - (S_{m_{(i)}}-u_i)\text{exp}(\eta_{im_{(i)}})-(t_i - S_{k_{(i)}-1})\text{exp}(\eta_{n_{ik_{(i)}}})
+\end{aligned}\end{equation}
+
+Then, combine all of the information above together, we can derive an expression for the log-likelihood of the sample:
+\begin{equation}\begin{aligned}\label{eqn:all_together_logoftr}
+l = \sum_{i=1}^{n} {\delta_i}{\eta_{i{k_{(i)}}}}-\sum_{i=1}^{n}\sum_{j=m_{(i)}+1}^{k_{(i)}-1}(S_j-S_{j-1})\text{exp}(\eta_{ij}) - \sum_{i=1}^{n} (S_{m_{(i)}}-u_i)\text{exp}(\eta_{im_{(i)}}) - \sum_{i=1}^{n} (t_i-S_{k_{(i)}-1})(\eta_{ik_{(i)}})
+\end{aligned}\end{equation}
+
+If we have $m_{(i)} \leq k_{(i)}-1$, then the above expression simplify to:
+\begin{equation}\begin{aligned}\label{eqn:all_together_logoftr2}
+l = \sum_{i=1}^{n} {\delta_i}{\eta_{i{k_{(i)}}}}- \sum_{i=1}^{n} (S_{m_{(i)}}-u_i)\text{exp}(\eta_{im_{(i)}}) - \sum_{i=1}^{n} (t_i-S_{k_{(i)}-1})(\eta_{ik_{(i)}})
+\end{aligned}\end{equation}
+
+Next step, I will derive the corresponding C and Q matrix in this case.
+
+### Derivation of C-matrix with left-truncation
+To make the derivation most general, I will assume that $k_{(i)}-1 \geq m_{(i)}+1$, since otherwise the computation will be simplified to trivial.
+For the i-th observation $t_{(i)}$ with left-truncation time $u_{(i)}$, assume that: $t_i \in (s_{k_{(i)}-1},s_{k_{(i)}}]$, and $u_i \in (s_{m_{(i)}-1},s_{m_{(i)}}]$, then the likelihood of this observation will be:
+\begin{equation}\begin{aligned}\label{eqn:ind_i_log}
+l = \delta_i \eta_{ik_{(i)}} - \sum_{m_{(i)}+1}^{k_{(i)}-1} (S_j - S_{j-1}) \text{exp}(\eta_{ij}) - (S_{m_{(i)}}-u_{(i)})\text{exp}(\eta_{im_{(i)}})-(t_{(i)}-S_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}})
+\end{aligned}\end{equation}
+
+For $j<m_{(i)}$ or $j>k_{(i)}$, apparently we have $\frac{ \partial l}{\partial \eta_{ij}}$ = $\frac{ \partial^2 l}{\partial \eta_{ij}^2}$ = 0.
+
+For $j = m_{(i)}$, we can compute that $\frac{ \partial l}{\partial \eta_{ij}}$ = $\frac{ \partial^2 l}{\partial \eta_{ij}^2}$ = $- (S_{m_{(i)}}-u_{(i)})\text{exp}(\eta_{im_{(i)}})$.
+
+For $m_{(i)} < j < k_{(i)}$, $\frac{ \partial l}{\partial \eta_{ij}}$ = $\frac{ \partial^2 l}{\partial \eta_{ij}^2}$ = $- (S_j-S_{j-1})\text{exp}(\eta_{ij})$.
+
+For $j = k_{(i)}$, it can be shown that:
+
+\begin{equation}\begin{aligned}\label{eqn:smalladd}
+\frac{ \partial l}{\partial \eta_{ij}} = \delta_i - (t_{(i)}-S_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}}) \\
+\end{aligned}\end{equation}
+So,
+\begin{equation}\begin{aligned}\label{eqn:smalladd2}
+\frac{ \partial^2 l}{\partial \eta_{ij}^2} = - (t_{(i)}-S_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}})
+\end{aligned}\end{equation}
+
+From now, let's denote $\text{exp}(\eta_{ij})$ as $b_{ij}$.
+Now, we can use the above information, to obtain the C-matrix (negated Hessian) of the i-th observation:
+
+\begin{equation}
+\begin{pmatrix} 
+0 &   &  & \cdots & \cdots &  & \cdots \\
+0 & \ddots  &   &  & && &  \\
+\vdots & \cdots & (S_{m_{(i)}}-u_{(i)}) b_{im_{(i)}} &  & \cdots & \cdots & \cdots &  \\
+\vdots & & &(S_{m_{(i)}+1}-S_{m_{(i)}})b_{i(m_{(i)}+1)} &  & \cdots & \cdots& \\
+\vdots & & & \ddots  & \ddots & \ddots & \cdots& \\
+\vdots  & & & \cdots & (S_{k_{(i)}-1}-S_{k_{(i)}-2})b_{i(k_{(i)}-1)}  & \cdots &  \\
+\vdots  & && & \cdots & (t_i-S_{k_{(i)}-1})b_{ik_{(i)}} & \cdots\\
+0 & \cdots &  \cdots & \cdots & \cdots & \cdots & \ddots \\
+\end{pmatrix}
+\end{equation}
+This is a matrix with $k \times k$ dimension.
+
+Let's call the C-matrix of observation i as $C_i$, then the C-matrix of the whole sample will be:
+\begin{equation}
+C = \begin{pmatrix} 
+C_1 & 0 & 0 & \cdots & & \\ 
+0 & C_2 & 0 & \cdots & & \\
+  & \cdots & \ddots &  & & \\
+& & & & C_n & \cdots & \vdots \\ 
+& & & \ddots & &&\vdots \\
+& & & & & & 0
+\end{pmatrix}
+\end{equation}
+This C matrix has a dimension of $(nk+\sum_{q=1}^{R}M_q + p +k)$ $\times$ $(nk+\sum_{q=1}^{R}M_q + p +k)$, and each block matrix $C_i$ has the same dimension being $k\times k$.
+
+We can see that the present of left-truncation does not change the overall shape of the C-matrix. The only effect of it is to change the diagonal terms of each individual observation's $C_i$ matrix depending on the i-th left-truncation time. Therefore, the computation efficiency and precision will not be affected too much.
+
+
+\newpage
+
+## Approximation using full-likelihood with interval-censoring:
+
+Suppose that we are not observing the exact lifetimes of individiuals, but only the set of intervals that contain each lifetime. In other words, our data-set is $\{L_i, R_i ; i=1,...n\}$ , where $L_i \leq t_i \leq R_i$. Using the same way to define the piece-wise constant hazard functions as before, we can assume that for the i-th observation, we have $R_i\in(S_{k_{(i)}-1},S_{k_{(i)}}]$, and $L_i\in(S_{m_{(i)}-1},S_{m_{(i)}}]$. 
+
+Now, we can write down the log-likelihood of the i-th individual using the above information:
+
+\begin{equation}\begin{aligned}\label{eqn:icl1}
+l_i &= \delta_i \text{log}\big[h_i(R_i)\big] - \int_{0}^{R_i} h_i(u) du + \text{log}\bigg\{ 1-\text{exp}\big[ -\int_{L_i}^{R_i} h_i(u)du \big]  \bigg\} \\
+    &= \delta_i \eta_{ik_{i}} - \sum_{j=1}^{k_{(i)}-1} \text{exp}(\eta_{ij}) - (R_i-S_{k_{(i)}-1}) \text{exp}(\eta_{ik_{(i)}}) + \text{log}\big[1-\text{exp}(\vartheta_i)\big] \\
+\end{aligned}\end{equation}
+
+Where $\vartheta_i$ is defined as:
+\begin{equation}\begin{aligned}\label{eqn:vartheta}
+\vartheta_i = -\int_{L_i}^{R_i} h_i(u)du = -\sum_{j=m_{(i)}+1}^{k_{(i)}-1} (S_j - S_{j-1})\text{exp} (\eta_{ij}) -(S_{m_{(i)}} - L_i)\text{exp}(\eta_{im_{(i)}})-(R_i - S_{k_{(i)}-1})\text{exp}(\eta_{ik_{(i)}})
+\end{aligned}\end{equation}
+
+Now, we can take derivative of this log-likelihood with respect to the ij-th linear predictor (assume that $m_{(i)}+1\leq j \leq k_{(i)}-1$), and get the following result:
+
+\begin{equation}\begin{aligned}\label{eqn:ijderivofsingle}
+\frac{\partial l_i}{\partial \eta_{ij}} = -(S_j-S_{j-1})\text{exp}(\eta_{ij}) -  \frac{\text{exp}(\vartheta_i) \frac{\partial \vartheta_i}{\partial \eta_{ij}}}{1-\text{exp}(\vartheta_i)}
+\end{aligned}\end{equation}
+
+Where $\frac{\partial \vartheta_i}{\partial\eta_{ij}}$ is $-(S_j-S_{j-1})\text{exp}(\eta_{ij})$ in this case.
+
+Since $\vartheta_i$ depends on more than one linear predictors, so it follows naturally that $\frac{\partial l_i}{\partial \eta_{ij}}$ will be a function of several different linear predictors, which means the C-matrix of each observation's log-likelihood will be non-diagonal. That will be a serious problem for INLA, as its package relies on the diagonality of C-matrix, but it will not cause any probelm for our new proposed algorithm, as the diagonality of C-matrix is no longer required here.
+
+# Example from Diabetics Data-set
+
+
+Firstly, I will use the data-set "diabetics" to demonstrate the equivalence between "coxph" approach in survival package, INLA's approach and our proposed approach. This data-set contains the results from a trail of laser coagulation for the treatment of diabetic retinopathy from 197 patients. Each patient had one eye randomized to laser treatment and the other eye received no treatment. (To be continued on "proposed approach")
+
+The variable "id" specifies the subject's ID. 
+
+The variable "laser" is a categorical variable with levels xenon or argon. 
+
+The variable "age" is the age of the subject at diagnosis.
+
+The variable "eye" is a categorical variable with levels left or right.
+
+The variable "trt" is a categorical variable with levels 0 for no treatment and 1 for treatment using laser.
+
+The variable "risk" classifies the risk levels of the patients.
+
+The response variable in this data-set will be "time", which are  the actual time to blindness in months, minus the minimum possible time to event (6.5 months), and "status" indicates whether the time is censored with 1 for visual loss and 0 for censored. The censoring can be due to death, dropout, or end of the study.
+
+Let use briefly view the structure of "diabetics":
+
+## Data-set:
+
+```{r 0}
+head(as_tibble(diabetic))
+```
+
+We can see that those survival times are right-censored. We will fit a cox proportional hazard model with piece-wise constant baseline hazard, assuming that each individual will have the same baseline hazard function. The variable ID will be treated as a random effect(which can be added using code "frailty.gaussian(id)"). The variables "age", "eye", "trt" and "laser" will be included as fixed effects. 
+
+
+
+
+## Survival: coxph
+
+```{r 1}
+diabetic.CoxPh <- coxph(Surv(time, status)~age + eye + trt + laser + frailty.gaussian(id), data = diabetic)
+summary(diabetic.CoxPh)
+```
+
+From the output above, it can be seen that variables "age" and "eyeright" have positive association with the rate of occurrence of visual loss, and variables "trt" and whether using "argon" type of laser are negatively associated with the rate.
+All the fixed effects that we included in this study have significant effects for the risk of visual loss.
+
+
+## Bayesian: INLA
+
+Now we fit the same model using INLA:
+
+```{r 2}
+formula = inla.surv(time, status) ~ age + eye + trt + laser + f(id, model = "iid")
+diabetic.INLA <- inla(formula, control.compute = list(dic = TRUE), family = "coxph", 
+                      data = diabetic, control.hazard=list(model="rw2", n.intervals=20))
+diabetic.INLA$summary.fixed
+```
+
+It seems like these two approaches are similar enough. Though in the classic "coxph" approach, the effects of age and using argon-type laser are significant, but INLA gives insignificant results(the 95% credible interval contains zero). There is an estimate for intercept in the INLA's method because we used a random walk prior in that.
+
+
+# Example from Bladder Data-set:
+
+Next, we will study the two approaches on the data-set "bladder1". This is the full data-set that contains the result from a study on recurrences of bladder cancer from 118 subjects. In this data-set, the variables that we are interested in are "id", "number", "size", "recur", "times" and "censored". 
+
+The variable "id" is just the patient ID.
+
+The variable "number" specifies initial number of tumors of each subject.
+
+The variable "size" is the size of largest initial tumor.
+
+The variable "recur" is the number of recurrence of bladder cancer for that subject.
+
+The response variable will be "time" which is computed to be the duration of times until recurrence or death, censored by the variable "censored" with 0 means being censored.
+
+
+## Data-set:
+
+```{r 3}
+data <- as_tibble(bladder1)
+data <- select(data,-c(rsize,rtumor,enum))
+data <- data %>% mutate(censored = status==0)
+for (i in 1:length(data$censored)) {
+  if(data$censored[i]) data$censored[i] <- 0
+  else data$censored[i] <- 1
+}
+data <- data %>% mutate(times = stop-start)
+head(data)
+tail(data)
+```
+
+Here the variable "id" specifies different individuals, and should be treated as a random effect. The variable "time" is computed using the difference between variables "start" and "stop", which denote the start time and end time of each time interval. It seems like a interval censoring problem but the start time is known before hand, so we can treat it as a regular type-I right censoring.
+
+In this study, a nonzero value of "status" can be death from bladder disease, death from other reason or recurrence. Here we will just view all of these situations as "occurrence" for simplicity. So the variable "censored" is created such that it is 1 if "status" is non-zero, otherwise 0.  We will include "number", "size" and "recur" as fixed effects in this study.
+
+
+## Survival:coxph
+
+
+```{r 4}
+bladder.CoxPh <- coxph(Surv(times, censored)~ number + size + recur + frailty.gaussian(id), data = data)
+summary(bladder.CoxPh)
+```
+
+Fitting this model using the traditional partial likelihood approach gives insignificant results for all the fixed effects except "recur", which has a strong positive effect. But we will still proceed to check what will happen if we fit it using a Bayesian approach.
+
+
+## Bayesian: INLA
+
+
+```{r 5}
+formula = inla.surv(times, censored) ~ number + size + recur + f(id, model = "iid")
+bladder.INLA <- inla(formula, control.compute = list(dic = TRUE), family = "coxph", 
+                      data = data, control.hazard=list(model="rw2", n.intervals=20))
+bladder.INLA$summary.fixed
+```
+
+Indeed, the two results seem pretty similar in general. In both cases, we can see that there are no apparent relationships between all of the fixed effects and the rate of occurrence of bladder cancer's recurrence, or death, except the variable "recur" with a positive effect. 
+

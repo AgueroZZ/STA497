@@ -1,0 +1,12 @@
+---
+title: "Untitled"
+author: "Ziang"
+date: "20/10/2019"
+output: html_document
+---
+
+\begin{equation}\begin{aligned}\label{eqn:EstimationMethod1forCross}
+\bigg[A^{*T} C A^* \bigg]_{ij} = a_i^{*T} C a_j^* = \sum_{k=1}^{N} \sum_{l=1}^{N} A_{ik}^* A_{jl}^* C_{kl} \\
+\bigg[X^{*T} C X^* \bigg]_{ij} = x_i^{*T} C x_j^* = \sum_{k=1}^{N} \sum_{l=1}^{N} X_{ik}^* X_{jl}^* C_{kl} \\
+\bigg[X^{*T} C A^* \bigg]_{ij} = x_i^{*T} C a_j^* = \sum_{k=1}^{N} \sum_{l=1}^{N} X_{ik}^* A_{jl}^* C_{kl} \\
+\end{aligned}\end{equation}
