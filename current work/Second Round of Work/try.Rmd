@@ -1,9 +1,0 @@
----
-title: "try"
-author: "Ziang"
-date: "15/09/2019"
-output: pdf_document
----
-\begin{equation}\begin{aligned}\label{eqn:new1}
-\tilde W = \big[\eta_{11},\eta_{12},...,\eta_{1k},\eta_{2k},...,\eta_{nk},\Gamma_1,...,\Gamma_q,\beta_1,...,\beta_p,\text{log}(\lambda_1),...,\text{log}(\lambda_k)\big]^T\\
-         \end{aligned}\end{equation}
