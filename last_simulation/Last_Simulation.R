@@ -4,7 +4,7 @@ cores <- detectCores()
 
 
 set.seed(123)
-tdom <- seq(0, 1000, by=0.001)
+tdom <- seq(0, 1800, by=0.001)
 haz <- rep(0, length(tdom))
 cut <- 50
 for (i in 1:cut) {
@@ -14,16 +14,9 @@ for (i in 1:cut) {
     haz[tdom<=high & tdom > low] <- 1/800
   }
   if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- 1/200
+    haz[tdom<=high & tdom > low] <- 1/400
   }
 }
-
-plot(tdom, haz, type='l', xlab='Time domain', ylab='Hazard')
-cumhaz <- cumsum(haz*0.001)
-Surv <- exp(-cumhaz)
-u <- runif(800)
-failtimes <- tdom[colSums(outer(Surv, u, `>`))]
-hist(failtimes,breaks = 100)
 
 
 
@@ -36,7 +29,7 @@ PARALLEL_EXECUTION = T
 
 u <- runif(1000)
 x <- seq(from = -10, to = 10, length.out = 1000)
-eta <- 20/(1+exp(-x))-10
+eta <- 1/(1+exp(-x)) - 0.5
 truefunc <- function(x) 20/(1+exp(-x))-10
 tibble(x = c(-10,10)) %>%
   ggplot(aes(x = x)) +
@@ -54,7 +47,7 @@ for (i in 1:1000) {
 
 
 
-data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes==1000,yes = 0, no=1))
+data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1000,yes = 0, no=1))
 data <- rename(data,exposure = x)
 data <- data %>% as_tibble() %>%
   mutate(exposure_binned = bin_covariate(exposure,bins = RW2BINS,type = "equal"))
@@ -89,7 +82,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(-4,2,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(-3,1,by = 0.2)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
