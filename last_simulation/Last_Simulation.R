@@ -1,5 +1,5 @@
-source("~/last_simulation/00-load-packages.R")
-source("~/last_simulation/1.function for PH Model.R")
+source("~/STA497/last_simulation/00-load-packages.R")
+source("~/STA497/last_simulation/1.function for PH Model.R")
 cores <- detectCores()
 
 
