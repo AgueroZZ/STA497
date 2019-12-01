@@ -1,6 +1,6 @@
 source("~/last_simulation/00-load-packages.R")
 source("~/last_simulation/1.function for PH Model.R")
-
+cores <- detectCores()
 
 
 set.seed(123)
@@ -89,7 +89,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(-4.2,2.2,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(-4,2,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -126,7 +126,7 @@ sim1opt <- optimize_all_thetas_parallel(
 )
 rt <- proc.time() - tm
 
-save(sim1opt,file = "~result/Optim.Rdata")
+save(sim1opt,file = "~/result/Optim.Rdata")
 
 
 
@@ -214,7 +214,7 @@ fit_poly <- function(x){
 }
 
 
-save(margmeans_and_vars,file = "~result/PosteriorMeanVar.Rdata")
+save(margmeans_and_vars,file = "~/result/PosteriorMeanVar.Rdata")
 
 
 
@@ -250,7 +250,7 @@ simplot <- tibble(
        x = "Covariate", y = "eta") +
   theme(text = element_text(size = PLOT_TEXT_SIZE))
 
-ggsave(filename = "~result/Proposed.pdf",
+ggsave(filename = "~/result/Proposed.pdf",
        plot = simplot,
        width = 3,
        height = 3.5)
@@ -280,41 +280,15 @@ sum(rev(exp(sim1optlogpost$sigma_logposterior)) * c(0,diff(rev(sim1optlogpost$si
 priorfunc <- function(x) exp(model_data$theta_logprior(x))
 priorfuncsigma <- function(x) (2/x) * exp(model_data$theta_logprior(-2*log(x)))
 
-thetapostplot <- sim1optlogpost %>%
-  mutate(theta_post = exp(theta_logposterior),
-         prior = exp(model_data$theta_logprior(theta))) %>%
-  ggplot(aes(x = theta)) +
-  theme_classic() +
-  geom_line(aes(y = theta_post),colour = "darkorange") +
-  stat_function(fun = priorfunc,colour = "red",linetype = "dashed") +
-  geom_point(aes(y = theta_post),colour = "black",fill = "orange",pch = 21,alpha = .4) +
-  scale_x_continuous(breaks = -8:-4) +
-  coord_cartesian(xlim = c(-8,-4)) +
-  labs(title = "Posterior distribution for log(precision)",
-       subtitle = "Dashed line: prior",
-       x = "Theta = log(precision)",
-       y = "Density") +
-  theme(text = element_text(size = PLOT_TEXT_SIZE))
-ggsave(filename = "~result/PosterTheta.pdf",
+thetapostplot <- plot(sim1optlogpost$theta_post~sim1optlogpost$theta,type="l")
+ggsave(filename = "~/result/PosterTheta.pdf",
        plot = thetapostplot,
        width = 3,
        height = 3.5)
 
 
-sigmapostplot <- sim1optlogpost %>%
-  mutate(prior = priorfuncsigma(sigma)) %>%
-  ggplot(aes(x = sigma)) +
-  theme_classic() +
-  geom_line(aes(y = sigma_post),colour = "black") +
-  stat_function(fun = priorfuncsigma,colour = "black",linetype = "dashed") +
-  # geom_point(aes(y = sigma_post),colour = "black",fill = "orange",pch = 21,alpha = .4) +
-  # scale_x_continuous(breaks = seq(0,20,by=2)) +
-  scale_x_continuous(breaks = seq(10,50,by=10)) +
-  # coord_cartesian(xlim = c(0,20)) +
-  coord_cartesian(xlim = c(8,50)) +
-  labs(y = "Density",x = "") +
-  theme(text = element_text(size = PLOT_TEXT_SIZE))
-ggsave(filename = "~result/PosterSigma.pdf",
+sigmapostplot <- plot(sim1optlogpost$sigma_post~sim1optlogpost$sigma,type="l")
+ggsave(filename = "~/result/PosterSigma.pdf",
        plot = sigmapostplot,
        width = 3,
        height = 3.5)
@@ -350,7 +324,7 @@ ggplot(plotINLA, aes(x = exposure)) +
   geom_line(aes(y = meanhere)) + 
   geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') +
   theme_bw(base_size = 20)
-ggsave(filename = "~result/INLAFit.pdf",
+ggsave(filename = "~/result/INLAFit.pdf",
        plot = sigmapostplot,
        width = 3,
        height = 3.5)
