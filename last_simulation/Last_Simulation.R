@@ -6,7 +6,7 @@ cores <- detectCores()
 set.seed(123)
 tdom <- seq(0, 1800, by=0.001)
 haz <- rep(0, length(tdom))
-cut <- 50
+cut <- 60
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
@@ -24,7 +24,7 @@ for (i in 1:cut) {
 # generate 800 random samples:
 N = 800
 RW2BINS = 50
-POLYNOMIAL_DEGREE = 1
+POLYNOMIAL_DEGREE = 2
 PARALLEL_EXECUTION = T
 
 u <- runif(800)
@@ -49,7 +49,7 @@ for (i in 1:800) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1800,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.65)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.75)
 }
 
 data <- rename(data,exposure = x)
@@ -86,7 +86,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(-4,2,by = 0.5)) # This is the log(precision)
+thetagrid <- as.list(seq(-2,3,by = 0.5)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -189,10 +189,10 @@ margmeans_and_vars <- compute_marginal_means_and_variances(
 )
 rt2 <- proc.time() - tm2
 
-# current time:
-# 71.169   1.793  75.716
-# New time:
-# 10.083   0.441  10.339 
+print(rt2)
+
+
+
 margmeans <- margmeans_and_vars$mean[1:(model_data$M)]
 margbetas <- margmeans_and_vars$mean[(model_data$M+1):(model_data$M+model_data$p)]
 margvars <- margmeans_and_vars$variance[1:(model_data$M)]
@@ -270,7 +270,7 @@ sim1optlogpost$theta_post <- exp(sim1optlogpost$theta_logposterior)
 sim1optlogpost$sigma_logposterior <- sim1optlogpost$sigma_logposterior - normconstsigma
 sim1optlogpost$sigma_post <- exp(sim1optlogpost$sigma_logposterior)
 
-
+print("The followings should be ones")
 sum(exp(sim1optlogpost$theta_logposterior) * c(0,diff(sim1optlogpost$theta)))
 sum(rev(exp(sim1optlogpost$sigma_logposterior)) * c(0,diff(rev(sim1optlogpost$sigma))))
 
@@ -303,7 +303,7 @@ ggsave(filename = "~/STA497/result/PosterSigma.pdf",
 
 #Comparison with INLA:
 formula <- inla.surv(times,censoring) ~ -1+exposure + f(exposure_binned,model = 'rw2',constr = T)
-Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),data = data, family = "coxph",
+Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'eb', correct = FALSE),data = data, family = "coxph",
                    control.hazard = list(model="rw2",n.intervals = 20),
                    num.threads = 4)
 fhat <- Inlaresult$summary.random$exposure_binned$mean
@@ -321,6 +321,7 @@ ggplot(plotINLA, aes(x = exposure)) +
   geom_line(aes(y = meanhere)) + 
   geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') +
   theme_bw(base_size = 20)
+
 ggsave(filename = "~/STA497/result/INLAFit.pdf",
        plot = sigmapostplot,
        width = 3,
