@@ -123,7 +123,7 @@ sim1opt <- optimize_all_thetas_parallel(
 )
 rt <- proc.time() - tm
 
-save(sim1opt,file = "~/result/Optim.Rdata")
+save(sim1opt,file = "~/STA497/result/Optim.Rdata")
 
 
 
@@ -211,7 +211,7 @@ fit_poly <- function(x){
 }
 
 
-save(margmeans_and_vars,file = "~/result/PosteriorMeanVar.Rdata")
+save(margmeans_and_vars,file = "~/STA497/result/PosteriorMeanVar.Rdata")
 
 
 
@@ -247,7 +247,7 @@ simplot <- tibble(
        x = "Covariate", y = "eta") +
   theme(text = element_text(size = PLOT_TEXT_SIZE))
 
-ggsave(filename = "~/result/Proposed.pdf",
+ggsave(filename = "~/STA497/result/Proposed.pdf",
        plot = simplot,
        width = 3,
        height = 3.5)
@@ -278,14 +278,14 @@ priorfunc <- function(x) exp(model_data$theta_logprior(x))
 priorfuncsigma <- function(x) (2/x) * exp(model_data$theta_logprior(-2*log(x)))
 
 thetapostplot <- plot(sim1optlogpost$theta_post~sim1optlogpost$theta,type="l")
-ggsave(filename = "~/result/PosterTheta.pdf",
+ggsave(filename = "~/STA497/result/PosterTheta.pdf",
        plot = thetapostplot,
        width = 3,
        height = 3.5)
 
 
 sigmapostplot <- plot(sim1optlogpost$sigma_post~sim1optlogpost$sigma,type="l")
-ggsave(filename = "~/result/PosterSigma.pdf",
+ggsave(filename = "~/STA497/result/PosterSigma.pdf",
        plot = sigmapostplot,
        width = 3,
        height = 3.5)
@@ -321,7 +321,7 @@ ggplot(plotINLA, aes(x = exposure)) +
   geom_line(aes(y = meanhere)) + 
   geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') +
   theme_bw(base_size = 20)
-ggsave(filename = "~/result/INLAFit.pdf",
+ggsave(filename = "~/STA497/result/INLAFit.pdf",
        plot = sigmapostplot,
        width = 3,
        height = 3.5)
