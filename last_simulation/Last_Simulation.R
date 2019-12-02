@@ -11,26 +11,26 @@ for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
   if(i %% 2 == 1){
-    haz[tdom<=high & tdom > low] <- 1/800
+    haz[tdom<=high & tdom > low] <- 1/900
   }
   if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- 1/400
+    haz[tdom<=high & tdom > low] <- 1/200
   }
 }
 
 
 
 
-# generate 1000 random samples:
-N = 1000
-RW2BINS = 30
+# generate 800 random samples:
+N = 800
+RW2BINS = 50
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
-u <- runif(1000)
-x <- seq(from = -10, to = 10, length.out = 1000)
+u <- runif(800)
+x <- seq(from = -20, to = 20, length.out = 800)
 eta <- 1/(1+exp(-x)) - 0.5
-truefunc <- function(x) 20/(1+exp(-x))-10
+truefunc <- function(x) 1/(1+exp(-x))
 tibble(x = c(-10,10)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
@@ -38,7 +38,7 @@ tibble(x = c(-10,10)) %>%
 
 
 failtimes <- c()
-for (i in 1:1000) {
+for (i in 1:800) {
   hazz <- haz * exp(eta[i])
   cumhaz <- cumsum(hazz*0.001)
   Surv <- exp(-cumhaz)
@@ -47,7 +47,11 @@ for (i in 1:1000) {
 
 
 
-data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1000,yes = 0, no=1))
+data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1800,yes = 0, no=1))
+for (i in 1:length(data$censoring)) {
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.65)
+}
+
 data <- rename(data,exposure = x)
 data <- data %>% as_tibble() %>%
   mutate(exposure_binned = bin_covariate(exposure,bins = RW2BINS,type = "equal"))
@@ -82,7 +86,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(-3,1,by = 0.2)) # This is the log(precision)
+thetagrid <- as.list(seq(-4,2,by = 0.5)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -321,6 +325,4 @@ ggsave(filename = "~/result/INLAFit.pdf",
        plot = sigmapostplot,
        width = 3,
        height = 3.5)
-
-
 
