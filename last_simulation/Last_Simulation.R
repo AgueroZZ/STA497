@@ -4,17 +4,17 @@ cores <- detectCores()
 
 
 set.seed(123)
-tdom <- seq(0, 1800, by=0.001)
+tdom <- seq(0, 2000, by=0.001)
 haz <- rep(0, length(tdom))
 cut <- 60
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
   if(i %% 2 == 1){
-    haz[tdom<=high & tdom > low] <- 1/900
+    haz[tdom<=high & tdom > low] <- 1/1200
   }
   if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- 1/200
+    haz[tdom<=high & tdom > low] <- 1/400
   }
 }
 
@@ -23,15 +23,15 @@ for (i in 1:cut) {
 
 # generate 800 random samples:
 N = 800
-RW2BINS = 50
+RW2BINS = 60
 POLYNOMIAL_DEGREE = 3
 PARALLEL_EXECUTION = T
 
 u <- runif(800)
-x <- seq(from = -20, to = 20, length.out = 800)
-eta <- 1/(1+exp(-x)) - 0.5
-truefunc <- function(x) 1/(1+exp(-x))
-tibble(x = c(-10,10)) %>%
+x <- seq(from = -30, to = 30, length.out = 800)
+eta <- 1/(1+exp(-0.2*x))
+truefunc <- function(x) 1/(1+exp(-0.2*x))
+tibble(x = c(-30,30)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
   stat_function(fun = truefunc)
@@ -49,7 +49,7 @@ for (i in 1:800) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1800,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.80)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.9)
 }
 
 data <- rename(data,exposure = x)
@@ -65,7 +65,7 @@ model_data <- list(
   n = length(unique(data$ID)),
   X = sparse.model.matrix(eta ~ -1 + poly(exposure,degree = POLYNOMIAL_DEGREE,raw = TRUE),data = data)
 )
-model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = log(20)) {
+model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = log(10)) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -86,7 +86,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(1,6,by = 0.2)) # This is the log(precision)
+thetagrid <- as.list(seq(2,6,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -270,6 +270,9 @@ sim1optlogpost$theta_post <- exp(sim1optlogpost$theta_logposterior)
 sim1optlogpost$sigma_logposterior <- sim1optlogpost$sigma_logposterior - normconstsigma
 sim1optlogpost$sigma_post <- exp(sim1optlogpost$sigma_logposterior)
 
+save(sim1optlogpost,file = "~/STA497/result/PosteriorHyper.Rdata")
+
+
 print("The followings should be ones")
 sum(exp(sim1optlogpost$theta_logposterior) * c(0,diff(sim1optlogpost$theta)))
 sum(rev(exp(sim1optlogpost$sigma_logposterior)) * c(0,diff(rev(sim1optlogpost$sigma))))
@@ -277,18 +280,11 @@ sum(rev(exp(sim1optlogpost$sigma_logposterior)) * c(0,diff(rev(sim1optlogpost$si
 priorfunc <- function(x) exp(model_data$theta_logprior(x))
 priorfuncsigma <- function(x) (2/x) * exp(model_data$theta_logprior(-2*log(x)))
 
-thetapostplot <- plot(sim1optlogpost$theta_post~sim1optlogpost$theta,type="l")
-ggsave(filename = "~/STA497/result/PosterTheta.pdf",
-       plot = thetapostplot,
-       width = 3,
-       height = 3.5)
+thetapostplot <- ggplot(mapping = aes(sim1optlogpost$theta,sim1optlogpost$theta_post)) + geom_line()
+ggsave(filename = "~/STA497/result/PosterTheta.pdf",plot = thetapostplot)
 
-
-sigmapostplot <- plot(sim1optlogpost$sigma_post~sim1optlogpost$sigma,type="l")
-ggsave(filename = "~/STA497/result/PosterSigma.pdf",
-       plot = sigmapostplot,
-       width = 3,
-       height = 3.5)
+sigmapostplot <- ggplot(mapping = aes(sim1optlogpost$sigma,sim1optlogpost$sigma_post)) + geom_line()
+ggsave(filename = "~/STA497/result/PosterSigma.pdf", plot = sigmapostplot)
 
 
 
@@ -322,8 +318,9 @@ inlaplot <- ggplot(plotINLA, aes(x = exposure)) +
     geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') +
     theme_bw(base_size = 20)
 
-ggsave(filename = "~/STA497/result/INLAplot.pdf",
-       plot = inlaplot,
-       width = 3,
-       height = 3.5)
+new_compare <- simplot + geom_line(aes(y = meanhere)) +labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
+                                                            subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = True function ; Black = INLA",
+                                                            x = "Covariate", y = "eta")
+
+ggsave(filename = "~/STA497/result/INLAplot.pdf", plot = new_compare)
 
