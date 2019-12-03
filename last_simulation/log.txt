@@ -457,3 +457,6 @@ Iteration has terminated
 Time taken for optimization with  26  values of theta: 46671.67 seconds.
     user   system  elapsed 
 9566.258    5.469 9569.693 
+[1] "The followings should be ones"
+[1] 1.055641
+[1] 0.8946932
