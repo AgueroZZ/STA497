@@ -24,7 +24,7 @@ for (i in 1:cut) {
 # generate 800 random samples:
 N = 800
 RW2BINS = 50
-POLYNOMIAL_DEGREE = 2
+POLYNOMIAL_DEGREE = 3
 PARALLEL_EXECUTION = T
 
 u <- runif(800)
@@ -49,7 +49,7 @@ for (i in 1:800) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1800,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.75)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.80)
 }
 
 data <- rename(data,exposure = x)
@@ -65,7 +65,7 @@ model_data <- list(
   n = length(unique(data$ID)),
   X = sparse.model.matrix(eta ~ -1 + poly(exposure,degree = POLYNOMIAL_DEGREE,raw = TRUE),data = data)
 )
-model_data$theta_logprior <- function(theta,prior_alpha = .85,prior_u = log(20)) {
+model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = log(20)) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -86,7 +86,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(-2,3,by = 0.5)) # This is the log(precision)
+thetagrid <- as.list(seq(1,6,by = 0.2)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -302,7 +302,7 @@ ggsave(filename = "~/STA497/result/PosterSigma.pdf",
 
 
 #Comparison with INLA:
-formula <- inla.surv(times,censoring) ~ -1+exposure + f(exposure_binned,model = 'rw2',constr = T)
+formula <- inla.surv(times,censoring) ~ -1+exposure + I(exposure^2) + I(exposure^3) + f(exposure_binned,model = 'rw2',constr = T)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'eb', correct = FALSE),data = data, family = "coxph",
                    control.hazard = list(model="rw2",n.intervals = 20),
                    num.threads = 4)
@@ -312,18 +312,18 @@ f.lb <- Inlaresult$summary.random$exposure_binned$`0.025quant`
 plotINLA <- data.frame(exposure = Inlaresult$summary.random$exposure_binned$ID)
 fit_poly2 <- function(x){
   xx <- poly(x,degree = POLYNOMIAL_DEGREE,raw = T)
-  as.numeric(xx %*% cbind(as.numeric(Inlaresult$summary.fixed[1])))
+  as.numeric(xx %*% cbind(Inlaresult$summary.fixed[,1]))
 }
 mypoly = fit_poly2(plotINLA$exposure) - fit_poly2(plotINLA$exposure[vv])
 meanhere <- fhat-fhat[vv] + mypoly
 
-ggplot(plotINLA, aes(x = exposure)) + 
-  geom_line(aes(y = meanhere)) + 
-  geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') +
-  theme_bw(base_size = 20)
+inlaplot <- ggplot(plotINLA, aes(x = exposure)) + 
+   geom_line(aes(y = meanhere)) + 
+    geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') +
+    theme_bw(base_size = 20)
 
-ggsave(filename = "~/STA497/result/INLAFit.pdf",
-       plot = sigmapostplot,
+ggsave(filename = "~/STA497/result/INLAplot.pdf",
+       plot = inlaplot,
        width = 3,
        height = 3.5)
 
