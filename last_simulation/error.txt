@@ -34,3 +34,6 @@ The following object is masked from ‘package:base’:
 Warning message:
 `data_frame()` is deprecated, use `tibble()`.
 This warning is displayed once per session. 
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image

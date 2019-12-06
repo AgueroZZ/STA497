@@ -1,462 +1,897 @@
 Finished creating model data!
-Performing optimization, start time:  04:01:56 
-Optimizing with theta = 1 
-Optimizing with theta = 1.2 
-Optimizing with theta = 1.4 
-Optimizing with theta = 1.6 
-Optimizing with theta = 1.8 
-Optimizing with theta = 2 
-Optimizing with theta = 2.2 
-Optimizing with theta = 2.4 
-Optimizing with theta = 2.6 
-Optimizing with theta = 2.8 
+Performing optimization, start time:  22:21:11 
 Optimizing with theta = 3 
+Optimizing with theta = 3.1 
 Optimizing with theta = 3.2 
+Optimizing with theta = 3.3 
 Optimizing with theta = 3.4 
+Optimizing with theta = 3.5 
 Optimizing with theta = 3.6 
+Optimizing with theta = 3.7 
 Optimizing with theta = 3.8 
+Optimizing with theta = 3.9 
 Optimizing with theta = 4 
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-Beginning optimization
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3649.399031    2.708198                 Continuing   100.000000      466443          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3649.728097    2.691180                 Continuing   100.000000      476465          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3647.650308    2.800040                 Continuing   100.000000      483625          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3648.727071    2.740701                 Continuing   100.000000      482048          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3647.268832    2.826852                 Continuing   100.000000      494534          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3644.801677    3.113695                 Continuing   100.000000      481013          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3646.474788    2.897540                 Continuing   100.000000      494572          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3648.020338    2.777385                 Continuing   100.000000      486652          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3650.056608    2.673356                 Continuing   100.000000      473471          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3645.227148    3.050938                 Continuing   100.000000      492741          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3646.876586    2.859020                 Continuing   100.000000      501488          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3646.064946    2.942046                 Continuing   100.000000      503577          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3649.066306    2.724297                 Continuing   100.000000      482054          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3644.373085    3.180676                 Continuing   100.000000      489346          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3648.378971    2.758015                 Continuing   100.000000      489680          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3645.648607    2.993461                 Continuing   100.000000      505412          Reached tolerance
-   2   3648.130027    0.071950                 Continuing   100.000000      454834          Reached tolerance
-   2   3648.496705    0.070324                 Continuing   100.000000      455286          Reached tolerance
-   2   3647.387834    0.074467                 Continuing   100.000000      448828          Reached tolerance
-   2   3645.349427    0.081802                 Continuing   100.000000      455090          Reached tolerance
-   2   3645.786272    0.079497                 Continuing   100.000000      466268          Reached tolerance
-   2   3644.896148    0.085008                 Continuing   100.000000      454877          Reached tolerance
-   2   3646.207166    0.077863                 Continuing   100.000000      466015          Reached tolerance
-   2   3642.926953    0.109332                 Continuing   100.000000      463253          Reached tolerance
-   2   3646.613176    0.076589                 Continuing   100.000000      460962          Reached tolerance
-   2   3644.426495    0.089567                 Continuing   100.000000      464273          Reached tolerance
-   2   3648.864692    0.068566                 Continuing   100.000000      451061          Reached tolerance
-   2   3647.761485    0.073419                 Continuing   100.000000      449132          Reached tolerance
-   2   3643.941014    0.094848                 Continuing   100.000000      467162          Reached tolerance
-   2   3642.401658    0.118037                 Continuing   100.000000      469484          Reached tolerance
-   2   3643.440694    0.101440                 Continuing   100.000000      482049          Reached tolerance
-   2   3647.005980    0.075667                 Continuing   100.000000      468400          Reached tolerance
-   3   3648.128955    0.000420                 Continuing   100.000000      446871          Reached tolerance
-   3   3647.386643    0.000153                 Continuing   100.000000      436429          Reached tolerance
-   3   3648.495704    0.000389                 Continuing   100.000000      452695          Reached tolerance
-   3   3645.784895    0.000530                 Continuing   100.000000      451630          Reached tolerance
-   3   3645.347985    0.000326                 Continuing   100.000000      464986          Reached tolerance
-   3   3646.205838    0.000149                 Continuing   100.000000      451378          Reached tolerance
-   3   3646.611892    0.000195                 Continuing   100.000000      451758          Reached tolerance
-   3   3644.894617    0.000236                 Continuing   100.000000      468025          Reached tolerance
-   3   3648.863769    0.000103                 Continuing   100.000000      434781          Reached tolerance
-   3   3642.924570    0.000572                 Continuing   100.000000      457575          Reached tolerance
-   3   3644.424839    0.000311                 Continuing   100.000000      462164          Reached tolerance
-   3   3643.939181    0.000209                 Continuing   100.000000      462296          Reached tolerance
-   3   3647.760350    0.000092                 Continuing   100.000000      445970          Reached tolerance
-   3   3642.398885    0.000290                 Continuing   100.000000      459721          Reached tolerance
-   3   3643.438622    0.000458                 Continuing   100.000000      463747          Reached tolerance
-   3   3647.004740    0.000181                 Continuing   100.000000      453794          Reached tolerance
-   4   3648.128955    0.000549                 Continuing   100.000000      412399          Reached tolerance
-   4   3648.495704    0.000580                 Continuing   100.000000      417944          Reached tolerance
-   4   3647.386643    0.000153   Continuing - TR contract    10.000000      435341          Reached tolerance
-   4   3645.784895    0.000214                 Continuing   100.000000      430781          Reached tolerance
-   4   3645.347985    0.000153                 Continuing   100.000000      425544          Reached tolerance
-   4   3644.894617    0.000397                 Continuing   100.000000      432039          Reached tolerance
-   4   3646.611892    0.000198                 Continuing   100.000000      442182          Reached tolerance
-   4   3646.205838    0.000137                 Continuing   100.000000      448393          Reached tolerance
-   4   3648.863769    0.000103   Continuing - TR contract    10.000000      423821          Reached tolerance
-   4   3644.424839    0.000311   Continuing - TR contract    10.000000      422652          Reached tolerance
-   4   3643.939181    0.000168                 Continuing   100.000000      430515          Reached tolerance
-   4   3642.924570    0.000534                 Continuing   100.000000      454404          Reached tolerance
-   4   3647.760350    0.000061                 Continuing   100.000000      436598          Reached tolerance
-   4   3643.438622    0.000458   Continuing - TR contract    10.000000      455653          Reached tolerance
-   4   3642.398885    0.000290   Continuing - TR contract    10.000000      465380          Reached tolerance
-   4   3647.004740    0.000181   Continuing - TR contract    10.000000      453159          Reached tolerance
-   5   3648.495704    0.000580   Continuing - TR contract    10.000000      342177          Reached tolerance
-   5   3647.386643    0.000153   Continuing - TR contract     1.000000      435341          Reached tolerance
-   5   3644.424839    0.000311   Continuing - TR contract     1.000000      422652          Reached tolerance
-   5   3648.863769    0.000103   Continuing - TR contract     1.000000      423821          Reached tolerance
-   5   3648.128955    0.000198                 Continuing   100.000000      440886          Reached tolerance
-   5   3642.924570    0.000534   Continuing - TR contract    10.000000      314418          Reached tolerance
-   5   3645.784895    0.000214   Continuing - TR contract    10.000000      409064          Reached tolerance
-   5   3644.894617    0.000397   Continuing - TR contract    10.000000      393122          Reached tolerance
-   5   3645.347985    0.000259                 Continuing   100.000000      432508          Reached tolerance
-   5   3643.438622    0.000458   Continuing - TR contract     1.000000      455653          Reached tolerance
-   5   3643.939181    0.000198                 Continuing   100.000000      391895          Reached tolerance
-   5   3642.398885    0.000290   Continuing - TR contract     1.000000      465380          Reached tolerance
-   5   3646.205838    0.000107                 Continuing   100.000000      445389          Reached tolerance
-   5   3647.004740    0.000181   Continuing - TR contract     1.000000      453159          Reached tolerance
-   5   3646.611892    0.000092                 Continuing   100.000000      464594          Reached tolerance
-   5   3647.760350    0.000061   Continuing - TR contract    10.000000      425587          Reached tolerance
-   6   3648.495704    0.000580   Continuing - TR contract     1.000000      342177          Reached tolerance
-   6   3642.924570    0.000534   Continuing - TR contract     1.000000      314418          Reached tolerance
-   6   3647.386643    0.000153   Continuing - TR contract     0.100000      435341          Reached tolerance
-   6   3644.424839    0.000311   Continuing - TR contract     0.100000      422652          Reached tolerance
-   6   3645.784895    0.000214   Continuing - TR contract     1.000000      409064          Reached tolerance
-   6   3644.894617    0.000397   Continuing - TR contract     1.000000      393122          Reached tolerance
-   6   3648.863769    0.000103   Continuing - TR contract     0.100000      423821          Reached tolerance
-   6   3643.438622    0.000458   Continuing - TR contract     0.100000      455653          Reached tolerance
-   6   3643.939181    0.000198   Continuing - TR contract    10.000000      377467          Reached tolerance
-   6   3648.128955    0.000198   Continuing - TR contract    10.000000      440134          Reached tolerance
-   6   3645.347985    0.000306                 Continuing   100.000000      420219          Reached tolerance
-   6   3642.398885    0.000290   Continuing - TR contract     0.100000      465380          Reached tolerance
-   6   3647.760350    0.000061   Continuing - TR contract     1.000000      425587          Reached tolerance
-   6   3647.004740    0.000181   Continuing - TR contract     0.100000      453159          Reached tolerance
-   7   3648.495704    0.000580   Continuing - TR contract     0.100000      342177          Reached tolerance
-   7   3642.924570    0.000534   Continuing - TR contract     0.100000      314418          Reached tolerance
-   6   3646.205838    0.000107   Continuing - TR contract    10.000000      454275          Reached tolerance
-   6   3646.611892    0.000092   Continuing - TR contract    10.000000      447137          Reached tolerance
-   7   3647.386643    0.000153   Continuing - TR contract     0.010000      435341          Reached tolerance
-   7   3645.784895    0.000214   Continuing - TR contract     0.100000      409064          Reached tolerance
-   7   3644.894617    0.000397   Continuing - TR contract     0.100000      393122          Reached tolerance
-   7   3644.424839    0.000311   Continuing - TR contract     0.010000      422652          Reached tolerance
-   7   3648.863769    0.000103   Continuing - TR contract     0.010000      423821          Reached tolerance
-   7   3643.939181    0.000198   Continuing - TR contract     1.000000      377467          Reached tolerance
-   8   3648.495704    0.000580   Continuing - TR contract     0.010000      342177          Reached tolerance
-   8   3642.924570    0.000534   Continuing - TR contract     0.010000      314418          Reached tolerance
-   7   3648.128955    0.000198   Continuing - TR contract     1.000000      440134          Reached tolerance
-   7   3643.438622    0.000458   Continuing - TR contract     0.010000      455653          Reached tolerance
-   7   3647.760350    0.000061   Continuing - TR contract     0.100000      425587          Reached tolerance
-   7   3642.398885    0.000290   Continuing - TR contract     0.010000      465380          Reached tolerance
-   7   3647.004740    0.000181   Continuing - TR contract     0.010000      453159          Reached tolerance
-   7   3645.347985    0.000306   Continuing - TR contract    10.000000      427945          Reached tolerance
-   7   3646.205838    0.000107   Continuing - TR contract     1.000000      454275          Reached tolerance
-   7   3646.611892    0.000092   Continuing - TR contract     1.000000      447137          Reached tolerance
-   8   3644.894617    0.000397   Continuing - TR contract     0.010000      393122          Reached tolerance
-   8   3645.784895    0.000214   Continuing - TR contract     0.010000      409064          Reached tolerance
-   8   3647.386643    0.000153   Continuing - TR contract     0.001000      435341          Reached tolerance
-   9   3642.924570    0.000534   Continuing - TR contract     0.001000      314418          Reached tolerance
-   8   3644.424839    0.000311   Continuing - TR contract     0.001000      422652          Reached tolerance
-   8   3643.939181    0.000198   Continuing - TR contract     0.100000      377467          Reached tolerance
-   9   3648.495704    0.000580   Continuing - TR contract     0.001000      342177          Reached tolerance
-   8   3648.863769    0.000103   Continuing - TR contract     0.001000      423821          Reached tolerance
-   8   3648.128955    0.000198   Continuing - TR contract     0.100000      440134          Reached tolerance
-   8   3643.438622    0.000458   Continuing - TR contract     0.001000      455653          Reached tolerance
-   8   3647.760350    0.000061   Continuing - TR contract     0.010000      425587          Reached tolerance
-   8   3645.347985    0.000306   Continuing - TR contract     1.000000      427945          Reached tolerance
-   8   3642.398885    0.000290   Continuing - TR contract     0.001000      465380          Reached tolerance
-   8   3647.004740    0.000181   Continuing - TR contract     0.001000      453159          Reached tolerance
-   8   3646.611892    0.000092   Continuing - TR contract     0.100000      447137          Reached tolerance
-   8   3646.205838    0.000107   Continuing - TR contract     0.100000      454275          Reached tolerance
-  10   3642.924570    0.000534   Continuing - TR contract     0.000100      314418          Reached tolerance
-
-Iteration has terminated
-  10   3642.924570    0.000534Radius of trust region is less than stop.trust.radius
-
-   9   3644.894617    0.000397   Continuing - TR contract     0.001000      393122          Reached tolerance
-   9   3645.784895    0.000214   Continuing - TR contract     0.001000      409064          Reached tolerance
-  10   3648.495704    0.000580   Continuing - TR contract     0.000100      342177          Reached tolerance
-
-Iteration has terminated
-  10   3648.495704    0.000580Radius of trust region is less than stop.trust.radius
-
-   9   3643.939181    0.000198   Continuing - TR contract     0.010000      377467          Reached tolerance
-   9   3647.386643    0.000153   Continuing - TR contract     0.000100      435341          Reached tolerance
-
-Iteration has terminated
-   9   3647.386643    0.000153Radius of trust region is less than stop.trust.radius
-
-Optimizing with theta = 4.4 
-   9   3644.424839    0.000311   Continuing - TR contract     0.000100      422652          Reached tolerance
-
-Iteration has terminated
-   9   3644.424839    0.000311Radius of trust region is less than stop.trust.radius
-
-   9   3648.863769    0.000103   Continuing - TR contract     0.000100      423821          Reached tolerance
-
-Iteration has terminated
-   9   3648.863769    0.000103Radius of trust region is less than stop.trust.radius
-
-Optimizing with theta = 5 
-   9   3648.128955    0.000198   Continuing - TR contract     0.010000      440134          Reached tolerance
-   9   3643.438622    0.000458   Continuing - TR contract     0.000100      455653          Reached tolerance
-
-Iteration has terminated
-   9   3643.438622    0.000458Radius of trust region is less than stop.trust.radius
-
-   9   3647.760350    0.000061   Continuing - TR contract     0.001000      425587          Reached tolerance
-   9   3645.347985    0.000306   Continuing - TR contract     0.100000      427945          Reached tolerance
-Beginning optimization
-   9   3642.398885    0.000290   Continuing - TR contract     0.000100      465380          Reached tolerance
-
-Iteration has terminated
-   9   3642.398885    0.000290Radius of trust region is less than stop.trust.radius
-
-   9   3647.004740    0.000181   Continuing - TR contract     0.000100      453159          Reached tolerance
-
-Iteration has terminated
-   9   3647.004740    0.000181Radius of trust region is less than stop.trust.radius
-
-  10   3644.894617    0.000397   Continuing - TR contract     0.000100      393122          Reached tolerance
-
-Iteration has terminated
-  10   3644.894617    0.000397Radius of trust region is less than stop.trust.radius
-
-Optimizing with theta = 4.6 
-   9   3646.611892    0.000092   Continuing - TR contract     0.010000      447137          Reached tolerance
-   9   3646.205838    0.000107   Continuing - TR contract     0.010000      454275          Reached tolerance
-  10   3645.784895    0.000214   Continuing - TR contract     0.000100      409064          Reached tolerance
-
-Iteration has terminated
-  10   3645.784895    0.000214Radius of trust region is less than stop.trust.radius
-
-Beginning optimization
-  10   3643.939181    0.000198   Continuing - TR contract     0.001000      377467          Reached tolerance
-Optimizing with theta = 5.2 
+Optimizing with theta = 4.1 
 Optimizing with theta = 4.2 
+Optimizing with theta = 4.3 
+Optimizing with theta = 4.4 
+Optimizing with theta = 4.5 
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4113.515394    2.616181                 Continuing   100.000000      955780          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4114.425492    2.514178                 Continuing   100.000000      942809          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4112.354019    2.744550                 Continuing   100.000000      959547          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4114.247220    2.532703                 Continuing   100.000000      955133          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4112.945131    2.675747                 Continuing   100.000000      945253          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4113.137403    2.654088                 Continuing   100.000000      966248          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4114.601993    2.496489                 Continuing   100.000000      950306          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4113.885163    2.572069                 Continuing   100.000000      959143          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4114.067127    2.552324                 Continuing   100.000000      963102          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4112.151801    2.771485                 Continuing   100.000000      985385          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4112.553556    2.721049                 Continuing   100.000000      983288          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4114.776769    2.476213                 Continuing   100.000000      968893          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4112.750552    2.698097                 Continuing   100.000000      984249          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4113.701272    2.594780                 Continuing   100.000000      958640          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4111.946739    2.793774                 Continuing   100.000000      986453          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4113.327463    2.634880                 Continuing   100.000000      951393          Reached tolerance
+   2   4112.329521    0.077647                 Continuing   100.000000      891812          Reached tolerance
+   2   4113.331663    0.062827                 Continuing   100.000000      930377          Reached tolerance
+   2   4113.135524    0.064504                 Continuing   100.000000      931563          Reached tolerance
+   2   4111.040481    0.073328                 Continuing   100.000000      935326          Reached tolerance
+   2   4112.937363    0.064709                 Continuing   100.000000      904822          Reached tolerance
+   2   4113.525890    0.062464                 Continuing   100.000000      927041          Reached tolerance
+   2   4111.698685    0.070122                 Continuing   100.000000      916421          Reached tolerance
+   2   4111.911776    0.072528                 Continuing   100.000000      949471          Reached tolerance
+   2   4112.737062    0.066709                 Continuing   100.000000      928738          Reached tolerance
+   2   4110.814137    0.075386                 Continuing   100.000000      909484          Reached tolerance
+   2   4111.263223    0.071943                 Continuing   100.000000      927777          Reached tolerance
+   2   4113.718303    0.061213                 Continuing   100.000000      930529          Reached tolerance
+   2   4111.482562    0.071546                 Continuing   100.000000      911138          Reached tolerance
+   2   4110.583983    0.086552                 Continuing   100.000000      933045          Reached tolerance
+   2   4112.534495    0.074105                 Continuing   100.000000      916975          Reached tolerance
+   2   4112.122000    0.069708                 Continuing   100.000000      937044          Reached tolerance
+   3   4112.328661    0.000499                 Continuing   100.000000      872759          Reached tolerance
+   3   4113.330899    0.001222                 Continuing   100.000000      883020          Reached tolerance
+   3   4112.936556    0.000736                 Continuing   100.000000      846070          Reached tolerance
+   3   4113.134737    0.000253                 Continuing   100.000000      860246          Reached tolerance
+   3   4111.039525    0.000738                 Continuing   100.000000      898327          Reached tolerance
+   3   4111.910885    0.002443                 Continuing   100.000000      859391          Reached tolerance
+   3   4113.525150    0.000492                 Continuing   100.000000      874267          Reached tolerance
+   3   4112.736236    0.000255                 Continuing   100.000000      850875          Reached tolerance
+   3   4111.697781    0.001711                 Continuing   100.000000      879606          Reached tolerance
+   3   4111.262285    0.000980                 Continuing   100.000000      899423          Reached tolerance
+   3   4110.813159    0.002443                 Continuing   100.000000      874891          Reached tolerance
+   3   4113.717589    0.000737                 Continuing   100.000000      871911          Reached tolerance
+   3   4110.582979    0.000266                 Continuing   100.000000      903095          Reached tolerance
+   3   4111.481641    0.001468                 Continuing   100.000000      881611          Reached tolerance
+   3   4112.533651    0.000736                 Continuing   100.000000      857041          Reached tolerance
+   3   4112.121124    0.002687                 Continuing   100.000000      848690          Reached tolerance
+   4   4112.328661    0.000499   Continuing - TR contract    10.000000      841085          Reached tolerance
+   4   4113.134737    0.000489                 Continuing   100.000000      808323          Reached tolerance
+   4   4113.330899    0.001222   Continuing - TR contract    10.000000      817584          Reached tolerance
+   4   4112.936556    0.001465                 Continuing   100.000000      803285          Reached tolerance
+   4   4111.910885    0.000244                 Continuing   100.000000      827713          Reached tolerance
+   4   4111.039524    0.002930                 Continuing   100.000000      823313          Reached tolerance
+   4   4113.525150    0.000492   Continuing - TR contract    10.000000      819337          Reached tolerance
+   4   4111.697781    0.001221                 Continuing   100.000000      793830          Reached tolerance
+   4   4113.717589    0.002930                 Continuing   100.000000      807249          Reached tolerance
+   4   4112.736236    0.000005                 Continuing   100.000000      840309          Reached tolerance
+
+Iteration has terminated
+   4   4112.736236    0.000005                    Success
+
+   4   4111.262285    0.000732                 Continuing   100.000000      826779          Reached tolerance
+   4   4110.813158    0.001465                 Continuing   100.000000      800873          Reached tolerance
 Optimizing with theta = 5.6 
+   4   4110.582979    0.000244                 Continuing   100.000000      838686          Reached tolerance
+   4   4111.481641    0.001953                 Continuing   100.000000      843380          Reached tolerance
+   4   4112.121124    0.002687   Continuing - TR contract    10.000000      795891          Reached tolerance
+   4   4112.533651    0.001221                 Continuing   100.000000      838300          Reached tolerance
 Beginning optimization
-  10   3647.760350    0.000061   Continuing - TR contract     0.000100      425587          Reached tolerance
+   5   4112.328661    0.000499   Continuing - TR contract     1.000000      841085          Reached tolerance
+   5   4113.330899    0.001222   Continuing - TR contract     1.000000      817584          Reached tolerance
+   5   4113.525150    0.000492   Continuing - TR contract     1.000000      819337          Reached tolerance
+   5   4110.813158    0.001465   Continuing - TR contract    10.000000      676377          Reached tolerance
+   5   4111.039524    0.001465                 Continuing   100.000000      815618          Reached tolerance
+   5   4113.134737    0.000489   Continuing - TR contract    10.000000      853816          Reached tolerance
+   5   4111.262285    0.000732   Continuing - TR contract    10.000000      760481          Reached tolerance
+   5   4111.910885    0.000244   Continuing - TR contract    10.000000      870752          Reached tolerance
+   5   4112.936556    0.001465   Continuing - TR contract    10.000000      856838          Reached tolerance
+   5   4113.717589    0.002930   Continuing - TR contract    10.000000      825967          Reached tolerance
+   5   4111.697781    0.000977                 Continuing   100.000000      866092          Reached tolerance
+   5   4112.121124    0.002687   Continuing - TR contract     1.000000      795891          Reached tolerance
+   5   4111.481641    0.000977                 Continuing   100.000000      853311          Reached tolerance
+   5   4110.582979    0.000244   Continuing - TR contract    10.000000      897309          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4116.594984    2.287882                 Continuing   100.000000      872652          Reached tolerance
+   5   4112.533651    0.001221   Continuing - TR contract    10.000000      821794          Reached tolerance
+   6   4112.328661    0.000499   Continuing - TR contract     0.100000      841085          Reached tolerance
+   6   4111.039524    0.001465   Continuing - TR contract    10.000000      525213          Reached tolerance
+   6   4110.813158    0.001465   Continuing - TR contract     1.000000      676377          Reached tolerance
+   6   4113.330899    0.001222   Continuing - TR contract     0.100000      817584          Reached tolerance
+   6   4113.525150    0.000492   Continuing - TR contract     0.100000      819337          Reached tolerance
+   6   4111.262285    0.000732   Continuing - TR contract     1.000000      760481          Reached tolerance
+   6   4113.134737    0.000489   Continuing - TR contract     1.000000      853816          Reached tolerance
+   6   4111.910885    0.000244   Continuing - TR contract     1.000000      870752          Reached tolerance
+   6   4113.717589    0.002930   Continuing - TR contract     1.000000      825967          Reached tolerance
+   6   4112.936556    0.001465   Continuing - TR contract     1.000000      856838          Reached tolerance
+   7   4111.039524    0.001465   Continuing - TR contract     1.000000      525213          Reached tolerance
+   6   4112.121124    0.002687   Continuing - TR contract     0.100000      795891          Reached tolerance
+   6   4111.697781    0.000977   Continuing - TR contract    10.000000      873755          Reached tolerance
+   6   4111.481641    0.000977   Continuing - TR contract    10.000000      772809          Reached tolerance
+   6   4110.582979    0.000244   Continuing - TR contract     1.000000      897309          Reached tolerance
+   2   4115.727362    0.047116                 Continuing   100.000000      837128          Reached tolerance
+   6   4112.533651    0.001221   Continuing - TR contract     1.000000      821794          Reached tolerance
+   7   4110.813158    0.001465   Continuing - TR contract     0.100000      676377          Reached tolerance
+   7   4112.328661    0.000499   Continuing - TR contract     0.010000      841085          Reached tolerance
+   7   4113.330899    0.001222   Continuing - TR contract     0.010000      817584          Reached tolerance
+   7   4113.525150    0.000492   Continuing - TR contract     0.010000      819337          Reached tolerance
+   7   4111.262285    0.000732   Continuing - TR contract     0.100000      760481          Reached tolerance
+   8   4111.039524    0.001465   Continuing - TR contract     0.100000      525213          Reached tolerance
+   7   4113.134737    0.000489   Continuing - TR contract     0.100000      853816          Reached tolerance
+   7   4113.717589    0.002930   Continuing - TR contract     0.100000      825967          Reached tolerance
+   7   4111.910885    0.000244   Continuing - TR contract     0.100000      870752          Reached tolerance
+   7   4112.936556    0.001465   Continuing - TR contract     0.100000      856838          Reached tolerance
+   7   4112.121124    0.002687   Continuing - TR contract     0.010000      795891          Reached tolerance
+   7   4111.481641    0.000977   Continuing - TR contract     1.000000      772809          Reached tolerance
+   7   4111.697781    0.000977   Continuing - TR contract     1.000000      873755          Reached tolerance
+   8   4110.813158    0.001465   Continuing - TR contract     0.010000      676377          Reached tolerance
+   9   4111.039524    0.001465   Continuing - TR contract     0.010000      525213          Reached tolerance
+   3   4115.726983    0.000031                 Continuing   100.000000      813807          Reached tolerance
+   7   4110.582979    0.000244   Continuing - TR contract     0.100000      897309          Reached tolerance
+   8   4112.328661    0.000499   Continuing - TR contract     0.001000      841085          Reached tolerance
+   7   4112.533651    0.001221   Continuing - TR contract     0.100000      821794          Reached tolerance
+   8   4111.262285    0.000732   Continuing - TR contract     0.010000      760481          Reached tolerance
+   8   4113.330899    0.001222   Continuing - TR contract     0.001000      817584          Reached tolerance
+   8   4113.525150    0.000492   Continuing - TR contract     0.001000      819337          Reached tolerance
+   8   4113.717589    0.002930   Continuing - TR contract     0.010000      825967          Reached tolerance
+   8   4113.134737    0.000489   Continuing - TR contract     0.010000      853816          Reached tolerance
+   8   4111.910885    0.000244   Continuing - TR contract     0.010000      870752          Reached tolerance
+   8   4112.936556    0.001465   Continuing - TR contract     0.010000      856838          Reached tolerance
+  10   4111.039524    0.001465   Continuing - TR contract     0.001000      525213          Reached tolerance
+   9   4110.813158    0.001465   Continuing - TR contract     0.001000      676377          Reached tolerance
+   8   4111.481641    0.000977   Continuing - TR contract     0.100000      772809          Reached tolerance
+   8   4112.121124    0.002687   Continuing - TR contract     0.001000      795891          Reached tolerance
+   8   4111.697781    0.000977   Continuing - TR contract     0.100000      873755          Reached tolerance
+   9   4112.328661    0.000499   Continuing - TR contract     0.000100      841085          Reached tolerance
 
 Iteration has terminated
-  10   3647.760350    0.000061Radius of trust region is less than stop.trust.radius
+   9   4112.328661    0.000499Radius of trust region is less than stop.trust.radius
 
-  10   3648.128955    0.000198   Continuing - TR contract     0.001000      440134          Reached tolerance
-Beginning optimization
-  10   3645.347985    0.000306   Continuing - TR contract     0.010000      427945          Reached tolerance
-Beginning optimization
-Beginning optimization
-  10   3646.611892    0.000092   Continuing - TR contract     0.001000      447137          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3650.724108    2.633458                 Continuing   100.000000      456860          Reached tolerance
-  11   3643.939181    0.000198   Continuing - TR contract     0.000100      377467          Reached tolerance
+   9   4111.262285    0.000732   Continuing - TR contract     0.001000      760481          Reached tolerance
+   9   4113.330899    0.001222   Continuing - TR contract     0.000100      817584          Reached tolerance
 
 Iteration has terminated
-  11   3643.939181    0.000198Radius of trust region is less than stop.trust.radius
+   9   4113.330899    0.001222Radius of trust region is less than stop.trust.radius
 
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3651.786799    2.561558                 Continuing   100.000000      483123          Reached tolerance
-  10   3646.205838    0.000107   Continuing - TR contract     0.001000      454275          Reached tolerance
-Optimizing with theta = 4.8 
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3652.162768    2.534546                 Continuing   100.000000      465729          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3652.948393    2.478039                 Continuing   100.000000      447685          Reached tolerance
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3650.387662    2.654212                 Continuing   100.000000      474235          Reached tolerance
-  11   3646.611892    0.000092   Continuing - TR contract     0.000100      447137          Reached tolerance
-
-Iteration has terminated
-  11   3646.611892    0.000092Radius of trust region is less than stop.trust.radius
-
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3651.068342    2.611073                 Continuing   100.000000      456373          Reached tolerance
-  11   3645.347985    0.000306   Continuing - TR contract     0.001000      427945          Reached tolerance
-  11   3648.128955    0.000198   Continuing - TR contract     0.000100      440134          Reached tolerance
-
-Iteration has terminated
-  11   3648.128955    0.000198Radius of trust region is less than stop.trust.radius
-
-Beginning optimization
-Optimizing with theta = 6 
-   2   3650.804594    0.054502                 Continuing   100.000000      446923          Reached tolerance
-   2   3649.615588    0.063643                 Continuing   100.000000      464335          Reached tolerance
-  11   3646.205838    0.000107   Continuing - TR contract     0.000100      454275          Reached tolerance
-
-Iteration has terminated
-  11   3646.205838    0.000107Radius of trust region is less than stop.trust.radius
-
-Beginning optimization
-   2   3651.219504    0.051201                 Continuing   100.000000      455838          Reached tolerance
-Optimizing with theta = 5.8 
-   2   3652.072953    0.044617                 Continuing   100.000000      419200          Reached tolerance
-  12   3645.347985    0.000306   Continuing - TR contract     0.000100      427945          Reached tolerance
-
-Iteration has terminated
-  12   3645.347985    0.000306Radius of trust region is less than stop.trust.radius
-
-
-iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3651.422179    2.587152                 Continuing   100.000000      469588          Reached tolerance
-   2   3649.236864    0.066168                 Continuing   100.000000      463104          Reached tolerance
-   2   3650.002582    0.060801                 Continuing   100.000000      454346          Reached tolerance
+   4   4115.726983    0.000031   Continuing - TR contract    10.000000      790266          Reached tolerance
 Optimizing with theta = 5.4 
-   3   3650.804084    0.000113                 Continuing   100.000000      444191          Reached tolerance
+  11   4111.039524    0.001465   Continuing - TR contract     0.000100      525213          Reached tolerance
+
+Iteration has terminated
+  11   4111.039524    0.001465Radius of trust region is less than stop.trust.radius
+
+   9   4113.525150    0.000492   Continuing - TR contract     0.000100      819337          Reached tolerance
+
+Iteration has terminated
+   9   4113.525150    0.000492Radius of trust region is less than stop.trust.radius
+
+   8   4112.533651    0.001221   Continuing - TR contract     0.010000      821794          Reached tolerance
+   8   4110.582979    0.000244   Continuing - TR contract     0.010000      897309          Reached tolerance
+Optimizing with theta = 5.9 
+Optimizing with theta = 4.8 
+Optimizing with theta = 6 
+   9   4113.717589    0.002930   Continuing - TR contract     0.001000      825967          Reached tolerance
+Beginning optimization
+   9   4113.134737    0.000489   Continuing - TR contract     0.001000      853816          Reached tolerance
+  10   4110.813158    0.001465   Continuing - TR contract     0.000100      676377          Reached tolerance
+
+Iteration has terminated
+  10   4110.813158    0.001465Radius of trust region is less than stop.trust.radius
+
+   9   4111.910885    0.000244   Continuing - TR contract     0.001000      870752          Reached tolerance
+Beginning optimization
+   9   4112.936556    0.001465   Continuing - TR contract     0.001000      856838          Reached tolerance
+Beginning optimization
+Beginning optimization
+Optimizing with theta = 4.7 
+   9   4111.481641    0.000977   Continuing - TR contract     0.010000      772809          Reached tolerance
+   9   4112.121124    0.002687   Continuing - TR contract     0.000100      795891          Reached tolerance
+
+Iteration has terminated
+   9   4112.121124    0.002687Radius of trust region is less than stop.trust.radius
+
+   9   4111.697781    0.000977   Continuing - TR contract     0.010000      873755          Reached tolerance
+Beginning optimization
+Optimizing with theta = 5.3 
+  10   4111.262285    0.000732   Continuing - TR contract     0.000100      760481          Reached tolerance
+
+Iteration has terminated
+  10   4111.262285    0.000732Radius of trust region is less than stop.trust.radius
+
+   5   4115.726983    0.000031   Continuing - TR contract     1.000000      790266          Reached tolerance
+Optimizing with theta = 4.9 
+   9   4112.533651    0.001221   Continuing - TR contract     0.001000      821794          Reached tolerance
+Beginning optimization
+   9   4110.582979    0.000244   Continuing - TR contract     0.001000      897309          Reached tolerance
+Beginning optimization
+  10   4113.717589    0.002930   Continuing - TR contract     0.000100      825967          Reached tolerance
+
+Iteration has terminated
+  10   4113.717589    0.002930Radius of trust region is less than stop.trust.radius
+
+  10   4113.134737    0.000489   Continuing - TR contract     0.000100      853816          Reached tolerance
+
+Iteration has terminated
+  10   4113.134737    0.000489Radius of trust region is less than stop.trust.radius
+
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4116.278205    2.321411                 Continuing   100.000000      888796          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4117.057482    2.246272                 Continuing   100.000000      861654          Reached tolerance
+  10   4111.910885    0.000244   Continuing - TR contract     0.000100      870752          Reached tolerance
+
+Iteration has terminated
+  10   4111.910885    0.000244Radius of trust region is less than stop.trust.radius
+
+  10   4112.936556    0.001465   Continuing - TR contract     0.000100      856838          Reached tolerance
+
+Iteration has terminated
+  10   4112.936556    0.001465Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 6.1 
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4117.207896    2.240690                 Continuing   100.000000      836420          Reached tolerance
+Optimizing with theta = 5.8 
+Optimizing with theta = 5.2 
+Optimizing with theta = 5.7 
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4115.291181    2.424479                 Continuing   100.000000      914126          Reached tolerance
+  10   4111.481641    0.000977   Continuing - TR contract     0.001000      772809          Reached tolerance
+  10   4111.697781    0.000977   Continuing - TR contract     0.001000      873755          Reached tolerance
+Beginning optimization
+   6   4115.726983    0.000031   Continuing - TR contract     0.100000      790266          Reached tolerance
+Beginning optimization
+Beginning optimization
 Beginning optimization
 
 iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3653.773948    2.421478                 Continuing   100.000000      411725          Reached tolerance
-   3   3649.614831    0.000082                 Continuing   100.000000      446410          Reached tolerance
-   3   3651.219068    0.000096                 Continuing   100.000000      438286          Reached tolerance
-   3   3652.072638    0.000260                 Continuing   100.000000      418149          Reached tolerance
+   1   4115.121322    2.442388                 Continuing   100.000000      965137          Reached tolerance
+  10   4112.533651    0.001221   Continuing - TR contract     0.000100      821794          Reached tolerance
+
+Iteration has terminated
+  10   4112.533651    0.001221Radius of trust region is less than stop.trust.radius
+
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4116.117474    2.337544                 Continuing   100.000000      908118          Reached tolerance
+  10   4110.582979    0.000244   Continuing - TR contract     0.000100      897309          Reached tolerance
+
+Iteration has terminated
+  10   4110.582979    0.000244Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 5.5 
+Optimizing with theta = 4.6 
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4115.459476    2.404093                 Continuing   100.000000      922650          Reached tolerance
+   2   4116.236883    0.041714                 Continuing   100.000000      841116          Reached tolerance
+   2   4116.401796    0.039258                 Continuing   100.000000      781972          Reached tolerance
+   2   4115.377083    0.048349                 Continuing   100.000000      869934          Reached tolerance
+  11   4111.481641    0.000977   Continuing - TR contract     0.000100      772809          Reached tolerance
+
+Iteration has terminated
+  11   4111.481641    0.000977Radius of trust region is less than stop.trust.radius
+
 Beginning optimization
-   4   3650.804084    0.000113   Continuing - TR contract    10.000000      399721          Reached tolerance
-   2   3652.948857    0.039018                 Continuing   100.000000      413054          Reached tolerance
+Optimizing with theta = 5 
+Beginning optimization
+   2   4114.285439    0.057741                 Continuing   100.000000      910836          Reached tolerance
+   7   4115.726983    0.000031   Continuing - TR contract     0.010000      790266          Reached tolerance
 
 iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3653.356763    2.449379                 Continuing   100.000000      424894          Reached tolerance
-   2   3650.398829    0.057732                 Continuing   100.000000      459494          Reached tolerance
-   4   3652.072638    0.000320                 Continuing   100.000000      334347          Reached tolerance
-   4   3649.614831    0.000082   Continuing - TR contract    10.000000      411356          Reached tolerance
-   3   3649.236022    0.000098                 Continuing   100.000000      457288          Reached tolerance
-   3   3650.001910    0.000067                 Continuing   100.000000      456334          Reached tolerance
-   4   3651.219068    0.000096   Continuing - TR contract    10.000000      380377          Reached tolerance
-   5   3650.804084    0.000113   Continuing - TR contract     1.000000      399721          Reached tolerance
+   1   4117.356237    2.224147                 Continuing   100.000000      826847          Reached tolerance
+  11   4111.697781    0.000977   Continuing - TR contract     0.000100      873755          Reached tolerance
+
+Iteration has terminated
+  11   4111.697781    0.000977Radius of trust region is less than stop.trust.radius
+
 
 iter           f        nrm_gr                     status          rad     CG iter                  CG result
-   1   3652.550112    2.507058                 Continuing   100.000000      442915          Reached tolerance
-   3   3652.948624    0.000108                 Continuing   100.000000      385005          Reached tolerance
-   5   3651.219068    0.000096   Continuing - TR contract     1.000000      380377          Reached tolerance
-   5   3649.614831    0.000082   Continuing - TR contract     1.000000      411356          Reached tolerance
-   5   3652.072638    0.000320   Continuing - TR contract    10.000000      357432          Reached tolerance
-   6   3650.804084    0.000113   Continuing - TR contract     0.100000      399721          Reached tolerance
-   3   3650.398240    0.000100                 Continuing   100.000000      444381          Reached tolerance
-   2   3652.508864    0.041664                 Continuing   100.000000      413911          Reached tolerance
-   4   3650.001910    0.000067   Continuing - TR contract    10.000000      421755          Reached tolerance
-   4   3649.236022    0.000098   Continuing - TR contract    10.000000      429776          Reached tolerance
-   6   3651.219068    0.000096   Continuing - TR contract     0.100000      380377          Reached tolerance
-   6   3652.072638    0.000320   Continuing - TR contract     1.000000      357432          Reached tolerance
-   4   3652.948624    0.000108   Continuing - TR contract    10.000000      340181          Reached tolerance
-   6   3649.614831    0.000082   Continuing - TR contract     0.100000      411356          Reached tolerance
-   2   3651.642693    0.047946                 Continuing   100.000000      434914          Reached tolerance
-   7   3650.804084    0.000113   Continuing - TR contract     0.010000      399721          Reached tolerance
-   5   3652.948624    0.000108   Continuing - TR contract     1.000000      340181          Reached tolerance
-   7   3651.219068    0.000096   Continuing - TR contract     0.010000      380377          Reached tolerance
-   7   3649.614831    0.000082   Continuing - TR contract     0.010000      411356          Reached tolerance
-   5   3650.001910    0.000067   Continuing - TR contract     1.000000      421755          Reached tolerance
-   3   3652.508595    0.000108                 Continuing   100.000000      404380          Reached tolerance
-   4   3650.398240    0.000017                 Continuing   100.000000      407939          Reached tolerance
+   1   4116.905119    2.259194                 Continuing   100.000000      893985          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4116.750921    2.275055                 Continuing   100.000000      855960          Reached tolerance
+Optimizing with theta = 5.1 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4115.955229    2.352667                 Continuing   100.000000      929813          Reached tolerance
+   2   4114.098013    0.058321                 Continuing   100.000000      898410          Reached tolerance
+Beginning optimization
+   2   4115.199192    0.051642                 Continuing   100.000000      843570          Reached tolerance
+   3   4116.401513    0.001221                 Continuing   100.000000      788519          Reached tolerance
+   2   4114.471303    0.060424                 Continuing   100.000000      894799          Reached tolerance
+   3   4116.236578    0.000367                 Continuing   100.000000      832266          Reached tolerance
+   3   4115.376645    0.000368                 Continuing   100.000000      878914          Reached tolerance
+   8   4115.726983    0.000031   Continuing - TR contract     0.001000      790266          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4116.437390    2.303155                 Continuing   100.000000      901636          Reached tolerance
+   2   4116.563931    0.038926                 Continuing   100.000000      783232          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4114.949865    2.460683                 Continuing   100.000000      937313          Reached tolerance
+   3   4114.284813    0.000050                 Continuing   100.000000      865993          Reached tolerance
+   2   4115.899484    0.043667                 Continuing   100.000000      829523          Reached tolerance
+   2   4116.069383    0.044953                 Continuing   100.000000      829604          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4115.626235    2.386681                 Continuing   100.000000      920168          Reached tolerance
+   3   4114.097356    0.000491                 Continuing   100.000000      865798          Reached tolerance
+   4   4116.401513    0.001221   Continuing - TR contract    10.000000      657986          Reached tolerance
+   2   4115.019606    0.054388                 Continuing   100.000000      875182          Reached tolerance
+   3   4115.198724    0.000733                 Continuing   100.000000      827573          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4115.791483    2.369427                 Continuing   100.000000      930098          Reached tolerance
+   4   4116.236578    0.000367   Continuing - TR contract    10.000000      706208          Reached tolerance
+   9   4115.726983    0.000031   Continuing - TR contract     0.000100      790266          Reached tolerance
 
 Iteration has terminated
-   4   3650.398240    0.000017                    Success
+   9   4115.726983    0.000031Radius of trust region is less than stop.trust.radius
 
-   5   3649.236022    0.000098   Continuing - TR contract     1.000000      429776          Reached tolerance
-   7   3652.072638    0.000320   Continuing - TR contract     0.100000      357432          Reached tolerance
-   6   3652.948624    0.000108   Continuing - TR contract     0.100000      340181          Reached tolerance
-   3   3651.642322    0.000066                 Continuing   100.000000      427655          Reached tolerance
-   8   3650.804084    0.000113   Continuing - TR contract     0.001000      399721          Reached tolerance
-   8   3651.219068    0.000096   Continuing - TR contract     0.001000      380377          Reached tolerance
-   8   3649.614831    0.000082   Continuing - TR contract     0.001000      411356          Reached tolerance
-   6   3650.001910    0.000067   Continuing - TR contract     0.100000      421755          Reached tolerance
-   7   3652.948624    0.000108   Continuing - TR contract     0.010000      340181          Reached tolerance
-   8   3652.072638    0.000320   Continuing - TR contract     0.010000      357432          Reached tolerance
-   6   3649.236022    0.000098   Continuing - TR contract     0.100000      429776          Reached tolerance
-   4   3652.508595    0.000108   Continuing - TR contract    10.000000      354368          Reached tolerance
-   9   3650.804084    0.000113   Continuing - TR contract     0.000100      399721          Reached tolerance
+   3   4114.470708    0.000049                 Continuing   100.000000      826210          Reached tolerance
+   4   4115.376645    0.000368   Continuing - TR contract    10.000000      754719          Reached tolerance
+Optimizing with theta = 7.2 
+   3   4116.563668    0.001709                 Continuing   100.000000      777808          Reached tolerance
+   2   4115.553180    0.047285                 Continuing   100.000000      870445          Reached tolerance
+   2   4113.908986    0.059980                 Continuing   100.000000      869776          Reached tolerance
+   4   4114.284813    0.000488                 Continuing   100.000000      844329          Reached tolerance
+   3   4115.899131    0.000367                 Continuing   100.000000      801141          Reached tolerance
+Beginning optimization
+   3   4116.069056    0.001221                 Continuing   100.000000      816714          Reached tolerance
+   5   4116.401513    0.001221   Continuing - TR contract     1.000000      657986          Reached tolerance
+   2   4114.655625    0.057440                 Continuing   100.000000      870040          Reached tolerance
+   5   4116.236578    0.000367   Continuing - TR contract     1.000000      706208          Reached tolerance
+   4   4114.097356    0.000247                 Continuing   100.000000      788044          Reached tolerance
+   4   4115.198724    0.000733   Continuing - TR contract    10.000000      745360          Reached tolerance
+   5   4115.376645    0.000368   Continuing - TR contract     1.000000      754719          Reached tolerance
+   2   4114.838401    0.057022                 Continuing   100.000000      863795          Reached tolerance
+   3   4115.019106    0.000247                 Continuing   100.000000      819252          Reached tolerance
+   4   4116.563668    0.001709   Continuing - TR contract    10.000000      640322          Reached tolerance
+   4   4114.470708    0.000610                 Continuing   100.000000      832467          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4118.815883    2.156795                 Continuing   100.000000      614703          Reached tolerance
+   3   4115.552773    0.000125                 Continuing   100.000000      828943          Reached tolerance
+   6   4116.401513    0.001221   Continuing - TR contract     0.100000      657986          Reached tolerance
+   4   4115.899131    0.000367   Continuing - TR contract    10.000000      710768          Reached tolerance
+   4   4116.069056    0.001221   Continuing - TR contract    10.000000      689944          Reached tolerance
+   5   4114.284813    0.001221                 Continuing   100.000000      792806          Reached tolerance
+   6   4116.236578    0.000367   Continuing - TR contract     0.100000      706208          Reached tolerance
+   3   4113.908301    0.000492                 Continuing   100.000000      870340          Reached tolerance
+   3   4114.655061    0.002686                 Continuing   100.000000      841501          Reached tolerance
+   5   4115.198724    0.000733   Continuing - TR contract     1.000000      745360          Reached tolerance
+   6   4115.376645    0.000368   Continuing - TR contract     0.100000      754719          Reached tolerance
+   5   4114.097356    0.000247   Continuing - TR contract    10.000000      808833          Reached tolerance
+   5   4116.563668    0.001709   Continuing - TR contract     1.000000      640322          Reached tolerance
+   2   4118.121013    0.029360                 Continuing   100.000000      609265          Reached tolerance
+   3   4114.837869    0.000041                 Continuing   100.000000      839944          Reached tolerance
+   7   4116.401513    0.001221   Continuing - TR contract     0.010000      657986          Reached tolerance
+   4   4115.019106    0.000247   Continuing - TR contract    10.000000      755946          Reached tolerance
+   5   4114.470708    0.000122                 Continuing   100.000000      801025          Reached tolerance
+   5   4115.899131    0.000367   Continuing - TR contract     1.000000      710768          Reached tolerance
+   5   4116.069056    0.001221   Continuing - TR contract     1.000000      689944          Reached tolerance
+   4   4115.552773    0.000125   Continuing - TR contract    10.000000      737126          Reached tolerance
+   7   4116.236578    0.000367   Continuing - TR contract     0.010000      706208          Reached tolerance
+   6   4114.284813    0.000732                 Continuing   100.000000      796353          Reached tolerance
+   4   4113.908300    0.000489                 Continuing   100.000000      803038          Reached tolerance
+   6   4116.563668    0.001709   Continuing - TR contract     0.100000      640322          Reached tolerance
+   6   4115.198724    0.000733   Continuing - TR contract     0.100000      745360          Reached tolerance
+   7   4115.376645    0.000368   Continuing - TR contract     0.010000      754719          Reached tolerance
+   4   4114.655061    0.001343                 Continuing   100.000000      741157          Reached tolerance
+   6   4114.097356    0.000247   Continuing - TR contract     1.000000      808833          Reached tolerance
+   3   4118.120857    0.000916                 Continuing   100.000000      612924          Reached tolerance
+   8   4116.401513    0.001221   Continuing - TR contract     0.001000      657986          Reached tolerance
+   6   4116.069056    0.001221   Continuing - TR contract     0.100000      689944          Reached tolerance
+   6   4115.899131    0.000367   Continuing - TR contract     0.100000      710768          Reached tolerance
+   8   4116.236578    0.000367   Continuing - TR contract     0.001000      706208          Reached tolerance
+   5   4115.019106    0.000247   Continuing - TR contract     1.000000      755946          Reached tolerance
+   5   4115.552773    0.000125   Continuing - TR contract     1.000000      737126          Reached tolerance
+   6   4114.470708    0.002075                 Continuing   100.000000      802896          Reached tolerance
+   4   4114.837869    0.000041   Continuing - TR contract    10.000000      816598          Reached tolerance
+   7   4116.563668    0.001709   Continuing - TR contract     0.010000      640322          Reached tolerance
+   4   4118.120857    0.000916   Continuing - TR contract    10.000000      455939          Reached tolerance
+   8   4115.376645    0.000368   Continuing - TR contract     0.001000      754719          Reached tolerance
+   7   4115.198724    0.000733   Continuing - TR contract     0.010000      745360          Reached tolerance
+   7   4114.284813    0.000489                 Continuing   100.000000      814286          Reached tolerance
+   5   4113.908300    0.000489   Continuing - TR contract    10.000000      865512          Reached tolerance
+   9   4116.401513    0.001221   Continuing - TR contract     0.000100      657986          Reached tolerance
 
 Iteration has terminated
-   9   3650.804084    0.000113Radius of trust region is less than stop.trust.radius
+   9   4116.401513    0.001221Radius of trust region is less than stop.trust.radius
 
-   8   3652.948624    0.000108   Continuing - TR contract     0.001000      340181          Reached tolerance
-   7   3650.001910    0.000067   Continuing - TR contract     0.010000      421755          Reached tolerance
-   4   3651.642322    0.000066   Continuing - TR contract    10.000000      386636          Reached tolerance
-   9   3651.219068    0.000096   Continuing - TR contract     0.000100      380377          Reached tolerance
-
-Iteration has terminated
-   9   3651.219068    0.000096Radius of trust region is less than stop.trust.radius
-
-   9   3649.614831    0.000082   Continuing - TR contract     0.000100      411356          Reached tolerance
+   7   4114.097356    0.000247   Continuing - TR contract     0.100000      808833          Reached tolerance
+   5   4114.655061    0.001343   Continuing - TR contract    10.000000      791696          Reached tolerance
+Optimizing with theta = 7.6 
+   7   4116.069056    0.001221   Continuing - TR contract     0.010000      689944          Reached tolerance
+   7   4115.899131    0.000367   Continuing - TR contract     0.010000      710768          Reached tolerance
+   9   4116.236578    0.000367   Continuing - TR contract     0.000100      706208          Reached tolerance
 
 Iteration has terminated
-   9   3649.614831    0.000082Radius of trust region is less than stop.trust.radius
+   9   4116.236578    0.000367Radius of trust region is less than stop.trust.radius
 
-   9   3652.072638    0.000320   Continuing - TR contract     0.001000      357432          Reached tolerance
-   5   3652.508595    0.000108   Continuing - TR contract     1.000000      354368          Reached tolerance
-   7   3649.236022    0.000098   Continuing - TR contract     0.010000      429776          Reached tolerance
-   9   3652.948624    0.000108   Continuing - TR contract     0.000100      340181          Reached tolerance
-
-Iteration has terminated
-   9   3652.948624    0.000108Radius of trust region is less than stop.trust.radius
-
-   8   3650.001910    0.000067   Continuing - TR contract     0.001000      421755          Reached tolerance
-   5   3651.642322    0.000066   Continuing - TR contract     1.000000      386636          Reached tolerance
-  10   3652.072638    0.000320   Continuing - TR contract     0.000100      357432          Reached tolerance
+   5   4118.120857    0.000916   Continuing - TR contract     1.000000      455939          Reached tolerance
+Optimizing with theta = 7.5 
+   6   4115.552773    0.000125   Continuing - TR contract     0.100000      737126          Reached tolerance
+   8   4116.563668    0.001709   Continuing - TR contract     0.001000      640322          Reached tolerance
+   6   4115.019106    0.000247   Continuing - TR contract     0.100000      755946          Reached tolerance
+Beginning optimization
+   5   4114.837869    0.000041   Continuing - TR contract     1.000000      816598          Reached tolerance
+   7   4114.470708    0.002075   Continuing - TR contract    10.000000      767903          Reached tolerance
+   9   4115.376645    0.000368   Continuing - TR contract     0.000100      754719          Reached tolerance
 
 Iteration has terminated
-  10   3652.072638    0.000320Radius of trust region is less than stop.trust.radius
+   9   4115.376645    0.000368Radius of trust region is less than stop.trust.radius
 
-   6   3652.508595    0.000108   Continuing - TR contract     0.100000      354368          Reached tolerance
-   8   3649.236022    0.000098   Continuing - TR contract     0.001000      429776          Reached tolerance
-   6   3651.642322    0.000066   Continuing - TR contract     0.100000      386636          Reached tolerance
-   9   3650.001910    0.000067   Continuing - TR contract     0.000100      421755          Reached tolerance
+Beginning optimization
+   8   4115.198724    0.000733   Continuing - TR contract     0.001000      745360          Reached tolerance
+Optimizing with theta = 7 
+   6   4118.120857    0.000916   Continuing - TR contract     0.100000      455939          Reached tolerance
+   6   4114.655061    0.001343   Continuing - TR contract     1.000000      791696          Reached tolerance
+   8   4114.284813    0.000489   Continuing - TR contract    10.000000      808525          Reached tolerance
+   8   4114.097356    0.000247   Continuing - TR contract     0.010000      808833          Reached tolerance
+   6   4113.908300    0.000489   Continuing - TR contract     1.000000      865512          Reached tolerance
 
-Iteration has terminated
-   9   3650.001910    0.000067Radius of trust region is less than stop.trust.radius
-
-   7   3652.508595    0.000108   Continuing - TR contract     0.010000      354368          Reached tolerance
-   9   3649.236022    0.000098   Continuing - TR contract     0.000100      429776          Reached tolerance
-
-Iteration has terminated
-   9   3649.236022    0.000098Radius of trust region is less than stop.trust.radius
-
-   8   3652.508595    0.000108   Continuing - TR contract     0.001000      354368          Reached tolerance
-   7   3651.642322    0.000066   Continuing - TR contract     0.010000      386636          Reached tolerance
-   8   3651.642322    0.000066   Continuing - TR contract     0.001000      386636          Reached tolerance
-   9   3652.508595    0.000108   Continuing - TR contract     0.000100      354368          Reached tolerance
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4119.256248    2.157379                 Continuing   100.000000      521774          Reached tolerance
+   8   4116.069056    0.001221   Continuing - TR contract     0.001000      689944          Reached tolerance
+Beginning optimization
+   8   4115.899131    0.000367   Continuing - TR contract     0.001000      710768          Reached tolerance
+   9   4116.563668    0.001709   Continuing - TR contract     0.000100      640322          Reached tolerance
 
 Iteration has terminated
-   9   3652.508595    0.000108Radius of trust region is less than stop.trust.radius
+   9   4116.563668    0.001709Radius of trust region is less than stop.trust.radius
 
-   9   3651.642322    0.000066   Continuing - TR contract     0.000100      386636          Reached tolerance
+Optimizing with theta = 7.7 
+   7   4115.552773    0.000125   Continuing - TR contract     0.010000      737126          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4119.150821    2.155626                 Continuing   100.000000      532643          Reached tolerance
+   7   4118.120857    0.000916   Continuing - TR contract     0.010000      455939          Reached tolerance
+   7   4115.019106    0.000247   Continuing - TR contract     0.010000      755946          Reached tolerance
+   8   4114.470708    0.002075   Continuing - TR contract     1.000000      767903          Reached tolerance
+   6   4114.837869    0.000041   Continuing - TR contract     0.100000      816598          Reached tolerance
+Beginning optimization
+   9   4115.198724    0.000733   Continuing - TR contract     0.000100      745360          Reached tolerance
 
 Iteration has terminated
-   9   3651.642322    0.000066Radius of trust region is less than stop.trust.radius
+   9   4115.198724    0.000733Radius of trust region is less than stop.trust.radius
 
-Time taken for optimization with  26  values of theta: 46671.67 seconds.
-    user   system  elapsed 
-9566.258    5.469 9569.693 
+Optimizing with theta = 6.9 
+   2   4118.576253    0.029152                 Continuing   100.000000      501973          Reached tolerance
+   7   4114.655061    0.001343   Continuing - TR contract     0.100000      791696          Reached tolerance
+   9   4116.069056    0.001221   Continuing - TR contract     0.000100      689944          Reached tolerance
+
+Iteration has terminated
+   9   4116.069056    0.001221Radius of trust region is less than stop.trust.radius
+
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4118.576930    2.164982                 Continuing   100.000000      662554          Reached tolerance
+   9   4115.899131    0.000367   Continuing - TR contract     0.000100      710768          Reached tolerance
+
+Iteration has terminated
+   9   4115.899131    0.000367Radius of trust region is less than stop.trust.radius
+
+   9   4114.097356    0.000247   Continuing - TR contract     0.001000      808833          Reached tolerance
+   9   4114.284813    0.000489   Continuing - TR contract     1.000000      808525          Reached tolerance
+   8   4118.120857    0.000916   Continuing - TR contract     0.001000      455939          Reached tolerance
+Optimizing with theta = 7.4 
+   7   4113.908300    0.000489   Continuing - TR contract     0.100000      865512          Reached tolerance
+Optimizing with theta = 7.3 
+   2   4118.467686    0.028915                 Continuing   100.000000      515539          Reached tolerance
+Beginning optimization
+   8   4115.552773    0.000125   Continuing - TR contract     0.001000      737126          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4119.358602    2.159048                 Continuing   100.000000      501954          Reached tolerance
+Beginning optimization
+Beginning optimization
+   9   4114.470708    0.002075   Continuing - TR contract     0.100000      767903          Reached tolerance
+   8   4115.019106    0.000247   Continuing - TR contract     0.001000      755946          Reached tolerance
+   9   4118.120857    0.000916   Continuing - TR contract     0.000100      455939          Reached tolerance
+
+Iteration has terminated
+   9   4118.120857    0.000916Radius of trust region is less than stop.trust.radius
+
+   3   4118.576111    0.001404                 Continuing   100.000000      484203          Reached tolerance
+   7   4114.837869    0.000041   Continuing - TR contract     0.010000      816598          Reached tolerance
+   8   4114.655061    0.001343   Continuing - TR contract     0.010000      791696          Reached tolerance
+   3   4118.467540    0.001465                 Continuing   100.000000      510681          Reached tolerance
+   2   4117.871488    0.030341                 Continuing   100.000000      626488          Reached tolerance
+   2   4118.681511    0.028593                 Continuing   100.000000      473188          Reached tolerance
+  10   4114.097356    0.000247   Continuing - TR contract     0.000100      808833          Reached tolerance
+
+Iteration has terminated
+  10   4114.097356    0.000247Radius of trust region is less than stop.trust.radius
+
+  10   4114.284813    0.000489   Continuing - TR contract     0.100000      808525          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4118.452783    2.163407                 Continuing   100.000000      686217          Reached tolerance
+Optimizing with theta = 6.3 
+   8   4113.908300    0.000489   Continuing - TR contract     0.010000      865512          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4119.042298    2.163265                 Continuing   100.000000      566037          Reached tolerance
+   9   4115.552773    0.000125   Continuing - TR contract     0.000100      737126          Reached tolerance
+
+Iteration has terminated
+   9   4115.552773    0.000125Radius of trust region is less than stop.trust.radius
+
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4118.930657    2.158669                 Continuing   100.000000      595940          Reached tolerance
+   4   4118.576111    0.001404   Continuing - TR contract    10.000000      395986          Reached tolerance
+Optimizing with theta = 7.1 
+  10   4114.470708    0.002075   Continuing - TR contract     0.010000      767903          Reached tolerance
+Beginning optimization
+   4   4118.467540    0.001465   Continuing - TR contract    10.000000      402631          Reached tolerance
+   9   4115.019106    0.000247   Continuing - TR contract     0.000100      755946          Reached tolerance
+
+Iteration has terminated
+   9   4115.019106    0.000247Radius of trust region is less than stop.trust.radius
+
+   8   4114.837869    0.000041   Continuing - TR contract     0.001000      816598          Reached tolerance
+Beginning optimization
+Optimizing with theta = 6.8 
+   5   4118.576111    0.001404   Continuing - TR contract     1.000000      395986          Reached tolerance
+   3   4118.681372    0.001404                 Continuing   100.000000      491059          Reached tolerance
+   3   4117.871322    0.000305                 Continuing   100.000000      613697          Reached tolerance
+   9   4114.655061    0.001343   Continuing - TR contract     0.001000      791696          Reached tolerance
+   5   4118.467540    0.001465   Continuing - TR contract     1.000000      402631          Reached tolerance
+  11   4114.284813    0.000489   Continuing - TR contract     0.010000      808525          Reached tolerance
+   2   4117.741012    0.030444                 Continuing   100.000000      686725          Reached tolerance
+   2   4118.355694    0.029396                 Continuing   100.000000      547227          Reached tolerance
+Beginning optimization
+   2   4118.240169    0.030681                 Continuing   100.000000      564487          Reached tolerance
+   6   4118.576111    0.001404   Continuing - TR contract     0.100000      395986          Reached tolerance
+   9   4113.908300    0.000489   Continuing - TR contract     0.001000      865512          Reached tolerance
+   4   4118.681372    0.001404   Continuing - TR contract    10.000000      387845          Reached tolerance
+  11   4114.470708    0.002075   Continuing - TR contract     0.001000      767903          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4118.697972    2.158574                 Continuing   100.000000      654353          Reached tolerance
+   6   4118.467540    0.001465   Continuing - TR contract     0.100000      402631          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4117.646170    2.203950                 Continuing   100.000000      792992          Reached tolerance
+   4   4117.871322    0.000246                 Continuing   100.000000      499638          Reached tolerance
+   9   4114.837869    0.000041   Continuing - TR contract     0.000100      816598          Reached tolerance
+
+Iteration has terminated
+   9   4114.837869    0.000041Radius of trust region is less than stop.trust.radius
+
+   7   4118.576111    0.001404   Continuing - TR contract     0.010000      395986          Reached tolerance
+  10   4114.655061    0.001343   Continuing - TR contract     0.000100      791696          Reached tolerance
+
+Iteration has terminated
+  10   4114.655061    0.001343Radius of trust region is less than stop.trust.radius
+
+   5   4118.681372    0.001404   Continuing - TR contract     1.000000      387845          Reached tolerance
+   3   4118.240017    0.000061                 Continuing   100.000000      542094          Reached tolerance
+   3   4118.355545    0.000305                 Continuing   100.000000      543972          Reached tolerance
+Optimizing with theta = 6.7 
+Optimizing with theta = 6.6 
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4118.325568    2.170035                 Continuing   100.000000      673973          Reached tolerance
+   3   4117.740841    0.000009                 Continuing   100.000000      670926          Reached tolerance
+
+Iteration has terminated
+   3   4117.740841    0.000009                    Success
+
+  12   4114.284813    0.000489   Continuing - TR contract     0.001000      808525          Reached tolerance
+   7   4118.467540    0.001465   Continuing - TR contract     0.010000      402631          Reached tolerance
+   8   4118.576111    0.001404   Continuing - TR contract     0.001000      395986          Reached tolerance
+Beginning optimization
+Beginning optimization
+   6   4118.681372    0.001404   Continuing - TR contract     0.100000      387845          Reached tolerance
+  10   4113.908300    0.000489   Continuing - TR contract     0.000100      865512          Reached tolerance
+
+Iteration has terminated
+  10   4113.908300    0.000489Radius of trust region is less than stop.trust.radius
+
+   5   4117.871322    0.000246   Continuing - TR contract    10.000000      529984          Reached tolerance
+   2   4117.998141    0.029796                 Continuing   100.000000      624860          Reached tolerance
+  12   4114.470708    0.002075   Continuing - TR contract     0.000100      767903          Reached tolerance
+
+Iteration has terminated
+  12   4114.470708    0.002075Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 6.2 
+Optimizing with theta = 6.5 
+   8   4118.467540    0.001465   Continuing - TR contract     0.001000      402631          Reached tolerance
+   4   4118.355545    0.000183                 Continuing   100.000000      442548          Reached tolerance
+   4   4118.240017    0.000061   Continuing - TR contract    10.000000      476031          Reached tolerance
+   2   4116.879114    0.035692                 Continuing   100.000000      755952          Reached tolerance
+   9   4118.576111    0.001404   Continuing - TR contract     0.000100      395986          Reached tolerance
+
+Iteration has terminated
+   9   4118.576111    0.001404Radius of trust region is less than stop.trust.radius
+
+   7   4118.681372    0.001404   Continuing - TR contract     0.010000      387845          Reached tolerance
+Beginning optimization
+Beginning optimization
+   6   4117.871322    0.000246   Continuing - TR contract     1.000000      529984          Reached tolerance
+   9   4118.467540    0.001465   Continuing - TR contract     0.000100      402631          Reached tolerance
+
+Iteration has terminated
+   9   4118.467540    0.001465Radius of trust region is less than stop.trust.radius
+
+   2   4117.606700    0.032704                 Continuing   100.000000      682771          Reached tolerance
+  13   4114.284813    0.000489   Continuing - TR contract     0.000100      808525          Reached tolerance
+
+Iteration has terminated
+  13   4114.284813    0.000489Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 6.4 
+   5   4118.240017    0.000061   Continuing - TR contract     1.000000      476031          Reached tolerance
+   8   4118.681372    0.001404   Continuing - TR contract     0.001000      387845          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4118.195347    2.173042                 Continuing   100.000000      757816          Reached tolerance
+   5   4118.355545    0.000061                 Continuing   100.000000      478236          Reached tolerance
+   3   4117.997980    0.000610                 Continuing   100.000000      605005          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4118.062195    2.179137                 Continuing   100.000000      739868          Reached tolerance
+Beginning optimization
+   7   4117.871322    0.000246   Continuing - TR contract     0.100000      529984          Reached tolerance
+   9   4118.681372    0.001404   Continuing - TR contract     0.000100      387845          Reached tolerance
+
+Iteration has terminated
+   9   4118.681372    0.001404Radius of trust region is less than stop.trust.radius
+
+   3   4116.878883    0.000855                 Continuing   100.000000      752577          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4117.502373    2.220430                 Continuing   100.000000      847690          Reached tolerance
+   6   4118.240017    0.000061   Continuing - TR contract     0.100000      476031          Reached tolerance
+   3   4117.606522    0.000427                 Continuing   100.000000      649122          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4117.926206    2.185274                 Continuing   100.000000      777475          Reached tolerance
+   6   4118.355545    0.000061   Continuing - TR contract    10.000000      467940          Reached tolerance
+   4   4117.997980    0.000610   Continuing - TR contract    10.000000      494458          Reached tolerance
+   2   4117.468564    0.033085                 Continuing   100.000000      693782          Reached tolerance
+   8   4117.871322    0.000246   Continuing - TR contract     0.010000      529984          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4117.787491    2.198519                 Continuing   100.000000      774265          Reached tolerance
+   7   4118.240017    0.000061   Continuing - TR contract     0.010000      476031          Reached tolerance
+   7   4118.355545    0.000061   Continuing - TR contract     1.000000      467940          Reached tolerance
+   4   4117.606522    0.000427   Continuing - TR contract    10.000000      555259          Reached tolerance
+   5   4117.997980    0.000610   Continuing - TR contract     1.000000      494458          Reached tolerance
+   4   4116.878883    0.001648                 Continuing   100.000000      597471          Reached tolerance
+   2   4117.326649    0.032391                 Continuing   100.000000      742242          Reached tolerance
+   2   4117.181030    0.033344                 Continuing   100.000000      764644          Reached tolerance
+   9   4117.871322    0.000246   Continuing - TR contract     0.001000      529984          Reached tolerance
+   2   4116.723098    0.036872                 Continuing   100.000000      779551          Reached tolerance
+   8   4118.240017    0.000061   Continuing - TR contract     0.001000      476031          Reached tolerance
+   8   4118.355545    0.000061   Continuing - TR contract     0.100000      467940          Reached tolerance
+   5   4117.606522    0.000427   Continuing - TR contract     1.000000      555259          Reached tolerance
+   3   4117.468379    0.000061                 Continuing   100.000000      664663          Reached tolerance
+   6   4117.997980    0.000610   Continuing - TR contract     0.100000      494458          Reached tolerance
+  10   4117.871322    0.000246   Continuing - TR contract     0.000100      529984          Reached tolerance
+
+Iteration has terminated
+  10   4117.871322    0.000246Radius of trust region is less than stop.trust.radius
+
+   5   4116.878883    0.001648   Continuing - TR contract    10.000000      629065          Reached tolerance
+   2   4117.031808    0.034235                 Continuing   100.000000      740969          Reached tolerance
+   3   4117.180825    0.000123                 Continuing   100.000000      721780          Reached tolerance
+   9   4118.240017    0.000061   Continuing - TR contract     0.000100      476031          Reached tolerance
+
+Iteration has terminated
+   9   4118.240017    0.000061Radius of trust region is less than stop.trust.radius
+
+   9   4118.355545    0.000061   Continuing - TR contract     0.010000      467940          Reached tolerance
+   6   4117.606522    0.000427   Continuing - TR contract     0.100000      555259          Reached tolerance
+   7   4117.997980    0.000610   Continuing - TR contract     0.010000      494458          Reached tolerance
+   3   4117.326455    0.000428                 Continuing   100.000000      719375          Reached tolerance
+   3   4116.722852    0.001465                 Continuing   100.000000      773096          Reached tolerance
+   4   4117.468379    0.000061   Continuing - TR contract    10.000000      606628          Reached tolerance
+   6   4116.878883    0.001648   Continuing - TR contract     1.000000      629065          Reached tolerance
+  10   4118.355545    0.000061   Continuing - TR contract     0.001000      467940          Reached tolerance
+   7   4117.606522    0.000427   Continuing - TR contract     0.010000      555259          Reached tolerance
+   3   4117.031592    0.001160                 Continuing   100.000000      793408          Reached tolerance
+   8   4117.997980    0.000610   Continuing - TR contract     0.001000      494458          Reached tolerance
+   4   4117.180825    0.001770                 Continuing   100.000000      602743          Reached tolerance
+   5   4117.468379    0.000061   Continuing - TR contract     1.000000      606628          Reached tolerance
+   7   4116.878883    0.001648   Continuing - TR contract     0.100000      629065          Reached tolerance
+   4   4117.326455    0.000428   Continuing - TR contract    10.000000      579994          Reached tolerance
+  11   4118.355545    0.000061   Continuing - TR contract     0.000100      467940          Reached tolerance
+
+Iteration has terminated
+  11   4118.355545    0.000061Radius of trust region is less than stop.trust.radius
+
+   8   4117.606522    0.000427   Continuing - TR contract     0.001000      555259          Reached tolerance
+   4   4116.722852    0.001465                 Continuing   100.000000      611552          Reached tolerance
+   9   4117.997980    0.000610   Continuing - TR contract     0.000100      494458          Reached tolerance
+
+Iteration has terminated
+   9   4117.997980    0.000610Radius of trust region is less than stop.trust.radius
+
+   4   4117.031591    0.000184                 Continuing   100.000000      599015          Reached tolerance
+   5   4117.180825    0.001770   Continuing - TR contract    10.000000      583523          Reached tolerance
+   6   4117.468379    0.000061   Continuing - TR contract     0.100000      606628          Reached tolerance
+   9   4117.606522    0.000427   Continuing - TR contract     0.000100      555259          Reached tolerance
+
+Iteration has terminated
+   9   4117.606522    0.000427Radius of trust region is less than stop.trust.radius
+
+   8   4116.878883    0.001648   Continuing - TR contract     0.010000      629065          Reached tolerance
+   5   4117.326455    0.000428   Continuing - TR contract     1.000000      579994          Reached tolerance
+   6   4117.180825    0.001770   Continuing - TR contract     1.000000      583523          Reached tolerance
+   5   4116.722852    0.001465   Continuing - TR contract    10.000000      669915          Reached tolerance
+   5   4117.031591    0.000184   Continuing - TR contract    10.000000      636159          Reached tolerance
+   7   4117.468379    0.000061   Continuing - TR contract     0.010000      606628          Reached tolerance
+   9   4116.878883    0.001648   Continuing - TR contract     0.001000      629065          Reached tolerance
+   7   4117.180825    0.001770   Continuing - TR contract     0.100000      583523          Reached tolerance
+   6   4117.326455    0.000428   Continuing - TR contract     0.100000      579994          Reached tolerance
+   6   4117.031591    0.000184   Continuing - TR contract     1.000000      636159          Reached tolerance
+   6   4116.722852    0.001465   Continuing - TR contract     1.000000      669915          Reached tolerance
+   8   4117.468379    0.000061   Continuing - TR contract     0.001000      606628          Reached tolerance
+  10   4116.878883    0.001648   Continuing - TR contract     0.000100      629065          Reached tolerance
+
+Iteration has terminated
+  10   4116.878883    0.001648Radius of trust region is less than stop.trust.radius
+
+   8   4117.180825    0.001770   Continuing - TR contract     0.010000      583523          Reached tolerance
+Optimizing with theta = 7.9 
+   7   4117.031591    0.000184   Continuing - TR contract     0.100000      636159          Reached tolerance
+   7   4117.326455    0.000428   Continuing - TR contract     0.010000      579994          Reached tolerance
+   7   4116.722852    0.001465   Continuing - TR contract     0.100000      669915          Reached tolerance
+   9   4117.468379    0.000061   Continuing - TR contract     0.000100      606628          Reached tolerance
+
+Iteration has terminated
+   9   4117.468379    0.000061Radius of trust region is less than stop.trust.radius
+
+Beginning optimization
+   9   4117.180825    0.001770   Continuing - TR contract     0.001000      583523          Reached tolerance
+   8   4117.031591    0.000184   Continuing - TR contract     0.010000      636159          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4119.554189    2.160515                 Continuing   100.000000      445524          Reached tolerance
+   8   4117.326455    0.000428   Continuing - TR contract     0.001000      579994          Reached tolerance
+   8   4116.722852    0.001465   Continuing - TR contract     0.010000      669915          Reached tolerance
+  10   4117.180825    0.001770   Continuing - TR contract     0.000100      583523          Reached tolerance
+
+Iteration has terminated
+  10   4117.180825    0.001770Radius of trust region is less than stop.trust.radius
+
+   2   4118.882547    0.028517                 Continuing   100.000000      447527          Reached tolerance
+   9   4117.031591    0.000184   Continuing - TR contract     0.001000      636159          Reached tolerance
+   9   4117.326455    0.000428   Continuing - TR contract     0.000100      579994          Reached tolerance
+
+Iteration has terminated
+   9   4117.326455    0.000428Radius of trust region is less than stop.trust.radius
+
+   9   4116.722852    0.001465   Continuing - TR contract     0.001000      669915          Reached tolerance
+   3   4118.882416    0.000550                 Continuing   100.000000      428822          Reached tolerance
+  10   4117.031591    0.000184   Continuing - TR contract     0.000100      636159          Reached tolerance
+
+Iteration has terminated
+  10   4117.031591    0.000184Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 8 
+  10   4116.722852    0.001465   Continuing - TR contract     0.000100      669915          Reached tolerance
+
+Iteration has terminated
+  10   4116.722852    0.001465Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 7.8 
+   4   4118.882415    0.000306                 Continuing   100.000000      353264          Reached tolerance
+Beginning optimization
+Beginning optimization
+   5   4118.882415    0.000306   Continuing - TR contract    10.000000      372502          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4119.647459    2.164054                 Continuing   100.000000      443213          Reached tolerance
+
+iter           f        nrm_gr                     status          rad     CG iter                  CG result
+   1   4119.457909    2.158994                 Continuing   100.000000      478198          Reached tolerance
+   6   4118.882415    0.000306   Continuing - TR contract     1.000000      372502          Reached tolerance
+   2   4118.978538    0.028402                 Continuing   100.000000      429577          Reached tolerance
+   2   4118.783572    0.028528                 Continuing   100.000000      467125          Reached tolerance
+   7   4118.882415    0.000306   Continuing - TR contract     0.100000      372502          Reached tolerance
+   3   4118.978410    0.000610                 Continuing   100.000000      427347          Reached tolerance
+   8   4118.882415    0.000306   Continuing - TR contract     0.010000      372502          Reached tolerance
+   3   4118.783437    0.000488                 Continuing   100.000000      461847          Reached tolerance
+   9   4118.882415    0.000306   Continuing - TR contract     0.001000      372502          Reached tolerance
+   4   4118.978410    0.000610   Continuing - TR contract    10.000000      344196          Reached tolerance
+  10   4118.882415    0.000306   Continuing - TR contract     0.000100      372502          Reached tolerance
+
+Iteration has terminated
+  10   4118.882415    0.000306Radius of trust region is less than stop.trust.radius
+
+   5   4118.978410    0.000610   Continuing - TR contract     1.000000      344196          Reached tolerance
+   4   4118.783437    0.000061                 Continuing   100.000000      382628          Reached tolerance
+   6   4118.978410    0.000610   Continuing - TR contract     0.100000      344196          Reached tolerance
+   5   4118.783437    0.000061   Continuing - TR contract    10.000000      378399          Reached tolerance
+   7   4118.978410    0.000610   Continuing - TR contract     0.010000      344196          Reached tolerance
+   6   4118.783437    0.000061   Continuing - TR contract     1.000000      378399          Reached tolerance
+   8   4118.978410    0.000610   Continuing - TR contract     0.001000      344196          Reached tolerance
+   7   4118.783437    0.000061   Continuing - TR contract     0.100000      378399          Reached tolerance
+   9   4118.978410    0.000610   Continuing - TR contract     0.000100      344196          Reached tolerance
+
+Iteration has terminated
+   9   4118.978410    0.000610Radius of trust region is less than stop.trust.radius
+
+   8   4118.783437    0.000061   Continuing - TR contract     0.010000      378399          Reached tolerance
+   9   4118.783437    0.000061   Continuing - TR contract     0.001000      378399          Reached tolerance
+  10   4118.783437    0.000061   Continuing - TR contract     0.000100      378399          Reached tolerance
+
+Iteration has terminated
+  10   4118.783437    0.000061Radius of trust region is less than stop.trust.radius
+
+Time taken for optimization with  51  values of theta: 165607.7 seconds.
+     user    system   elapsed 
+23779.285     8.086 23784.365 
 [1] "The followings should be ones"
-[1] 1.055641
-[1] 0.8946932
+[1] 1.028574
+[1] 0.9464693
