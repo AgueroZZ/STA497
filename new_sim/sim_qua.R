@@ -21,14 +21,14 @@ for (i in 1:cut) {
 
 
 
-# generate 500 random samples:
-N = 500
-RW2BINS = 50
+# generate 600 random samples:
+N = 600
+RW2BINS = 30
 POLYNOMIAL_DEGREE = 2
 PARALLEL_EXECUTION = T
 
-u <- runif(500)
-x <- seq(from = -25, to = 25, length.out = 500)
+u <- runif(600)
+x <- seq(from = -25, to = 25, length.out = 600)
 eta <- 0.001*(0.9*x^2 + 0.7*sin(0.1*x))
 truefunc <- function(x) 0.001*(0.9*x^2 + 0.7*sin(0.1*x))
 tibble(x = c(-25,25)) %>%
@@ -38,7 +38,7 @@ tibble(x = c(-25,25)) %>%
 
 
 failtimes <- c()
-for (i in 1:500) {
+for (i in 1:600) {
   hazz <- haz * exp(eta[i])
   cumhaz <- cumsum(hazz*0.001)
   Surv <- exp(-cumhaz)
@@ -49,7 +49,7 @@ for (i in 1:500) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1800,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.6)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.75)
 }
 
 hist(data$times,breaks = 100)
@@ -69,7 +69,7 @@ model_data <- list(
   n = length(unique(data$ID)),
   X = sparse.model.matrix(eta ~ -1 + poly(exposure,degree = POLYNOMIAL_DEGREE,raw = TRUE),data = data)
 )
-model_data$theta_logprior <- function(theta,prior_alpha = .1,prior_u = 10) {
+model_data$theta_logprior <- function(theta,prior_alpha = .1,prior_u = 5) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -90,7 +90,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(4,8,by = 0.2)) # This is the log(precision)
+thetagrid <- as.list(seq(4,11,by = 0.2)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -319,8 +319,7 @@ meanhere <- fhat-fhat[vv] + mypoly
 
 inlaplot <- ggplot(plotINLA, aes(x = exposure)) + 
    geom_line(aes(y = meanhere)) + 
-    geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') +
-    theme_bw(base_size = 20)
+    geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') 
 
 new_compare <- simplot + geom_line(aes(y = meanhere)) +labs(title = "Proposed Algorithm vs INLA",
                                                             subtitle = "Red = Fixed Effect; Orange = Fixed Effect + Smooth Term; Blue = True function ; Black = INLA",
