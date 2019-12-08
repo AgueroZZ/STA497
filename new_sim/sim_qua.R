@@ -6,15 +6,15 @@ set.seed(12345)
 u <- runif(600)
 tdom <- seq(0, 1000, by=0.001)
 haz <- rep(0, length(tdom))
-cut <- 120
+cut <- 100
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
   if(i %% 2 == 1){
-    haz[tdom<=high & tdom > low] <- sample(c(1/100,1/20,0.2),1,prob = c(0.4,0.4,0.2))
+    haz[tdom<=high & tdom > low] <- 0.8*sample(c(1/300,1/200,1/100),1,prob = c(0.5,0.4,0.1))
   }
   else if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- sample(c(1/160,1/320,0.1),1,prob = c(0.4,0.4,0.2))
+    haz[tdom<=high & tdom > low] <- 0.9*sample(c(1/260,1/380,1/150),1,prob = c(0.4,0.5,0.1))
   }
 }
 
@@ -33,10 +33,14 @@ POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 
-x <- seq(from = -50, to = 50, length.out = 600)
-eta <- (1/2500)*x^2 - (1/6000)*sin(x)-3
-truefunc <- function(x) (1/2500)*x^2 - (1/6000)*sin(x)-3
+x <- seq(from = -10, to = 10, length.out = 600)
+eta <- (1/100)*(x^2 - sin(x) - 2) + rnorm(length(x),sd = exp(-.5*12))
 
+truefunc <- function(x) (1/100)*(x^2 - sin(x) - 2)
+tibble(x = c(-10,10)) %>%
+  ggplot(aes(x = x)) +
+  theme_light() +
+  stat_function(fun = truefunc)
 
 
 failtimes <- c()
@@ -92,7 +96,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(8,13,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(8,12,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -111,10 +115,10 @@ control1 <- list(
   contract.threshold = .25,
   contract.factor = .1,
   expand.factor = 5,
-  preconditioner = 1,
   trust.iter = 2000000,
   cg.tol = 1e-06,
-  maxit = 1000
+  maxit = 1000,
+  preconditioner = 1
 )
 
 
