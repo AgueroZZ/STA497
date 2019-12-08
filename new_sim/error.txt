@@ -36,4 +36,6 @@ Warning message:
 This warning is displayed once per session. 
 Saving 7 x 7 in image
 Saving 7 x 7 in image
-Saving 7 x 7 in image
+Error in LU.dgC(a) : cs_lu(A) failed: near-singular A (or out of memory)
+Calls: compute_marginal_means_and_variances ... solve -> .local -> solve.dsC.dC -> .solve.dgC.lu -> LU.dgC
+Execution halted
