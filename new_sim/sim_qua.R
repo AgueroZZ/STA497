@@ -1,12 +1,12 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 cores <- detectCores()
-set.seed(123)
+set.seed(12345)
 
 u <- runif(600)
-tdom <- seq(0, 1200, by=0.001)
+tdom <- seq(0, 1000, by=0.001)
 haz <- rep(0, length(tdom))
-cut <- 60
+cut <- 120
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
@@ -14,7 +14,7 @@ for (i in 1:cut) {
     haz[tdom<=high & tdom > low] <- sample(c(1/100,1/20,0.2),1,prob = c(0.4,0.4,0.2))
   }
   else if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- sample(c(1/160,1/320,0.1),1,prob = c(0.7,0.2,0.1))
+    haz[tdom<=high & tdom > low] <- sample(c(1/160,1/320,0.1),1,prob = c(0.4,0.4,0.2))
   }
 }
 
@@ -33,13 +33,10 @@ POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 
-x <- seq(from = -60, to = 60, length.out = 600)
-eta <- (1/3600)*x^2 - (1/6000)*sin(x)-3
-truefunc <- function(x) (1/3600)*x^2 - (1/6000)*sin(x)-3
-tibble(x = c(-60,60)) %>%
-  ggplot(aes(x = x)) +
-  theme_light() +
-  stat_function(fun = truefunc)
+x <- seq(from = -50, to = 50, length.out = 600)
+eta <- (1/2500)*x^2 - (1/6000)*sin(x)-3
+truefunc <- function(x) (1/2500)*x^2 - (1/6000)*sin(x)-3
+
 
 
 failtimes <- c()
@@ -52,7 +49,7 @@ for (i in 1:600) {
 
 
 
-data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1200,yes = 0, no=1))
+data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
   if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.75)
 }
@@ -74,7 +71,7 @@ model_data <- list(
   n = length(unique(data$ID)),
   X = sparse.model.matrix(eta ~ -1 + poly(exposure,degree = POLYNOMIAL_DEGREE,raw = TRUE),data = data)
 )
-model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 3) {
+model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 1) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -95,7 +92,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(6,10,by = 0.2)) # This is the log(precision)
+thetagrid <- as.list(seq(8,13,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
