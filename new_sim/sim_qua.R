@@ -1,37 +1,42 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 cores <- detectCores()
-
-
 set.seed(123)
-tdom <- seq(0, 2000, by=0.001)
+
+u <- runif(600)
+tdom <- seq(0, 1200, by=0.0001)
 haz <- rep(0, length(tdom))
 cut <- 60
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
   if(i %% 2 == 1){
-    haz[tdom<=high & tdom > low] <- 1/1800
+    haz[tdom<=high & tdom > low] <- sample(c(1/100,1/20,0.2),1,prob = c(0.4,0.4,0.2))
   }
-  if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- 1/300
+  else if(i %% 2 == 0){
+    haz[tdom<=high & tdom > low] <- sample(c(1/160,1/320,0.1),1,prob = c(0.7,0.2,0.1))
   }
 }
 
+plot(tdom, haz, type='l', xlab='Time domain', ylab='Hazard')
 
+cumhaz <- cumsum(haz*0.0001)
+Surv <- exp(-cumhaz)
+failtimes <- tdom[colSums(outer(Surv, u, `>`))]
+hist(failtimes,breaks = 100, main = "onlyBaseLine")
 
 
 # generate 600 random samples:
 N = 600
-RW2BINS = 30
-POLYNOMIAL_DEGREE = 2
+RW2BINS = 50
+POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
-u <- runif(600)
-x <- seq(from = -25, to = 25, length.out = 600)
-eta <- 0.001*(0.9*x^2 + 0.7*sin(0.1*x))
-truefunc <- function(x) 0.001*(0.9*x^2 + 0.7*sin(0.1*x))
-tibble(x = c(-25,25)) %>%
+
+x <- seq(from = -60, to = 60, length.out = 600)
+eta <- (1/3600)*x^2 - (1/6000)*sin(x)-3
+truefunc <- function(x) (1/3600)*x^2 - (1/6000)*sin(x)-3
+tibble(x = c(-60,60)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
   stat_function(fun = truefunc)
@@ -40,19 +45,19 @@ tibble(x = c(-25,25)) %>%
 failtimes <- c()
 for (i in 1:600) {
   hazz <- haz * exp(eta[i])
-  cumhaz <- cumsum(hazz*0.001)
+  cumhaz <- cumsum(hazz*0.0001)
   Surv <- exp(-cumhaz)
   failtimes[i] <- tdom[colSums(outer(Surv, u[i], `>`))]
 }
 
 
 
-data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1800,yes = 0, no=1))
+data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1200,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
   if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.75)
 }
 
-hist(data$times,breaks = 100)
+hist(data$times,breaks = 100,main = "withRisk")
 
 
 
@@ -69,7 +74,7 @@ model_data <- list(
   n = length(unique(data$ID)),
   X = sparse.model.matrix(eta ~ -1 + poly(exposure,degree = POLYNOMIAL_DEGREE,raw = TRUE),data = data)
 )
-model_data$theta_logprior <- function(theta,prior_alpha = .1,prior_u = 5) {
+model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 3) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -90,7 +95,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(4,11,by = 0.2)) # This is the log(precision)
+thetagrid <- as.list(seq(6,10,by = 0.2)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -183,10 +188,41 @@ constrA <- Matrix(
 )
 
 
+
+
+
+sim1optlogpost <- add_log_posterior_values(sim1opt,model_data)
+normconsttheta <- normalize_log_posterior(sim1optlogpost$theta_logposterior,sim1optlogpost$theta)
+normconstsigma <- normalize_log_posterior(sim1optlogpost$sigma_logposterior,sim1optlogpost$sigma)
+sim1optlogpost$theta_logposterior <- sim1optlogpost$theta_logposterior - normconsttheta
+sim1optlogpost$theta_post <- exp(sim1optlogpost$theta_logposterior)
+sim1optlogpost$sigma_logposterior <- sim1optlogpost$sigma_logposterior - normconstsigma
+sim1optlogpost$sigma_post <- exp(sim1optlogpost$sigma_logposterior)
+
+save(sim1optlogpost,file = "~/STA497/new_sim/PosteriorHyper.Rdata")
+
+
+print("The followings should be ones")
+sum(exp(sim1optlogpost$theta_logposterior) * c(0,diff(sim1optlogpost$theta)))
+sum(rev(exp(sim1optlogpost$sigma_logposterior)) * c(0,diff(rev(sim1optlogpost$sigma))))
+
+priorfunc <- function(x) exp(model_data$theta_logprior(x))
+priorfuncsigma <- function(x) (2/x) * exp(model_data$theta_logprior(-2*log(x)))
+
+thetapostplot <- ggplot(mapping = aes(sim1optlogpost$theta,sim1optlogpost$theta_post)) + geom_line()
+ggsave(filename = "~/STA497/new_sim/PosterTheta.pdf",plot = thetapostplot)
+
+sigmapostplot <- ggplot(mapping = aes(sim1optlogpost$sigma,sim1optlogpost$sigma_post)) + geom_line()
+ggsave(filename = "~/STA497/new_sim/PosterSigma.pdf", plot = sigmapostplot)
+
+
+
+
+
 tm2 <- proc.time()
 margmeans_and_vars <- compute_marginal_means_and_variances(
   i = (model_data$Wd-model_data$M-model_data$p + 1):(model_data$Wd),
-  model_results <- sim1opt,
+  model_results <- sim1optlogpost,
   model_data <- model_data,
   lincomb = lincomb,
   constrA = constrA
@@ -220,18 +256,6 @@ save(margmeans_and_vars,file = "~/STA497/new_sim/PosteriorMeanVar.Rdata")
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 PLOT_TEXT_SIZE = 8
 simplot <- tibble(
   x = sort(unique(model_data$A$exposure$u)),
@@ -260,49 +284,8 @@ ggsave(filename = "~/STA497/new_sim/Proposed.pdf",
 
 
 
-
-
-
-
-
-
-sim1optlogpost <- add_log_posterior_values(sim1opt,model_data)
-normconsttheta <- normalize_log_posterior(sim1optlogpost$theta_logposterior,sim1optlogpost$theta)
-normconstsigma <- normalize_log_posterior(sim1optlogpost$sigma_logposterior,sim1optlogpost$sigma)
-sim1optlogpost$theta_logposterior <- sim1optlogpost$theta_logposterior - normconsttheta
-sim1optlogpost$theta_post <- exp(sim1optlogpost$theta_logposterior)
-sim1optlogpost$sigma_logposterior <- sim1optlogpost$sigma_logposterior - normconstsigma
-sim1optlogpost$sigma_post <- exp(sim1optlogpost$sigma_logposterior)
-
-save(sim1optlogpost,file = "~/STA497/new_sim/PosteriorHyper.Rdata")
-
-
-print("The followings should be ones")
-sum(exp(sim1optlogpost$theta_logposterior) * c(0,diff(sim1optlogpost$theta)))
-sum(rev(exp(sim1optlogpost$sigma_logposterior)) * c(0,diff(rev(sim1optlogpost$sigma))))
-
-priorfunc <- function(x) exp(model_data$theta_logprior(x))
-priorfuncsigma <- function(x) (2/x) * exp(model_data$theta_logprior(-2*log(x)))
-
-thetapostplot <- ggplot(mapping = aes(sim1optlogpost$theta,sim1optlogpost$theta_post)) + geom_line()
-ggsave(filename = "~/STA497/new_sim/PosterTheta.pdf",plot = thetapostplot)
-
-sigmapostplot <- ggplot(mapping = aes(sim1optlogpost$sigma,sim1optlogpost$sigma_post)) + geom_line()
-ggsave(filename = "~/STA497/new_sim/PosterSigma.pdf", plot = sigmapostplot)
-
-
-
-
-
-
-
-
-
-
-
-
 #Comparison with INLA:
-formula <- inla.surv(times,censoring) ~ -1+exposure + I(exposure^2) + f(exposure_binned,model = 'rw2',constr = T)
+formula <- inla.surv(times,censoring) ~ -1+exposure + f(exposure_binned,model = 'rw2',constr = T)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'eb', correct = FALSE),data = data, family = "coxph",
                    control.hazard = list(model="rw2",n.intervals = 20),
                    num.threads = 4)
