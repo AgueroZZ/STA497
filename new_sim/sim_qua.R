@@ -4,7 +4,7 @@ cores <- detectCores()
 set.seed(123)
 
 u <- runif(600)
-tdom <- seq(0, 1200, by=0.0001)
+tdom <- seq(0, 1200, by=0.001)
 haz <- rep(0, length(tdom))
 cut <- 60
 for (i in 1:cut) {
@@ -20,7 +20,7 @@ for (i in 1:cut) {
 
 plot(tdom, haz, type='l', xlab='Time domain', ylab='Hazard')
 
-cumhaz <- cumsum(haz*0.0001)
+cumhaz <- cumsum(haz*0.001)
 Surv <- exp(-cumhaz)
 failtimes <- tdom[colSums(outer(Surv, u, `>`))]
 hist(failtimes,breaks = 100, main = "onlyBaseLine")
@@ -45,7 +45,7 @@ tibble(x = c(-60,60)) %>%
 failtimes <- c()
 for (i in 1:600) {
   hazz <- haz * exp(eta[i])
-  cumhaz <- cumsum(hazz*0.0001)
+  cumhaz <- cumsum(hazz*0.001)
   Surv <- exp(-cumhaz)
   failtimes[i] <- tdom[colSums(outer(Surv, u[i], `>`))]
 }
