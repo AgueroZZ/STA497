@@ -11,10 +11,10 @@ for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
   if(i %% 2 == 1){
-    haz[tdom<=high & tdom > low] <- 0.8*sample(c(1/300,1/200,1/100),1,prob = c(0.5,0.4,0.1))
+    haz[tdom<=high & tdom > low] <- 0.6*sample(c(1/300,1/200,1/100),1,prob = c(0.5,0.4,0.1))
   }
   else if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- 0.9*sample(c(1/260,1/380,1/150),1,prob = c(0.4,0.5,0.1))
+    haz[tdom<=high & tdom > low] <- 0.7*sample(c(1/260,1/380,1/150),1,prob = c(0.4,0.5,0.1))
   }
 }
 
@@ -34,9 +34,9 @@ PARALLEL_EXECUTION = T
 
 
 x <- seq(from = -10, to = 10, length.out = 600)
-eta <- (1/100)*(x^2 - sin(x) - 2) + rnorm(length(x),sd = exp(-.5*12))
+eta <- (1/100)*(x^2 - sin(x)) + rnorm(length(x),sd = exp(-.5*12))
 
-truefunc <- function(x) (1/100)*(x^2 - sin(x) - 2)
+truefunc <- function(x) (1/100)*(x^2 - sin(x))
 tibble(x = c(-10,10)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
@@ -96,7 +96,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(8,12,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(6,9,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -288,8 +288,7 @@ ggsave(filename = "~/STA497/new_sim/Proposed.pdf",
 #Comparison with INLA:
 formula <- inla.surv(times,censoring) ~ -1+exposure + f(exposure_binned,model = 'rw2',constr = T)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'eb', correct = FALSE),data = data, family = "coxph",
-                   control.hazard = list(model="rw2",n.intervals = 20),
-                   num.threads = 4)
+                   control.hazard = list(model="rw2",n.intervals = 20))
 fhat <- Inlaresult$summary.random$exposure_binned$mean
 f.ub <- Inlaresult$summary.random$exposure_binned$`0.975quant`
 f.lb <- Inlaresult$summary.random$exposure_binned$`0.025quant`
