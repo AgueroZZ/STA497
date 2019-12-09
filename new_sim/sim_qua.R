@@ -1,12 +1,12 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 cores <- detectCores()
-set.seed(12345)
+set.seed(497)
 
 u <- runif(600)
 tdom <- seq(0, 1000, by=0.001)
 haz <- rep(0, length(tdom))
-cut <- 100
+cut <- 200
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
@@ -96,7 +96,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(6,9,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(4,8,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
