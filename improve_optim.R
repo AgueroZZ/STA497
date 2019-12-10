@@ -1,8 +1,3 @@
-
-
-
-
-
 optimize_latentfield_trustoptim <- function(theta,model_data,startingvals=NULL,random_start_sd = .1,Q = NULL,report_freq = 1,report_level = 2,trcontrol = NULL) {
   if (is.null(startingvals)) startingvals <- rnorm(model_data$Wd,sd = random_start_sd)
   if (length(startingvals) != model_data$Wd) stop(stringr::str_c("Length of starting values: ",
@@ -21,20 +16,20 @@ optimize_latentfield_trustoptim <- function(theta,model_data,startingvals=NULL,r
   optfunchess <- function(W) -1 * hessian_log_posterior_W(W,Q = Q,model_data = model_data)
   if (is.null(trcontrol)) {
     trcontrol <- list(
-      prec = 1e-02,
-      stop.trust.radius = sqrt(.Machine$double.eps),
-      report.freq = report_freq,
-      report.level = report_level,
-      start.trust.radius = 1000,
+      prec = 1e-06,
+      report.freq = 1,
+      report.level = 4,
+      start.trust.radius = 100,
       contract.threshold = .25,
-      contract.factor = .5,
+      contract.factor = .25,
       expand.factor = 5,
-      preconditioner = 1,
-      trust.iter = 1e08,
-      cg.tol = 1e-02
+      trust.iter = 2000000,
+      cg.tol = 1e-06,
+      maxit = 1000,
+      preconditioner = 0,
+      stop.trust.radius = 1e-08
     )
   }
-  
   opt <- trust.optim(
     x = startingvals,
     fn = optfunc,
@@ -43,7 +38,6 @@ optimize_latentfield_trustoptim <- function(theta,model_data,startingvals=NULL,r
     control = trcontrol
   )
   opt$hessian <- optfunchess(opt$solution)
-  
   list(
     optimizer = list(
       name = "trust_optim",

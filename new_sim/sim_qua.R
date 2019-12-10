@@ -1,9 +1,9 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 cores <- detectCores()
-set.seed(497)
+set.seed(500)
 
-u <- runif(600)
+u <- runif(1000)
 tdom <- seq(0, 1000, by=0.001)
 haz <- rep(0, length(tdom))
 cut <- 200
@@ -11,29 +11,24 @@ for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
   if(i %% 2 == 1){
-    haz[tdom<=high & tdom > low] <- 0.6*sample(c(1/300,1/200,1/100),1,prob = c(0.5,0.4,0.1))
+    haz[tdom<=high & tdom > low] <- 0.75*sample(c(1/300,1/250,1/180),1,prob = c(0.5,0.4,0.1))
   }
   else if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- 0.7*sample(c(1/260,1/380,1/150),1,prob = c(0.4,0.5,0.1))
+    haz[tdom<=high & tdom > low] <- 0.7*sample(c(1/260,1/380,1/200),1,prob = c(0.4,0.5,0.1))
   }
 }
 
 plot(tdom, haz, type='l', xlab='Time domain', ylab='Hazard')
 
-cumhaz <- cumsum(haz*0.001)
-Surv <- exp(-cumhaz)
-failtimes <- tdom[colSums(outer(Surv, u, `>`))]
-hist(failtimes,breaks = 100, main = "onlyBaseLine")
 
-
-# generate 600 random samples:
-N = 600
+# generate 1000 random samples:
+N = 1000
 RW2BINS = 50
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 
-x <- seq(from = -10, to = 10, length.out = 600)
+x <- seq(from = -10, to = 10, length.out = 1000)
 eta <- (1/100)*(x^2 - sin(x)) + rnorm(length(x),sd = exp(-.5*12))
 
 truefunc <- function(x) (1/100)*(x^2 - sin(x))
@@ -44,7 +39,7 @@ tibble(x = c(-10,10)) %>%
 
 
 failtimes <- c()
-for (i in 1:600) {
+for (i in 1:1000) {
   hazz <- haz * exp(eta[i])
   cumhaz <- cumsum(hazz*0.001)
   Surv <- exp(-cumhaz)
@@ -55,7 +50,7 @@ for (i in 1:600) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.75)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.6)
 }
 
 hist(data$times,breaks = 100,main = "withRisk")
@@ -96,7 +91,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(4,8,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(3,8,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
