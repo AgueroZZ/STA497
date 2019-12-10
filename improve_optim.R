@@ -55,3 +55,23 @@ optimize_latentfield_trustoptim <- function(theta,model_data,startingvals=NULL,r
     iterations = opt$iterations
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
