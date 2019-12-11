@@ -1,20 +1,20 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 cores <- detectCores()
-set.seed(500)
+set.seed(800)
 
-u <- runif(500)
+u <- runif(800)
 tdom <- seq(0, 1000, by=0.001)
 haz <- rep(0, length(tdom))
-cut <- 200
+cut <- 50
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
   if(i %% 2 == 1){
-    haz[tdom<=high & tdom > low] <- 1/550
+    haz[tdom<=high & tdom > low] <- exp(1)*sample(c(1/800,1/750,1/880),1,prob = c(0.5,0.4,0.1))
   }
   else if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- 1/500
+    haz[tdom<=high & tdom > low] <- exp(1)*sample(c(1/780,1/820,1/600),1,prob = c(0.5,0.4,0.1))
   }
 }
 
@@ -24,17 +24,17 @@ Surv <- exp(-cumhaz)
 failtimes <- tdom[colSums(outer(Surv, u, `>`))]
 hist(failtimes,breaks = 100)
 
-# generate 500 random samples:
-N = 500
-RW2BINS = 50
+# generate 800 random samples:
+N = 800
+RW2BINS = 30
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 
-x <- seq(from = -10, to = 10, length.out = 500)
-eta <- (1/100)*(x^2 - sin(x)) + 1 + rnorm(length(x),sd = exp(-.5*12))
+x <- seq(from = -10, to = 10, length.out = 800)
+eta <- (1/100)*(x^2) + rnorm(length(x),sd = exp(-.5*12))
 
-truefunc <- function(x) (1/100)*(x^2 - sin(x)) + 1
+truefunc <- function(x) (1/100)*(x^2)
 tibble(x = c(-10,10)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
@@ -42,7 +42,7 @@ tibble(x = c(-10,10)) %>%
 
 
 failtimes <- c()
-for (i in 1:500) {
+for (i in 1:800) {
   hazz <- haz * exp(eta[i])
   cumhaz <- cumsum(hazz*0.001)
   Surv <- exp(-cumhaz)
@@ -53,7 +53,7 @@ for (i in 1:500) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.8)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.9)
 }
 
 hist(data$times,breaks = 100,main = "withRisk")
@@ -73,7 +73,7 @@ model_data <- list(
   n = length(unique(data$ID)),
   X = sparse.model.matrix(eta ~ -1 + poly(exposure,degree = POLYNOMIAL_DEGREE,raw = TRUE),data = data)
 )
-model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 1) {
+model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 3) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -94,7 +94,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(3,8,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(3,8,by = 0.5)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -111,11 +111,11 @@ control1 <- list(
   report.level = 4,
   start.trust.radius = 100,
   contract.threshold = .25,
-  contract.factor = .5,
+  contract.factor = .6,
   expand.factor = 5,
   trust.iter = 2000000,
   cg.tol = 1e-06,
-  maxit = 1000,
+  maxit = 3000,
   preconditioner = 0
 )
 
@@ -123,11 +123,11 @@ control1 <- list(
 
 tm <- proc.time()
 sim1opt <- optimize_all_thetas_parallel(
-  theta = list(6,7),
+  theta = thetagrid,
   model_data = model_data,
   startingvals = rep(0,model_data$Wd),
   optcontrol = control1,
-  doparallel = F
+  doparallel = PARALLEL_EXECUTION
 )
 rt <- proc.time() - tm
 
