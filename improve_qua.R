@@ -4,7 +4,7 @@ cores <- detectCores()
 set.seed(800)
 
 u <- runif(800)
-tdom <- seq(0, 1000, by=0.001)
+tdom <- seq(0, 10000, by=0.02)
 haz <- rep(0, length(tdom))
 cut <- 50
 for (i in 1:cut) {
@@ -19,23 +19,23 @@ for (i in 1:cut) {
 }
 
 plot(tdom, haz, type='l', xlab='Time domain', ylab='Hazard')
-cumhaz <- cumsum(haz*0.001)
-Surv <- exp(-cumhaz)
-failtimes <- tdom[colSums(outer(Surv, u, `>`))]
-hist(failtimes,breaks = 100)
+#cumhaz <- cumsum(haz*0.001)
+#Surv <- exp(-cumhaz)
+#failtimes <- tdom[colSums(outer(Surv, u, `>`))]
+#hist(failtimes,breaks = 100)
 
 # generate 800 random samples:
 N = 800
-RW2BINS = 30
+RW2BINS = 50
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 
-x <- seq(from = -10, to = 10, length.out = 800)
+x <- c(seq(from = -20, to = -10, length.out = 300),seq(from = -10, to = 10, length.out = 200),seq(from = -10, to = 20, length.out = 300))
 eta <- (1/100)*(x^2) + rnorm(length(x),sd = exp(-.5*12))
 
 truefunc <- function(x) (1/100)*(x^2)
-tibble(x = c(-10,10)) %>%
+tibble(x = c(-20,20)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
   stat_function(fun = truefunc)
@@ -51,7 +51,7 @@ for (i in 1:800) {
 
 
 
-data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1000,yes = 0, no=1))
+data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=10000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
   if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.9)
 }
@@ -94,7 +94,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(3,8,by = 0.5)) # This is the log(precision)
+thetagrid <- as.list(seq(3,8,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
