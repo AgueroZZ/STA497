@@ -47,14 +47,14 @@ for (i in 1:800) {
 
 
 
-data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1800,yes = 0, no=1))
+data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=2000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
   if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.8)
 }
 
 data <- rename(data,exposure = x)
 data <- data %>% as_tibble() %>%
-  mutate(exposure_binned = bin_covariate(exposure,bins = RW2BINS,type = "equal"))
+  mutate(exposure_binned = bin_covariate(exposure,bins = RW2BINS,type = "quantile"))
 data <- arrange_data(data)
 data$ID <- 1:length(u)
 Alist <- list()
@@ -86,7 +86,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(1,8,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(4,12,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -96,19 +96,20 @@ model_data$modelspec <- model_data$A %>%
 model_data$vectorofcolumnstoremove <- round(RW2BINS/2)
 cat("Finished creating model data!\n")
 
+
 control1 <- list(
   prec = 1e-06,
-  stop.trust.radius = 1e-03,
-  report.freq = 1,
+  stop.trust.radius = 1e-08,
+  report.freq = 10,
   report.level = 4,
   start.trust.radius = 100,
   contract.threshold = .25,
-  contract.factor = .1,
+  contract.factor = .5,
   expand.factor = 5,
-  preconditioner = 1,
   trust.iter = 2000000,
   cg.tol = 1e-06,
-  maxit = 1000
+  maxit = 1000,
+  preconditioner = 0
 )
 
 
@@ -123,7 +124,6 @@ sim1opt <- optimize_all_thetas_parallel(
 )
 rt <- proc.time() - tm
 
-save(sim1opt,file = "~/STA497/result/Optim.Rdata")
 
 
 
@@ -179,10 +179,30 @@ constrA <- Matrix(
 )
 
 
+
+
+
+
+sim1optlogpost <- add_log_posterior_values(sim1opt,model_data)
+normconsttheta <- normalize_log_posterior(sim1optlogpost$theta_logposterior,sim1optlogpost$theta)
+normconstsigma <- normalize_log_posterior(sim1optlogpost$sigma_logposterior,sim1optlogpost$sigma)
+sim1optlogpost$theta_logposterior <- sim1optlogpost$theta_logposterior - normconsttheta
+sim1optlogpost$theta_post <- exp(sim1optlogpost$theta_logposterior)
+sim1optlogpost$sigma_logposterior <- sim1optlogpost$sigma_logposterior - normconstsigma
+sim1optlogpost$sigma_post <- exp(sim1optlogpost$sigma_logposterior)
+
+
+
+
+
+
+
+
+
 tm2 <- proc.time()
 margmeans_and_vars <- compute_marginal_means_and_variances(
   i = (model_data$Wd-model_data$M-model_data$p + 1):(model_data$Wd),
-  model_results <- sim1opt,
+  model_results <- sim1optlogpost,
   model_data <- model_data,
   lincomb = lincomb,
   constrA = constrA
@@ -211,7 +231,6 @@ fit_poly <- function(x){
 }
 
 
-save(margmeans_and_vars,file = "~/STA497/result/PosteriorMeanVar.Rdata")
 
 
 
@@ -262,16 +281,6 @@ ggsave(filename = "~/STA497/result/Proposed.pdf",
 
 
 
-sim1optlogpost <- add_log_posterior_values(sim1opt,model_data)
-normconsttheta <- normalize_log_posterior(sim1optlogpost$theta_logposterior,sim1optlogpost$theta)
-normconstsigma <- normalize_log_posterior(sim1optlogpost$sigma_logposterior,sim1optlogpost$sigma)
-sim1optlogpost$theta_logposterior <- sim1optlogpost$theta_logposterior - normconsttheta
-sim1optlogpost$theta_post <- exp(sim1optlogpost$theta_logposterior)
-sim1optlogpost$sigma_logposterior <- sim1optlogpost$sigma_logposterior - normconstsigma
-sim1optlogpost$sigma_post <- exp(sim1optlogpost$sigma_logposterior)
-
-save(sim1optlogpost,file = "~/STA497/result/PosteriorHyper.Rdata")
-
 
 print("The followings should be ones")
 sum(exp(sim1optlogpost$theta_logposterior) * c(0,diff(sim1optlogpost$theta)))
@@ -299,7 +308,7 @@ ggsave(filename = "~/STA497/result/PosterSigma.pdf", plot = sigmapostplot)
 
 #Comparison with INLA:
 formula <- inla.surv(times,censoring) ~ -1+exposure + I(exposure^2) + I(exposure^3) + f(exposure_binned,model = 'rw2',constr = T)
-Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'eb', correct = FALSE),data = data, family = "coxph",
+Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph",
                    control.hazard = list(model="rw2",n.intervals = 20),
                    num.threads = 4)
 fhat <- Inlaresult$summary.random$exposure_binned$mean

@@ -31,7 +31,7 @@ POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 
-x <- c(seq(from = -20, to = -10, length.out = 300),seq(from = -10, to = 10, length.out = 200),seq(from = -10, to = 20, length.out = 300))
+x <- c(seq(from = -20, to = -10, length.out = 300),seq(from = -10, to = 10, length.out = 200),seq(from = 10, to = 20, length.out = 300))
 eta <- (1/100)*(x^2) + rnorm(length(x),sd = exp(-.5*12))
 
 truefunc <- function(x) (1/100)*(x^2)
