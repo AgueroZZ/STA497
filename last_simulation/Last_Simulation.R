@@ -98,17 +98,16 @@ cat("Finished creating model data!\n")
 
 
 control1 <- list(
-  prec = 1e-06,
-  stop.trust.radius = 1e-08,
+  prec = 1e-08,
+  stop.trust.radius = 1e-10,
   report.freq = 10,
   report.level = 4,
   start.trust.radius = 100,
   contract.threshold = .25,
   contract.factor = .5,
-  expand.factor = 5,
-  trust.iter = 2000000,
-  cg.tol = 1e-06,
-  maxit = 1000,
+  expand.factor = 3,
+  trust.iter = 2000,
+  maxit = 3000,
   preconditioner = 0
 )
 
@@ -116,11 +115,11 @@ control1 <- list(
 
 tm <- proc.time()
 sim1opt <- optimize_all_thetas_parallel(
-  theta = thetagrid,
+  theta = list(4),
   model_data = model_data,
   startingvals = rep(0,model_data$Wd),
   optcontrol = control1,
-  doparallel = PARALLEL_EXECUTION
+  doparallel = F
 )
 rt <- proc.time() - tm
 
