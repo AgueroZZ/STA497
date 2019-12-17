@@ -115,11 +115,11 @@ control1 <- list(
 
 tm <- proc.time()
 sim1opt <- optimize_all_thetas_parallel(
-  theta = list(4),
+  theta = thetagrid,
   model_data = model_data,
   startingvals = rep(0,model_data$Wd),
   optcontrol = control1,
-  doparallel = F
+  doparallel = PARALLEL_EXECUTION
 )
 rt <- proc.time() - tm
 
