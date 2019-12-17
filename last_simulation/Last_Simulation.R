@@ -11,10 +11,10 @@ for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
   if(i %% 2 == 1){
-    haz[tdom<=high & tdom > low] <- 1/1200
+    haz[tdom<=high & tdom > low] <- sample(size=1,x=c(1/1200,1/400),prob=c(0.5,0.5))
   }
   if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- 1/400
+    haz[tdom<=high & tdom > low] <- sample(size=1,x=c(1/1000,1/600),prob=c(0.5,0.5))
   }
 }
 
@@ -22,15 +22,15 @@ for (i in 1:cut) {
 
 
 # generate 800 random samples:
-N = 800
+N = 1000
 RW2BINS = 60
-POLYNOMIAL_DEGREE = 3
+POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 u <- runif(800)
 x <- seq(from = -30, to = 30, length.out = 800)
-eta <- 1/(1+exp(-0.2*x))
-truefunc <- function(x) 1/(1+exp(-0.2*x))
+eta <- 2/(1+exp(-0.2*x)) + rnorm(length(x),sd = exp(-.5*12))
+truefunc <- function(x) 2/(1+exp(-0.2*x))
 tibble(x = c(-30,30)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
@@ -306,7 +306,7 @@ ggsave(filename = "~/STA497/result/PosterSigma.pdf", plot = sigmapostplot)
 
 
 #Comparison with INLA:
-formula <- inla.surv(times,censoring) ~ -1+exposure + I(exposure^2) + I(exposure^3) + f(exposure_binned,model = 'rw2',constr = T)
+formula <- inla.surv(times,censoring) ~ -1+exposure  + f(exposure_binned,model = 'rw2',constr = T)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph",
                    control.hazard = list(model="rw2",n.intervals = 20),
                    num.threads = 4)

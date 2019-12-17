@@ -850,7 +850,8 @@ log_posterior_theta <- function(theta,W,model_data,Q = NULL) {
   term1 <- log_likelihood(W,model_data)
   dt <- determinant(Q,logarithm = TRUE) # For this, we DO need the determinant
   # term2_det <- (1/2) * as.numeric(dt$modulus * dt$sign)
-  term2_det <- (1/2) * as.numeric(dt$modulus)
+  Qe <- eigen(Q,symmetric = TRUE,only.values = TRUE)$values
+  term2_det <- sum(log(Qe[Qe > 1e-06]))
   term2 <- logprior_W(W,theta,model_data) # Doesn't contain the determinant
   term3 <- model_data$theta_logprior(theta)
   qcdet <- determinant(Q_p_C,logarithm = TRUE)
