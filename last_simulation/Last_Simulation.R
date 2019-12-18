@@ -21,14 +21,14 @@ for (i in 1:cut) {
 
 
 
-# generate 800 random samples:
-N = 1000
+# generate 600 random samples:
+N = 600
 RW2BINS = 60
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
-u <- runif(800)
-x <- seq(from = -30, to = 30, length.out = 800)
+u <- runif(N)
+x <- seq(from = -30, to = 30, length.out = N)
 eta <- 2/(1+exp(-0.2*x)) + rnorm(length(x),sd = exp(-.5*12))
 truefunc <- function(x) 2/(1+exp(-0.2*x))
 tibble(x = c(-30,30)) %>%
@@ -38,7 +38,7 @@ tibble(x = c(-30,30)) %>%
 
 
 failtimes <- c()
-for (i in 1:800) {
+for (i in 1:N) {
   hazz <- haz * exp(eta[i])
   cumhaz <- cumsum(hazz*0.001)
   Surv <- exp(-cumhaz)
@@ -49,7 +49,7 @@ for (i in 1:800) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=2000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.8)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.9)
 }
 
 data <- rename(data,exposure = x)
@@ -86,7 +86,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(11,19,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(4,12,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
