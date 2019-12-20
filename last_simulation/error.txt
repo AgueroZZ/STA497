@@ -34,6 +34,30 @@ The following object is masked from ‘package:base’:
 Warning message:
 `data_frame()` is deprecated, use `tibble()`.
 This warning is displayed once per session. 
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
+Error: Result 1 must be a single double, not NULL of length 0
+<error/purrr_error_bad_element_vector>
+Result 1 must be a single double, not NULL of length 0
+Backtrace:
+     █
+  1. ├─global::optimize_all_thetas_parallel(...)
+  2. │ └─`%>%`(...)
+  3. │   ├─base::withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+  4. │   └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
+  5. │     └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
+  6. │       └─`_fseq`(`_lhs`)
+  7. │         └─magrittr::freduce(value, `_function_list`)
+  8. │           └─function_list[[i]](value)
+  9. │             └─global::optlist_to_tibble(.)
+ 10. │               └─tibble::tibble(...)
+ 11. │                 └─tibble:::lst_quos(xs, transform = expand_lst)
+ 12. │                   └─rlang::eval_tidy(xs[[i]], unique_output)
+ 13. ├─purrr::map_dbl(lst, "theta")
+ 14. └─purrr:::stop_bad_element_vector(...)
+ 15.   └─purrr:::stop_bad_vector(...)
+ 16
+In addition: Warning messages:
+1: In mclapply(theta, do_opt, mc.cores = cores) :
+  scheduled core 14 did not deliver a result, all values of the job will be affected
+2: In mclapply(theta, do_opt, mc.cores = cores) :
+  scheduled cores 11, 2, 9, 1, 13, 7, 8, 3, 4, 6, 5, 10, 12, 15, 16 encountered errors in user code, all values of the jobs will be affected
+Execution halted
