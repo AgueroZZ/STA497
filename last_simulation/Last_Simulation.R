@@ -21,8 +21,8 @@ for (i in 1:cut) {
 
 
 
-# generate 600 random samples:
-N = 600
+# generate 2600 random samples:
+N = 2600
 RW2BINS = 60
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
@@ -30,7 +30,7 @@ PARALLEL_EXECUTION = T
 u <- runif(N)
 x <- seq(from = -30, to = 30, length.out = N)
 eta <- 2/(1+exp(-0.2*x)) + rnorm(length(x),sd = exp(-.5*12))
-truefunc <- function(x) 2/(1+exp(-0.2*x))
+truefunc <- function(x) (2/(1+exp(-0.2*x)))
 tibble(x = c(-30,30)) %>%
   ggplot(aes(x = x)) +
   theme_light() +

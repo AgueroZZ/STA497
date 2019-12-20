@@ -1524,11 +1524,11 @@ compute_marginal_means_and_variances <- function(i,model_results,model_data,cons
     )
   
   # Compute the hessians for each theta
-  hessians <- model_results %>% 
-    purrr::pmap(~list(
-      C = hessian_log_likelihood(W = ..4,model_data = model_data),
-      theta = ..1)
-    )
+  hessians <- list()
+  myhes <- mclapply(model_results$solution, hessian_log_likelihood,model_data = model_data,mc.cores = detectCores())
+  for (i in 1:length(length(model_results$theta))) {
+    hessians[[i]] <- list(C=myhes[[i]],theta=model_results$theta[i])
+  }
   # If linear combinations required, set up the relevant functions
   if (!is.null(lincomb)) {
     compute_var_one_lincomb <- function(a,Q) {
@@ -1648,12 +1648,5 @@ compute_marginal_means_and_variances <- function(i,model_results,model_data,cons
        lincombvars = finallincombvars)
   
 }
-
-
-
-
-
-
-
 
 
