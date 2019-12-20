@@ -21,8 +21,8 @@ for (i in 1:cut) {
 
 
 
-# generate 2600 random samples:
-N = 2600
+# generate 2000 random samples:
+N = 2000
 RW2BINS = 60
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T

@@ -1597,7 +1597,7 @@ compute_marginal_means_and_variances <- function(i,model_results,model_data,cons
     # Re-compute the hessians
     corrected_hessians <- model_results %>%
       purrr::pmap(~list(
-        C = hessian_log_likelihood(W = ..10,model_data = model_data),
+        C = hessian_log_likelihood(W = ..12,model_data = model_data),
         theta = ..1)
       )
     # Get the corrected precision matrix of the GMRF- Q + C_correct
