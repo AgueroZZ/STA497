@@ -21,8 +21,8 @@ for (i in 1:cut) {
 
 
 
-# generate 2000 random samples:
-N = 2000
+# generate 1200 random samples:
+N = 1200
 RW2BINS = 60
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
@@ -49,7 +49,7 @@ for (i in 1:N) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=2000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.9)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.7)
 }
 
 data <- rename(data,exposure = x)

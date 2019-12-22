@@ -1526,8 +1526,8 @@ compute_marginal_means_and_variances <- function(i,model_results,model_data,cons
   # Compute the hessians for each theta
   hessians <- list()
   myhes <- mclapply(model_results$solution, hessian_log_likelihood,model_data = model_data,mc.cores = detectCores())
-  for (i in 1:length(model_results$theta)) {
-    hessians[[i]] <- list(C=myhes[[i]],theta=model_results$theta[i])
+  for (j in 1:length(model_results$theta)) {
+    hessians[[j]] <- list(C=myhes[[j]],theta=model_results$theta[j])
   }
   # If linear combinations required, set up the relevant functions
   if (!is.null(lincomb)) {
@@ -1596,8 +1596,8 @@ compute_marginal_means_and_variances <- function(i,model_results,model_data,cons
     # Re-compute the hessians
     corrected_hessians <- list()
     myhes2 <- mclapply(model_results$corrected_mean, hessian_log_likelihood,model_data = model_data,mc.cores = detectCores())
-    for (i in 1:length(model_results$theta)) {
-      corrected_hessians[[i]] <- list(C=myhes2[[i]],theta=model_results$theta[i])
+    for (j in 1:length(model_results$theta)) {
+      corrected_hessians[[j]] <- list(C=myhes2[[j]],theta=model_results$theta[j])
     }
     # Get the corrected precision matrix of the GMRF- Q + C_correct
     QpC_corrected <- purrr::map2(precision_matrices,corrected_hessians,~list(QpC = as((as.matrix(.x[["Q"]] + .y[["C"]])),"sparseMatrix"),theta = .x[["theta"]]))
