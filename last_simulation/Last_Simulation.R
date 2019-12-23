@@ -3,7 +3,7 @@ source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 cores <- detectCores()
 
 
-set.seed(123)
+set.seed(100)
 tdom <- seq(0, 2000, by=0.001)
 haz <- rep(0, length(tdom))
 cut <- 60
@@ -21,9 +21,9 @@ for (i in 1:cut) {
 
 
 
-# generate 1200 random samples:
-N = 1200
-RW2BINS = 60
+# generate 600 random samples:
+N = 600
+RW2BINS = 30
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
@@ -86,7 +86,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(4,12,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(4,12,by = 0.5)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
