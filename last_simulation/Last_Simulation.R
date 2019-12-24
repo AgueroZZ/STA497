@@ -21,14 +21,14 @@ for (i in 1:cut) {
 
 
 
-# generate 1000 random samples:
-N = 1000
+# generate 2000 random samples:
+N = 2000
 RW2BINS = 50
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 u <- runif(N)
-x <- seq(from = -30, to = 30, length.out = N)
+x <- seq(from = -25, to = 25, length.out = N)
 eta <- 2/(1+exp(-0.2*x)) + rnorm(length(x),sd = exp(-.5*12))
 truefunc <- function(x) (2/(1+exp(-0.2*x)))
 tibble(x = c(-30,30)) %>%
@@ -49,7 +49,7 @@ for (i in 1:N) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=2000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.7)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.8)
 }
 
 data <- rename(data,exposure = x)
