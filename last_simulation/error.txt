@@ -57,5 +57,5 @@ Backtrace:
  16
 In addition: Warning message:
 In mclapply(theta, do_opt, mc.cores = cores) :
-  scheduled cores 15, 14, 8, 3, 6, 7, 11, 10, 2, 1, 4, 5, 13, 12 encountered errors in user code, all values of the jobs will be affected
+  scheduled cores 11, 6, 9, 1, 16, 14, 7, 12, 3, 4, 5, 15, 8 encountered errors in user code, all values of the jobs will be affected
 Execution halted
