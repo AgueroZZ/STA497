@@ -22,16 +22,16 @@ for (i in 1:cut) {
 
 
 # generate 1000 random samples:
-N = 1000
+N = 1100
 RW2BINS = 50
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 u <- runif(N)
-x <- seq(from = -15, to = 15, length.out = N)
+x <- seq(from = -25, to = 25, length.out = N)
 eta <- 2/(1+exp(-0.2*x)) + rnorm(length(x),sd = exp(-.5*12))
 truefunc <- function(x) (2/(1+exp(-0.2*x)))
-tibble(x = c(-15,15)) %>%
+tibble(x = c(-25,25)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
   stat_function(fun = truefunc)
@@ -86,7 +86,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(4,13,by = 0.5)) # This is the log(precision)
+thetagrid <- as.list(seq(4,16,by = 0.5)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
