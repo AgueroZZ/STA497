@@ -6,7 +6,7 @@ cores <- detectCores()
 set.seed(100)
 tdom <- seq(0, 2000, by=0.001)
 haz <- rep(0, length(tdom))
-cut <- 60
+cut <- 50
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
@@ -23,7 +23,7 @@ for (i in 1:cut) {
 
 # generate 1000 random samples:
 N = 1000
-RW2BINS = 50
+RW2BINS = 60
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
@@ -49,7 +49,7 @@ for (i in 1:N) {
 
 data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=2000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.8)
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.9)
 }
 
 data <- rename(data,exposure = x)
