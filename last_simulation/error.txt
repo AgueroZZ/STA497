@@ -34,11 +34,6 @@ The following object is masked from ‘package:base’:
 Warning message:
 `data_frame()` is deprecated, use `tibble()`.
 This warning is displayed once per session. 
-Error: not-yet-implemented method for +(<dsyMatrix>, <try-error>).
- ->>  Ask the package authors to implement the missing feature.
-In addition: Warning messages:
-1: In mclapply(model_results$corrected_mean, hessian_log_likelihood,  :
-  scheduled core 10 did not deliver a result, all values of the job will be affected
-2: In mclapply(model_results$corrected_mean, hessian_log_likelihood,  :
-  scheduled cores 2 encountered errors in user code, all values of the jobs will be affected
-Execution halted
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
