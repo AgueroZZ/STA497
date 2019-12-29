@@ -21,17 +21,17 @@ for (i in 1:cut) {
 
 
 
-# generate 1000 random samples:
-N = 1000
+# generate 1200 random samples:
+N = 1200
 RW2BINS = 100
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 u <- runif(N)
-x <- seq(from = -25, to = 25, length.out = N)
+x <- seq(from = -20, to = 20, length.out = N)
 eta <- 2/(1+exp(-0.2*x)) + rnorm(length(x),sd = exp(-.5*12))
 truefunc <- function(x) (2/(1+exp(-0.2*x)))
-tibble(x = c(-25,25)) %>%
+tibble(x = c(-20,20)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
   stat_function(fun = truefunc)
