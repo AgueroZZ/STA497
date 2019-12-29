@@ -25,7 +25,7 @@ for (i in 1:cut) {
 N = 1200
 RW2BINS = 100
 POLYNOMIAL_DEGREE = 1
-PARALLEL_EXECUTION = T
+PARALLEL_EXECUTION = F
 
 u <- runif(N)
 x <- seq(from = -20, to = 20, length.out = N)
@@ -86,7 +86,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(4,16,by = 0.5)) # This is the log(precision)
+thetagrid <- as.list(seq(4,14,by = 0.5)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
