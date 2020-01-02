@@ -1,37 +1,49 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
+
+
 cores <- detectCores()
+POLYNOMIAL_DEGREE <- 1
+RW2BINS = 40
+PARALLEL_EXECUTION = T
 
-
-set.seed(100)
-tdom <- seq(0, 2000, by=0.001)
+set.seed(123)
+tdom <- seq(0, 1000, by=0.001)
 haz <- rep(0, length(tdom))
 cut <- 40
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
   if(i %% 2 == 1){
-    haz[tdom<=high & tdom > low] <- sample(size=1,x=c(1/1200,1/400),prob=c(0.5,0.5))
+    a <- runif(1,0,1)
+    if(a > 0.3) haz[tdom<=high & tdom > low] <- 1/850
+    else {
+      c <- tdom[tdom<=high & tdom > low]
+      haz[tdom<=high & tdom > low] <-(1/3000) *(c-min(c))
+    }
   }
   if(i %% 2 == 0){
-    haz[tdom<=high & tdom > low] <- sample(size=1,x=c(1/1000,1/600),prob=c(0.5,0.5))
+    a <- runif(1,0,1)
+    if(a > 0.8){
+      c <- tdom[tdom<=high & tdom > low]
+      haz[tdom<=high & tdom > low] <- (1/500) *log(c-0.99*min(c))
+    } 
+    else{
+      haz[tdom<=high & tdom > low] <- sample(c(1/110,1/90),size = 1,prob = c(0.5,0.5))
+    }
   }
 }
-
+plot(tdom, haz, type='l', xlab='Time domain', ylab='Hazard')
 
 
 
 # generate 1200 random samples:
-N = 1200
-RW2BINS = 100
-POLYNOMIAL_DEGREE = 1
-PARALLEL_EXECUTION = T
-
+N <- 1200
 u <- runif(N)
-x <- seq(from = -20, to = 20, length.out = N)
-eta <- 2/(1+exp(-0.2*x)) + rnorm(length(x),sd = exp(-.5*12))
-truefunc <- function(x) (2/(1+exp(-0.2*x)))
-tibble(x = c(-20,20)) %>%
+x <- rnorm(N,mean = 0, sd=3)
+eta <- 4*cos(x)  + rnorm(N,mean = 0 ,sd= exp(-.5*13))
+truefunc <- function(x) 4*cos(x)
+tibble(x = c(-10,10)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
   stat_function(fun = truefunc)
@@ -46,11 +58,11 @@ for (i in 1:N) {
 }
 
 
-
-data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=2000,yes = 0, no=1))
+data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes==1000,yes = 0, no=1))
 for (i in 1:length(data$censoring)) {
   if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.7)
 }
+
 
 data <- rename(data,exposure = x)
 data <- data %>% as_tibble() %>%
@@ -86,7 +98,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(4,14,by = 0.5)) # This is the log(precision)
+thetagrid <- as.list(seq(0.5,5.5,by = 0.5)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -97,6 +109,7 @@ model_data$vectorofcolumnstoremove <- round(RW2BINS/2)
 cat("Finished creating model data!\n")
 
 
+#Optimization:
 control1 <- list(
   prec = 1e-08,
   stop.trust.radius = 1e-10,
@@ -126,9 +139,7 @@ rt <- proc.time() - tm
 
 
 
-
-
-
+#Posterior Computation:
 create_single_lincomb <- function(u,idx,degree = POLYNOMIAL_DEGREE) {
   # u: value of the covariate
   # idx: index of random effect U to which u corresponds
@@ -143,17 +154,10 @@ create_single_lincomb <- function(u,idx,degree = POLYNOMIAL_DEGREE) {
   )
   as(ll,"sparseMatrix")
 }
-
-
-
-
 uu <- sort(unique(model_data$A$exposure$u))
 ii <- c(1:(model_data$vectorofcolumnstoremove-1),0,model_data$vectorofcolumnstoremove : (RW2BINS-1))
 lincomb <- map2(uu,ii,~create_single_lincomb(.x,.y,POLYNOMIAL_DEGREE)) %>% reduce(cbind)
-
-
 node1 <- model_data$vectorofcolumnstoremove - 1
-
 constrA <- Matrix(
   c(
     # Sum to zero
@@ -179,9 +183,6 @@ constrA <- Matrix(
 
 
 
-
-
-
 sim1optlogpost <- add_log_posterior_values(sim1opt,model_data)
 normconsttheta <- normalize_log_posterior(sim1optlogpost$theta_logposterior,sim1optlogpost$theta)
 normconstsigma <- normalize_log_posterior(sim1optlogpost$sigma_logposterior,sim1optlogpost$sigma)
@@ -189,13 +190,6 @@ sim1optlogpost$theta_logposterior <- sim1optlogpost$theta_logposterior - normcon
 sim1optlogpost$theta_post <- exp(sim1optlogpost$theta_logposterior)
 sim1optlogpost$sigma_logposterior <- sim1optlogpost$sigma_logposterior - normconstsigma
 sim1optlogpost$sigma_post <- exp(sim1optlogpost$sigma_logposterior)
-
-
-
-
-
-
-
 
 
 tm2 <- proc.time()
@@ -208,7 +202,6 @@ margmeans_and_vars <- compute_marginal_means_and_variances(
 )
 rt2 <- proc.time() - tm2
 
-print(rt2)
 
 
 
@@ -232,21 +225,6 @@ fit_poly <- function(x){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-PLOT_TEXT_SIZE = 8
 simplot <- tibble(
   x = sort(unique(model_data$A$exposure$u)),
   mypoly = fit_poly(x) - fit_poly(x[vv]),
@@ -275,15 +253,10 @@ ggsave(filename = "~/STA497/result/Proposed.pdf",
 
 
 
-
-
-
-
-
-
-print("The followings should be ones")
 sum(exp(sim1optlogpost$theta_logposterior) * c(0,diff(sim1optlogpost$theta)))
 sum(rev(exp(sim1optlogpost$sigma_logposterior)) * c(0,diff(rev(sim1optlogpost$sigma))))
+
+
 
 priorfunc <- function(x) exp(model_data$theta_logprior(x))
 priorfuncsigma <- function(x) (2/x) * exp(model_data$theta_logprior(-2*log(x)))
@@ -298,18 +271,9 @@ ggsave(filename = "~/STA497/result/PosterSigma.pdf", plot = sigmapostplot)
 
 
 
-
-
-
-
-
-
-
-#Comparison with INLA:
+#Final Comparison:
 formula <- inla.surv(times,censoring) ~ -1+exposure  + f(exposure_binned,model = 'rw2',constr = T)
-Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph",
-                   control.hazard = list(model="rw2",n.intervals = 20),
-                   num.threads = 4)
+Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = TRUE),data = data, family = "coxph")
 fhat <- Inlaresult$summary.random$exposure_binned$mean
 f.ub <- Inlaresult$summary.random$exposure_binned$`0.975quant`
 f.lb <- Inlaresult$summary.random$exposure_binned$`0.025quant`
@@ -322,13 +286,11 @@ mypoly = fit_poly2(plotINLA$exposure) - fit_poly2(plotINLA$exposure[vv])
 meanhere <- fhat-fhat[vv] + mypoly
 
 inlaplot <- ggplot(plotINLA, aes(x = exposure)) + 
-   geom_line(aes(y = meanhere)) + 
-    geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') +
-    theme_bw(base_size = 20)
+  geom_line(aes(y = meanhere)) + 
+  geom_line(aes(y = truefunc(exposure) - truefunc(exposure[vv])),colour = 'blue',linetype = 'solid') +
+  theme_bw(base_size = 20)
 
 new_compare <- simplot + geom_line(aes(y = meanhere)) +labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
                                                             subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = True function ; Black = INLA",
                                                             x = "Covariate", y = "eta")
-
 ggsave(filename = "~/STA497/result/INLAplot.pdf", plot = new_compare)
-
