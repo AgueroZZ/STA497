@@ -1,16 +1,13 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 
-
 cores <- detectCores()
-POLYNOMIAL_DEGREE <- 1
-RW2BINS = 40
-PARALLEL_EXECUTION = T
+
 
 set.seed(123)
 tdom <- seq(0, 1000, by=0.001)
 haz <- rep(0, length(tdom))
-cut <- 40
+cut <- 50
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
@@ -36,18 +33,23 @@ for (i in 1:cut) {
 plot(tdom, haz, type='l', xlab='Time domain', ylab='Hazard')
 
 
+#risk goes from -2 to 0.
+N = 800
+RW2BINS = 60
+POLYNOMIAL_DEGREE = 1
+PARALLEL_EXECUTION = T
 
-# generate 1200 random samples:
-N <- 1200
 u <- runif(N)
 x <- rnorm(N,mean = 0, sd=3)
-eta <- 4*cos(x)  + rnorm(N,mean = 0 ,sd= exp(-.5*13))
-truefunc <- function(x) 4*cos(x)
+eta <- 3*cos(0.5*x)  + rnorm(N,mean = 0 ,sd= exp(-.5*13))
+truefunc <- function(x) 3*cos(0.5*x)
 tibble(x = c(-10,10)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
   stat_function(fun = truefunc)
 
+
+# Set up Model Specification:
 
 failtimes <- c()
 for (i in 1:N) {
@@ -58,15 +60,15 @@ for (i in 1:N) {
 }
 
 
-data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes==1000,yes = 0, no=1))
-for (i in 1:length(data$censoring)) {
-  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.7)
-}
 
+data <- data_frame(x=x,times = failtimes, entry = rep(0,length(length(u))),censoring = ifelse(failtimes>=1000,yes = 0, no=1))
+for (i in 1:length(data$censoring)) {
+  if(data$censoring[i]==1) data$censoring[i] <- rbinom(n=1,size=1,p=0.8)
+}
 
 data <- rename(data,exposure = x)
 data <- data %>% as_tibble() %>%
-  mutate(exposure_binned = bin_covariate(exposure,bins = RW2BINS,type = "quantile"))
+  mutate(exposure_binned = bin_covariate(exposure,bins = RW2BINS,type = "equal"))
 data <- arrange_data(data)
 data$ID <- 1:length(u)
 Alist <- list()
@@ -98,7 +100,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(0.5,5.5,by = 0.5)) # This is the log(precision)
+thetagrid <- as.list(seq(0.1,3,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -140,6 +142,7 @@ rt <- proc.time() - tm
 
 
 #Posterior Computation:
+
 create_single_lincomb <- function(u,idx,degree = POLYNOMIAL_DEGREE) {
   # u: value of the covariate
   # idx: index of random effect U to which u corresponds
@@ -154,10 +157,13 @@ create_single_lincomb <- function(u,idx,degree = POLYNOMIAL_DEGREE) {
   )
   as(ll,"sparseMatrix")
 }
+
 uu <- sort(unique(model_data$A$exposure$u))
 ii <- c(1:(model_data$vectorofcolumnstoremove-1),0,model_data$vectorofcolumnstoremove : (RW2BINS-1))
 lincomb <- map2(uu,ii,~create_single_lincomb(.x,.y,POLYNOMIAL_DEGREE)) %>% reduce(cbind)
+
 node1 <- model_data$vectorofcolumnstoremove - 1
+
 constrA <- Matrix(
   c(
     # Sum to zero
@@ -181,8 +187,6 @@ constrA <- Matrix(
   sparse = TRUE
 )
 
-
-
 sim1optlogpost <- add_log_posterior_values(sim1opt,model_data)
 normconsttheta <- normalize_log_posterior(sim1optlogpost$theta_logposterior,sim1optlogpost$theta)
 normconstsigma <- normalize_log_posterior(sim1optlogpost$sigma_logposterior,sim1optlogpost$sigma)
@@ -190,7 +194,6 @@ sim1optlogpost$theta_logposterior <- sim1optlogpost$theta_logposterior - normcon
 sim1optlogpost$theta_post <- exp(sim1optlogpost$theta_logposterior)
 sim1optlogpost$sigma_logposterior <- sim1optlogpost$sigma_logposterior - normconstsigma
 sim1optlogpost$sigma_post <- exp(sim1optlogpost$sigma_logposterior)
-
 
 tm2 <- proc.time()
 margmeans_and_vars <- compute_marginal_means_and_variances(
@@ -202,8 +205,7 @@ margmeans_and_vars <- compute_marginal_means_and_variances(
 )
 rt2 <- proc.time() - tm2
 
-
-
+print(rt2)
 
 margmeans <- margmeans_and_vars$mean[1:(model_data$M)]
 margbetas <- margmeans_and_vars$mean[(model_data$M+1):(model_data$M+model_data$p)]
@@ -223,8 +225,9 @@ fit_poly <- function(x){
 }
 
 
+#Ploting:
 
-
+PLOT_TEXT_SIZE = 8
 simplot <- tibble(
   x = sort(unique(model_data$A$exposure$u)),
   mypoly = fit_poly(x) - fit_poly(x[vv]),
@@ -249,14 +252,9 @@ ggsave(filename = "~/STA497/result/Proposed.pdf",
        height = 3.5)
 
 
-
-
-
-
+print("The followings should be ones")
 sum(exp(sim1optlogpost$theta_logposterior) * c(0,diff(sim1optlogpost$theta)))
 sum(rev(exp(sim1optlogpost$sigma_logposterior)) * c(0,diff(rev(sim1optlogpost$sigma))))
-
-
 
 priorfunc <- function(x) exp(model_data$theta_logprior(x))
 priorfuncsigma <- function(x) (2/x) * exp(model_data$theta_logprior(-2*log(x)))
@@ -268,12 +266,9 @@ sigmapostplot <- ggplot(mapping = aes(sim1optlogpost$sigma,sim1optlogpost$sigma_
 ggsave(filename = "~/STA497/result/PosterSigma.pdf", plot = sigmapostplot)
 
 
-
-
-
 #Final Comparison:
-formula <- inla.surv(times,censoring) ~ -1+exposure  + f(exposure_binned,model = 'rw2',constr = T)
-Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = TRUE),data = data, family = "coxph")
+formula <- inla.surv(times,censoring) ~ -1+exposure + f(exposure_binned,model = 'rw2',constr = T)
+Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph")
 fhat <- Inlaresult$summary.random$exposure_binned$mean
 f.ub <- Inlaresult$summary.random$exposure_binned$`0.975quant`
 f.lb <- Inlaresult$summary.random$exposure_binned$`0.025quant`
@@ -293,4 +288,5 @@ inlaplot <- ggplot(plotINLA, aes(x = exposure)) +
 new_compare <- simplot + geom_line(aes(y = meanhere)) +labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
                                                             subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = True function ; Black = INLA",
                                                             x = "Covariate", y = "eta")
+
 ggsave(filename = "~/STA497/result/INLAplot.pdf", plot = new_compare)

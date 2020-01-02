@@ -1499,7 +1499,7 @@ compute_marginal_variances <- function(i,model_results,model_data,constrA = NULL
 
 
 # The computation of marginal means and variances use a bunch of the same quantities, so do them together
-compute_marginal_means_and_variances <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL) {
+compute_marginal_means_and_variances_old <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL) {
   if (nrow(model_results) > 1) {
     # Add log posterior values for theta if not present
     if (!("theta_logposterior" %in% names(model_results))) {
@@ -1650,3 +1650,159 @@ compute_marginal_means_and_variances <- function(i,model_results,model_data,cons
 }
 
 
+compute_marginal_means_and_variances <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL) {
+  if (nrow(model_results) > 1) {
+    # Add log posterior values for theta if not present
+    if (!("theta_logposterior" %in% names(model_results))) {
+      model_results <- add_log_posterior_values(model_results,model_data)
+    }
+    # Normalize
+    thetanormconst <- normalize_log_posterior(model_results$theta_logposterior,model_results$theta)
+    model_results$theta_logposterior <- model_results$theta_logposterior - thetanormconst
+    # Get the integration weights
+    dx1 <- diff(model_results$theta) # dx1[i] = x[i+1] - x[i]
+    ld <- length(dx1)
+    intweights <- c(
+      dx1[1]/2,
+      (dx1[1:(ld-1)] + dx1[2:ld])/2,
+      dx1[ld]/2
+    )
+  }
+  # Compute the precision matrices for each theta
+  precision_matrices <- model_results %>% 
+    purrr::pmap(~list(Q = Q_matrix(theta = ..1,model_data = model_data),
+                      theta = ..1)
+    )
+  # Compute the hessians for each theta
+  hessians <- list()
+  myhes <- mclapply(model_results$solution, hessian_log_likelihood,model_data = model_data,mc.cores = detectCores())
+  for (j in 1:length(model_results$theta)) {
+    hessians[[j]] <- list(C=myhes[[j]],theta=model_results$theta[j])
+  }
+  # If linear combinations required, set up the relevant functions
+  if (!is.null(lincomb)) {
+    compute_var_one_lincomb <- function(a,Q) {
+      # a <- cbind(a)
+      ZZ <- solve(Q,a)
+      as.numeric(crossprod(a,ZZ))
+    }
+    compute_var_all_lincombs <- function(A,Q) {
+      # Coerce to list of sparse vectors
+      AA <- list()
+      result <- c()
+      for (j in 1:ncol(lincomb)){
+        AA[[j]] <- as(lincomb[,j],"sparseVector")
+        result[j] <- compute_var_one_lincomb(AA[[j]],Q)
+      }
+      result
+    }
+    compute_one_lincomb_correction <- function(a,WW,VV) {
+      as.numeric(crossprod(crossprod(VV,a),crossprod(WW,a)))
+    }
+    compute_all_lincomb_correction <- function(A,WW,VV) {
+      AA <- list()
+      result <- c()
+      for (j in 1:ncol(lincomb)){
+        AA[[j]] <- as(lincomb[,j],"sparseVector")
+        result[j] <- compute_one_lincomb_correction(AA[[j]],WW,VV)
+      }
+      result
+    }
+  }
+  # If no linear constraints, compute the marginal means and variances as normal
+  if (is.null(constrA)) {
+    margmeans <- model_results %>%
+      purrr::pmap(~..4) %>%
+      purrr::map(t) %>%
+      purrr::reduce(rbind)
+    # Marginal variances: add the precision and the hessian and get diagOfInv
+    margvars <- purrr::map2(precision_matrices,hessians,~.x[["Q"]] + .y[["C"]]) %>%
+      purrr::map(~diag(solve(.x))[i]) %>%
+      purrr::reduce(rbind)
+    # If there are linear combinations, compute their variances separately from diagOfInv
+    if (!is.null(lincomb)) {
+      # lincomb is a column matrix. Change to list and map over the columns
+      lincombvars <- purrr::map2(precision_matrices,hessians,~list(QpC = .x[["Q"]] + .y[["C"]],theta = .x[["theta"]])) %>%
+        purrr::map(~list(lincombvar = compute_var_all_lincombs(lincomb,.x[["QpC"]]),theta = .x[["theta"]])) %>%
+        purrr::map("lincombvar") %>%
+        purrr::reduce(rbind)
+    }
+  } 
+  else {
+    # If there are linear constraints, compute the corrected mean and variance
+    # First compute the uncorrected mean
+    uncorrectedmean <- purrr::pmap(model_results,~list(theta = ..1,mode = ..4))
+    # Get the precision matrix of the GMRF- Q + C
+    QpC <- purrr::map2(precision_matrices,hessians,~list(QpC = .x[["Q"]] + .y[["C"]],theta = .x[["theta"]]))
+    # Compute the correction term
+    WW <- purrr::map(QpC,~list(WW = solve(.x[["QpC"]],constrA),theta = .x[["theta"]]))
+    YY <- purrr::map2(WW,uncorrectedmean,~list(
+      YY = solve(t(constrA) %*% .x[["WW"]],t(constrA) %*% .y[["mode"]]),
+      theta = .y[["theta"]]
+    ))
+    correction_mean <- purrr::map2(WW,YY,~list(correction = .x[["WW"]] %*% .y[["YY"]],theta = .x[["theta"]]))
+    
+    # Now correct
+    margmeans <- purrr::map2(uncorrectedmean,correction_mean,
+                             ~.x[["mode"]] - .y[["correction"]]) %>%
+      purrr::map(t) %>%
+      purrr::reduce(rbind)
+    # Now compute the variances
+    # Add the corrected mean to the model_results
+    model_results$corrected_mean <- vector(mode = "list",length = nrow(model_results))
+    for (k in 1:nrow(model_results)) model_results$corrected_mean[[k]] <- margmeans[k, ]
+    # Re-compute the hessians
+    corrected_hessians <- list()
+    myhes2 <- mclapply(model_results$corrected_mean, hessian_log_likelihood,model_data = model_data,mc.cores = detectCores())
+    for (j in 1:length(model_results$theta)) {
+      corrected_hessians[[j]] <- list(C=myhes2[[j]],theta=model_results$theta[j])
+    }
+    # Get the corrected precision matrix of the GMRF- Q + C_correct
+    QpC_corrected <- purrr::map2(precision_matrices,corrected_hessians,~list(QpC = as((as.matrix(.x[["Q"]] + .y[["C"]])),"sparseMatrix"),theta = .x[["theta"]]))
+    # uncorrectedvariances <- purrr::map(QpC_corrected,~diagOfInv(x = .x[["QpC"]],constrA = NULL,i = i))
+    margvars <- purrr::map(QpC_corrected,~diagOfInv(x = .x[["QpC"]],constrA = constrA,i = i)) %>%
+      purrr::reduce(rbind)
+    
+    
+    if (!is.matrix(margvars)) margvars <- matrix(margvars,nrow = 1)
+    # If we require marginal variances for linear combinations, compute them separately
+    if (!is.null(lincomb)) {
+      uncorrectedlincombvars <- purrr::map2(precision_matrices,hessians,~list(QpC = .x[["Q"]] + .y[["C"]],theta = .x[["theta"]])) %>%
+        purrr::map(~list(lincombvar = compute_var_all_lincombs(lincomb,.x[["QpC"]]),theta = .x[["theta"]]))
+      
+      # Compute the corrections
+      WW <- purrr::map(QpC_corrected,~list(WW = solve(.x[["QpC"]],constrA),theta = .x[["theta"]]))
+      VV <- purrr::map(WW,~list(VV = solve(t(.x[["WW"]]) %*% constrA,t(.x[["WW"]])),theta = .x[["theta"]])) %>% 
+        purrr::map(~list(VV = t(.x[["VV"]]),theta = .x[["theta"]]))
+      
+      lincombvarcorrections <- list()
+      for (jj in 1:length(WW)) {
+        lincombvarcorrections[[jj]] <- list(lincombvarcorrection = compute_all_lincomb_correction(lincomb,WW[[jj]]$WW,VV[[jj]]$VV),theta = WW[[jj]]$theta)
+      }
+      
+      lincombvars <- purrr::map2(uncorrectedlincombvars,lincombvarcorrections,
+                                 ~list(lincombvar = .x[["lincombvar"]] - .y[["lincombvarcorrection"]],
+                                       theta = .x[["theta"]])) %>%
+        purrr::map("lincombvar") %>%
+        purrr::reduce(rbind)
+    }
+  }
+  if (nrow(margmeans) == 1) {
+    finalmeans <- as.numeric(margmeans)[i]
+    finalvars <- as.numeric(margvars)
+    finallincombvars <- NULL
+    if (!is.null(lincomb)) 
+      finallincombvars <- as.numeric(lincombvars)
+  } 
+  else {
+    postvals <- exp(model_results$theta_logposterior + log(intweights))
+    finalmeans <- sweep(margmeans,1,postvals,"*") %>% apply(2,sum)
+    finalvars <- sweep(margvars,1,postvals,"*") %>% apply(2,sum)
+    finallincombvars <- NULL
+    if (!is.null(lincomb)) finallincombvars <- sweep(lincombvars,1,postvals,"*") %>% apply(2,sum)
+    finalmeans <- finalmeans[i]
+  }
+  list(mean = finalmeans,
+       variance = finalvars,
+       lincombvars = finallincombvars)
+}
