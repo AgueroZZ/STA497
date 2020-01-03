@@ -1,5 +1,5 @@
 source("~/STA497/last_simulation/00-load-packages.R")
-source("~/STA497/last_simulation/1.function_for_PH_Model.R")
+source("~/STA497/last_simulation/1.function_for_PH_Model_2.R")
 
 cores <- detectCores()
 
@@ -100,7 +100,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(0.1,3,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(0.1,1,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
