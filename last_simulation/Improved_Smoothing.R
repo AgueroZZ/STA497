@@ -1,5 +1,5 @@
 source("~/STA497/last_simulation/00-load-packages.R")
-source("~/STA497/last_simulation/1.function_for_PH_Model_2.R")
+source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 
 cores <- detectCores()
 
@@ -7,7 +7,7 @@ cores <- detectCores()
 set.seed(123)
 tdom <- seq(0, 1000, by=0.001)
 haz <- rep(0, length(tdom))
-cut <- 50
+cut <- 40
 for (i in 1:cut) {
   low <- as.numeric(quantile(tdom,(i-1)/cut))
   high <- as.numeric(quantile(tdom,(i)/cut))
@@ -35,7 +35,7 @@ plot(tdom, haz, type='l', xlab='Time domain', ylab='Hazard')
 
 #risk goes from -2 to 0.
 N = 800
-RW2BINS = 60
+RW2BINS = 80
 POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
@@ -68,7 +68,7 @@ for (i in 1:length(data$censoring)) {
 
 data <- rename(data,exposure = x)
 data <- data %>% as_tibble() %>%
-  mutate(exposure_binned = bin_covariate(exposure,bins = RW2BINS,type = "equal"))
+  mutate(exposure_binned = bin_covariate(exposure,bins = RW2BINS,type = "quantile"))
 data <- arrange_data(data)
 data$ID <- 1:length(u)
 Alist <- list()
@@ -100,7 +100,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(0.1,1,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(0.01,1.5,by = 0.01)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
