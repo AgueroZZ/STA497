@@ -41,9 +41,9 @@ PARALLEL_EXECUTION = T
 
 u <- runif(N)
 x <- rnorm(N,mean = 0, sd=3)
-eta <- 3*cos(0.5*x)  + rnorm(N,mean = 0 ,sd= exp(-.5*13))
-truefunc <- function(x) 3*cos(0.5*x)
-tibble(x = c(-10,10)) %>%
+eta <- 1.5*cos(0.8*x) + 1.5 + rnorm(N,mean = 0 ,sd= exp(-.5*13))
+truefunc <- function(x) 1.5*cos(0.8*x) + 1.5
+tibble(x = c(-6,6)) %>%
   ggplot(aes(x = x)) +
   theme_light() +
   stat_function(fun = truefunc)
@@ -100,7 +100,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(0.01,1.5,by = 0.01)) # This is the log(precision)
+thetagrid <- as.list(seq(0.1,2,by = 0.1)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
