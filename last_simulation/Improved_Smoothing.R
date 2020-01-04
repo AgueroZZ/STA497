@@ -1,7 +1,7 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 
-cores <- detectCores()
+cores <- 10
 
 
 set.seed(123)

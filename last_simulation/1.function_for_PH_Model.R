@@ -1650,7 +1650,7 @@ compute_marginal_means_and_variances_old <- function(i,model_results,model_data,
 }
 
 
-compute_marginal_means_and_variances <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL) {
+compute_marginal_means_and_variances <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL, core = cores) {
   if (nrow(model_results) > 1) {
     # Add log posterior values for theta if not present
     if (!("theta_logposterior" %in% names(model_results))) {
@@ -1675,7 +1675,7 @@ compute_marginal_means_and_variances <- function(i,model_results,model_data,cons
     )
   # Compute the hessians for each theta
   hessians <- list()
-  myhes <- mclapply(model_results$solution, hessian_log_likelihood,model_data = model_data,mc.cores = detectCores())
+  myhes <- mclapply(model_results$solution, hessian_log_likelihood,model_data = model_data,mc.cores = cores)
   for (j in 1:length(model_results$theta)) {
     hessians[[j]] <- list(C=myhes[[j]],theta=model_results$theta[j])
   }
@@ -1753,7 +1753,7 @@ compute_marginal_means_and_variances <- function(i,model_results,model_data,cons
     for (k in 1:nrow(model_results)) model_results$corrected_mean[[k]] <- margmeans[k, ]
     # Re-compute the hessians
     corrected_hessians <- list()
-    myhes2 <- mclapply(model_results$corrected_mean, hessian_log_likelihood,model_data = model_data,mc.cores = detectCores())
+    myhes2 <- mclapply(model_results$corrected_mean, hessian_log_likelihood,model_data = model_data,mc.cores = cores)
     for (j in 1:length(model_results$theta)) {
       corrected_hessians[[j]] <- list(C=myhes2[[j]],theta=model_results$theta[j])
     }
