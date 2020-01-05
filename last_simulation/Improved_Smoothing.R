@@ -38,7 +38,7 @@ POLYNOMIAL_DEGREE = 1
 PARALLEL_EXECUTION = T
 
 u <- runif(N)
-x <- rnorm(N,mean = 0, sd=3)
+x <- runif(N,min = -6, max = 6)
 eta <- 1.5*cos(0.8*x) + 1.5 + rnorm(N,mean = 0 ,sd= exp(-.5*13))
 truefunc <- function(x) 1.5*cos(0.8*x) + 1.5
 tibble(x = c(-6,6)) %>%
