@@ -1,3 +1,8 @@
+cores <- 10
+
+
+
+
 # Get the diagonal of Q^-1 via inverting sparse cholesky decomp
 diagOfInv = function(x, verbose=FALSE,constrA = NULL,i = NULL) {
   # x: matrix to compute the diagonal of the inverse of
@@ -1179,7 +1184,7 @@ optimize_all_thetas <- function(theta,model_data,num_starts,startingvals=NULL,ra
 }
 
 # Now do a version that just does them all in parallel
-optimize_all_thetas_parallel <- function(theta,model_data,startingvals = NULL,random_start_sd = 0,optimizer = "trust.optim",optcontrol = NULL,debug = FALSE,doparallel = TRUE) {
+optimize_all_thetas_parallel <- function(theta,model_data,startingvals = NULL,random_start_sd = 0,optimizer = "trust.optim",optcontrol = NULL,debug = FALSE,doparallel = TRUE, cores = cores) {
   # Trick: to use 0 as a starting value, set random_start_sd = 0. rnorm(1,0,sd = 0) returns 0 wp1
   # Startingvals
   if (is.null(startingvals)) startingvals <- rnorm(model_data$Wd,sd = random_start_sd)
@@ -1499,7 +1504,7 @@ compute_marginal_variances <- function(i,model_results,model_data,constrA = NULL
 
 
 # The computation of marginal means and variances use a bunch of the same quantities, so do them together
-compute_marginal_means_and_variances_old <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL) {
+compute_marginal_means_and_variances_old <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL, cores = cores) {
   if (nrow(model_results) > 1) {
     # Add log posterior values for theta if not present
     if (!("theta_logposterior" %in% names(model_results))) {
@@ -1525,7 +1530,7 @@ compute_marginal_means_and_variances_old <- function(i,model_results,model_data,
   
   # Compute the hessians for each theta
   hessians <- list()
-  myhes <- mclapply(model_results$solution, hessian_log_likelihood,model_data = model_data,mc.cores = detectCores())
+  myhes <- mclapply(model_results$solution, hessian_log_likelihood,model_data = model_data,mc.cores = cores)
   for (j in 1:length(model_results$theta)) {
     hessians[[j]] <- list(C=myhes[[j]],theta=model_results$theta[j])
   }
@@ -1595,7 +1600,7 @@ compute_marginal_means_and_variances_old <- function(i,model_results,model_data,
     for (k in 1:nrow(model_results)) model_results$corrected_mean[[k]] <- margmeans[k, ]
     # Re-compute the hessians
     corrected_hessians <- list()
-    myhes2 <- mclapply(model_results$corrected_mean, hessian_log_likelihood,model_data = model_data,mc.cores = detectCores())
+    myhes2 <- mclapply(model_results$corrected_mean, hessian_log_likelihood,model_data = model_data,mc.cores = cores)
     for (j in 1:length(model_results$theta)) {
       corrected_hessians[[j]] <- list(C=myhes2[[j]],theta=model_results$theta[j])
     }
@@ -1650,7 +1655,7 @@ compute_marginal_means_and_variances_old <- function(i,model_results,model_data,
 }
 
 
-compute_marginal_means_and_variances <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL, core = cores) {
+compute_marginal_means_and_variances <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL, cores = cores) {
   if (nrow(model_results) > 1) {
     # Add log posterior values for theta if not present
     if (!("theta_logposterior" %in% names(model_results))) {
