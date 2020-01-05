@@ -1,8 +1,3 @@
-cores <- 10
-
-
-
-
 # Get the diagonal of Q^-1 via inverting sparse cholesky decomp
 diagOfInv = function(x, verbose=FALSE,constrA = NULL,i = NULL) {
   # x: matrix to compute the diagonal of the inverse of
@@ -1184,7 +1179,7 @@ optimize_all_thetas <- function(theta,model_data,num_starts,startingvals=NULL,ra
 }
 
 # Now do a version that just does them all in parallel
-optimize_all_thetas_parallel <- function(theta,model_data,startingvals = NULL,random_start_sd = 0,optimizer = "trust.optim",optcontrol = NULL,debug = FALSE,doparallel = TRUE, cores = cores) {
+optimize_all_thetas_parallel <- function(theta,model_data,startingvals = NULL,random_start_sd = 0,optimizer = "trust.optim",optcontrol = NULL,debug = FALSE,doparallel = TRUE) {
   # Trick: to use 0 as a starting value, set random_start_sd = 0. rnorm(1,0,sd = 0) returns 0 wp1
   # Startingvals
   if (is.null(startingvals)) startingvals <- rnorm(model_data$Wd,sd = random_start_sd)
@@ -1504,7 +1499,7 @@ compute_marginal_variances <- function(i,model_results,model_data,constrA = NULL
 
 
 # The computation of marginal means and variances use a bunch of the same quantities, so do them together
-compute_marginal_means_and_variances_old <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL, cores = cores) {
+compute_marginal_means_and_variances_old <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL) {
   if (nrow(model_results) > 1) {
     # Add log posterior values for theta if not present
     if (!("theta_logposterior" %in% names(model_results))) {
@@ -1655,7 +1650,7 @@ compute_marginal_means_and_variances_old <- function(i,model_results,model_data,
 }
 
 
-compute_marginal_means_and_variances <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL, cores = cores) {
+compute_marginal_means_and_variances <- function(i,model_results,model_data,constrA = NULL,lincomb = NULL) {
   if (nrow(model_results) > 1) {
     # Add log posterior values for theta if not present
     if (!("theta_logposterior" %in% names(model_results))) {
