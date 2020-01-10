@@ -284,7 +284,7 @@ cnsA <- rbind(cnsA1,cnsA2)
 conse <- matrix(0, nrow = 2, ncol = 1)
 
 
-formula <- inla.surv(times,censoring) ~ -1+exposure + f(exposure_binned,model = 'rw2',extraconstr = list(A=cnsA,e=conse))
+formula <- inla.surv(times,censoring) ~ exposure + f(exposure_binned,model = 'rw2',extraconstr = list(A=cnsA,e=conse))
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph")
 fhat <- Inlaresult$summary.random$exposure_binned$mean
 fhat[model_data$vectorofcolumnstoremove] = 0
