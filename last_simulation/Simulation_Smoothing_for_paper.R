@@ -276,17 +276,19 @@ ggsave(filename = "~/STA497/result/PosterSigma.pdf", plot = sigmapostplot)
 
 #Final Comparison:
 
-cnsA <- rep(0,RW2BINS)
-cnsA[model_data$vectorofcolumnstoremove] <- 1
-cnsA <- matrix(cnsA,nrow = 1)
-conse <- matrix(0, nrow = 1, ncol = 1)
+cnsA1 <- rep(0,RW2BINS)
+cnsA1[model_data$vectorofcolumnstoremove] <- 1
+cnsA2 <- rep(0,RW2BINS)
+cnsA2[model_data$vectorofcolumnstoremove-1] <- 1
+cnsA <- rbind(cnsA1,cnsA2)
+conse <- matrix(0, nrow = 2, ncol = 1)
 
 
 formula <- inla.surv(times,censoring) ~ -1+exposure + f(exposure_binned,model = 'rw2',extraconstr = list(A=cnsA,e=conse))
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph")
 fhat <- Inlaresult$summary.random$exposure_binned$mean
-f.ub <- Inlaresult$summary.random$exposure_binned$`0.975quant`
-f.lb <- Inlaresult$summary.random$exposure_binned$`0.025quant`
+fhat[model_data$vectorofcolumnstoremove] = 0
+fhat[model_data$vectorofcolumnstoremove-1] = 0
 
 plotINLA <- data.frame(exposure = Inlaresult$summary.random$exposure_binned$ID)
 fit_poly2 <- function(x){
@@ -297,7 +299,6 @@ fit_poly2 <- function(x){
 
 mypoly = fit_poly2(sort(unique(model_data$A$exposure$u))) - fit_poly2(plotINLA$exposure[vv])
 meanhere <- fhat + mypoly
-meanhere[model_data$vectorofcolumnstoremove] = 0
 
 new_compare <- simplot + geom_line(aes(y = meanhere)) +labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
                                                             subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = True function ; Black = INLA",
