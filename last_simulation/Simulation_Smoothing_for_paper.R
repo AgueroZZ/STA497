@@ -293,7 +293,7 @@ fhat[model_data$vectorofcolumnstoremove-1] = 0
 plotINLA <- data.frame(exposure = Inlaresult$summary.random$exposure_binned$ID)
 fit_poly2 <- function(x){
   xx <- poly(x,degree = POLYNOMIAL_DEGREE,raw = T)
-  as.numeric(xx %*% cbind(Inlaresult$summary.fixed[,1]))
+  as.numeric(xx %*% cbind(Inlaresult$summary.fixed[,1][2]))
 }
 
 
