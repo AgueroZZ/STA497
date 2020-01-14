@@ -328,7 +328,7 @@ grad_log_likelihood_without_ties <- function(W,model_data) {
 
 #Function that computes the hessian matrix of log-likelihood function with respect to latent field at a specific value.
 #W is the values of latent field that we evaluate. (Please use this one)
-hessian_log_likelihood <- function(W,model_data) {
+hessian_log_likelihood_correct <- function(W,model_data) {
   ob <- Get_Observed_index(model_data)
   delta <- prep_data_for_log_lik(W,model_data)
   adj <- Get_Adj(model_data)$adjRank
@@ -600,7 +600,7 @@ hessian_log_likelihood_alternative_old <- function(W,model_data) {
 }
 
 #hessian_log_likelihood if no ties occured in your dataset.Every fast.(Use this one if you are sure that there are no ties)
-hessian_log_likelihood_without_ties <- function(W,model_data) {
+hessian_log_likelihood <- function(W,model_data) {
   ob <- Get_Observed_index(model_data)
   delta <- prep_data_for_log_lik(W,model_data)
   #Temporally fill in Delta_11 into delta, to make the future computation easier.
