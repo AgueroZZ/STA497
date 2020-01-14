@@ -3,6 +3,7 @@ source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 
 cores <- 8
 RW2BINS <- 50
+POLYNOMIAL_DEGREE <- 1
 
 data <- Leuk
 
@@ -19,7 +20,7 @@ model_data <- list(
   A = Alist,
   M = Alist %>% map("A") %>% map(ncol) %>% reduce(sum) - 1,
   n = length(unique(data$ID)),
-  X = sparse.model.matrix(eta ~ -1 + poly(exposure,degree = POLYNOMIAL_DEGREE,raw = TRUE),data = data)
+  X = matrix(poly(data$exposure,degree = POLYNOMIAL_DEGREE,raw = TRUE))
 )
 
 model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = log(10)) {
