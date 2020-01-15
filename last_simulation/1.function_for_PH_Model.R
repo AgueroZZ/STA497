@@ -437,6 +437,92 @@ hessian_log_likelihood_correct <- function(W,model_data) {
   return(-forceSymmetric(C_final))
 }
 
+
+#A Faster version of correct way to compute C matrix: allow Breslow Correction
+
+hessian_log_likelihood <- function(W,model_data) {
+  ob <- Get_Observed_index(model_data)
+  delta <- prep_data_for_log_lik(W,model_data)
+  adj <- Get_Adj(model_data)$adjRank
+  #Temporally fill in Delta_11 into delta, to make the future computation easier.
+  delta <- c(0,delta)
+  #Define a function to compute one C_i matrix:
+  GetCi <- function(i,model_data=model_data,delta=delta){
+    if(i == adj[i]){
+      deltavec <- delta[i:model_data$n]
+      denom <- exp(matrixStats::logSumExp(deltavec[1]-deltavec))
+      M <- matrix(0,nrow = length(deltavec), ncol = length(deltavec))
+      for (j in 1:length(deltavec)) {
+        for (k in j:length(deltavec)) {
+          if(j==k & k==1){
+            M[j,k] <- -(exp(matrixStats::logSumExp(deltavec[1]-deltavec))-1)/(denom^2)
+          }
+          else if(j==k & k!=1){
+            deltavec1 <- deltavec[c(-1,-j)]
+            if(length(deltavec1)==0){
+              M[j,k] <- -(exp(deltavec[1]-deltavec[j]))/(denom^2)
+            }
+            if(length(deltavec1)!=0){
+              M[j,k] <- -((exp(matrixStats::logSumExp(2*deltavec[1]-deltavec[j]-deltavec1)))+exp(deltavec[1]-deltavec[j]))/(denom^2)
+            }
+          }
+          else if(j==1 & k!=1){
+            M[j,k] <- (exp(deltavec[1]-deltavec[k]))/(denom^2)
+          }
+          else if(k==1 & j!=1){
+            M[j,k] <- (exp(deltavec[1]-deltavec[j]))/(denom^2)
+          }
+          else {
+            M[j,k]<- (exp(2*deltavec[1]- deltavec[j]-deltavec[k]))/(denom^2)
+          }
+        }
+      }
+      M <- bdiag(matrix(0,ncol = (model_data$n-ncol(M)),nrow = (model_data$n-nrow(M))),M)
+      M
+    }
+    else{
+      deltavec <- delta[adj[i]:model_data$n]
+      dif <- i - adj[i]
+      c_i <- 1+dif
+      denom <- exp(matrixStats::logSumExp(deltavec[c_i]-deltavec))
+      M <- matrix(0,nrow = length(deltavec), ncol = length(deltavec))
+      for (j in 1:length(deltavec)) {
+        for (k in j:length(deltavec)) {
+          if(j==k & k== c_i){
+            M[j,k] <- -(exp(matrixStats::logSumExp(deltavec[c_i]-deltavec))-1)/(denom^2)
+          }
+          else if(j==k & k!= c_i){
+            deltavec1 <- deltavec[c(-c_i,-j)]
+            if(length(deltavec1)==0){
+              M[j,k] <- -(exp(deltavec[c_i]-deltavec[j]))/(denom^2)
+            }
+            if(length(deltavec1)!=0){
+              M[j,k] <- -((exp(matrixStats::logSumExp(2*deltavec[c_i]-deltavec[j]-deltavec1)))+exp(deltavec[c_i]-deltavec[j]))/(denom^2)
+            }
+          }
+          else if(j==1 & k!=c_i){
+            M[j,k] <- (exp(deltavec[c_i]-deltavec[k]))/(denom^2)
+          }
+          else if(k==1 & j!=c_i){
+            M[j,k] <- (exp(deltavec[c_i]-deltavec[j]))/(denom^2)
+          }
+          else {
+            M[j,k]<- (exp(2*deltavec[c_i]- deltavec[j]-deltavec[k]))/(denom^2)
+          }
+        }
+      }
+      M <- bdiag(matrix(0,ncol = (model_data$n-ncol(M)),nrow = (model_data$n-nrow(M))),M)
+      M
+    }
+  }
+  R <- lapply(ob, GetCi, model_data=model_data,delta=delta)
+  C_final <- Reduce('+',R)
+  C_final <- bdiag(C_final[2:nrow(C_final),2:ncol(C_final)],diag(rep(0,model_data$Wd-model_data$Nd),nrow =model_data$Wd-model_data$Nd))
+  C_final <- as(C_final,"dgCMatrix")
+  return(-forceSymmetric(C_final))
+}
+
+
 #Note that it uses a very big storage for the n of n*n matrices.(This is obsolete)
 old_hessian_log_likelihood <- function(W,model_data) {
   Risk <- Get_all_Risk_Set(model_data)
@@ -600,7 +686,7 @@ hessian_log_likelihood_alternative_old <- function(W,model_data) {
 }
 
 #hessian_log_likelihood if no ties occured in your dataset.Every fast.(Use this one if you are sure that there are no ties)
-hessian_log_likelihood <- function(W,model_data) {
+hessian_log_likelihood_no_ties <- function(W,model_data) {
   ob <- Get_Observed_index(model_data)
   delta <- prep_data_for_log_lik(W,model_data)
   #Temporally fill in Delta_11 into delta, to make the future computation easier.

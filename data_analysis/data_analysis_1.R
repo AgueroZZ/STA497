@@ -1,12 +1,16 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 
-cores <- 8
-RW2BINS <- 50
+set.seed(100)
+
+cores <- detectCores()
+RW2BINS <- 60
 POLYNOMIAL_DEGREE <- 1
 PARALLEL_EXECUTION <- TRUE
+N <- 600
 
-data <- Leuk
+data <- sample_n(Leuk, N, replace = FALSE, weight = NULL, .env = NULL)
+
 
 data <- data_frame(tpi=data$tpi,times = data$time, entry = rep(0,nrow(data)),censoring = data$cens)
 
@@ -46,7 +50,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(-1,2,by = 0.1)) # This is the log(precision)
+thetagrid <- as.list(seq(-1,11,by = 0.2)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -104,7 +108,7 @@ create_single_lincomb <- function(u,idx,degree = POLYNOMIAL_DEGREE) {
   as(ll,"sparseMatrix")
 }
 
-uu <- sort(unique(model_data$A$exposure$u))
+uu <- sort(unique(model_data$A$exposure$u))-sort(unique(model_data$A$exposure$u))[model_data$vectorofcolumnstoremove]
 ii <- c(1:(model_data$vectorofcolumnstoremove-1),0,model_data$vectorofcolumnstoremove : (RW2BINS-1))
 lincomb <- map2(uu,ii,~create_single_lincomb(.x,.y,POLYNOMIAL_DEGREE)) %>% reduce(cbind)
 
@@ -186,13 +190,12 @@ simplot <- tibble(
   geom_ribbon(aes(ymin = mymeanlower,ymax = mymeanupper),fill = "orange",alpha = .1) +
   geom_line(aes(y = mypoly),colour = 'red',linetype = 'dashed') +
   geom_line(aes(y = mymean),colour = 'orange',linetype = 'solid') + 
-  geom_line(aes(y = truefunc(x) - truefunc(x[vv])),colour = 'blue',linetype = 'solid') + 
   labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
-       subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = True function",
+       subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term;",
        x = "tpi", y = "eta") +
   theme(text = element_text(size = PLOT_TEXT_SIZE))
 
-ggsave(filename = "~/STA497/Proposed_data1.pdf",
+ggsave(filename = "~/STA497/data_analysis/Proposed_data1.pdf",
        plot = simplot,
        width = 3,
        height = 3.5)
@@ -206,8 +209,40 @@ priorfunc <- function(x) exp(model_data$theta_logprior(x))
 priorfuncsigma <- function(x) (2/x) * exp(model_data$theta_logprior(-2*log(x)))
 
 thetapostplot <- ggplot(mapping = aes(sim1optlogpost$theta,sim1optlogpost$theta_post)) + geom_line()
-ggsave(filename = "~/STA497/PosterTheta_data1.pdf",plot = thetapostplot)
+ggsave(filename = "~/STA497/data_analysis/PosterTheta_data1.pdf",plot = thetapostplot)
 
 sigmapostplot <- ggplot(mapping = aes(sim1optlogpost$sigma,sim1optlogpost$sigma_post)) + geom_line()
-ggsave(filename = "~/STA497/PosterSigma_data1.pdf", plot = sigmapostplot)
+ggsave(filename = "~~/STA497/data_analysis/PosterSigma_data1.pdf", plot = sigmapostplot)
 
+
+#Final Comparison:
+
+cnsA1 <- rep(0,RW2BINS)
+cnsA1[model_data$vectorofcolumnstoremove] <- 1
+cnsA2 <- rep(0,RW2BINS)
+cnsA2[model_data$vectorofcolumnstoremove-1] <- 1
+cnsA <- rbind(cnsA1,cnsA2)
+conse <- matrix(0, nrow = 2, ncol = 1)
+
+
+formula <- inla.surv(times,censoring) ~ exposure + f(exposure_binned,model = 'rw2',extraconstr = list(A=cnsA,e=conse))
+Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph")
+fhat <- Inlaresult$summary.random$exposure_binned$mean
+fhat[model_data$vectorofcolumnstoremove] = 0
+fhat[model_data$vectorofcolumnstoremove-1] = 0
+
+plotINLA <- data.frame(exposure = Inlaresult$summary.random$exposure_binned$ID)
+fit_poly2 <- function(x){
+  xx <- poly(x,degree = POLYNOMIAL_DEGREE,raw = T)
+  as.numeric(xx %*% cbind(Inlaresult$summary.fixed[,1][2]))
+}
+
+
+mypoly = fit_poly2(sort(unique(model_data$A$exposure$u))) - fit_poly2(plotINLA$exposure[vv])
+meanhere <- fhat + mypoly
+
+new_compare <- simplot + geom_line(aes(y = meanhere)) +labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
+                                                            subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = True function ; Black = INLA",
+                                                            x = "Covariate", y = "eta")
+
+ggsave(filename = "~/STA497/data_analysis/INLAplot.pdf", plot = new_compare)
