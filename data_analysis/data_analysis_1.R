@@ -1,13 +1,13 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 
-set.seed(100)
+set.seed(123)
 
 cores <- detectCores()
-RW2BINS <- 60
+RW2BINS <- 50
 POLYNOMIAL_DEGREE <- 1
 PARALLEL_EXECUTION <- TRUE
-N <- 600
+N <- 800
 
 data <- sample_n(Leuk, N, replace = FALSE, weight = NULL, .env = NULL)
 
@@ -50,7 +50,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(-1,11,by = 0.2)) # This is the log(precision)
+thetagrid <- as.list(seq(-1,11,by = 0.5)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
@@ -212,7 +212,7 @@ thetapostplot <- ggplot(mapping = aes(sim1optlogpost$theta,sim1optlogpost$theta_
 ggsave(filename = "~/STA497/data_analysis/PosterTheta_data1.pdf",plot = thetapostplot)
 
 sigmapostplot <- ggplot(mapping = aes(sim1optlogpost$sigma,sim1optlogpost$sigma_post)) + geom_line()
-ggsave(filename = "~~/STA497/data_analysis/PosterSigma_data1.pdf", plot = sigmapostplot)
+ggsave(filename = "~/STA497/data_analysis/PosterSigma_data1.pdf", plot = sigmapostplot)
 
 
 #Final Comparison:
@@ -245,4 +245,4 @@ new_compare <- simplot + geom_line(aes(y = meanhere)) +labs(title = "Linear Term
                                                             subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = True function ; Black = INLA",
                                                             x = "Covariate", y = "eta")
 
-ggsave(filename = "~/STA497/data_analysis/INLAplot.pdf", plot = new_compare)
+ggsave(filename = "~/STA497/data_analysis/FinalPlot.pdf", plot = new_compare)
