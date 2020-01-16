@@ -1,0 +1,61 @@
+Loading required package: sp
+This is INLA_19.09.03 built 2019-11-29 21:42:55 UTC.
+See www.r-inla.org/contact-us for how to get help.
+To enable PARDISO sparse library; see inla.pardiso()
+
+Attaching package: ‘dplyr’
+
+The following object is masked from ‘package:matrixStats’:
+
+    count
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tidyr’
+
+The following object is masked from ‘package:Matrix’:
+
+    expand
+
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+Warning message:
+`data_frame()` is deprecated, use `tibble()`.
+This warning is displayed once per session. 
+Error: Result 1 must be a single double, not NULL of length 0
+<error/purrr_error_bad_element_vector>
+Result 1 must be a single double, not NULL of length 0
+Backtrace:
+     █
+  1. ├─global::optimize_all_thetas_parallel(...)
+  2. │ └─`%>%`(...)
+  3. │   ├─base::withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+  4. │   └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
+  5. │     └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
+  6. │       └─`_fseq`(`_lhs`)
+  7. │         └─magrittr::freduce(value, `_function_list`)
+  8. │           └─function_list[[i]](value)
+  9. │             └─global::optlist_to_tibble(.)
+ 10. │               └─tibble::tibble(...)
+ 11. │                 └─tibble:::lst_quos(xs, transform = expand_lst)
+ 12. │                   └─rlang::eval_tidy(xs[[i]], unique_output)
+ 13. ├─purrr::map_dbl(lst, "theta")
+ 14. └─purrr:::stop_bad_element_vector(...)
+ 15.   └─purrr:::stop_bad_vector(...)
+ 16
+In addition: Warning message:
+In mclapply(theta, do_opt, mc.cores = cores) :
+  scheduled cores 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 did not deliver results, all values of the jobs will be affected
+Execution halted
