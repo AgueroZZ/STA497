@@ -7,7 +7,7 @@ cores <- detectCores()
 RW2BINS <- 50
 POLYNOMIAL_DEGREE <- 1
 PARALLEL_EXECUTION <- TRUE
-N <- 800
+N <- 1000
 
 data <- sample_n(Leuk, N, replace = FALSE, weight = NULL, .env = NULL)
 
@@ -50,7 +50,7 @@ model_data$diffmat <- create_diff_matrix(model_data$n)
 model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
-thetagrid <- as.list(seq(-1,11,by = 0.5)) # This is the log(precision)
+thetagrid <- as.list(seq(2,14,by = 0.5)) # This is the log(precision)
 
 # Random effect model specification data
 model_data$modelspec <- model_data$A %>%
