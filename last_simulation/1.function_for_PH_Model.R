@@ -745,7 +745,7 @@ hessian_log_likelihood_no_ties <- function(W,model_data) {
 # in the paper.
 
 # Linear terms only
-Q_matrix_linear <- function(theta,model_data,tau=exp(8),debug = FALSE) {
+Q_matrix_linear <- function(theta,model_data,tau = exp(12),debug = FALSE) {
   # Compute the Q matrix for a model with only linear terms
   # Arguments:
   #   theta: scalar, value of LOG PRECISION log(1/variance) of prior distribution on beta
@@ -794,7 +794,7 @@ Q_matrix_rw2_one_component <- function(theta,model_data,covariate) {
   exp(theta) * forceSymmetric(crossprod(H,crossprod(AA,H)))
 }
 
-Q_matrix_rw2 <- function(theta,model_data,tau = exp(8)) {
+Q_matrix_rw2 <- function(theta,model_data,tau = exp(12)) {
   # Figure out how many rw2 components there are
   if (is.null(model_data$A)) stop("no rw2 components in model")
   
@@ -817,7 +817,7 @@ Q_matrix_rw2 <- function(theta,model_data,tau = exp(8)) {
 }
 
 # Q matrix for model containing both linear and rw2 terms
-Q_matrix_both <- function(theta,model_data,tau = exp(8)) {
+Q_matrix_both <- function(theta,model_data,tau = exp(12)) {
   if (is.null(model_data$A)) stop("no rw2 components in model")
   
   whichrw2 <- model_data$modelspec %>% dplyr::filter(model == "rw2") %>% pull(covariate)
@@ -863,7 +863,7 @@ Q_matrix_both <- function(theta,model_data,tau = exp(8)) {
 
 # Make a general function to compute the Q matrix for a model
 # This can be written to just call one of the above... somehow. Maybe as an option inside model_data
-Q_matrix <- function(theta,model_data,tau = exp(8),forcesymm = TRUE) {
+Q_matrix <- function(theta,model_data,tau = exp(12),forcesymm = TRUE) {
   # theta: vector of hyperparameters. The structure of this will depend on the model,
   # as specified by model_data
   if (is.null(model_data$A)) {
@@ -933,18 +933,18 @@ log_posterior_theta <- function(theta,W,model_data,Q = NULL) {
   if (is.null(Q)) {
     Q <- Q_matrix(theta,model_data)
   }
-  # Qe <- eigen(Q,symmetric = TRUE,only.values = TRUE)$values
-  # term2_det <- (1/2) * sum(log(Qe[Qe > 1e-06]))
+  Qe <- eigen(Q,symmetric = TRUE,only.values = TRUE)$values
+  term2_det <- (1/2) * sum(log(Qe[Qe > 1e-06]))
   Q_p_C <- -1 * hessian_log_posterior_W(W,Q = Q,model_data = model_data)
   term1 <- log_likelihood(W,model_data)
-  dt <- determinant(Q,logarithm = TRUE) # For this, we DO need the determinant (original)
+  # dt <- determinant(Q,logarithm = TRUE) # For this, we DO need the determinant (original)
   # term2_det <- (1/2) * as.numeric(dt$modulus * dt$sign)
-  term2_det <- (1/2) * as.numeric(dt$modulus) 
+  # term2_det <- (1/2) * as.numeric(dt$modulus) (original)
   term2 <- logprior_W(W,theta,model_data) # Doesn't contain the determinant
   term3 <- model_data$theta_logprior(theta)
   qcdet <- determinant(Q_p_C,logarithm = TRUE)
-  # term4 <- -(1/2)*as.numeric(qcdet$modulus * qcdet$sign) # The gaussian approx evaluated at conditional mode
-  term4 <- -(1/2) * as.numeric(qcdet$modulus)
+  term4 <- -(1/2)*as.numeric(qcdet$modulus * qcdet$sign) # The gaussian approx evaluated at conditional mode
+  # term4 <- -(1/2) * as.numeric(qcdet$modulus) # (original)
   as.numeric(term1 + term2_det + term2 + term3 + term4)
 }
 
