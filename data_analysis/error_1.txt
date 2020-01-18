@@ -36,7 +36,4 @@ Warning message:
 This warning is displayed once per session. 
 Saving 7 x 7 in image
 Saving 7 x 7 in image
-Error in grDevices::pdf(file = filename, ..., version = version) : 
-  cannot open file '~~/STA497/data_analysis/PosterSigma_data1.pdf'
-Calls: ggsave -> dev -> <Anonymous>
-Execution halted
+Saving 7 x 7 in image
