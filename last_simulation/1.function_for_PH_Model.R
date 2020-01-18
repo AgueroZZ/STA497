@@ -68,7 +68,8 @@ create_diff_matrix <- function(n) {
 }
 # Function to create the crossproduct's inverse,(DD^T)^(-1)
 create_full_dtcp_matrix <- function(n) {
-  Diagonal(n-1,1) - Matrix(1/(n+1),n-1,n-1)
+  m <- Diagonal(n-1,1) - Matrix(1/n,n-1,n-1)
+  m
 }
 
 # Use to order your data first!!! It orders your dataset based on observed times:
