@@ -241,8 +241,20 @@ fit_poly2 <- function(x){
 mypoly = fit_poly2(sort(unique(model_data$A$exposure$u))) - fit_poly2(plotINLA$exposure[vv])
 meanhere <- fhat + mypoly
 
-new_compare <- simplot + geom_line(aes(y = meanhere)) +labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
-                                                            subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = True function ; Black = INLA",
-                                                            x = "Covariate", y = "eta")
+
+new_compare <- simplot + geom_line(aes(y = meanhere),colour = "blue") +labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
+                                                                            subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = INLA ; Green = GAM",
+                                                                            x = "Covariate", y = "eta")
+
+
+x <- sort(unique(model_data$A$exposure$u))
+b <- gam(times~s(exposure,k=50),
+         family=cox.ph(),data=data,weights=censoring,drop.intercept = T)
+
+y <- as.numeric(predict.gam(b,data_frame(exposure = x)))-as.numeric(predict.gam(b,data_frame(exposure=plotINLA$exposure[vv])))
+
+new_compare <- new_compare + geom_line(aes(y = y),colour = "green")
+
+
 
 ggsave(filename = "~/STA497/data_analysis/FinalPlot.pdf", plot = new_compare)

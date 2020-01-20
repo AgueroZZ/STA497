@@ -9,6 +9,7 @@ library(matrixStats) # for LogSumExp
 library(purrr)
 library(INLA,lib.loc = libplace)
 library(survival)
+library(mgcv)
 
 # tidyverse packages- required for analysis
 library(dplyr)

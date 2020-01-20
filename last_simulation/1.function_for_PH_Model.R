@@ -944,8 +944,8 @@ log_posterior_theta <- function(theta,W,model_data,Q = NULL) {
   term2 <- logprior_W(W,theta,model_data) # Doesn't contain the determinant
   term3 <- model_data$theta_logprior(theta)
   qcdet <- determinant(Q_p_C,logarithm = TRUE)
-  term4 <- -(1/2)*as.numeric(qcdet$modulus * qcdet$sign) # The gaussian approx evaluated at conditional mode
-  # term4 <- -(1/2) * as.numeric(qcdet$modulus) # (original)
+  # term4 <- -(1/2)*as.numeric(qcdet$modulus * qcdet$sign) # The gaussian approx evaluated at conditional mode
+  term4 <- -(1/2) * as.numeric(qcdet$modulus) # (original)
   as.numeric(term1 + term2_det + term2 + term3 + term4)
 }
 
