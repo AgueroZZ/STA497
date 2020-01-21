@@ -858,13 +858,14 @@ hessian_log_posterior_W <- function(W,theta = NULL,Q = NULL,model_data) {
 #  term4 <- -(1/2) * as.numeric(qcdet$modulus)
 #  as.numeric(term1 + term2_det + term2 + term3 + term4)
 #}
-log_posterior_theta <- function(theta,W,model_data,Q = NULL) {
+log_posterior_theta <- function(theta,W,model_data,Q = NULL, buffer = exp(9)) {
   # W is the mode of log_posterior_W(theta)
   if (is.null(Q)) {
     Q <- Q_matrix(theta,model_data)
   }
   Qe <- eigen(Q,symmetric = TRUE,only.values = TRUE)$values
-  term2_det <- (1/2) * sum(log(Qe[Qe > 1e-06]))
+  Qe[length(Qe)] <- Qe[length(Qe)] + 1/buffer
+  term2_det <- (1/2) * sum(log(Qe))
   Q_p_C <- -1 * hessian_log_posterior_W(W,Q = Q,model_data = model_data)
   term1 <- log_likelihood(W,model_data)
   # dt <- determinant(Q,logarithm = TRUE) # For this, we DO need the determinant (original)
@@ -877,8 +878,6 @@ log_posterior_theta <- function(theta,W,model_data,Q = NULL) {
   term4 <- -(1/2) * as.numeric(qcdet$modulus) # (original)
   as.numeric(term1 + term2_det + term2 + term3 + term4)
 }
-
-
 
 # Function to compute the log posterior for sigma, the standard deviation
 # sigma = exp(-.5 * theta)

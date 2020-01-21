@@ -217,7 +217,7 @@ ggsave(filename = "~/STA497/data_analysis/PosterSigma_data1.pdf", plot = sigmapo
 
 #Final Comparison:
 
-formula <- inla.surv(times,censoring) ~ -1 + exposure + f(exposure_binned,model = 'rw2')
+formula <- inla.surv(times,censoring) ~ exposure + f(exposure_binned,model = 'rw2',constr = F, extraconstr = list(A=cnsA,e=conse))
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph")
 fhat <- Inlaresult$summary.random$exposure_binned$mean
 
