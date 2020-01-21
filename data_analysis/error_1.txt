@@ -2,8 +2,14 @@ Loading required package: sp
 This is INLA_19.09.03 built 2019-11-29 21:42:55 UTC.
 See www.r-inla.org/contact-us for how to get help.
 To enable PARDISO sparse library; see inla.pardiso()
+Loading required package: nlme
+This is mgcv 1.8-31. For overview type 'help("mgcv-package")'.
 
 Attaching package: ‘dplyr’
+
+The following object is masked from ‘package:nlme’:
+
+    collapse
 
 The following object is masked from ‘package:matrixStats’:
 
@@ -20,9 +26,9 @@ The following objects are masked from ‘package:base’:
 
 Attaching package: ‘tidyr’
 
-The following object is masked from ‘package:Matrix’:
+The following objects are masked from ‘package:Matrix’:
 
-    expand
+    expand, pack, unpack
 
 
 Attaching package: ‘lubridate’
