@@ -858,7 +858,7 @@ hessian_log_posterior_W <- function(W,theta = NULL,Q = NULL,model_data) {
 #  term4 <- -(1/2) * as.numeric(qcdet$modulus)
 #  as.numeric(term1 + term2_det + term2 + term3 + term4)
 #}
-log_posterior_theta <- function(theta,W,model_data,Q = NULL, buffer = exp(9)) {
+log_posterior_theta <- function(theta,W,model_data,Q = NULL, buffer = exp(12)) {
   # W is the mode of log_posterior_W(theta)
   if (is.null(Q)) {
     Q <- Q_matrix(theta,model_data)
