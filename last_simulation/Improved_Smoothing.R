@@ -265,7 +265,7 @@ ggsave(filename = "~/STA497/result/PosterSigma.pdf", plot = sigmapostplot)
 
 
 #Final Comparison:
-formula <- inla.surv(times,censoring) ~ -1+exposure + f(exposure_binned,model = 'rw2',constr = T)
+formula <- inla.surv(times,censoring) ~ exposure + f(exposure_binned,model = 'rw2',constr = T)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph")
 fhat <- Inlaresult$summary.random$exposure_binned$mean
 f.ub <- Inlaresult$summary.random$exposure_binned$`0.975quant`
@@ -273,7 +273,7 @@ f.lb <- Inlaresult$summary.random$exposure_binned$`0.025quant`
 plotINLA <- data.frame(exposure = Inlaresult$summary.random$exposure_binned$ID)
 fit_poly2 <- function(x){
   xx <- poly(x,degree = POLYNOMIAL_DEGREE,raw = T)
-  as.numeric(xx %*% cbind(Inlaresult$summary.fixed[,1]))
+  as.numeric(xx %*% cbind(Inlaresult$summary.fixed[,1][2]))
 }
 mypoly = fit_poly2(plotINLA$exposure) - fit_poly2(plotINLA$exposure[vv])
 meanhere <- fhat-fhat[vv] + mypoly

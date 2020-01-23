@@ -257,4 +257,4 @@ new_compare <- new_compare + geom_line(aes(y = y),colour = "green")
 
 
 
-ggsave(filename = "~/STA497/data_analysis/FinalPlot.pdf", plot = new_compare)
+ggsave(filename = "~/STA497/data_analysis/FinalPlot1.pdf", plot = new_compare)
