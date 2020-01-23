@@ -1,0 +1,45 @@
+Loading required package: sp
+This is INLA_19.09.03 built 2019-11-29 21:42:55 UTC.
+See www.r-inla.org/contact-us for how to get help.
+To enable PARDISO sparse library; see inla.pardiso()
+Loading required package: nlme
+This is mgcv 1.8-31. For overview type 'help("mgcv-package")'.
+
+Attaching package: ‘dplyr’
+
+The following object is masked from ‘package:nlme’:
+
+    collapse
+
+The following object is masked from ‘package:matrixStats’:
+
+    count
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tidyr’
+
+The following objects are masked from ‘package:Matrix’:
+
+    expand, pack, unpack
+
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+Warning message:
+`data_frame()` is deprecated, use `tibble()`.
+This warning is displayed once per session. 
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
