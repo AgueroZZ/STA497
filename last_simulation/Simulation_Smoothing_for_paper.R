@@ -1,7 +1,7 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/1.function_for_PH_Model.R")
 
-cores <- 10
+cores <- 6
 
 set.seed(123)
 tdom <- seq(0, 1000, by=0.001)
@@ -254,7 +254,7 @@ simplot <- tibble(
        x = "Covariate", y = "eta") +
   theme(text = element_text(size = PLOT_TEXT_SIZE))
 
-ggsave(filename = "~/STA497/result/Simulation_withSmoothing_Proposed.pdf",
+ggsave(filename = "~/STA497/SmoothingSimProposd.pdf",
        plot = simplot,
        width = 3,
        height = 3.5)
@@ -268,10 +268,10 @@ priorfunc <- function(x) exp(model_data$theta_logprior(x))
 priorfuncsigma <- function(x) (2/x) * exp(model_data$theta_logprior(-2*log(x)))
 
 thetapostplot <- ggplot(mapping = aes(sim1optlogpost$theta,sim1optlogpost$theta_post)) + geom_line()
-ggsave(filename = "~/STA497/result/Simulation_withSmoothing_PosterTheta.pdf",plot = thetapostplot)
+ggsave(filename = "~/STA497/SmoothingSim_PosterTheta.pdf",plot = thetapostplot)
 
 sigmapostplot <- ggplot(mapping = aes(sim1optlogpost$sigma,sim1optlogpost$sigma_post)) + geom_line()
-ggsave(filename = "~/STA497/result/Simulation_withSmoothing_PosterSigma.pdf", plot = sigmapostplot)
+ggsave(filename = "~/STA497/SmoothingSim_PosterSigma.pdf", plot = sigmapostplot)
 
 
 #Final Comparison:
@@ -304,4 +304,4 @@ new_compare <- simplot + geom_line(aes(y = meanhere)) +labs(title = "Linear Term
                                                             subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = True function ; Black = INLA",
                                                             x = "Covariate", y = "eta")
 
-ggsave(filename = "~/STA497/result/Final_Simulation_withSmoothing_Plot.pdf", plot = new_compare)
+ggsave(filename = "~/STA497/SmoothingSim_FinalPlot.pdf", plot = new_compare)
