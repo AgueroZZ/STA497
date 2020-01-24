@@ -248,8 +248,8 @@ new_compare <- simplot + geom_line(aes(y = meanhere),colour = "blue") +labs(titl
 
 
 x <- sort(unique(model_data$A$exposure$u))
-b <- gam(times~s(exposure,k=50),
-         family=cox.ph(),data=data,weights=censoring,drop.intercept = T)
+b <- gam(times~s(exposure,pc = plotINLA$exposure[vv]),
+         family=cox.ph(),data=data,weights=censoring)
 
 y <- as.numeric(predict.gam(b,data_frame(exposure = x)))-as.numeric(predict.gam(b,data_frame(exposure=plotINLA$exposure[vv])))
 
