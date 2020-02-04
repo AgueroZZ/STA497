@@ -40,6 +40,6 @@ The following object is masked from ‘package:base’:
 Warning message:
 `data_frame()` is deprecated, use `tibble()`.
 This warning is displayed once per session. 
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
+Error in optimize_all_thetas_parallel(theta = thetagrid, model_data = model_data,  : 
+  unused argument (startingvals = rep(0, model_data$Wd))
+Execution halted
