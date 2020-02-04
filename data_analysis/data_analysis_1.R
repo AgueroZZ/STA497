@@ -1,9 +1,9 @@
 source("~/STA497/last_simulation/00-load-packages.R")
-source("~/STA497/last_simulation/1.function_for_PH_Model.R")
+source("~/STA497/last_simulation/SingleTheta_new.R")
 
 set.seed(123)
 
-cores <- 6
+cores <- 8
 RW2BINS <- 50
 POLYNOMIAL_DEGREE <- 1
 PARALLEL_EXECUTION <- TRUE
