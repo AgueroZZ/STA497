@@ -246,14 +246,15 @@ simplot <- tibble(
   theme_light() +
   geom_ribbon(aes(ymin = mymeanlower,ymax = mymeanupper),fill = "orange",alpha = .1) +
   geom_line(aes(y = mymean),colour = 'orange',linetype = 'solid') + 
-  labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
-       subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term;",
+  labs(title = "Comparison of Performance",
+       subtitle = "Orange = Proposed;",
        x = "tpi", y = "eta") +
+  geom_line(aes(y = truefunc(x) - truefunc(x[vv])),colour = 'black',linetype = 'solid') + 
   theme(text = element_text(size = PLOT_TEXT_SIZE))
 
 
-new_compare <- simplot + geom_line(aes(y = meanhere),colour = "blue") +labs(title = "Linear Term vs Liner Term plus Smooth Term curve",
-                                                                            subtitle = "Red = Linear Term; Orange = Linear Term + Smooth Term; Blue = INLA ; Green = GAM",
+new_compare <- simplot + geom_line(aes(y = meanhere),colour = "blue") +labs(title = "Comparison of Performance",
+                                                                            subtitle = "Orange = Proposed; Blue = INLA ; Green = GAM ; Black = True",
                                                                             x = "Covariate", y = "eta")
 
 new_compare <- new_compare + geom_line(aes(y = y),colour = "green")
