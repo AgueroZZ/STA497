@@ -847,14 +847,11 @@ log_posterior_theta <- function(theta,W,model_data,Q = NULL) {
   if (is.null(Q)) {
     Q <- Q_matrix(theta,model_data)
   }
-  
-  Qe <- eigen(Q,symmetric = TRUE,only.values = T)$values
-  term2_det <- (1/2) * sum(log(Qe))
   Q_p_C <- -1 * hessian_log_posterior_W(W,Q = Q,model_data = model_data)
   term1 <- log_likelihood(W,model_data)
-  # dt <- determinant(Q,logarithm = TRUE) # For this, we DO need the determinant (original)
+  dt <- determinant(Q,logarithm = TRUE) # For this, we DO need the determinant (original)
   # term2_det <- (1/2) * as.numeric(dt$modulus * dt$sign)
-  # term2_det <- (1/2) * as.numeric(dt$modulus) (original)
+  term2_det <- (1/2) * as.numeric(dt$modulus) #(original)
   term2 <- logprior_W(W,theta,model_data) # Doesn't contain the determinant
   term3 <- model_data$theta_logprior(theta)
   qcdet <- determinant(Q_p_C,logarithm = TRUE)
@@ -862,6 +859,8 @@ log_posterior_theta <- function(theta,W,model_data,Q = NULL) {
   term4 <- -(1/2) * as.numeric(qcdet$modulus) # (original)
   as.numeric(term1 + term2_det + term2 + term3 + term4)
 }
+
+
 # Function to compute the log posterior for sigma, the standard deviation
 # sigma = exp(-.5 * theta)
 # jacobian is 2/sigma
