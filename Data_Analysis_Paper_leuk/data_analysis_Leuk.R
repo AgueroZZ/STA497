@@ -3,7 +3,7 @@ source("~/STA497/last_simulation/SingleTheta_new.R")
 
 set.seed(123)
 
-cores <- detectCores()
+options(mc.cores=10L)
 RW2BINS <- 50
 POLYNOMIAL_DEGREE <- 1
 PARALLEL_EXECUTION <- TRUE
