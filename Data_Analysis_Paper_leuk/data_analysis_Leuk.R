@@ -3,7 +3,8 @@ source("~/STA497/last_simulation/SingleTheta_new.R")
 
 set.seed(123)
 
-options(mc.cores=10L)
+options(mc.cores = 10L)
+cores <- 10
 RW2BINS <- 50
 POLYNOMIAL_DEGREE <- 1
 PARALLEL_EXECUTION <- TRUE
@@ -29,7 +30,7 @@ model_data <- list(
 
 
 
-model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 2.5) {
+model_data$theta_logprior <- function(theta,prior_alpha = .01,prior_u = 0.1) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -166,7 +167,7 @@ cnsA1 <- matrix(rep(0,RW2BINS),nrow = 1)
 cnsA1[model_data$vectorofcolumnstoremove] <- 1
 conse <- matrix(0, nrow = 1, ncol = 1)
 prior.prec <- list(prec = list(prior = "pc.prec",
-                               param = c(2.5, 0.5)))
+                               param = c(0.1, 0.01)))
 
 formula <- inla.surv(times,censoring) ~ sex + age + wbc + f(tpi_binned,model = 'rw2',constr = F, extraconstr = list(A=cnsA1,e=conse), hyper = prior.prec)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE), control.fixed = list(prec = 0.05), data = data, family = "coxph")
@@ -174,7 +175,7 @@ fhat <- Inlaresult$summary.random$tpi_binned$mean
 fhat[model_data$vectorofcolumnstoremove] = 0
 meanhere <- fhat
 plotINLA <- data.frame(tpi = Inlaresult$summary.random$tpi_binned$ID)
-
+plot(fhat,type = 'l')
 
 
 

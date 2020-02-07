@@ -1,7 +1,8 @@
 source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/SingleTheta_new.R")
 
-cores <- 8
+cores <- 4
+options(mc.cores = 4L)
 
 set.seed(123)
 tdom <- seq(0, 1000, by=0.001)
@@ -85,7 +86,7 @@ model_data <- list(
   M = Alist %>% map("A") %>% map(ncol) %>% reduce(sum) - 1,
   n = length(unique(data$ID))
 )
-model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = log(10)) {
+model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 2.5) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -106,7 +107,7 @@ model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 
 
-model_data$thetagrid <- mvQuad::createNIGrid(dim = 1,type = "GLe",level = 50)
+model_data$thetagrid <- mvQuad::createNIGrid(dim = 1,type = "GLe",level = 20)
 mvQuad::rescale(model_data$thetagrid,domain = c(-3,3))
 thetalist <- split(mvQuad::getNodes(model_data$thetagrid),rep(1:nrow(mvQuad::getNodes(model_data$thetagrid))))
 
@@ -216,8 +217,10 @@ cnsA1 <- matrix(rep(0,RW2BINS),nrow = 1)
 cnsA1[model_data$vectorofcolumnstoremove] <- 1
 conse <- matrix(0, nrow = 1, ncol = 1)
 
+prior.prec <- list(prec = list(prior = "pc.prec",
+                               param = c(2.5, 0.5)))
 
-formula <- inla.surv(times,censoring) ~ f(exposure_binned,model = 'rw2',constr = F, extraconstr = list(A=cnsA1,e=conse))
+formula <- inla.surv(times,censoring) ~ f(exposure_binned,model = 'rw2',constr = F, extraconstr = list(A=cnsA1,e=conse), hyper = prior.prec)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE),data = data, family = "coxph")
 fhat <- Inlaresult$summary.random$exposure_binned$mean
 fhat[model_data$vectorofcolumnstoremove] = 0
