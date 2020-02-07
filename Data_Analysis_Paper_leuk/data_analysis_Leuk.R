@@ -30,7 +30,7 @@ model_data <- list(
 
 
 
-model_data$theta_logprior <- function(theta,prior_alpha = .01,prior_u = 0.1) {
+model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 3) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -167,7 +167,7 @@ cnsA1 <- matrix(rep(0,RW2BINS),nrow = 1)
 cnsA1[model_data$vectorofcolumnstoremove] <- 1
 conse <- matrix(0, nrow = 1, ncol = 1)
 prior.prec <- list(prec = list(prior = "pc.prec",
-                               param = c(0.1, 0.01)))
+                               param = c(3, 0.5)))
 
 formula <- inla.surv(times,censoring) ~ sex + age + wbc + f(tpi_binned,model = 'rw2',constr = F, extraconstr = list(A=cnsA1,e=conse), hyper = prior.prec)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE), control.fixed = list(prec = 0.05), data = data, family = "coxph")
