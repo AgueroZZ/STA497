@@ -6,7 +6,6 @@ set.seed(123)
 options(mc.cores = 10L)
 cores <- 10
 RW2BINS <- 50
-POLYNOMIAL_DEGREE <- 1
 PARALLEL_EXECUTION <- TRUE
 N <- nrow(Leuk)
 
@@ -30,7 +29,7 @@ model_data <- list(
 
 
 
-model_data$theta_logprior <- function(theta,prior_alpha = .05,prior_u = 0.3) {
+model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 3) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
@@ -53,7 +52,7 @@ model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$tpi$Ad <- model_data$diffmat %*% model_data$A$tpi$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
 
-model_data$thetagrid <- mvQuad::createNIGrid(dim = 1,type = "GLe",level = 50)
+model_data$thetagrid <- mvQuad::createNIGrid(dim = 1,type = "GLe",level = 40)
 mvQuad::rescale(model_data$thetagrid,domain = c(-2,18))
 thetalist <- split(mvQuad::getNodes(model_data$thetagrid),rep(1:nrow(mvQuad::getNodes(model_data$thetagrid))))
 
@@ -169,7 +168,7 @@ cnsA1 <- matrix(rep(0,RW2BINS),nrow = 1)
 cnsA1[model_data$vectorofcolumnstoremove] <- 1
 conse <- matrix(0, nrow = 1, ncol = 1)
 prior.prec <- list(prec = list(prior = "pc.prec",
-                               param = c(0.3, 0.05)))
+                               param = c(3, 0.5)))
 
 formula <- inla.surv(times,censoring) ~ sex + age + wbc + f(tpi_binned,model = 'rw2',constr = F, extraconstr = list(A=cnsA1,e=conse), hyper = prior.prec)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE), control.fixed = list(prec = 0.05), data = data, family = "coxph")
