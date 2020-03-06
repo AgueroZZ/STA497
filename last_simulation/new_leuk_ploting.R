@@ -2,6 +2,7 @@ source("~/STA497/last_simulation/00-load-packages.R")
 source("~/STA497/last_simulation/SingleTheta_new.R")
 
 set.seed(123)
+PLOT_TEXT_SIZE = 8
 
 options(mc.cores = 10L)
 cores <- 10
