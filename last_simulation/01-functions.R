@@ -387,7 +387,7 @@ hessian_log_likelihood <- function(W,model_data) {
 
 
 # Linear terms only
-Q_matrix_linear <- function(theta,model_data,tau = exp(15),debug = FALSE) {
+Q_matrix_linear <- function(theta,model_data,tau = exp(7),debug = FALSE) {
   # Compute the Q matrix for a model with only linear terms
   # Arguments:
   #   theta: scalar, value of LOG PRECISION log(1/variance) of prior distribution on beta
@@ -426,7 +426,7 @@ Q_matrix_iid_one_component <- function(theta,model_data,covariate) {
 }
 
 
-Q_matrix_iid <- function(theta,model_data,tau = exp(15)) {
+Q_matrix_iid <- function(theta,model_data,tau = exp(7)) {
   # Figure out how many rw2 components there are
   if (is.null(model_data$B)) stop("no iid components in model")
   
@@ -479,7 +479,7 @@ Q_matrix_rw2_one_component <- function(theta,model_data,covariate) {
 }
 
 
-Q_matrix_rw2 <- function(theta,model_data,tau = exp(15), buffer = 1/exp(15)) {
+Q_matrix_rw2 <- function(theta,model_data,tau = exp(7), buffer = 1/exp(7)) {
   # Figure out how many rw2 components there are
   if (is.null(model_data$A)) stop("no rw2 components in model")
   
@@ -505,7 +505,7 @@ Q_matrix_rw2 <- function(theta,model_data,tau = exp(15), buffer = 1/exp(15)) {
   }
   
   Qe <- eigen(Suinv,symmetric = T)
-  index <- which(Qe$values <= (1/exp(15)))
+  index <- which(Qe$values <= (1/exp(10)))
   for (i in 1:length(index)) {
     Suinv <- Suinv + buffer * Qe$vectors[,index[i]] %*% t(Qe$vectors[,index[i]])
   }
@@ -517,7 +517,7 @@ Q_matrix_rw2 <- function(theta,model_data,tau = exp(15), buffer = 1/exp(15)) {
 }
 
 # Q matrix for model containing both linear and rw2 terms
-Q_matrix_both_rw2_linear <- function(theta,model_data,tau = exp(15) , buffer = 1/exp(15)) {
+Q_matrix_both_rw2_linear <- function(theta,model_data,tau = exp(7) , buffer = 1/exp(7)) {
 
   if (is.null(model_data$A)) stop("no rw2 components in model")
   
@@ -544,7 +544,7 @@ Q_matrix_both_rw2_linear <- function(theta,model_data,tau = exp(15) , buffer = 1
   }
   
   Qe <- eigen(Suinv,symmetric = T)
-  index <- which(Qe$values <= (1/exp(15)))
+  index <- which(Qe$values <= (1/exp(12)))
   
   for (i in 1:length(index)) {
     Suinv <- Suinv + buffer * Qe$vectors[,index[i]] %*% t(Qe$vectors[,index[i]])
@@ -568,7 +568,7 @@ Q_matrix_both_rw2_linear <- function(theta,model_data,tau = exp(15) , buffer = 1
   )
 }
 
-Q_matrix_both_rw2_iid <- function(theta,model_data,tau = exp(15),buffer = 1/exp(15)) {
+Q_matrix_both_rw2_iid <- function(theta,model_data,tau = exp(7),buffer = 1/exp(7)) {
 
 
   if (is.null(model_data$A)) stop("no rw2 components in model")
@@ -596,7 +596,7 @@ Q_matrix_both_rw2_iid <- function(theta,model_data,tau = exp(15),buffer = 1/exp(
   }
   
   Qe <- eigen(Suinv,symmetric = T)
-  index <- which(Qe$values <= (1/exp(15)))
+  index <- which(Qe$values <= (1/exp(12)))
   
   for (i in 1:length(index)) {
     Suinv <- Suinv + buffer * Qe$vectors[,index[i]] %*% t(Qe$vectors[,index[i]])
@@ -631,7 +631,7 @@ Q_matrix_both_rw2_iid <- function(theta,model_data,tau = exp(15),buffer = 1/exp(
 }
 
 
-Q_matrix_both_iid_linear <- function(theta,model_data,tau = exp(15)) {
+Q_matrix_both_iid_linear <- function(theta,model_data,tau = exp(7)) {
 
   
   if (is.null(model_data$B)) stop("no iid components in model")
@@ -669,7 +669,7 @@ Q_matrix_both_iid_linear <- function(theta,model_data,tau = exp(15)) {
 
 
 # Q matrix for model containing all of linear, rw2 and iid terms
-Q_matrix_all <- function(theta,model_data,tau = exp(15)) {
+Q_matrix_all <- function(theta,model_data,tau = exp(7)) {
   
   if (is.null(model_data$A)) stop("no rw2 components in model")
   
@@ -696,7 +696,7 @@ Q_matrix_all <- function(theta,model_data,tau = exp(15)) {
     Suinv <- Suinv[-model_data$vectorofcolumnstoremove,-model_data$vectorofcolumnstoremove]
   }
   Qe <- eigen(Suinv,symmetric = T)
-  index <- which(Qe$values <= (1/exp(15)))
+  index <- which(Qe$values <= (1/exp(12)))
   
   for (i in 1:length(index)) {
     Suinv <- Suinv + buffer * Qe$vectors[,index[i]] %*% t(Qe$vectors[,index[i]])
@@ -744,7 +744,7 @@ Q_matrix_all <- function(theta,model_data,tau = exp(15)) {
 
 # Make a general function to compute the Q matrix for a model
 # This can be written to just call one of the above... somehow. Maybe as an option inside model_data
-Q_matrix <- function(theta,model_data,tau = exp(15),forcesymm = TRUE) {
+Q_matrix <- function(theta,model_data,tau = exp(7),forcesymm = TRUE) {
   # theta: vector of hyperparameters. The structure of this will depend on the model,
   # as specified by model_data
   if (is.null(model_data$A)) {
@@ -821,7 +821,7 @@ hessian_log_posterior_W <- function(W,theta = NULL,Q = NULL,model_data) {
 # Function to compute the log posterior approximation for theta
 # model_data will have a function theta_logprior() which takes vector theta
 # and evaluates the log of the joint prior
-log_posterior_theta_withbuffer <- function(theta,W,model_data,Q = NULL, buffer = 1/exp(15)) {
+log_posterior_theta_withbuffer <- function(theta,W,model_data,Q = NULL, buffer = 1/exp(10)) {
   # W is the mode of log_posterior_W(theta)
   if (is.null(Q)) {
     Q <- Q_matrix(theta,model_data)

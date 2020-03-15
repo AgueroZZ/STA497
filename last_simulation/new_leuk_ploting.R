@@ -4,10 +4,10 @@ source("~/STA497/last_simulation/01-functions.R")
 set.seed(123)
 PLOT_TEXT_SIZE = 8
 
-options(mc.cores = 10L)
-cores <- 10
+options(mc.cores = 8L)
+cores <- 8
 RW2BINS <- 50
-PARALLEL_EXECUTION <- TRUE
+PARALLEL_EXECUTION <- T
 N <- nrow(Leuk)
 
 data <- sample_n(Leuk, N, replace = FALSE, weight = NULL, .env = NULL)
@@ -54,7 +54,7 @@ model_data$A$tpi$Ad <- model_data$diffmat %*% model_data$A$tpi$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
 
 model_data$thetagrid <- mvQuad::createNIGrid(dim = 1,type = "GLe",level = 40)
-mvQuad::rescale(model_data$thetagrid,domain = c(-2,18))
+mvQuad::rescale(model_data$thetagrid,domain = c(0,16))
 thetalist <- split(mvQuad::getNodes(model_data$thetagrid),rep(1:nrow(mvQuad::getNodes(model_data$thetagrid))))
 
 
@@ -108,7 +108,7 @@ thetapostplot1 <- margpost1$margpost %>%
   mutate(theta_post = exp(thetalogmargpost)) %>%
   ggplot(aes(x = theta)) +
   theme_classic() +
-  geom_line(aes(y = theta_post),colour = "black",size = 1) +
+  geom_line(aes(y = theta_post),colour = "black",size = 0.5) +
   geom_line(aes(y = priorfunc(theta)),colour = "black",linetype = "dashed",size = 0.5) +
   # coord_cartesian(xlim = c(0,20)) +
   labs(y = "Density",x = "") +
@@ -118,11 +118,17 @@ sigmapostplot1 <- margpost1$margpost %>%
   mutate(sigma_post = exp(sigmalogmargpost)) %>%
   ggplot(aes(x = sigma)) +
   theme_classic() +
-  geom_line(aes(y = sigma_post),colour = "black",size = 1) +
+  geom_line(aes(y = sigma_post),colour = "black",size = 0.5) +
   geom_line(aes(y = priorfuncsigma(sigma)),colour = "black",linetype = "dashed",size = 0.5) +
   labs(x = "",y = "Density") +
   theme(text = element_text(size = PLOT_TEXT_SIZE))
 
+a <- margpost1$margpost %>%
+  mutate(sigma_post = exp(sigmalogmargpost))
+sigma <- as.numeric(a$sigma)[-c(1:30)]
+sigma_dens <- as.numeric(a$sigma_post)[-c(1:30)]
+dddd <- data.frame(sigma = sigma, sigma_dens = sigma_dens)
+ggplot(data = dddd, aes(x = sigma, y = sigma_dens)) + geom_line(aes(y = sigma_dens),colour = "black",size = 1)
 
 
 #Ploting:
