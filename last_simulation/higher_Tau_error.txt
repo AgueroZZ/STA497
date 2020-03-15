@@ -40,7 +40,7 @@ The following object is masked from ‘package:base’:
 Warning message:
 `data_frame()` is deprecated, use `tibble()`.
 This warning is displayed once per session. 
-Error: Result 2 must be a single double, not NULL of length 0
+Error: Result 6 must be a single double, not NULL of length 0
 Backtrace:
     █
  1. ├─global::optimize_all_thetas_parallel(...)
@@ -54,5 +54,5 @@ Backtrace:
  9.     └─purrr:::stop_bad_type(...)
 In addition: Warning message:
 In parallel::mclapply(theta, do_opt) :
-  scheduled cores 3, 2, 8, 6, 7, 10 encountered errors in user code, all values of the jobs will be affected
+  scheduled cores 6 encountered errors in user code, all values of the jobs will be affected
 Execution halted
