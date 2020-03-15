@@ -133,7 +133,6 @@ ggplot(data = dddd, aes(x = sigma, y = sigma_dens)) + geom_line(aes(y = sigma_de
 
 #Ploting:
 ggsave(filename = "~/STA497/Leuk_PosterTheta.pdf",plot = thetapostplot1)
-ggsave(filename = "~/STA497/Leuk_PosterSigma.pdf", plot = sigmapostplot1)
 
 
 
@@ -175,7 +174,7 @@ cnsA1 <- matrix(rep(0,RW2BINS),nrow = 1)
 cnsA1[model_data$vectorofcolumnstoremove] <- 1
 conse <- matrix(0, nrow = 1, ncol = 1)
 prior.prec <- list(prec = list(prior = "pc.prec",
-                               param = c(2, 0.5)))
+                               param = c(3, 0.5)))
 
 formula <- inla.surv(times,censoring) ~ sex + age + wbc + f(tpi_binned,model = 'rw2',constr = F, extraconstr = list(A=cnsA1,e=conse), hyper = prior.prec)
 Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE), control.fixed = list(prec = 0.05), data = data, family = "coxph")
@@ -209,13 +208,32 @@ simplot <- tibble(
   geom_line(aes(y = mymeanupper),colour = "black",linetype = "blank") +
   geom_line(aes(y = mymeanlower),colour = "black",linetype = "blank") +
   geom_line(aes(y = mymean),colour = 'black',linetype = 'solid') + 
-  geom_line(aes(y = truefunc(x) - truefunc(x[vv])),colour = 'black',linetype = 'dotdash') + 
-  theme(text = element_text(size = PLOT_TEXT_SIZE))
+  theme_classic()
 
 
 new_compare <- simplot + geom_line(aes(y = meanhere),colour = "black",linetype = "dashed") 
-
-
+new_compare <- new_compare + geom_line(aes(y = y),colour = "black",linetype = "dotdash") 
 ggsave(filename = "~/STA497/leuk_FinalPlot.pdf", plot = new_compare)
+
+
+
+
+
+datainla <- data_frame(x = Inlaresult$marginals.hyperpar$`Precision for tpi_binned`[,1], y = Inlaresult$marginals.hyperpar$`Precision for tpi_binned`[,2])
+sigma <- 1/sqrt(datainla$x)
+sigma_dens <- 2*(sigma^(-3))*datainla$y
+datainla_sigma <- data_frame(sigma = sigma[-c(1:8)], sigma_dens = sigma_dens[-c(1:8)])
+
+sigmapostplot1 <- margpost1$margpost %>%
+  mutate(sigma_post = exp(sigmalogmargpost)) %>%
+  ggplot(aes(x = sigma)) +
+  theme_classic() +
+  geom_line(aes(y = sigma_post),colour = "black",linetype = "solid",size = 0.5) +
+  labs(x = "",y = "") +
+  geom_line(aes(y = priorfuncsigma(sigma)),colour = 'black',linetype = 'dashed',size = 0.5) + 
+  geom_line(data = datainla_sigma, aes(y = sigma_dens, x = sigma),colour = 'black',linetype = 'dotdash',size = 0.5)
+ggsave(filename = "~/STA497/Leuk_PosterSigma.pdf", plot = sigmapostplot1)
+
+
 
 brinla::bri.basehaz.plot(Inlaresult)
