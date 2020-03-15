@@ -1,5 +1,5 @@
 source("~/STA497/last_simulation/00-load-packages.R")
-source("~/STA497/last_simulation/SingleTheta_new.R")
+source("~/STA497/last_simulation/01-functions.R")
 
 set.seed(123)
 PLOT_TEXT_SIZE = 8
