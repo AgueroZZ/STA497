@@ -208,6 +208,8 @@ simplot <- tibble(
   geom_line(aes(y = mymeanupper),colour = "black",linetype = "blank") +
   geom_line(aes(y = mymeanlower),colour = "black",linetype = "blank") +
   geom_line(aes(y = mymean),colour = 'black',linetype = 'solid') + 
+  xlab("tpi") +
+  ylab("risk function") + 
   theme_classic()
 
 
