@@ -1,0 +1,2021 @@
+Finished creating model data!
+Performing optimization, start time:  20:36:09 
+Optimizing with theta = 0.01409832 
+Optimizing with theta = 0.07419009 
+Optimizing with theta = 0.1819204 
+Optimizing with theta = 0.3366654 
+Optimizing with theta = 0.5374975 
+Optimizing with theta = 0.7832095 
+Optimizing with theta = 1.072324 
+Optimizing with theta = 1.403102 
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877001   29.282403     Continuing - TR expand     0.000080        3         Intersect TR bound
+  30   5458.877001   29.279014     Continuing - TR expand     0.000080        3         Intersect TR bound
+  30   5458.877001   29.281119     Continuing - TR expand     0.000080        3         Intersect TR bound
+  30   5458.877001   29.275751     Continuing - TR expand     0.000080        3         Intersect TR bound
+  30   5458.877001   29.251125     Continuing - TR expand     0.000080        3         Intersect TR bound
+  30   5458.877001   29.263085     Continuing - TR expand     0.000080        3         Intersect TR bound
+  30   5458.877001   29.283062     Continuing - TR expand     0.000080        3         Intersect TR bound
+  30   5458.877001   29.270759     Continuing - TR expand     0.000080        3         Intersect TR bound
+  40   5457.719461   77.669548   Continuing - TR contract     0.021997        9         Intersect TR bound
+  40   5457.756451 1360.836093   Continuing - TR contract     0.021997       11         Intersect TR bound
+  40   5456.37194213051.346557   Continuing - TR contract     0.043995       12         Intersect TR bound
+  40   5455.515531  193.902368   Continuing - TR contract     0.087990       17         Intersect TR bound
+  40   5456.363476  269.306615   Continuing - TR contract     0.087990       17         Intersect TR bound
+  40   5451.346384  422.762326     Continuing - TR expand     0.527939       13         Intersect TR bound
+  40   5457.707133 1493.466649   Continuing - TR contract     0.021997        8         Intersect TR bound
+  50   5454.288163   57.461366   Continuing - TR contract     0.111362       11         Negative curvature
+  40   5456.506134 1315.147378   Continuing - TR contract     0.043995       16         Intersect TR bound
+  50   5454.244293   68.907247                 Continuing     0.004125        4         Intersect TR bound
+  50   5453.289764  157.490631     Continuing - TR expand     0.668173       12         Intersect TR bound
+  50   5452.522357  663.225052                 Continuing     0.004125        5         Intersect TR bound
+  50   5451.972457  218.842714   Continuing - TR contract     0.074241       14         Intersect TR bound
+  50   5450.453306  581.534597   Continuing - TR contract     0.037121        4         Negative curvature
+  60   5452.029332   55.766175     Continuing - TR expand     0.046981        7         Intersect TR bound
+  60   5452.929750  199.882072   Continuing - TR contract     0.020880       10         Intersect TR bound
+  50   5433.780094 7463.201368                 Continuing     0.890897       27         Intersect TR bound
+  60   5450.269381 1887.570536                 Continuing     0.020880        5         Intersect TR bound
+  60   5449.501063   79.126978   Continuing - TR contract     0.020880       12         Intersect TR bound
+  60   5437.214137  390.346989                 Continuing     0.031321        5         Intersect TR bound
+  50   5454.275505   60.522920     Continuing - TR expand     0.074241        7         Intersect TR bound
+  60   5447.851928 6911.466117   Continuing - TR contract     0.187924       13         Intersect TR bound
+  70   5447.846265 5106.186154     Continuing - TR expand     0.713523        9         Intersect TR bound
+  70   5448.267246 1467.703394                 Continuing     0.002936        2         Intersect TR bound
+  70   5447.155074 2428.970292     Continuing - TR expand     0.035236        7         Intersect TR bound
+  60   5419.360141  130.401852   Continuing - TR contract     0.031321       12         Intersect TR bound
+  70   5428.456131  194.838220   Continuing - TR contract     0.079280       16         Intersect TR bound
+  70   5436.87277149295.089215   Continuing - TR contract     1.268485       35         Intersect TR bound
+  60   5445.904699   94.824757   Continuing - TR contract     0.375847       22         Intersect TR bound
+  80   5423.279728  137.676279                 Continuing     0.033446        7         Intersect TR bound
+  70   5436.26234229416.093798   Continuing - TR contract     0.158561       17         Intersect TR bound
+  70   5418.470343   70.886332                 Continuing     0.004404        4         Intersect TR bound
+  80   5421.733974  530.051774   Continuing - TR contract     0.535142       18         Intersect TR bound
+  80   5418.590903  263.205037                 Continuing     0.133786       17         Intersect TR bound
+  80   5430.55570116243.432108   Continuing - TR contract     0.089190       19         Intersect TR bound
+  80   5416.579201  291.081823     Continuing - TR expand     6.421704       29         Intersect TR bound
+  90   5420.337764  127.122242   Continuing - TR contract     0.056441        5         Intersect TR bound
+  70   5442.353650  569.645433                 Continuing     0.052854       12         Intersect TR bound
+  80   5426.732670  466.773741     Continuing - TR expand     0.802713       16         Intersect TR bound
+  90   5370.03372617855.007825   Continuing - TR contract     0.037627        9         Intersect TR bound
+  90   5411.029856  911.318747   Continuing - TR contract     0.012542        4         Negative curvature
+  90   5415.698436   80.480861     Continuing - TR expand     0.056441        8         Intersect TR bound
+  80   5413.015708   85.763158   Continuing - TR contract     0.066893       12         Intersect TR bound
+  90   5422.456801 8383.947837   Continuing - TR contract     0.225763       12         Negative curvature
+ 100   5419.959308   14.101617     Continuing - TR expand     0.007937        5         Intersect TR bound
+  90   5417.820254   71.009261     Continuing - TR expand     0.028220        4         Intersect TR bound
+ 100   5366.095247  628.569067   Continuing - TR contract     0.005291        3         Intersect TR bound
+ 100   5409.752475   86.616066   Continuing - TR contract     0.031748       12         Intersect TR bound
+  90   5411.376224   44.035610   Continuing - TR contract     0.009407        4         Negative curvature
+ 100   5412.187657   86.726955   Continuing - TR contract     0.142866        2         Negative curvature
+ 100   5419.937556   64.828689                 Continuing     0.005291        5         Intersect TR bound
+  80   5397.11113358182.493537   Continuing - TR contract     4.816278        4         Negative curvature
+ 110   5408.580887  211.271920                 Continuing     0.080362       12         Intersect TR bound
+ 100   5416.108050  173.112817     Continuing - TR expand     0.071433        9         Intersect TR bound
+ 110   5409.469763   65.439432                 Continuing     0.002232        5         Intersect TR bound
+  90   5393.824614  172.126907                 Continuing     0.018814        5         Intersect TR bound
+ 110   5411.809285   60.016497     Continuing - TR expand     0.060271        5         Intersect TR bound
+ 110   5363.650730   52.112909   Continuing - TR contract     0.017858       12         Intersect TR bound
+ 110   5418.917524 3356.603341   Continuing - TR contract     0.080362        5         Negative curvature
+ 120   5406.959137   13.414000   Continuing - TR contract     0.005650        4         Intersect TR bound
+ 100   5399.993029  204.380880     Continuing - TR expand     1.714388       22         Intersect TR bound
+ 110   5412.727024 1275.371884                 Continuing     0.060271       10         Intersect TR bound
+ 120   5407.749505  111.670702     Continuing - TR expand     0.203416       10         Intersect TR bound
+ 120   5417.831320   62.665621     Continuing - TR expand     0.203416        9         Intersect TR bound
+ 120   5362.971197   40.061658     Continuing - TR expand     0.090407        7         Intersect TR bound
+ 100   5389.988523   63.267575                 Continuing     0.095244       13         Intersect TR bound
+ 120   5402.990680  428.036341     Continuing - TR expand     0.305124       12         Intersect TR bound
+ 130   5400.684063  312.735814                 Continuing     0.171632       16         Intersect TR bound
+ 110   5397.948858   46.236385   Continuing - TR contract     0.020090        9         Intersect TR bound
+ 130   5361.756515  757.619507     Continuing - TR expand     0.076281       10         Intersect TR bound
+ 130   5401.525316   24.276779     Continuing - TR expand     0.021454        4         Intersect TR bound
+ 120   5394.931510  328.843945   Continuing - TR contract     0.076281       17         Intersect TR bound
+ 130   5409.225204   67.695192     Continuing - TR expand     0.171632       13         Intersect TR bound
+ 130   5382.455754 9667.986722   Continuing - TR contract     0.171632       24         Intersect TR bound
+ 110   5389.322887   19.847811   Continuing - TR contract     0.004465        7         Intersect TR bound
+ 140   5397.005532   56.277178   Continuing - TR contract     0.144815       12         Intersect TR bound
+ 140   5361.068363   35.939932     Continuing - TR expand     0.032181        7         Intersect TR bound
+ 120   5397.100062  126.127089   Continuing - TR contract     0.016951        9         Intersect TR bound
+ 140   5394.589425  139.108816   Continuing - TR contract     0.027153        5         Negative curvature
+ 140   5409.025444   42.278676                 Continuing     0.004023        5         Intersect TR bound
+ 130   5389.694038 2991.866631     Continuing - TR expand     0.042908        9         Intersect TR bound
+ 140   5366.436529  222.882464   Continuing - TR contract     0.048272       14         Intersect TR bound
+ 150   5360.556014   25.905946     Continuing - TR expand     0.054306        9         Intersect TR bound
+ 130   5396.474463  539.337600   Continuing - TR contract     0.002384        4         Negative curvature
+ 140   5389.671195  160.310001     Continuing - TR expand     0.000503        3         Intersect TR bound
+ 120   5381.784391  719.678025                 Continuing     0.813665       31         Intersect TR bound
+ 150   5393.760730 1061.025932     Continuing - TR expand     0.733125       12         Intersect TR bound
+ 150   5390.956681 1258.039129   Continuing - TR contract     0.274922       17         Intersect TR bound
+ 150   5399.393736  181.478044   Continuing - TR contract     0.122188        4         Negative curvature
+ 150   5365.482079  195.224051   Continuing - TR contract     0.003394        1         Negative curvature
+ 160   5358.645307  141.580362     Continuing - TR expand     0.824766       17         Intersect TR bound
+ 130   5377.873113   90.658051   Continuing - TR contract     0.009535       10         Intersect TR bound
+ 160   5397.763584   96.675722     Continuing - TR expand     0.309287       13         Intersect TR bound
+ 150   5380.104030  482.348544   Continuing - TR contract     0.824766       36         Intersect TR bound
+ 140   5393.60437520996.438111     Continuing - TR expand     0.434444       15         Intersect TR bound
+ 160   5388.054187   98.760766   Continuing - TR contract     0.231965       22         Intersect TR bound
+ 160   5384.211554   39.453260   Continuing - TR contract     0.154644       18         Intersect TR bound
+ 140   5377.483282   46.896505     Continuing - TR expand     0.008045        4         Intersect TR bound
+ 160   5363.901991 1194.963823   Continuing - TR contract     0.051548       16         Intersect TR bound
+ 170   5354.251775   69.019019   Continuing - TR contract     0.057991       17         Intersect TR bound
+ 170   5386.189450 3202.251385                 Continuing     0.016310        6         Intersect TR bound
+ 170   5389.966810  601.701436   Continuing - TR contract     0.021747        5         Intersect TR bound
+ 160   5375.31036811074.194274                 Continuing     0.077322       16         Intersect TR bound
+ 170   5375.517506   91.002276   Continuing - TR contract     0.021747       10         Intersect TR bound
+ 180   5354.056066   18.177058     Continuing - TR expand     0.008155        7         Intersect TR bound
+ 180   5385.355096   63.387946   Continuing - TR contract     0.041285        8         Intersect TR bound
+ 150   5377.97699321342.015517                 Continuing     0.733125       28         Intersect TR bound
+ 150   5374.821020  156.326606     Continuing - TR expand     0.122188        8         Intersect TR bound
+ 180   5373.68318323814.101171   Continuing - TR contract     0.009174        4         Negative curvature
+ 170   5373.088504   20.895067     Continuing - TR expand     0.016310        4         Intersect TR bound
+ 160   5374.733312  698.125706   Continuing - TR contract     0.004296        8         Intersect TR bound
+ 180   5372.888545   21.191147     Continuing - TR expand     0.041285        5         Intersect TR bound
+ 190   5352.819668 3138.279464     Continuing - TR expand     0.743127       13         Intersect TR bound
+ 180   5368.033731  224.601738     Continuing - TR expand     7.926691       39         Intersect TR bound
+ 190   5373.018054  755.923390   Continuing - TR contract     0.023223        7         Negative curvature
+ 190   5360.418646  102.505668   Continuing - TR contract     2.508055       38         Negative curvature
+ 160   5368.907219  801.461192   Continuing - TR contract     0.017183       12         Intersect TR bound
+ 170   5374.688097  462.273099     Continuing - TR expand     0.003624        4         Intersect TR bound
+ 170   5349.523852  372.220991   Continuing - TR contract     0.260961       55         Intersect TR bound
+ 200   5370.972284   72.148623     Continuing - TR expand     0.705390       14         Intersect TR bound
+ 200   5359.388996 4385.496477   Continuing - TR contract     0.004899        2         Intersect TR bound
+ 190   5364.540372 6993.729749     Continuing - TR expand     0.092891        7         Intersect TR bound
+ 190   5362.888235  122.907753                 Continuing     0.418009       33         Intersect TR bound
+ 170   5368.570495 2625.572920   Continuing - TR contract     0.002416        6         Negative curvature
+ 180   5371.360361  176.512478   Continuing - TR contract     0.055046       17         Intersect TR bound
+ 200   5340.688684   98.396074     Continuing - TR expand     0.209005       11         Intersect TR bound
+ 180   5344.198460   79.178745   Continuing - TR contract     0.036698       13         Intersect TR bound
+ 210   5365.72999717554.167860   Continuing - TR contract     0.892760       22         Intersect TR bound
+ 180   5368.203498   59.214298                 Continuing     0.012233        7         Intersect TR bound
+ 200   5359.438208  865.583648   Continuing - TR contract     0.029391       16         Intersect TR bound
+ 200   5355.89939210512.797994                 Continuing     0.940520       54         Intersect TR bound
+ 210   5338.783272 1287.711072     Continuing - TR expand     0.088174        9         Intersect TR bound
+ 210   5348.706048   63.775703   Continuing - TR contract     0.297587       37         Intersect TR bound
+ 190   5342.659204   79.828798   Continuing - TR contract     0.010321        6         Negative curvature
+ 190   5352.932231 5511.737615   Continuing - TR contract     0.278673       14         Negative curvature
+ 210   5358.583862 2172.078499                 Continuing     0.001378        3         Intersect TR bound
+ 190   5363.858806 1307.487975   Continuing - TR contract     0.030964       16         Intersect TR bound
+ 220   5337.959079   13.714005     Continuing - TR expand     0.074397       16         Intersect TR bound
+ 220   5341.589826   28.609831     Continuing - TR expand     3.013064       43         Intersect TR bound
+ 220   5335.111763   15.384569   Continuing - TR contract     0.753266       17         Negative curvature
+ 200   5339.786899   77.348327   Continuing - TR contract     0.104502       21         Intersect TR bound
+ 230   5341.242334 1413.806716     Continuing - TR expand     0.035309        7         Intersect TR bound
+ 200   5339.54711911118.183556     Continuing - TR expand     8.464684       88         Intersect TR bound
+ 230   5334.828060   33.568668                 Continuing     0.017655        5         Negative curvature
+ 200   5357.850569  841.255159     Continuing - TR expand     1.881041       16         Intersect TR bound
+ 220   5345.70444311825.896323   Continuing - TR contract     2.259798       60         Negative curvature
+ 230   5336.917770  229.639821     Continuing - TR expand     1.129899       35         Intersect TR bound
+ 210   5354.621874   85.581326   Continuing - TR contract     0.396782       20         Intersect TR bound
+ 210   5338.594827 1817.853573                 Continuing     0.058783       20         Intersect TR bound
+ 240   5334.259695   57.137653     Continuing - TR expand     0.268130       12         Intersect TR bound
+ 240   5337.875092   30.840769     Continuing - TR expand     1.072521       34         Intersect TR bound
+ 210   5337.094624   91.072764   Continuing - TR contract     0.033065        5         Negative curvature
+ 220   5337.00507023659.581161     Continuing - TR expand    12.052255       46         Intersect TR bound
+ 230   5339.307410  655.108494   Continuing - TR contract     0.317784       12         Negative curvature
+ 220   5338.132516   20.390191   Continuing - TR contract     0.049598       27         Negative curvature
+ 250   5335.83388212897.026150     Continuing - TR expand     0.075412       11         Intersect TR bound
+ 250   5333.538782 1312.827819     Continuing - TR expand     0.678705       30         Intersect TR bound
+ 210   5338.501224  731.195198   Continuing - TR contract     0.793564       13         Negative curvature
+ 230   5335.052587  523.517304     Continuing - TR expand     0.847424       30         Intersect TR bound
+ 240   5338.959888   24.248204   Continuing - TR contract     0.067033       10         Negative curvature
+ 220   5336.230675   26.324916   Continuing - TR contract     0.055797       17         Intersect TR bound
+ 240   5329.671910   46.980817   Continuing - TR contract     0.953352        9         Negative curvature
+ 220   5338.222811  938.611750   Continuing - TR contract     0.009300        4         Negative curvature
+ 250   5329.237106  182.380438   Continuing - TR contract     0.067033       17         Negative curvature
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5334.991869  735.496563                 Continuing     0.381771       27         Intersect TR bound
+ 230   5335.817985   14.315646     Continuing - TR expand     0.094158       12         Intersect TR bound
+ 240   5333.940712   18.860915   Continuing - TR contract     0.119169        9         Negative curvature
+ 230   5336.656937    6.000996     Continuing - TR expand     0.251089       27         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5332.988256 1714.665756   Continuing - TR contract     0.286329       55         Intersect TR bound
+ 250   5337.538753   34.781115   Continuing - TR contract     0.678705       46         Intersect TR bound
+ 230   5337.003655   20.663183   Continuing - TR contract     0.141237       13         Intersect TR bound
+ 250   5333.875910   24.133906   Continuing - TR contract     0.008379       10         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5327.566929   23.854720                 Continuing     0.037706       12         Intersect TR bound
+ 270   5333.493105  112.669777   Continuing - TR contract     0.966359        9         Negative curvature
+ 240   5336.059475  798.403982     Continuing - TR expand     0.070619       15         Intersect TR bound
+ 240   5335.062473  371.290891   Continuing - TR contract     0.119169       22         Intersect TR bound
+ 240   5336.451948   35.625981   Continuing - TR contract     0.039723       30         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5336.657030   52.112048                 Continuing     0.095443       22         Intersect TR bound
+ 280   5333.193648  195.141757   Continuing - TR contract     0.011325        7         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5333.388242   50.810721     Continuing - TR expand     0.127257       16         Intersect TR bound
+ 270   5331.458418   21.792079   Continuing - TR contract     1.449539       89         Intersect TR bound
+ 250   5334.71840914823.633326   Continuing - TR contract     0.100549       36         Intersect TR bound
+ 270   5326.69956911900.119670   Continuing - TR contract     0.381771       68         Intersect TR bound
+ 270   5335.865065   26.632997     Continuing - TR expand     0.040265        8         Intersect TR bound
+ 250   5335.827816   88.509416   Continuing - TR contract     0.067033       12         Negative curvature
+ 290   5332.444290 1184.620758   Continuing - TR contract     0.343982       39         Intersect TR bound
+ 250   5331.995321   26.777526     Continuing - TR expand     1.072521       51         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5332.552031  445.403306   Continuing - TR contract     0.509029       26         Negative curvature
+ 280   5335.483099 1036.013532     Continuing - TR expand     0.203841       21         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5335.558867   17.670768     Continuing - TR expand     0.339352       27         Intersect TR bound
+ 280   5326.564775   32.679002   Continuing - TR contract     0.008948       13         Intersect TR bound
+ 270   5332.245910   69.781519   Continuing - TR contract     0.053687       23         Intersect TR bound
+ 280   5328.732122   26.000171   Continuing - TR contract     0.203841       62         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5330.892420   72.025511   Continuing - TR contract     0.075412       17         Intersect TR bound
+ 270   5331.746660   19.267116   Continuing - TR contract     0.035791       21         Intersect TR bound
+ 270   5330.421745   11.933852   Continuing - TR contract     0.010605       10         Intersect TR bound
+ 300   5331.362551   14.644086                 Continuing     0.096745       28         Intersect TR bound
+ 270   5333.75015628836.975133   Continuing - TR contract     0.047721       12         Intersect TR bound
+ 280   5327.349854 8823.475341   Continuing - TR contract     0.815365       12         Negative curvature
+ 280   5331.326297   38.473168   Continuing - TR contract     0.090596       40         Intersect TR bound
+ 290   5332.265261   22.724081     Continuing - TR expand     0.257987       14         Intersect TR bound
+ 310   5330.597505    7.111333     Continuing - TR expand     0.081629       16         Intersect TR bound
+ 290   5331.070045  163.303104     Continuing - TR expand     0.152881       24         Intersect TR bound
+ 280   5332.552673    8.144991     Continuing - TR expand     0.040265       17         Intersect TR bound
+ 290   5325.913489   61.497965     Continuing - TR expand     0.687965       40         Intersect TR bound
+ 280   5330.031169   13.204620     Continuing - TR expand     0.322120       35         Intersect TR bound
+ 300   5331.056219   10.311609     Continuing - TR expand     0.010749        7         Intersect TR bound
+ 290   5332.364085    3.807856     Continuing - TR expand     0.016987       11         Intersect TR bound
+ 290   5323.795028   36.843612   Continuing - TR contract     0.257987       67         Intersect TR bound
+ 290   5321.927672   15.049681   Continuing - TR contract     9.784386      638          Reached tolerance
+ 300   5331.376289   15.094774     Continuing - TR expand     0.217676       29         Intersect TR bound
+ 310   5330.918368  978.707551                 Continuing     0.004535        7         Negative curvature
+ 320   5328.703264   20.440292                 Continuing     0.413245       48         Intersect TR bound
+ 300   5332.104393  677.863927     Continuing - TR expand     0.042998       19         Intersect TR bound
+ 290   5328.962063  293.828113                 Continuing     0.271788       47         Intersect TR bound
+ 300   5322.518793 1663.297964     Continuing - TR expand     6.965642      116         Intersect TR bound
+ 310   5331.156999 4713.968425     Continuing - TR expand     0.015305        7         Intersect TR bound
+ 320   5327.423869   80.906419   Continuing - TR contract     1.239735       37         Negative curvature
+ 300   5322.328802 1459.735790                 Continuing     0.870705       80         Intersect TR bound
+ 330   5327.858953   14.172499                 Continuing     0.058113       16         Intersect TR bound
+ 320   5329.393820   73.246619   Continuing - TR contract     0.232450        7         Negative curvature
+ 300   5327.96321911241.432444     Continuing - TR expand     0.687965       47         Intersect TR bound
+ 310   5322.163559   10.330908     Continuing - TR expand     0.489772       27         Intersect TR bound
+ 330   5326.220580  402.680496   Continuing - TR contract     0.174338       67         Intersect TR bound
+ 310   5330.011400  214.732886   Continuing - TR contract     1.306058      106         Intersect TR bound
+ 330   5329.057118  762.812207                 Continuing     0.032688       10         Intersect TR bound
+ 340   5325.708978   13.902206   Continuing - TR contract     0.073549       32         Intersect TR bound
+ 340   5328.847068   14.313256                 Continuing     0.002298        4         Negative curvature
+ 320   5321.594417  762.981191     Continuing - TR expand     0.550993       52         Intersect TR bound
+ 340   5326.079951   56.011339   Continuing - TR contract     0.147097       55         Intersect TR bound
+ 350   5325.321746   20.194507   Continuing - TR contract     0.093085       50         Intersect TR bound
+ 320   5328.816344   16.766396   Continuing - TR contract     0.183664       52         Intersect TR bound
+ 310   5323.440448   49.437242                 Continuing     3.482821      101         Intersect TR bound
+ 330   5321.194220   23.413733   Continuing - TR contract     0.077483       52         Intersect TR bound
+ 350   5327.204777   41.011330   Continuing - TR contract     0.418883       83         Intersect TR bound
+ 350   5323.785554 2994.254725                 Continuing     0.124113       22         Intersect TR bound
+ 360   5324.685655   22.963417   Continuing - TR contract     0.157081       42         Negative curvature
+ 300   5321.867453   26.587885                 Continuing     0.019110        4         Intersect TR bound
+ 330   5327.271559   14.179734     Continuing - TR expand     0.929801       68         Intersect TR bound
+ 340   5320.721082   16.706774   Continuing - TR contract     1.176779      103         Intersect TR bound
+ 360   5323.349442   14.374118   Continuing - TR contract     0.314162       38         Negative curvature
+ 360   5325.245825   93.563994     Continuing - TR expand     1.060297       66         Intersect TR bound
+ 310   5321.644598  930.643952   Continuing - TR contract     0.016124        7         Negative curvature
+ 350   5320.587278   33.936322   Continuing - TR contract     0.041371        5         Negative curvature
+ 340   5327.034380   20.214973                 Continuing     0.065377       35         Intersect TR bound
+ 370   5322.051473   23.945229   Continuing - TR contract     1.590446       40         Negative curvature
+ 360   5320.579674  680.554203     Continuing - TR expand     0.017453       10         Intersect TR bound
+ 320   5321.603439   12.938219     Continuing - TR expand     0.489772       70         Intersect TR bound
+ 310   5320.771381  244.094453   Continuing - TR contract     0.061221       41         Intersect TR bound
+ 380   5321.708844 1217.101744   Continuing - TR contract     0.670969       82         Intersect TR bound
+ 320   5320.993747 3156.985104   Continuing - TR contract     0.081629       68         Intersect TR bound
+ 350   5326.270315    9.913791     Continuing - TR expand     0.496454       47         Intersect TR bound
+ 370   5322.721807 1806.774532   Continuing - TR contract     0.447313      114         Intersect TR bound
+ 370   5321.577187   32.647787   Continuing - TR contract     2.385669      660          Reached tolerance
+ 320   5320.667816   28.221892   Continuing - TR contract     0.025828        1         Negative curvature
+ 330   5320.667816   28.221892   Continuing - TR contract     0.000025        1         Negative curvature
+ 390   5321.634160    7.378653   Continuing - TR contract     0.007863       16         Intersect TR bound
+ 330   5320.772510   11.160692   Continuing - TR contract     0.137748       78         Intersect TR bound
+ 380   5322.150138   47.162774   Continuing - TR contract     0.015726       20         Intersect TR bound
+ 340   5319.996800   49.004303     Continuing - TR expand     0.496454       30         Intersect TR bound
+ 360   5324.379971   23.251335   Continuing - TR contract     3.769946      178         Intersect TR bound
+ 340   5320.760094    1.297125   Continuing - TR contract     0.001614       10         Negative curvature
+ 390   5322.106617    6.513769     Continuing - TR expand     0.079612       21         Intersect TR bound
+ 400   5321.209905    8.061914   Continuing - TR contract     0.716509       98         Intersect TR bound
+ 400   5321.751552  139.709029                 Continuing     0.033586       10         Intersect TR bound
+ 350   5320.752014    3.608620   Continuing - TR contract     0.016344       40         Intersect TR bound
+ 410   5320.802476   22.060211     Continuing - TR expand     1.813663       67         Intersect TR bound
+ 370   5323.942464   17.681130   Continuing - TR contract     0.044179       47         Intersect TR bound
+ 410   5321.481929    7.265717                 Continuing     0.056677       37         Intersect TR bound
+ 360   5320.714767 1577.571235     Continuing - TR expand     0.496454       74         Intersect TR bound
+ 370   5319.497555    8.105143   Continuing - TR contract     0.795223      620          Reached tolerance
+ 380   5321.106648   14.940684   Continuing - TR contract     0.013979       10         Intersect TR bound
+ 380   5323.652485    6.382312                 Continuing     0.037276       39         Intersect TR bound
+ 350   5319.879354  408.450614   Continuing - TR contract     0.418883      197         Intersect TR bound
+ 420   5321.307912  553.237109   Continuing - TR contract     0.143464       57         Intersect TR bound
+ 330   5321.590794    0.938865   Continuing - TR contract     0.005740       50         Intersect TR bound
+ 370   5320.658224    0.537697     Continuing - TR expand     0.104721       63         Intersect TR bound
+ 340   5321.590197    7.460438   Continuing - TR contract     0.002421       40         Intersect TR bound
+ 380   5320.657982    0.676383   Continuing - TR contract     0.001227       12         Negative curvature
+ 390   5321.088386    0.852102   Continuing - TR contract     0.011794       46         Intersect TR bound
+ 360   5319.865511    1.149388   Continuing - TR contract     0.002454        5         Negative curvature
+ 390   5323.345952   20.963196   Continuing - TR contract     0.094355       63         Intersect TR bound
+ 400   5321.088072    2.481860   Continuing - TR contract     0.000415        4         Intersect TR bound
+ 380   5319.471117    5.716456   Continuing - TR contract     0.004660        5         Intersect TR bound
+ 370   5319.864113    4.392543     Continuing - TR expand     0.004142       14         Intersect TR bound
+ 400   5323.170931   10.282676   Continuing - TR contract     0.019903        7         Negative curvature
+ 350   5321.589729    0.298005     Continuing - TR expand     0.002043       17         Intersect TR bound
+ 430   5320.808290   69.231153   Continuing - TR contract     2.178853      566          Reached tolerance
+ 390   5320.632698    3.861250   Continuing - TR contract     0.223656       32         Intersect TR bound
+ 390   5319.437818    2.091083   Continuing - TR contract     0.023589       18         Negative curvature
+ 410   5321.086165    5.829277   Continuing - TR contract     0.037785      124         Intersect TR bound
+ 380   5319.860773    1.143586     Continuing - TR expand     0.062903       33         Intersect TR bound
+ 400   5319.431432    1.841213   Continuing - TR contract     0.009952       16         Negative curvature
+ 400   5320.627934    1.782521   Continuing - TR contract     0.031452       65         Intersect TR bound
+ 360   5321.589673    1.246832     Continuing - TR expand     0.001724       30         Intersect TR bound
+ 410   5322.361495   13.314957   Continuing - TR contract     1.813663        4         Negative curvature
+ 420   5322.346130  126.189274                 Continuing     0.003542        4         Negative curvature
+ 420   5321.085730   21.909538   Continuing - TR contract     0.001328       27         Intersect TR bound
+ 410   5319.428564   23.417392   Continuing - TR contract     0.008397       29         Intersect TR bound
+ 440   5320.634725   41.129764   Continuing - TR contract     0.076600       22         Negative curvature
+ 370   5321.589632    0.069379     Continuing - TR expand     0.002182       51         Intersect TR bound
+ 450   5320.611632  324.193273   Continuing - TR contract     0.010772       24         Intersect TR bound
+ 430   5321.084425   44.204557   Continuing - TR contract     0.040349       21         Negative curvature
+ 380   5321.589619    0.222934   Continuing - TR contract     0.002761       30         Negative curvature
+ 430   5322.207613  315.613545   Continuing - TR contract     0.026899       75         Intersect TR bound
+ 460   5320.273608   71.412468     Continuing - TR expand     5.889545      120         Intersect TR bound
+ 440   5321.084140   14.906001   Continuing - TR contract     0.017022       84         Intersect TR bound
+ 390   5321.589611    0.128626   Continuing - TR contract     0.000388       58         Intersect TR bound
+ 420   5319.425267    0.367685                 Continuing     0.510093      589          Reached tolerance
+ 440   5322.185668    0.963814     Continuing - TR expand     0.011348       22         Intersect TR bound
+ 410   5320.606424    0.265226   Continuing - TR contract     0.955345      699          Reached tolerance
+ 450   5321.083605  242.274368     Continuing - TR expand     0.086175       83         Intersect TR bound
+ 400   5321.589605    6.349866   Continuing - TR contract     0.001966       21         Negative curvature
+ 460   5321.082701    0.247009     Continuing - TR expand     0.006059       21         Intersect TR bound
+ 410   5321.589603    0.051892                 Continuing     0.000276       46         Intersect TR bound
+ 450   5322.175456    1.734257     Continuing - TR expand     0.172351       57         Intersect TR bound
+ 470   5321.082691    1.281403     Continuing - TR expand     0.000426        7         Intersect TR bound
+ 420   5319.599680    6.577990   Continuing - TR contract     0.127523      601          Reached tolerance
+ 420   5321.589593    6.251871                 Continuing     0.001399       71         Intersect TR bound
+ 480   5321.082347    0.005627     Continuing - TR expand     0.232936      556          Reached tolerance
+ 490   5321.082347    0.005627   Continuing - TR contract     0.000227        8         Negative curvature
+ 460   5322.124013    1.244476   Continuing - TR contract     0.145421       30         Negative curvature
+ 470   5320.204928    2.770194   Continuing - TR contract     0.207054      150         Intersect TR bound
+ 500   5321.082347    0.001186   Continuing - TR contract     0.000003       10         Negative curvature
+ 390   5319.831175    0.186996   Continuing - TR contract     0.053075      636          Reached tolerance
+ 430   5321.589576    0.088891   Continuing - TR contract     0.003542       11         Negative curvature
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 510   5321.082347    0.002075     Continuing - TR expand     0.000081       33         Intersect TR bound
+ 480   5320.204447    0.216027   Continuing - TR contract     0.001213       10         Negative curvature
+ 440   5321.589575    0.029265     Continuing - TR expand     0.000249       12         Intersect TR bound
+ 470   5322.119080    1.596036     Continuing - TR expand     0.184048      100         Intersect TR bound
+ 430   5319.576314   48.818407   Continuing - TR contract     0.001494       14         Intersect TR bound
+ 440   5319.574070    0.828851     Continuing - TR expand     0.136178      182         Intersect TR bound
+ 520   5321.082347    0.000387   Continuing - TR contract     0.000001        2         Negative curvature
+ 530   5321.082347    0.003703   Continuing - TR contract     0.000000        7         Intersect TR bound
+
+Iteration has terminated
+ 539   5321.082347    0.003703Radius of trust region is less than stop.trust.radius
+
+ 490   5320.191302    8.178454   Continuing - TR contract     0.221107      685          Reached tolerance
+ 430   5319.425227    0.215989   Continuing - TR contract     0.000996      225         Intersect TR bound
+ 450   5321.589571    0.000920   Continuing - TR contract     0.000420       50         Intersect TR bound
+ 440   5319.425203    0.071412                 Continuing     0.000023        5         Intersect TR bound
+ 400   5319.831163    0.694662     Continuing - TR expand     0.000622       19         Intersect TR bound
+ 460   5321.589571    0.000920   Continuing - TR contract     0.000000       16         Intersect TR bound
+ 470   5321.589571    0.000346   Continuing - TR contract     0.000000       12         Intersect TR bound
+ 450   5319.425201    0.423613   Continuing - TR contract     0.000177        9         Negative curvature
+ 480   5321.589571    0.000475   Continuing - TR contract     0.000000        5         Intersect TR bound
+ 460   5319.425201    0.188840   Continuing - TR contract     0.000025       36         Intersect TR bound
+
+Iteration has terminated
+ 487   5321.589571    0.000475Radius of trust region is less than stop.trust.radius
+
+ 410   5319.831149    6.084803   Continuing - TR contract     0.003149      607          Reached tolerance
+ 420   5320.606424    0.265226   Continuing - TR contract     0.000933       18         Intersect TR bound
+ 470   5319.425201    1.381751   Continuing - TR contract     0.000011       46         Intersect TR bound
+ 480   5319.425201    0.000953     Continuing - TR expand     0.000027       21         Intersect TR bound
+ 430   5320.606387    0.077100     Continuing - TR expand     0.000394       16         Intersect TR bound
+ 440   5320.606372   27.530360   Continuing - TR contract     0.000996       33         Negative curvature
+ 490   5319.425201    0.066799                 Continuing     0.000004       10         Intersect TR bound
+ 500   5319.425201    0.043146   Continuing - TR contract     0.000001       11         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 510   5319.425201    0.000649   Continuing - TR contract     0.000000        7         Intersect TR bound
+
+Iteration has terminated
+ 519   5319.425201    0.000649Radius of trust region is less than stop.trust.radius
+
+ 450   5319.573713    0.086371   Continuing - TR contract     0.000266      549          Reached tolerance
+ 420   5319.831147    1.018210                 Continuing     0.000098       53         Intersect TR bound
+ 480   5322.110775    0.143343   Continuing - TR contract     0.004314      685          Reached tolerance
+ 500   5320.182144    0.444264   Continuing - TR contract     0.002591      600          Reached tolerance
+ 450   5320.606356    0.063562   Continuing - TR contract     0.002522      642          Reached tolerance
+ 430   5319.831147    0.001272     Continuing - TR expand     0.000028       28         Intersect TR bound
+ 460   5319.573708    0.082918     Continuing - TR expand     0.000673       12         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 510   5320.182047    0.038004   Continuing - TR contract     0.000182       58         Intersect TR bound
+ 520   5320.182045    0.011849   Continuing - TR contract     0.000026       21         Intersect TR bound
+ 530   5320.182044    0.043464   Continuing - TR contract     0.000130       54         Intersect TR bound
+ 490   5322.110765    0.024889   Continuing - TR contract     0.000303       79         Intersect TR bound
+ 540   5320.182044    0.007364   Continuing - TR contract     0.000009       10         Negative curvature
+ 500   5322.110765    0.330765     Continuing - TR expand     0.000384       46         Intersect TR bound
+ 440   5319.831147    0.000313   Continuing - TR contract     0.000002      524          Reached tolerance
+ 460   5320.606354    0.000830   Continuing - TR contract     0.000030      694          Reached tolerance
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 510   5322.110764    0.002887     Continuing - TR expand     0.001943      287         Intersect TR bound
+ 470   5319.573696    0.072234   Continuing - TR contract     0.000047       12         Intersect TR bound
+ 520   5322.110764    0.002887   Continuing - TR contract     0.000002       17         Intersect TR bound
+ 480   5319.573694    0.303026   Continuing - TR contract     0.000002        2         Negative curvature
+ 550   5320.182044    0.000525   Continuing - TR contract     0.003324      715          Reached tolerance
+ 530   5322.110764    0.000188                 Continuing     0.000002       26         Intersect TR bound
+ 540   5322.110764    0.030136   Continuing - TR contract     0.000000       21         Intersect TR bound
+ 550   5322.110764    0.030136   Continuing - TR contract     0.000000        3         Intersect TR bound
+
+Iteration has terminated
+ 555   5322.110764    0.003868Radius of trust region is less than stop.trust.radius
+
+ 470   5320.606354    0.000830   Continuing - TR contract     0.000000        2         Intersect TR bound
+ 480   5320.606354    0.107292   Continuing - TR contract     0.000000        3         Intersect TR bound
+
+Iteration has terminated
+ 481   5320.606354    0.107292Radius of trust region is less than stop.trust.radius
+
+ 490   5319.573694    0.013983   Continuing - TR contract     0.000051      143         Intersect TR bound
+ 500   5319.573694    1.353247                 Continuing     0.000001        2         Negative curvature
+ 450   5319.831147    0.000313   Continuing - TR contract     0.000000        1         Intersect TR bound
+
+Iteration has terminated
+ 455   5319.831147    0.000313Radius of trust region is less than stop.trust.radius
+
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 510   5319.573693    0.000946                 Continuing     0.000003       16         Intersect TR bound
+ 520   5319.573693    0.420935     Continuing - TR expand     0.000273       41         Intersect TR bound
+ 560   5320.182044    0.000525   Continuing - TR contract     0.000003       14         Intersect TR bound
+ 570   5320.182044    0.000525   Continuing - TR contract     0.000000        1         Intersect TR bound
+
+Iteration has terminated
+ 575   5320.182044    0.000525Radius of trust region is less than stop.trust.radius
+
+ 530   5319.573693    0.211751                 Continuing     0.000001       11         Intersect TR bound
+ 540   5319.573693    0.002603   Continuing - TR contract     0.000000       21         Intersect TR bound
+ 550   5319.573693    0.002603   Continuing - TR contract     0.000000        3         Intersect TR bound
+
+Iteration has terminated
+ 554   5319.573693    0.000121Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 4.689766 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877015   28.269748     Continuing - TR expand     0.000080        3         Intersect TR bound
+  40   5458.830451   62.705084     Continuing - TR expand     0.003259        5         Intersect TR bound
+  50   5458.228792 1556.403289                 Continuing     0.002750       13         Intersect TR bound
+  60   5457.247007  158.169835                 Continuing     0.012374       19         Intersect TR bound
+  70   5456.435930  567.511734   Continuing - TR contract     0.002610       13         Intersect TR bound
+  80   5453.080374  187.799965   Continuing - TR contract     0.317121       40         Intersect TR bound
+  90   5449.557321 5729.213536   Continuing - TR contract     0.044595       33         Intersect TR bound
+ 100   5446.753779  110.924223     Continuing - TR expand     0.075254       18         Intersect TR bound
+ 110   5445.075837  312.653913   Continuing - TR contract     0.063496       32         Intersect TR bound
+ 120   5440.986732  376.599449   Continuing - TR contract     0.026787       33         Intersect TR bound
+ 130   5396.562066 5331.102836   Continuing - TR contract     4.881988      230          Reached tolerance
+ 140   5369.804953  217.373204   Continuing - TR contract     0.057211       10         Intersect TR bound
+ 150   5365.360053  116.776977                 Continuing     0.096543       32         Intersect TR bound
+ 160   5361.689062   46.591598                 Continuing     0.048272       39         Intersect TR bound
+ 170   5357.987256   32.630247                 Continuing     0.072407       42         Intersect TR bound
+ 180   5354.754425  148.176562   Continuing - TR contract     0.122188       82         Intersect TR bound
+ 190   5351.987932  183.170662                 Continuing     0.034365       40         Intersect TR bound
+ 200   5350.833656  397.018661                 Continuing     0.173974       61         Intersect TR bound
+ 210   5343.248077   31.921727     Continuing - TR expand     2.642230      111         Intersect TR bound
+Optimizing with theta = 4.135394 
+Beginning optimization
+ 220   5341.865384 1509.883940   Continuing - TR contract     0.092891       93         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877009   28.675724     Continuing - TR expand     0.000080        3         Intersect TR bound
+  40   5458.534612  115.010053     Continuing - TR expand     0.029330       10         Intersect TR bound
+Optimizing with theta = 5.264047 
+ 230   5337.480194  222.564137   Continuing - TR contract     0.470260       27         Negative curvature
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  50   5458.281989   77.174795                 Continuing     0.001375        8         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877026   27.649101     Continuing - TR expand     0.000080        3         Intersect TR bound
+  60   5457.551521  131.090593                 Continuing     0.006960       13         Intersect TR bound
+ 240   5328.554974  145.315625     Continuing - TR expand    21.426232      233         Intersect TR bound
+  40   5458.847917   43.433464     Continuing - TR expand     0.001086        6         Intersect TR bound
+  70   5455.783023  124.445715     Continuing - TR expand     0.070471       14         Intersect TR bound
+  50   5456.32060610042.025847   Continuing - TR contract     0.032996       29         Intersect TR bound
+  80   5454.941631 6876.923136   Continuing - TR contract     0.019820       18         Intersect TR bound
+  60   5453.842826 1734.550397                 Continuing     0.004125       12         Intersect TR bound
+  90   5450.011778   52.801581     Continuing - TR expand     0.200678       23         Intersect TR bound
+  70   5453.396002 1785.798172                 Continuing     0.002320       13         Intersect TR bound
+ 100   5444.987532  184.908974                 Continuing     0.056441       25         Intersect TR bound
+  80   5452.471166 5090.919515   Continuing - TR contract     0.005873       26         Intersect TR bound
+ 110   5437.615738 1909.652573     Continuing - TR expand     0.095244       18         Intersect TR bound
+  90   5451.570160   72.856745     Continuing - TR expand     0.019820       19         Intersect TR bound
+ 100   5443.067812  364.573073     Continuing - TR expand     1.204070       52         Intersect TR bound
+ 120   5427.339435  135.200353   Continuing - TR contract     0.080362       40         Intersect TR bound
+ 130   5425.543181   81.139790   Continuing - TR contract     0.011301       14         Intersect TR bound
+ 110   5427.776312  320.706230                 Continuing     0.018814       14         Intersect TR bound
+ 140   5423.797215  263.865762     Continuing - TR expand     0.076281       18         Intersect TR bound
+ 120   5426.156070  127.027199   Continuing - TR contract     0.015874       21         Intersect TR bound
+ 150   5401.458555  184.733833   Continuing - TR contract     0.171632       54         Intersect TR bound
+ 130   5421.886910 6035.948397   Continuing - TR contract     0.160724       48         Negative curvature
+ 160   5376.126931  284.961715     Continuing - TR expand     6.951112       64         Intersect TR bound
+ 140   5407.624160  119.193748   Continuing - TR contract     0.542443       94         Intersect TR bound
+ 170   5371.423527  156.817198                 Continuing     0.162917       41         Intersect TR bound
+ 250   5325.295871   19.690935   Continuing - TR contract     0.041848       46         Intersect TR bound
+ 150   5391.530536  600.298119                 Continuing     0.135611       60         Intersect TR bound
+ 160   5387.515194  159.821267   Continuing - TR contract     0.009535        8         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5325.079494    6.860782                 Continuing     0.035309       66         Intersect TR bound
+ 180   5355.158397 3467.463465                 Continuing     0.488750       88         Intersect TR bound
+ 170   5383.215811 2746.418460     Continuing - TR expand     0.289630       52         Intersect TR bound
+ 190   5345.572615 2640.652424   Continuing - TR contract     1.649531      196         Intersect TR bound
+ 270   5325.005672    4.191039   Continuing - TR contract     0.007448       60         Intersect TR bound
+ 180   5372.719939  294.975403   Continuing - TR contract     0.733125       85         Intersect TR bound
+ 280   5325.000013    2.242945     Continuing - TR expand     0.018853       53         Intersect TR bound
+ 190   5366.871563  183.506580     Continuing - TR expand     0.618574       60         Intersect TR bound
+ 200   5343.920527   74.179510                 Continuing     0.115983       43         Intersect TR bound
+ 200   5363.851601 9340.651150     Continuing - TR expand     1.565766       81         Intersect TR bound
+ 210   5342.819618   73.563990   Continuing - TR contract     0.004078        1         Negative curvature
+ 220   5342.128750  407.698197     Continuing - TR expand     0.371564       44         Intersect TR bound
+ 290   5324.995349    3.283970   Continuing - TR contract     0.015907      134         Intersect TR bound
+ 210   5358.353793 7996.469044     Continuing - TR expand     1.321115       94         Intersect TR bound
+ 230   5339.720601   83.562583                 Continuing     0.104502       27         Intersect TR bound
+ 220   5355.748430  300.016592     Continuing - TR expand     0.557345       83         Intersect TR bound
+ 300   5324.992758    2.321747                 Continuing     0.013422      125         Intersect TR bound
+ 240   5336.972605   25.225149                 Continuing     0.176348       69         Intersect TR bound
+ 230   5352.12656911909.632309   Continuing - TR contract     1.410781       99         Negative curvature
+ 310   5324.991261    4.875368     Continuing - TR expand     0.005662       53         Intersect TR bound
+ 250   5334.692920  221.822765   Continuing - TR contract     0.446380       49         Negative curvature
+Optimizing with theta = 3.604263 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+ 240   5348.840337  105.544617   Continuing - TR contract     0.297587      116         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877005   28.920830     Continuing - TR expand     0.000080        3         Intersect TR bound
+Optimizing with theta = 1.773555 
+Beginning optimization
+  40   5458.466630   80.181074   Continuing - TR contract     0.014665       13         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+ 320   5324.984757    4.590220   Continuing - TR contract     0.014333       67         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  50   5457.337057 5821.552664   Continuing - TR contract     0.049494       23         Intersect TR bound
+  30   5458.877001   29.232136     Continuing - TR expand     0.000080        3         Intersect TR bound
+  60   5456.171433   56.947598   Continuing - TR contract     0.002320        8         Intersect TR bound
+  40   5457.228564  130.403097     Continuing - TR expand     0.263970        9         Intersect TR bound
+ 250   5340.188308   43.832460                 Continuing     0.251089       89         Intersect TR bound
+  50   5453.698042  103.080451     Continuing - TR expand     0.037121        7         Intersect TR bound
+  70   5455.351817  117.134524     Continuing - TR expand     0.070471       13         Intersect TR bound
+  60   5452.878649  110.523027   Continuing - TR contract     0.005220        9         Intersect TR bound
+  80   5449.534687 5574.664287   Continuing - TR contract     0.356761       36         Intersect TR bound
+ 330   5324.983744    0.236747   Continuing - TR contract     0.006047      171         Intersect TR bound
+  70   5451.699750  191.283684   Continuing - TR contract     0.026427       10         Intersect TR bound
+  90   5446.36840615273.818448                 Continuing     0.016723       12         Intersect TR bound
+  80   5448.722994  175.699610                 Continuing     0.089190       13         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5336.945535  118.513355   Continuing - TR contract     1.906704       41         Intersect TR bound
+ 100   5444.788559  117.137789   Continuing - TR contract     0.007055       15         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5325.222003 1174.826405   Continuing - TR contract     3.389697      908          Reached tolerance
+  90   5428.254721  436.933605                 Continuing     0.903052       31         Intersect TR bound
+ 110   5443.565008  200.870411                 Continuing     0.071433       14         Intersect TR bound
+ 270   5335.445807  705.532649   Continuing - TR contract     0.804391      136         Intersect TR bound
+ 100   5413.523604  108.395430   Continuing - TR contract     0.063496       15         Intersect TR bound
+ 110   5413.123901   33.021198                 Continuing     0.001488        4         Negative curvature
+ 120   5405.357857  176.356440     Continuing - TR expand     4.339545       66         Intersect TR bound
+ 340   5324.983199    3.188589     Continuing - TR expand     0.030611      132         Intersect TR bound
+ 120   5412.075047 6458.117006     Continuing - TR expand     0.135611        8         Intersect TR bound
+ 130   5410.247185 8922.040977   Continuing - TR contract     0.114422       11         Negative curvature
+ 280   5334.858803   17.341090     Continuing - TR expand     0.113117       67         Intersect TR bound
+ 130   5394.796489  242.313679     Continuing - TR expand     1.830745       44         Intersect TR bound
+ 140   5409.792231 1592.100943     Continuing - TR expand     0.016091        9         Intersect TR bound
+ 290   5334.546723  112.741032     Continuing - TR expand     0.286329       72         Intersect TR bound
+Optimizing with theta = 2.181454 
+Beginning optimization
+ 150   5404.555934  225.178656   Continuing - TR contract     0.040729       16         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+ 270   5325.042770 9911.482375     Continuing - TR expand     0.238338       44         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877002   29.201382     Continuing - TR expand     0.000080        3         Intersect TR bound
+ 160   5402.710213  528.500349                 Continuing     0.011455        8         Intersect TR bound
+ 140   5379.210297  194.678616   Continuing - TR contract     0.021454        4         Intersect TR bound
+  40   5458.689721   49.331664     Continuing - TR expand     0.007332        6         Intersect TR bound
+Optimizing with theta = 3.099569 
+ 170   5400.646003 2687.253463     Continuing - TR expand     0.347948       11         Intersect TR bound
+Beginning optimization
+Optimizing with theta = 2.624347 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  50   5456.794468  140.779047     Continuing - TR expand     0.111362       10         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+ 150   5367.082878   83.734409                 Continuing     0.006034        5         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877003   29.065388     Continuing - TR expand     0.000080        3         Intersect TR bound
+  60   5454.394570 1085.016728   Continuing - TR contract     0.015660       13         Intersect TR bound
+ 180   5378.351706  305.908205   Continuing - TR contract     0.048930       12         Intersect TR bound
+  30   5458.877002   29.150607     Continuing - TR expand     0.000080        3         Intersect TR bound
+  40   5457.834256  126.716620   Continuing - TR contract     0.021997       14         Intersect TR bound
+ 160   5363.248949 1443.094786                 Continuing     0.054306       34         Intersect TR bound
+  70   5452.402332 2291.044431     Continuing - TR expand     0.158561       10         Intersect TR bound
+  40   5458.470017 6093.030172                 Continuing     0.007332       10         Intersect TR bound
+ 190   5355.040036  162.865784     Continuing - TR expand     2.972509       48         Intersect TR bound
+  50   5457.525597   77.005723     Continuing - TR expand     0.018560        7         Intersect TR bound
+  80   5450.62375028671.180306     Continuing - TR expand     0.133786       10         Intersect TR bound
+  50   5457.049276  126.481482                 Continuing     0.006187       10         Intersect TR bound
+  60   5456.758896   93.761031   Continuing - TR contract     0.005220       12         Intersect TR bound
+ 170   5362.509722  223.621384                 Continuing     0.040729       44         Intersect TR bound
+  60   5455.893962  664.864214   Continuing - TR contract     0.062641       17         Intersect TR bound
+ 280   5324.774093   10.311123   Continuing - TR contract     0.050274      113         Intersect TR bound
+  90   5425.325637  103.175494     Continuing - TR expand     0.677289       22         Intersect TR bound
+  70   5455.558938   88.097670   Continuing - TR contract     0.052854       17         Intersect TR bound
+  70   5454.875403  129.473870   Continuing - TR contract     0.004404        7         Negative curvature
+ 200   5340.493206  213.036075                 Continuing     1.672036      179         Intersect TR bound
+ 100   5424.679272   45.179373     Continuing - TR expand     0.047622        7         Intersect TR bound
+  80   5453.423318 4625.625682   Continuing - TR contract     0.022298       15         Intersect TR bound
+ 180   5362.168370   91.196328   Continuing - TR contract     0.030547       65         Intersect TR bound
+  80   5447.913768  775.171463   Continuing - TR contract     0.802713       34         Intersect TR bound
+ 210   5338.754575  189.546394   Continuing - TR contract     0.078377        6         Negative curvature
+ 110   5416.008537  326.625760   Continuing - TR contract     0.040181       19         Intersect TR bound
+  90   5450.966650  131.374328     Continuing - TR expand     0.112882       13         Intersect TR bound
+  90   5440.357535  141.317932   Continuing - TR contract     0.009407        9         Intersect TR bound
+ 220   5337.973789   74.044014   Continuing - TR contract     0.198391       22         Negative curvature
+ 300   5328.062278   99.641301   Continuing - TR contract     0.724769      404         Intersect TR bound
+ 100   5450.032271  120.114492   Continuing - TR contract     0.007937       10         Negative curvature
+ 290   5324.742973  801.806677   Continuing - TR contract     0.021210      114         Intersect TR bound
+ 100   5439.113674   93.308162                 Continuing     0.015874       10         Intersect TR bound
+ 120   5381.017129  142.335308     Continuing - TR expand     3.661491       58         Intersect TR bound
+ 190   5361.793418   93.854536                 Continuing     0.022910       31         Intersect TR bound
+ 230   5336.672657  542.810335   Continuing - TR contract     0.167392       59         Intersect TR bound
+ 110   5442.870463 2402.865340     Continuing - TR expand     1.446515       28         Intersect TR bound
+ 110   5437.968748  316.423727                 Continuing     0.026787       11         Intersect TR bound
+ 200   5361.678721  152.190722   Continuing - TR contract     0.004833        3         Negative curvature
+ 120   5429.330738   89.354121   Continuing - TR contract     0.135611       16         Negative curvature
+ 210   5361.675048  100.725998     Continuing - TR expand     0.000057        3         Intersect TR bound
+ 240   5335.624703   10.325310     Continuing - TR expand     0.282475       35         Intersect TR bound
+ 120   5403.656539 7658.563544   Continuing - TR contract     0.610248       56         Intersect TR bound
+ 130   5426.142113  125.911838   Continuing - TR contract     0.343265       31         Intersect TR bound
+ 220   5357.092212  120.655389   Continuing - TR contract     0.092891       13         Intersect TR bound
+ 300   5324.736278  100.590121                 Continuing     0.017896       81         Intersect TR bound
+ 130   5369.200197  544.454611   Continuing - TR contract     0.028605        5         Intersect TR bound
+ 130   5397.655134  108.211645   Continuing - TR contract     0.007151        4         Negative curvature
+ 140   5425.220758 3902.347319                 Continuing     0.008045        9         Intersect TR bound
+ 310   5326.667614   21.768036                 Continuing     0.203841      120         Intersect TR bound
+ 230   5353.101320  804.843556   Continuing - TR contract     0.039188       21         Intersect TR bound
+ 140   5364.540344  481.795700   Continuing - TR contract     0.004023        5         Negative curvature
+ 140   5396.830391  102.522879                 Continuing     0.012068       13         Intersect TR bound
+ 150   5424.46392611623.510459     Continuing - TR expand     0.122188       11         Intersect TR bound
+ 250   5332.121631   59.361851   Continuing - TR contract     1.430028       21         Negative curvature
+ 150   5364.216320  749.303382   Continuing - TR contract     0.000141        2         Negative curvature
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5331.663798    9.719328   Continuing - TR contract     0.100549        7         Negative curvature
+ 150   5395.672573  128.909812     Continuing - TR expand     0.122188       13         Intersect TR bound
+ 160   5361.150056   86.677337     Continuing - TR expand     0.077322        5         Intersect TR bound
+ 240   5348.980437 3409.641550                 Continuing     0.396782       64         Intersect TR bound
+ 160   5403.218767  601.648744   Continuing - TR contract     0.103096       26         Intersect TR bound
+ 160   5395.252772  100.424714                 Continuing     0.002864        8         Intersect TR bound
+ 270   5331.430339 1345.222086   Continuing - TR contract     0.042419       34         Intersect TR bound
+ 170   5358.595375  102.937970   Continuing - TR contract     0.032620       10         Negative curvature
+ 310   5324.734956    0.513758   Continuing - TR contract     0.003775      101         Intersect TR bound
+ 170   5395.054287   80.874826     Continuing - TR expand     0.043494       10         Intersect TR bound
+ 170   5396.723849   84.212966     Continuing - TR expand     0.028996       10         Intersect TR bound
+ 180   5357.778444  321.795336   Continuing - TR contract     0.004587        7         Negative curvature
+ 280   5331.255765   55.797966     Continuing - TR expand     0.035791       20         Intersect TR bound
+ 180   5395.850526  754.823721   Continuing - TR contract     0.012233       10         Negative curvature
+ 180   5392.410058  229.558784     Continuing - TR expand     0.036698       12         Intersect TR bound
+ 190   5355.612301  259.094014   Continuing - TR contract     0.069668       20         Intersect TR bound
+ 290   5330.960622   16.402685     Continuing - TR expand     0.543577       34         Intersect TR bound
+ 250   5346.074404   14.413972     Continuing - TR expand     0.334785       46         Intersect TR bound
+ 320   5324.734721    0.441234   Continuing - TR contract     0.001593       64         Intersect TR bound
+ 190   5393.526232   67.560194   Continuing - TR contract     0.185782       23         Negative curvature
+ 200   5355.232003   44.519599                 Continuing     0.003266        8         Intersect TR bound
+ 320   5326.124584   15.302715   Continuing - TR contract     0.515973      220         Intersect TR bound
+ 300   5330.585100  272.407231   Continuing - TR contract     0.114661       56         Intersect TR bound
+ 190   5369.923945  105.298064   Continuing - TR contract     0.185782       58         Intersect TR bound
+ 210   5351.437286   65.240078     Continuing - TR expand     0.595173       30         Intersect TR bound
+ 200   5382.929557   84.260564                 Continuing     0.156753       31         Intersect TR bound
+ 310   5329.597963   10.094150     Continuing - TR expand     0.096745       12         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5342.377809   67.966649   Continuing - TR contract     0.423712       81         Intersect TR bound
+ 350   5324.982469    0.021563   Continuing - TR contract     0.002152     1127          Reached tolerance
+ 220   5349.134568   49.240296     Continuing - TR expand     0.334785       22         Intersect TR bound
+ 210   5355.127712 5472.825435   Continuing - TR contract     0.198391       13         Intersect TR bound
+ 330   5325.937748    5.063240   Continuing - TR contract     0.018140        8         Negative curvature
+ 200   5358.811185 3038.511265     Continuing - TR expand     0.836018       41         Intersect TR bound
+ 220   5350.082396   48.648451   Continuing - TR contract     0.167392       21         Negative curvature
+ 320   5327.507449   55.302084                 Continuing     0.163257       66         Intersect TR bound
+ 230   5344.665156 3409.118499   Continuing - TR contract     0.125544       46         Intersect TR bound
+ 230   5348.741718   13.558202     Continuing - TR expand     0.094158       22         Intersect TR bound
+ 330   5327.016748  373.726009                 Continuing     0.413245       50         Intersect TR bound
+ 340   5325.77143210118.459267                 Continuing     0.550993      163         Intersect TR bound
+ 270   5338.256659   61.319093   Continuing - TR contract     0.178754       99         Intersect TR bound
+ 210   5347.974611  431.815130   Continuing - TR contract     0.705390       36         Negative curvature
+ 240   5348.462040   27.824981     Continuing - TR expand     0.006621        6         Intersect TR bound
+ 240   5344.216240 2016.858986   Continuing - TR contract     0.017655       23         Intersect TR bound
+ 250   5346.644779  823.141671   Continuing - TR contract     0.603293       31         Negative curvature
+ 220   5346.954971   36.417693   Continuing - TR contract     0.033065       36         Intersect TR bound
+ 340   5325.413016 3215.786655     Continuing - TR expand     4.184104      100         Intersect TR bound
+ 250   5340.120640   42.182929   Continuing - TR contract     0.178754       61         Intersect TR bound
+ 230   5346.117467  378.376643   Continuing - TR contract     0.027899       10         Negative curvature
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5344.085464   57.450743                 Continuing     0.509029       57         Intersect TR bound
+ 280   5329.575373   91.107900   Continuing - TR contract     0.452470       85         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5338.711627   18.971747   Continuing - TR contract     0.150823       63         Intersect TR bound
+ 240   5345.660258   39.706064     Continuing - TR expand     0.141237       30         Intersect TR bound
+ 350   5325.468555   64.995992                 Continuing     0.025828       83         Intersect TR bound
+ 270   5341.682356 1960.915235   Continuing - TR contract     0.107373       38         Intersect TR bound
+ 270   5335.868789   44.496625   Continuing - TR contract     0.254514       84         Intersect TR bound
+ 330   5324.733970    0.126993   Continuing - TR contract     0.048373     1009          Reached tolerance
+ 290   5327.696271   20.229000   Continuing - TR contract     0.763543       18         Negative curvature
+ 250   5341.672006   22.412254   Continuing - TR contract     0.178754       53         Intersect TR bound
+ 280   5331.518077   46.626705   Continuing - TR contract     0.214746        6         Negative curvature
+ 300   5327.360437   14.408864     Continuing - TR expand     0.966359       79         Intersect TR bound
+ 280   5338.219573   44.519385   Continuing - TR contract     0.543577       95         Intersect TR bound
+ 290   5329.740135   41.207376     Continuing - TR expand     3.261462       94         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5341.014389   46.515561     Continuing - TR expand     0.452470       37         Intersect TR bound
+ 360   5325.375814    4.055033     Continuing - TR expand     0.196130      128         Intersect TR bound
+ 310   5326.931470   15.054276   Continuing - TR contract     0.135894       93         Intersect TR bound
+ 290   5334.766262   39.703866   Continuing - TR contract     0.917286      108         Intersect TR bound
+ 270   5338.672874  822.462457     Continuing - TR expand     0.381771       49         Intersect TR bound
+ 350   5323.039554   23.055954   Continuing - TR contract     0.098065      134         Intersect TR bound
+ 300   5326.862002   15.607340     Continuing - TR expand     0.229322       30         Intersect TR bound
+ 360   5322.710529    6.538096     Continuing - TR expand     0.027581       25         Intersect TR bound
+ 360   5324.982469    0.015277   Continuing - TR contract     0.000025      122         Intersect TR bound
+ 310   5325.877716  852.063759     Continuing - TR expand     1.160940       63         Intersect TR bound
+ 300   5333.487083   24.171935   Continuing - TR contract     0.386980       88         Intersect TR bound
+ 280   5334.635121 5357.366044                 Continuing     0.107373       28         Intersect TR bound
+ 320   5325.417025   16.231161     Continuing - TR expand     0.979543       66         Intersect TR bound
+ 320   5324.455082    7.838070                 Continuing     8.255575      884          Reached tolerance
+ 370   5322.653028    1.541358     Continuing - TR expand     0.139628      100         Intersect TR bound
+ 290   5333.216274   14.796216     Continuing - TR expand     0.543577       49         Intersect TR bound
+ 310   5328.921428   26.257570   Continuing - TR contract     0.653029      157         Intersect TR bound
+ 380   5322.644645    0.746704   Continuing - TR contract     0.009818       43         Intersect TR bound
+ 320   5328.069514    8.172127   Continuing - TR contract     0.275497       95         Intersect TR bound
+ 370   5324.982468    0.003262   Continuing - TR contract     0.000011      131         Intersect TR bound
+ 300   5330.327503  524.121817   Continuing - TR contract     1.375929      155         Intersect TR bound
+ 330   5323.598802    8.225369     Continuing - TR expand     1.239735      147         Intersect TR bound
+ 330   5327.250599 1545.621702   Continuing - TR contract     0.697351       15         Negative curvature
+ 340   5323.377211    6.055296   Continuing - TR contract     0.007264       21         Intersect TR bound
+ 340   5324.733963    8.818484     Continuing - TR expand     0.000283        1         Intersect TR bound
+ 310   5329.175154   19.550665   Continuing - TR contract     0.048373       17         Negative curvature
+ 340   5326.576743   26.784776     Continuing - TR expand     1.765169       89         Intersect TR bound
+ 390   5322.632522    1.441077   Continuing - TR contract     0.298209      808          Reached tolerance
+ 320   5328.587077   27.257557     Continuing - TR expand     0.734658       60         Intersect TR bound
+ 380   5324.982468    0.000511                 Continuing     0.000003       73         Intersect TR bound
+ 350   5324.733962    1.499941     Continuing - TR expand     0.000080       44         Intersect TR bound
+ 330   5327.614550 6540.035677   Continuing - TR contract     0.103311       84         Intersect TR bound
+ 350   5325.831631 4047.066831   Continuing - TR contract     0.372340      139         Intersect TR bound
+ 390   5324.982468    0.000569   Continuing - TR contract     0.000000       28         Intersect TR bound
+ 400   5324.982468    0.000569   Continuing - TR contract     0.000000        2         Intersect TR bound
+
+Iteration has terminated
+ 401   5324.982468    0.000569Radius of trust region is less than stop.trust.radius
+
+ 360   5325.343829    9.229828   Continuing - TR contract     0.052360       10         Negative curvature
+ 370   5325.307757   14.937966     Continuing - TR expand     0.132537       30         Intersect TR bound
+ 350   5323.181013    3.059444   Continuing - TR contract     0.661938      935          Reached tolerance
+ 360   5324.733962    0.000523                 Continuing     0.000807      943          Reached tolerance
+ 360   5323.172988    3.924246                 Continuing     0.015514       41         Intersect TR bound
+ 370   5324.733962    0.000523   Continuing - TR contract     0.000001       21         Intersect TR bound
+ 380   5324.237862  195.603354   Continuing - TR contract     0.670969      155         Intersect TR bound
+ 370   5325.187609    0.472285   Continuing - TR contract     0.055162     1096          Reached tolerance
+ 380   5324.733962    0.000742   Continuing - TR contract     0.000000       30         Intersect TR bound
+ 390   5324.733962    0.001860     Continuing - TR expand     0.000000        2         Intersect TR bound
+
+Iteration has terminated
+ 392   5324.733962    0.001860Radius of trust region is less than stop.trust.radius
+
+ 330   5324.455082    7.838070   Continuing - TR contract     0.008062       10         Intersect TR bound
+ 370   5323.157999    1.587461     Continuing - TR expand     0.039270       59         Intersect TR bound
+ 400   5322.631565    0.111139   Continuing - TR contract     0.003495      377         Intersect TR bound
+ 390   5323.718981    9.446930   Continuing - TR contract     0.188710      231         Intersect TR bound
+ 410   5322.631558    0.039854   Continuing - TR contract     0.000123       26         Intersect TR bound
+ 380   5323.153247  189.756825     Continuing - TR expand     0.198806       92         Intersect TR bound
+ 390   5323.153247  189.756825   Continuing - TR contract     0.000194        2         Negative curvature
+ 400   5323.152679  185.724868     Continuing - TR expand     0.002949       10         Intersect TR bound
+ 340   5324.425380    0.558021   Continuing - TR contract     0.006802       95         Intersect TR bound
+ 420   5322.631555    0.012308     Continuing - TR expand     0.000622       44         Intersect TR bound
+ 400   5323.645232   63.720511     Continuing - TR expand     0.955345      191         Intersect TR bound
+ 340   5324.099082    8.298299   Continuing - TR contract     0.261507      903          Reached tolerance
+ 430   5322.631553    1.512215     Continuing - TR expand     0.003149       71         Intersect TR bound
+ 410   5323.149099    2.187799   Continuing - TR contract     0.007464       90         Intersect TR bound
+ 350   5324.424853   13.782986   Continuing - TR contract     0.000957       65         Intersect TR bound
+ 360   5324.424679    0.448849   Continuing - TR contract     0.000404       16         Negative curvature
+ 420   5323.147341    1.029796   Continuing - TR contract     0.037785       85         Intersect TR bound
+ 350   5324.066360    3.092237   Continuing - TR contract     0.003065       27         Negative curvature
+ 410   5323.642678    4.809902     Continuing - TR expand     0.011195       24         Intersect TR bound
+ 360   5324.054732  409.779977   Continuing - TR contract     0.046543       87         Intersect TR bound
+ 430   5323.146417    0.590528                 Continuing     0.002657       30         Intersect TR bound
+ 370   5324.424286    0.236731     Continuing - TR expand     0.073549      142         Intersect TR bound
+ 420   5323.639573   35.747641     Continuing - TR expand     0.028338       33         Intersect TR bound
+ 440   5323.143809    2.508661   Continuing - TR contract     0.003362       22         Negative curvature
+ 370   5324.052402  610.677860   Continuing - TR contract     0.006545       73         Intersect TR bound
+ 450   5323.142274   21.339440     Continuing - TR expand     0.017022       52         Intersect TR bound
+ 380   5324.424176    1.652634   Continuing - TR contract     0.002586       60         Intersect TR bound
+ 380   5325.187504    2.419240   Continuing - TR contract     0.000646       27         Negative curvature
+ 460   5323.141473    0.370339     Continuing - TR expand     0.002394       22         Intersect TR bound
+ 380   5324.050500    0.576188                 Continuing     0.022090      129         Intersect TR bound
+ 470   5323.141397    0.297338     Continuing - TR expand     0.001010       17         Intersect TR bound
+ 390   5325.187433    1.515686     Continuing - TR expand     0.009818      137         Intersect TR bound
+ 390   5324.424127    0.059350   Continuing - TR contract     0.001091      101         Intersect TR bound
+ 400   5325.187430    3.248079                 Continuing     0.000019       13         Negative curvature
+ 400   5324.424027    0.112993   Continuing - TR contract     0.000460       45         Intersect TR bound
+ 410   5325.187411    0.097423   Continuing - TR contract     0.000874       68         Negative curvature
+ 410   5324.424003    0.327832   Continuing - TR contract     0.000194       28         Negative curvature
+ 440   5322.631551    0.001834   Continuing - TR contract     0.000074      794          Reached tolerance
+ 420   5325.187401    0.283250   Continuing - TR contract     0.000369       53         Intersect TR bound
+ 420   5324.423991    0.456356     Continuing - TR expand     0.002949       76         Intersect TR bound
+ 430   5325.187399    0.017738   Continuing - TR contract     0.000155       79         Intersect TR bound
+ 390   5324.049251    3.014759                 Continuing     0.003106       53         Intersect TR bound
+ 480   5323.138223    0.017267   Continuing - TR contract     0.030675      843          Reached tolerance
+ 430   5324.423976    0.048756   Continuing - TR contract     0.001244       23         Negative curvature
+ 430   5323.616202    0.859712   Continuing - TR contract     0.011955      876          Reached tolerance
+ 400   5324.049074    1.674563   Continuing - TR contract     0.000655       75         Intersect TR bound
+ 450   5322.631551    0.004289                 Continuing     0.000001        7         Negative curvature
+ 440   5325.187397    0.094616     Continuing - TR expand     0.002362      179         Intersect TR bound
+ 460   5322.631551    0.020068   Continuing - TR contract     0.000000        5         Intersect TR bound
+ 470   5322.631551    0.000167   Continuing - TR contract     0.000000        3         Intersect TR bound
+
+Iteration has terminated
+ 470   5322.631551    0.000167Radius of trust region is less than stop.trust.radius
+
+ 440   5324.423970    0.125351   Continuing - TR contract     0.000525      125         Intersect TR bound
+ 410   5324.049036    0.135420   Continuing - TR contract     0.001106       84         Intersect TR bound
+ 440   5323.615864    0.057913                 Continuing     0.000280       42         Intersect TR bound
+ 450   5323.615857    0.199141   Continuing - TR contract     0.000020        5         Negative curvature
+ 450   5324.423963    0.066510   Continuing - TR contract     0.000664       24         Negative curvature
+ 420   5324.049002    0.930190     Continuing - TR expand     0.005598       87         Intersect TR bound
+ 460   5324.423962    0.006373   Continuing - TR contract     0.000280       25         Negative curvature
+ 430   5324.048934   19.160456   Continuing - TR contract     0.000197        7         Negative curvature
+ 460   5323.615850    0.073856   Continuing - TR contract     0.001197      242         Intersect TR bound
+ 450   5325.187397    0.042541     Continuing - TR expand     0.001993      200         Intersect TR bound
+ 470   5324.423962    0.074542   Continuing - TR contract     0.000118      126         Intersect TR bound
+ 460   5325.187397    1.220132     Continuing - TR expand     0.000140       61         Intersect TR bound
+ 470   5323.615849    0.018334   Continuing - TR contract     0.000168       50         Intersect TR bound
+ 480   5323.615849    0.020248     Continuing - TR expand     0.000426       62         Intersect TR bound
+ 440   5324.048866    0.006977                 Continuing     0.035866      956          Reached tolerance
+ 450   5324.048866    0.006977   Continuing - TR contract     0.000035        1         Negative curvature
+ 490   5323.138223    0.017267   Continuing - TR contract     0.000030       12         Intersect TR bound
+ 470   5325.187396    0.771805   Continuing - TR contract     0.000059       30         Negative curvature
+ 480   5324.423962    0.000023   Continuing - TR contract     0.001795       13         Negative curvature
+ 500   5323.138223    0.029928   Continuing - TR contract     0.000006       27         Intersect TR bound
+ 490   5323.615848    0.006527   Continuing - TR contract     0.000030       80         Intersect TR bound
+ 490   5324.423962    0.000023   Continuing - TR contract     0.000002       12         Intersect TR bound
+ 500   5324.423962    0.000023   Continuing - TR contract     0.000000        1         Intersect TR bound
+
+Iteration has terminated
+
+iter           f        nrm_gr                     status
+ 505   5324.423962    0.000023Radius of trust region is less than stop.trust.radius
+
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 510   5323.138223    0.996022   Continuing - TR contract     0.000003        8         Negative curvature
+ 460   5324.048866    0.003198   Continuing - TR contract     0.000015      397         Intersect TR bound
+ 520   5323.138223    0.005039   Continuing - TR contract     0.000000        7         Intersect TR bound
+
+Iteration has terminated
+ 529   5323.138223    0.005039Radius of trust region is less than stop.trust.radius
+
+ 500   5323.615848    0.008734     Continuing - TR expand     0.000455       68         Intersect TR bound
+ 470   5324.048866    0.007699   Continuing - TR contract     0.000000       18         Intersect TR bound
+ 480   5324.048866    0.007699   Continuing - TR contract     0.000000        2         Intersect TR bound
+
+Iteration has terminated
+ 480   5324.048866    0.007699Radius of trust region is less than stop.trust.radius
+
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 510   5323.615848    0.002384                 Continuing     0.002303      776          Reached tolerance
+ 480   5325.187396    0.000104   Continuing - TR contract     0.000598     1249          Reached tolerance
+ 520   5323.615848    0.002384   Continuing - TR contract     0.000002       51         Intersect TR bound
+ 530   5323.615848    0.000588   Continuing - TR contract     0.000000        1         Negative curvature
+ 540   5323.615848    0.515411   Continuing - TR contract     0.000000        3         Intersect TR bound
+
+Iteration has terminated
+ 544   5323.615848    0.515411Radius of trust region is less than stop.trust.radius
+
+ 490   5325.187396    0.000104   Continuing - TR contract     0.000001       81         Intersect TR bound
+ 500   5325.187396    0.000021     Continuing - TR expand     0.000000       80         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 510   5325.187396    0.000818   Continuing - TR contract     0.000000        9         Intersect TR bound
+
+Iteration has terminated
+ 519   5325.187396    0.000034Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 9.541581 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877558  175.442170     Continuing - TR expand     0.000080        4         Intersect TR bound
+  40   5458.877061   50.036392                 Continuing     0.000003        4         Intersect TR bound
+  50   5458.875224   72.203865                 Continuing     0.000011        6         Intersect TR bound
+  60   5458.869606   76.638879                 Continuing     0.000051       13         Intersect TR bound
+  70   5458.852307  700.105871                 Continuing     0.001031       25         Intersect TR bound
+  80   5458.751154  168.002744     Continuing - TR expand     0.005220       26         Intersect TR bound
+  90   5458.316145  158.882207     Continuing - TR expand     0.026427       69         Intersect TR bound
+ 100   5455.287917 1610.466602   Continuing - TR contract     0.066893      124         Intersect TR bound
+ 110   5445.401216 6712.424330     Continuing - TR expand     2.031867      145         Intersect TR bound
+ 120   5375.882506   39.016049   Continuing - TR contract     0.571463        1         Negative curvature
+ 130   5366.211824 2046.323023                 Continuing     0.482172      150         Intersect TR bound
+ 140   5357.823693  825.730869     Continuing - TR expand     0.101708       60         Intersect TR bound
+ 150   5355.750447  420.719717     Continuing - TR expand     1.544691      252         Intersect TR bound
+ 160   5351.661487 1023.818924   Continuing - TR contract     0.108611      127         Intersect TR bound
+ 170   5350.708200  620.466501   Continuing - TR contract     0.045820      144         Intersect TR bound
+ 180   5349.644128 1837.615062   Continuing - TR contract     0.231965       48         Negative curvature
+ 190   5346.562512 1382.038167     Continuing - TR expand     3.522974      224         Intersect TR bound
+ 200   5338.024180 2894.886194   Continuing - TR contract     0.743127      344         Intersect TR bound
+ 210   5333.133275  612.598664                 Continuing     1.254027      411         Intersect TR bound
+ 220   5328.432255   42.280431   Continuing - TR contract     0.176348      328         Intersect TR bound
+ 230   5328.250792 2436.558695   Continuing - TR contract     0.223190      116         Negative curvature
+ 240   5328.133106   67.354868     Continuing - TR expand     0.188316      262         Intersect TR bound
+Optimizing with theta = 7.689821 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877278   50.254128     Continuing - TR expand     0.000080        3         Intersect TR bound
+  40   5458.874327  119.445023                 Continuing     0.000091        6         Intersect TR bound
+  50   5458.865645   70.113948     Continuing - TR expand     0.000407        7         Intersect TR bound
+  60   5458.769453   65.199395   Continuing - TR contract     0.001375       24         Intersect TR bound
+Optimizing with theta = 5.854783 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  70   5458.551912  149.932505   Continuing - TR contract     0.002320       36         Intersect TR bound
+  30   5458.877047   26.933613     Continuing - TR expand     0.000080        3         Intersect TR bound
+  40   5458.861790   68.551809                 Continuing     0.000181        6         Intersect TR bound
+  80   5456.740412  616.228543                 Continuing     0.140943       52         Intersect TR bound
+  50   5458.344725  733.430266     Continuing - TR expand     0.043995       23         Intersect TR bound
+Optimizing with theta = 8.928673 
+Beginning optimization
+  90   5453.794652  986.848680                 Continuing     0.013213       39         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  60   5458.205413   93.115733                 Continuing     0.001375       13         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877358   89.486107     Continuing - TR expand     0.000080        4         Intersect TR bound
+ 100   5453.210750  171.622326   Continuing - TR contract     0.003716       41         Intersect TR bound
+  70   5457.287429  186.984806     Continuing - TR expand     0.055681       25         Intersect TR bound
+  40   5458.876820   73.918346                 Continuing     0.000008        5         Intersect TR bound
+  50   5458.873315   55.676325                 Continuing     0.000023        7         Intersect TR bound
+  80   5454.187198  620.715293                 Continuing     0.187924       45         Intersect TR bound
+ 110   5447.942243 1156.589798     Continuing - TR expand     0.677289       88         Intersect TR bound
+  60   5458.864716  123.881589   Continuing - TR contract     0.000115       15         Intersect TR bound
+  90   5449.772455  307.135462   Continuing - TR contract     0.026427       44         Intersect TR bound
+  70   5458.842651   67.242280     Continuing - TR expand     0.001547       23         Intersect TR bound
+ 100   5448.240891  105.598762     Continuing - TR expand     0.022298       21         Intersect TR bound
+  80   5458.581184  153.591774   Continuing - TR contract     0.002610       53         Intersect TR bound
+Optimizing with theta = 6.458419 
+ 110   5418.124401  455.686658   Continuing - TR contract     1.354578      126         Intersect TR bound
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+ 120   5401.923672 1227.946020   Continuing - TR contract     1.142925      100         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  90   5457.977490  447.007439   Continuing - TR contract     0.008809       73         Intersect TR bound
+ 120   5409.593935  289.636256                 Continuing     0.031748       22         Intersect TR bound
+  30   5458.877084   27.147155     Continuing - TR expand     0.000080        3         Intersect TR bound
+ 250   5327.593987 1357.081872   Continuing - TR contract     0.039723      681         Intersect TR bound
+  40   5458.871556   62.383327   Continuing - TR contract     0.000136        5         Intersect TR bound
+ 130   5397.545038 1709.531568   Continuing - TR contract     0.080362       31         Intersect TR bound
+  50   5458.849864  197.390422     Continuing - TR expand     0.000611        8         Intersect TR bound
+ 100   5456.326949  323.513642     Continuing - TR expand     0.089190       73         Intersect TR bound
+Optimizing with theta = 10.14522 
+Beginning optimization
+ 130   5393.633902  549.157986   Continuing - TR contract     0.053575       89         Intersect TR bound
+ 140   5392.910448  143.827167                 Continuing     0.090407       54         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  60   5456.270724  685.867631   Continuing - TR contract     0.018560       37         Intersect TR bound
+  30   5458.877851  257.432878     Continuing - TR expand     0.000080        4         Intersect TR bound
+  40   5458.877204   45.599985     Continuing - TR expand     0.000004        3         Intersect TR bound
+ 150   5380.819008  311.922282                 Continuing     0.101708       36         Intersect TR bound
+  70   5455.323608  177.370148                 Continuing     0.000870        6         Intersect TR bound
+  50   5458.876324  116.415639                 Continuing     0.000011        7         Intersect TR bound
+  80   5455.121691  155.733180   Continuing - TR contract     0.001468       21         Intersect TR bound
+ 160   5375.757642 9112.996363     Continuing - TR expand     0.514897       81         Intersect TR bound
+ 140   5385.311070  400.227011   Continuing - TR contract     0.813665      180         Intersect TR bound
+  60   5458.871952   93.303874                 Continuing     0.000034       11         Intersect TR bound
+  90   5454.600708   67.399491     Continuing - TR expand     0.009910       22         Intersect TR bound
+ 170   5372.301105  706.389963     Continuing - TR expand     0.217222       41         Intersect TR bound
+  70   5458.861542  140.330404                 Continuing     0.000153       21         Intersect TR bound
+ 110   5416.867181  174.811370                 Continuing     0.301017      167         Intersect TR bound
+ 100   5453.105004  798.854122   Continuing - TR contract     0.050170       49         Intersect TR bound
+  80   5458.716726  338.799052   Continuing - TR contract     0.003093       67         Intersect TR bound
+ 180   5359.980040  505.622587   Continuing - TR contract     0.549844      125         Intersect TR bound
+ 110   5445.615303 8916.142413                 Continuing     0.028220       28         Intersect TR bound
+ 190   5353.258854  169.458572                 Continuing     0.231965       79         Intersect TR bound
+  90   5455.963504 1593.358691     Continuing - TR expand     0.375847      114         Intersect TR bound
+ 120   5443.731290  406.383232   Continuing - TR contract     0.071433       49         Intersect TR bound
+ 120   5397.485152 5151.673701   Continuing - TR contract     0.507967       79         Intersect TR bound
+ 150   5367.479180  100.935819   Continuing - TR contract     4.119177       55         Negative curvature
+ 160   5367.390847  119.625786     Continuing - TR expand     0.048272      101         Intersect TR bound
+ 200   5347.585491   87.535160   Continuing - TR contract     0.097860       74         Intersect TR bound
+ 130   5431.437454 2392.157330                 Continuing     0.120543       70         Intersect TR bound
+ 130   5390.471779  696.555752                 Continuing     0.071433      116         Intersect TR bound
+ 170   5366.563758 1143.381545     Continuing - TR expand     0.020365       10         Intersect TR bound
+ 210   5347.069624 5351.918549   Continuing - TR contract     0.013762       24         Negative curvature
+Optimizing with theta = 7.071327 
+Optimizing with theta = 8.310179 
+Beginning optimization
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+ 140   5413.582160  316.246860     Continuing - TR expand     0.915373       87         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.877154   32.255990     Continuing - TR expand     0.000080        3         Intersect TR bound
+  30   5458.877322   60.758010     Continuing - TR expand     0.000080        4         Intersect TR bound
+ 220   5343.236631  193.670841   Continuing - TR contract     1.254027      239         Intersect TR bound
+  40   5458.872453   58.461154   Continuing - TR contract     0.000045        6         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5327.535493    0.448523   Continuing - TR contract     0.201098     1652          Reached tolerance
+  40   5458.875062  144.020263                 Continuing     0.000091        7         Intersect TR bound
+ 180   5354.762570  350.869386     Continuing - TR expand     0.309287      126         Intersect TR bound
+  50   5458.855424   86.767829                 Continuing     0.000407        9         Intersect TR bound
+  50   5458.870862   38.109165     Continuing - TR expand     0.000068        6         Intersect TR bound
+ 100   5421.539900 4501.112652     Continuing - TR expand     0.845657      199         Intersect TR bound
+ 140   5383.290426 2509.380824     Continuing - TR expand     0.542443      144         Intersect TR bound
+ 230   5337.247222   65.099174   Continuing - TR contract     0.176348       64         Negative curvature
+  60   5458.675151 1036.393489                 Continuing     0.008249       26         Intersect TR bound
+  60   5458.848713  141.252228                 Continuing     0.000153       12         Intersect TR bound
+ 190   5352.843986  178.703098     Continuing - TR expand     1.565766      144         Intersect TR bound
+ 150   5397.458890  112.527861                 Continuing     0.171632       91         Intersect TR bound
+  70   5458.483583   67.598118   Continuing - TR contract     0.000290       12         Intersect TR bound
+  70   5457.045756 6012.502323     Continuing - TR expand     0.334087       54         Intersect TR bound
+ 240   5336.247711   23.222310   Continuing - TR contract     0.223190      143         Intersect TR bound
+  80   5458.111668  172.460151   Continuing - TR contract     0.035236       38         Intersect TR bound
+  80   5456.647764  356.425741   Continuing - TR contract     0.001958       41         Intersect TR bound
+ 150   5371.993873  532.200924                 Continuing     0.076281       45         Negative curvature
+  90   5457.020099   75.432141   Continuing - TR contract     0.000826        6         Negative curvature
+ 200   5347.979960   95.531136     Continuing - TR expand     0.660558      132         Intersect TR bound
+ 160   5383.640630  182.749168   Continuing - TR contract     0.289630       12         Negative curvature
+  90   5456.527599   92.816869     Continuing - TR expand     0.002202       20         Intersect TR bound
+ 250   5334.730774 2754.086810                 Continuing     0.564949      139         Intersect TR bound
+ 100   5455.951963  230.109643     Continuing - TR expand     0.150509       38         Intersect TR bound
+ 170   5380.215799   79.253813     Continuing - TR expand     0.733125       81         Intersect TR bound
+ 100   5455.153491  266.713639                 Continuing     0.089190       63         Intersect TR bound
+ 160   5366.893949  403.633290     Continuing - TR expand     0.193086       89         Intersect TR bound
+ 110   5455.042950  563.785597                 Continuing     0.021165       37         Intersect TR bound
+ 110   5390.686646 4796.018712   Continuing - TR contract     2.140568      197         Negative curvature
+ 210   5343.262479 2861.143092                 Continuing     1.672036      278         Intersect TR bound
+ 180   5364.892713  415.566900     Continuing - TR expand     0.309287       50         Intersect TR bound
+ 120   5444.329079  319.961143     Continuing - TR expand     0.160724       33         Intersect TR bound
+ 120   5385.252978  650.379588   Continuing - TR contract     0.025085        7         Negative curvature
+ 190   5363.106538   81.816558   Continuing - TR contract     0.021747       22         Negative curvature
+ 130   5385.180698  347.282938     Continuing - TR expand     0.001764       15         Intersect TR bound
+ 130   5443.20412311293.393448     Continuing - TR expand     0.135611       35         Intersect TR bound
+ 110   5396.514491  854.253839     Continuing - TR expand     7.224417      257         Intersect TR bound
+ 200   5357.618909 3084.452530   Continuing - TR contract     1.981673       54         Intersect TR bound
+ 170   5346.883005 1945.269793   Continuing - TR contract     0.488750      228         Intersect TR bound
+ 210   5355.498568   80.082972                 Continuing     0.046445       53         Intersect TR bound
+ 120   5373.562394 3305.823617   Continuing - TR contract     0.112882       85         Intersect TR bound
+ 180   5344.003426 1175.019859     Continuing - TR expand     0.068730      119         Intersect TR bound
+ 140   5372.849264 1969.054488                 Continuing     0.964343      369         Intersect TR bound
+ 140   5373.110717   76.651603   Continuing - TR contract     2.746118       32         Negative curvature
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5325.566504   11.933179   Continuing - TR contract     0.238338      633         Intersect TR bound
+ 150   5366.074165 9879.412341     Continuing - TR expand     0.386173       83         Intersect TR bound
+ 270   5325.496595   33.570992   Continuing - TR contract     0.008379       85         Intersect TR bound
+ 220   5330.200359  186.560341   Continuing - TR contract     0.235130      302         Intersect TR bound
+ 130   5363.383965 2062.169610   Continuing - TR contract     0.190488      151         Intersect TR bound
+ 190   5341.986251  406.285197     Continuing - TR expand     0.521922      202         Intersect TR bound
+ 220   5344.876573 4945.665580   Continuing - TR contract     0.352695      258         Intersect TR bound
+ 160   5361.245395   52.860095   Continuing - TR contract     0.108611      123         Intersect TR bound
+ 280   5325.417037   16.053476   Continuing - TR contract     0.042419      243         Intersect TR bound
+ 230   5329.918780   85.189944     Continuing - TR expand     0.099196      110         Intersect TR bound
+ 200   5341.048589  640.891300     Continuing - TR expand     1.321115      235         Intersect TR bound
+ 140   5359.240797  382.522752     Continuing - TR expand     0.964343      129         Intersect TR bound
+ 230   5340.558944  109.919375   Continuing - TR contract     0.074397       81         Intersect TR bound
+ 170   5358.639343   40.910027   Continuing - TR contract     0.030547       15         Intersect TR bound
+ 290   5325.406411  126.274545     Continuing - TR expand     0.017896       83         Intersect TR bound
+ 150   5362.857931 1324.554823   Continuing - TR contract     0.406832      295         Intersect TR bound
+ 240   5339.928151   85.544036                 Continuing     0.005231       16         Intersect TR bound
+ 240   5329.529621 4976.595348   Continuing - TR contract     0.502177      227         Intersect TR bound
+ 180   5356.757407   34.322809   Continuing - TR contract     0.154644       64         Negative curvature
+ 150   5355.315823  597.580648   Continuing - TR contract     0.203416       13         Negative curvature
+ 300   5325.399399    1.798364   Continuing - TR contract     0.007550      129         Intersect TR bound
+ 160   5355.259990  157.459278     Continuing - TR expand     0.002384       18         Intersect TR bound
+ 250   5335.503834  705.143768   Continuing - TR contract     0.476676       21         Negative curvature
+ 270   5327.535404   13.527787     Continuing - TR expand     0.001178        1         Intersect TR bound
+ 190   5352.007143  106.943292   Continuing - TR contract     1.174325       77         Negative curvature
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5334.702823   13.312402   Continuing - TR contract     0.201098      155         Intersect TR bound
+ 310   5325.394559   81.844543                 Continuing     0.006370      107         Intersect TR bound
+ 250   5328.880134 3012.813956   Continuing - TR contract     0.105928       99         Negative curvature
+ 200   5350.365658  102.966171                 Continuing     0.027523       55         Intersect TR bound
+ 320   5325.392956    0.288099     Continuing - TR expand     0.005375       75         Intersect TR bound
+ 170   5347.850445 2987.356043                 Continuing     1.303333      305         Intersect TR bound
+ 270   5333.879317  293.260651     Continuing - TR expand     1.018057      129         Intersect TR bound
+ 210   5349.432175 5356.219246   Continuing - TR contract     0.418009       50         Negative curvature
+ 210   5331.805191  454.109494   Continuing - TR contract     1.672036      476         Intersect TR bound
+ 160   5350.658681  963.417723   Continuing - TR contract     2.059589       53         Negative curvature
+ 280   5327.535399    2.767208   Continuing - TR contract     0.000994      292         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5327.934109  120.763561     Continuing - TR expand     1.608782      244         Intersect TR bound
+ 330   5325.385893  100.299542   Continuing - TR contract     0.006802      167         Intersect TR bound
+ 220   5335.486260  433.352958     Continuing - TR expand    19.045539      251         Intersect TR bound
+ 170   5349.338069  192.575941   Continuing - TR contract     0.024136       91         Intersect TR bound
+ 340   5325.383310    7.830399     Continuing - TR expand     0.008609       74         Intersect TR bound
+ 220   5331.109239  164.354119   Continuing - TR contract     0.019594      106         Intersect TR bound
+ 350   5325.382293    1.223635   Continuing - TR contract     0.003632      169         Intersect TR bound
+ 280   5328.820512   68.322762     Continuing - TR expand     0.858986      203         Intersect TR bound
+ 290   5327.535397    5.277603     Continuing - TR expand     0.000839      224         Intersect TR bound
+ 180   5347.754294 2130.120952   Continuing - TR contract     0.366563      257         Intersect TR bound
+ 360   5325.381005    0.426355   Continuing - TR contract     0.001532       61         Intersect TR bound
+ 370   5325.380761    0.266065   Continuing - TR contract     0.003879      253         Intersect TR bound
+ 290   5327.993817   36.966007   Continuing - TR contract     0.020132       15         Negative curvature
+ 300   5327.960950   28.707565     Continuing - TR expand     0.050960       52         Intersect TR bound
+ 380   5325.380602   22.390930     Continuing - TR expand     0.058905      304         Intersect TR bound
+ 230   5329.900806  297.189297   Continuing - TR contract     0.446380      325         Intersect TR bound
+ 180   5329.845381 1415.689489   Continuing - TR contract     0.183281      234         Intersect TR bound
+ 270   5326.550134 1642.309743   Continuing - TR contract     2.036115     1289          Reached tolerance
+ 390   5325.380559    9.141728   Continuing - TR contract     0.000690      203         Intersect TR bound
+ 190   5327.370667  108.453162   Continuing - TR contract     0.012887       85         Intersect TR bound
+ 240   5329.501358  165.137774   Continuing - TR contract     0.188316      117         Negative curvature
+ 400   5325.380547    0.043382   Continuing - TR contract     0.000874      213         Intersect TR bound
+ 410   5325.380509    0.000275   Continuing - TR contract     0.000369       55         Negative curvature
+ 250   5329.100667   33.078640     Continuing - TR expand     0.953352      146         Intersect TR bound
+ 230   5327.365647  255.714752   Continuing - TR contract     1.785519     1692          Reached tolerance
+ 420   5325.380509    0.000275   Continuing - TR contract     0.000000       30         Intersect TR bound
+ 200   5327.195743  270.340380   Continuing - TR contract     0.065240      195         Intersect TR bound
+ 430   5325.380509    0.000156   Continuing - TR contract     0.000000       40         Intersect TR bound
+ 440   5325.380509    0.000156   Continuing - TR contract     0.000000        2         Intersect TR bound
+
+Iteration has terminated
+ 440   5325.380509    0.000156Radius of trust region is less than stop.trust.radius
+
+ 190   5330.835210 3396.698487   Continuing - TR contract     1.855723      757         Intersect TR bound
+ 210   5327.124242   17.094397   Continuing - TR contract     0.027523      148         Negative curvature
+ 300   5327.535395    0.000932   Continuing - TR contract     0.000236        4         Negative curvature
+ 310   5327.535395    0.000932   Continuing - TR contract     0.000000        3         Intersect TR bound
+ 220   5327.049651  117.380909   Continuing - TR contract     0.011611       43         Negative curvature
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5327.336539   63.007119   Continuing - TR contract     0.402195      379         Intersect TR bound
+ 320   5327.535395    0.000459   Continuing - TR contract     0.000000      174         Intersect TR bound
+ 240   5327.276121  150.762683   Continuing - TR contract     0.020924      138         Intersect TR bound
+ 230   5326.945183   19.054839   Continuing - TR contract     0.176348       88         Negative curvature
+ 330   5327.535395    0.000459   Continuing - TR contract     0.000000       12         Intersect TR bound
+
+Iteration has terminated
+ 330   5327.535395    0.000459Radius of trust region is less than stop.trust.radius
+
+ 310   5325.654624   79.967369   Continuing - TR contract     0.386980     1435          Reached tolerance
+ 200   5329.442396 1029.112468   Continuing - TR contract     0.021747      136         Intersect TR bound
+ 280   5326.355524  125.868494   Continuing - TR contract     0.071582      466         Intersect TR bound
+ 240   5326.938052   26.054358   Continuing - TR contract     0.002067       99         Negative curvature
+ 270   5326.671322   28.594861   Continuing - TR contract     0.056559       77         Negative curvature
+ 250   5327.208009    5.585761     Continuing - TR expand     0.017655      100         Intersect TR bound
+ 250   5326.929791  242.875377     Continuing - TR expand     0.005231       99         Intersect TR bound
+ 280   5326.633492 2962.214186   Continuing - TR contract     0.023861       11         Negative curvature
+ 210   5329.248618  172.357082     Continuing - TR expand     0.110093      196         Intersect TR bound
+ 290   5326.625881   15.808303   Continuing - TR contract     0.005033       58         Negative curvature
+ 290   5326.325060    5.952772   Continuing - TR contract     0.181192      557         Intersect TR bound
+ 320   5325.634360   11.380268   Continuing - TR contract     0.004535       45         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5326.881319  111.714562   Continuing - TR contract     0.079446      250         Intersect TR bound
+ 300   5326.448917   48.148441   Continuing - TR contract     0.076441      235         Intersect TR bound
+ 220   5329.055001   54.731989                 Continuing     0.030964      192         Intersect TR bound
+ 300   5326.284622   60.078656   Continuing - TR contract     0.004247      104         Intersect TR bound
+ 330   5325.603328    0.805454   Continuing - TR contract     0.022958       31         Negative curvature
+ 310   5326.283399    3.522738                 Continuing     0.000597       32         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5327.174507   56.373164   Continuing - TR contract     0.007448      289         Intersect TR bound
+ 340   5325.602930    0.745255   Continuing - TR contract     0.004843       31         Negative curvature
+ 310   5326.219811    6.303952     Continuing - TR expand     0.773960      241         Intersect TR bound
+ 320   5326.283178    2.727919     Continuing - TR expand     0.001512       77         Intersect TR bound
+ 350   5325.602906    0.750193   Continuing - TR contract     0.000341       55         Intersect TR bound
+ 270   5327.173121    2.487870     Continuing - TR expand     0.001571       83         Intersect TR bound
+ 360   5325.602843   14.252826   Continuing - TR contract     0.001724      140         Intersect TR bound
+ 270   5326.784207   17.163339                 Continuing     0.067033      381         Intersect TR bound
+ 230   5328.525988  536.083699                 Continuing     0.078377      304         Intersect TR bound
+ 280   5327.172094   24.158515   Continuing - TR contract     0.003977      197         Negative curvature
+ 280   5326.769974    6.726310   Continuing - TR contract     0.000393       10         Negative curvature
+ 320   5326.040265   17.344412     Continuing - TR expand     0.653029      298         Intersect TR bound
+ 370   5325.602823    1.406177   Continuing - TR contract     0.000242      116         Intersect TR bound
+ 290   5326.760035   49.882651     Continuing - TR expand     0.214746      293         Intersect TR bound
+ 290   5327.171360    6.004985     Continuing - TR expand     0.030199      212         Intersect TR bound
+ 240   5328.279932  679.967309   Continuing - TR contract     0.066130      299         Negative curvature
+ 330   5326.276921    0.044274   Continuing - TR contract     0.137748     1665          Reached tolerance
+ 330   5325.899254 1544.798231   Continuing - TR contract     0.007653      148         Intersect TR bound
+ 380   5325.602804    0.007066   Continuing - TR contract     0.000818     1504          Reached tolerance
+ 300   5327.167874    8.949060   Continuing - TR contract     0.012740     1577          Reached tolerance
+ 340   5325.895469    3.177218   Continuing - TR contract     0.003228      184         Intersect TR bound
+ 250   5327.798694    1.093747   Continuing - TR contract     0.669570     1812          Reached tolerance
+ 350   5325.895265    2.856662   Continuing - TR contract     0.001362      220         Intersect TR bound
+ 390   5325.602804    0.233450   Continuing - TR contract     0.000005        9         Negative curvature
+ 360   5325.895123    1.003501                 Continuing     0.001149      191         Intersect TR bound
+ 400   5325.602804    0.003446                 Continuing     0.000004       71         Intersect TR bound
+ 410   5325.602804    0.009577   Continuing - TR contract     0.000020       56         Intersect TR bound
+ 300   5326.724649    0.748080   Continuing - TR contract     0.002517     1709          Reached tolerance
+ 420   5325.602804    0.018208   Continuing - TR contract     0.000000       15         Intersect TR bound
+
+Iteration has terminated
+ 429   5325.602804    0.018208Radius of trust region is less than stop.trust.radius
+
+ 340   5326.276921    0.044274   Continuing - TR contract     0.000135       35         Intersect TR bound
+ 310   5327.167592    0.041801   Continuing - TR contract     0.002687     1694          Reached tolerance
+ 370   5325.894886    2.133708   Continuing - TR contract     0.001454      447         Intersect TR bound
+ 310   5326.724389    0.131055     Continuing - TR expand     0.000708      202         Intersect TR bound
+ 350   5326.276920    0.313530     Continuing - TR expand     0.000114      148         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5327.798694    1.093747   Continuing - TR contract     0.000654      121         Intersect TR bound
+ 380   5325.894840   16.034477                 Continuing     0.000102       50         Intersect TR bound
+ 320   5326.724384    0.036783                 Continuing     0.000050       75         Intersect TR bound
+ 390   5325.894836    0.051900   Continuing - TR contract     0.000022       40         Intersect TR bound
+ 270   5327.798104    2.333239   Continuing - TR contract     0.000828      197         Intersect TR bound
+ 330   5326.724383    0.038039     Continuing - TR expand     0.001512      335         Intersect TR bound
+ 320   5327.167592    0.000906   Continuing - TR contract     0.000189      104         Intersect TR bound
+ 330   5327.167592    0.062783                 Continuing     0.000000        1         Intersect TR bound
+ 340   5326.724383    0.322652     Continuing - TR expand     0.001275      413         Intersect TR bound
+ 340   5327.167592    0.004918     Continuing - TR expand     0.000000        6         Intersect TR bound
+ 350   5327.167592    0.002352   Continuing - TR contract     0.000000        1         Intersect TR bound
+
+Iteration has terminated
+ 350   5327.167592    0.002352Radius of trust region is less than stop.trust.radius
+
+ 350   5326.724383    0.079463     Continuing - TR expand     0.000015       76         Intersect TR bound
+ 400   5325.894819    0.000616   Continuing - TR contract     0.003931     1393          Reached tolerance
+ 360   5326.724383    0.012025     Continuing - TR expand     0.000114      247         Intersect TR bound
+ 360   5326.276919    0.009629   Continuing - TR contract     0.000048      752         Intersect TR bound
+ 370   5326.276919    0.011815   Continuing - TR contract     0.000003       69         Negative curvature
+ 370   5326.724383    0.096270   Continuing - TR contract     0.000016      200         Intersect TR bound
+ 380   5326.276919    0.003755   Continuing - TR contract     0.000000       26         Intersect TR bound
+ 390   5326.276919    0.001031   Continuing - TR contract     0.000000       14         Intersect TR bound
+
+Iteration has terminated
+ 397   5326.276919    0.001031Radius of trust region is less than stop.trust.radius
+
+ 380   5326.724383    0.041008     Continuing - TR expand     0.000485      251         Intersect TR bound
+ 280   5327.798011    0.069827   Continuing - TR contract     0.004190     1885          Reached tolerance
+ 410   5325.894819    0.000616   Continuing - TR contract     0.000004       50         Intersect TR bound
+ 420   5325.894819    0.000012   Continuing - TR contract     0.000001        2         Negative curvature
+ 430   5325.894819    0.000128   Continuing - TR contract     0.000000      120         Intersect TR bound
+
+Iteration has terminated
+ 438   5325.894819    0.000128Radius of trust region is less than stop.trust.radius
+
+ 290   5327.798009    0.276526   Continuing - TR contract     0.000049      183         Intersect TR bound
+ 300   5327.798009    0.013361     Continuing - TR expand     0.000014      118         Intersect TR bound
+ 390   5326.724383    0.000139   Continuing - TR contract     0.000011     1591          Reached tolerance
+ 400   5326.724383    0.000139   Continuing - TR contract     0.000000        2         Intersect TR bound
+
+Iteration has terminated
+ 407   5326.724383    0.000139Radius of trust region is less than stop.trust.radius
+
+ 310   5327.798009    0.000281   Continuing - TR contract     0.000006     1618          Reached tolerance
+ 320   5327.798009    0.000980   Continuing - TR contract     0.000000       32         Intersect TR bound
+ 330   5327.798009    0.001181   Continuing - TR contract     0.000000       10         Intersect TR bound
+
+Iteration has terminated
+ 331   5327.798009    0.001181Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 10.73595 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.879189  952.375244                 Continuing     0.000027        4         Intersect TR bound
+  40   5458.877201   89.049375                 Continuing     0.000002        4         Intersect TR bound
+  50   5458.876387  123.032450                 Continuing     0.000015        8         Intersect TR bound
+  60   5458.873462  188.443958   Continuing - TR contract     0.000011       15         Intersect TR bound
+  70   5458.868604 1108.506084   Continuing - TR contract     0.000153       23         Intersect TR bound
+  80   5458.818220   59.790919     Continuing - TR expand     0.003093       50         Intersect TR bound
+  90   5456.446234 2922.288162     Continuing - TR expand     0.187924      120         Intersect TR bound
+ 100   5442.61929318905.107520     Continuing - TR expand     2.854091      187         Intersect TR bound
+ 110   5398.875772 2045.524377   Continuing - TR contract     0.133786       31         Negative curvature
+ 120   5387.918411 2453.803497   Continuing - TR contract     2.031867      288         Intersect TR bound
+ 130   5371.671684 3647.416521     Continuing - TR expand     0.857194      194         Intersect TR bound
+Optimizing with theta = 13.81855 
+ 140   5368.690508 1624.105301   Continuing - TR contract     0.361629      267         Intersect TR bound
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.883118 2598.623435   Continuing - TR contract     0.000013        4         Intersect TR bound
+  40   5458.877876  777.321065   Continuing - TR contract     0.000000        6         Intersect TR bound
+  50   5458.877729  103.712364                 Continuing     0.000000        3         Intersect TR bound
+  60   5458.877636  151.211044                 Continuing     0.000001        9         Intersect TR bound
+ 150   5361.775220 2016.182141   Continuing - TR contract     0.610248      280         Intersect TR bound
+  70   5458.877132  185.486970                 Continuing     0.000003       14         Intersect TR bound
+  80   5458.875655   97.986789     Continuing - TR expand     0.000086       28         Intersect TR bound
+  90   5458.698706 1874.787491     Continuing - TR expand     0.031321      123         Intersect TR bound
+ 160   5356.062050  478.972035   Continuing - TR contract     0.085816      174         Intersect TR bound
+ 100   5428.68563740256.275988   Continuing - TR contract     0.158561      125         Intersect TR bound
+ 170   5352.765172  901.344465                 Continuing     0.072407      139         Intersect TR bound
+ 180   5350.629894 4611.580492     Continuing - TR expand     1.099688      250         Intersect TR bound
+ 110   5366.96864096694.219427   Continuing - TR contract     1.204070      338         Intersect TR bound
+ 190   5346.042606   88.316476   Continuing - TR contract     0.077322      270         Intersect TR bound
+ 120   5354.79335531071.948291     Continuing - TR expand     3.047801      413         Intersect TR bound
+ 200   5344.949486  431.990892   Continuing - TR contract     0.097860       81         Negative curvature
+ 210   5338.982028 2506.034333   Continuing - TR contract     4.458764      541         Intersect TR bound
+ 130   5352.923542 1880.922670   Continuing - TR contract     0.107149      331         Intersect TR bound
+ 220   5336.332787 2506.475709   Continuing - TR contract     0.156753      332         Intersect TR bound
+ 140   5341.92210219376.931233   Continuing - TR contract     1.627329      353         Negative curvature
+ 230   5333.153360 7145.977737   Continuing - TR contract     0.396782      267         Intersect TR bound
+ 150   5338.457834 1568.991153     Continuing - TR expand     0.228843      319         Intersect TR bound
+ 240   5330.165691 2696.731098     Continuing - TR expand     6.026128      500         Intersect TR bound
+ 160   5333.06092819407.993082   Continuing - TR contract     3.475556      582         Intersect TR bound
+ 170   5332.061574  821.117709                 Continuing     0.081458      346         Intersect TR bound
+ 180   5330.228911 1354.608009                 Continuing     0.137461      353         Intersect TR bound
+ 250   5327.985361    3.243673   Continuing - TR contract     0.141237     1687          Reached tolerance
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5327.974713  172.980239   Continuing - TR contract     0.059585      334         Intersect TR bound
+ 270   5327.970139    2.590442   Continuing - TR contract     0.025137      366         Intersect TR bound
+ 190   5328.457548 1283.885644   Continuing - TR contract     0.695896     1724          Reached tolerance
+ 280   5327.967626   17.924908   Continuing - TR contract     0.010605      373         Intersect TR bound
+ 290   5327.967398   23.487556                 Continuing     0.008948      301         Intersect TR bound
+ 300   5327.967096   10.698112   Continuing - TR contract     0.000629      255         Intersect TR bound
+ 310   5327.966890   17.097690                 Continuing     0.019110      362         Intersect TR bound
+Optimizing with theta = 11.31023 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.881446 1878.146403                 Continuing     0.000027        4         Intersect TR bound
+  40   5458.877264  234.466023                 Continuing     0.000003        4         Intersect TR bound
+ 200   5328.213709    5.710873   Continuing - TR contract     0.048930     1851          Reached tolerance
+  50   5458.876862  203.996777                 Continuing     0.000004        6         Intersect TR bound
+  60   5458.875311   84.837824     Continuing - TR expand     0.000034       10         Intersect TR bound
+  70   5458.873119  155.385828   Continuing - TR contract     0.000057       22         Intersect TR bound
+  80   5458.860301  142.311858                 Continuing     0.000516       33         Intersect TR bound
+  90   5457.797957 2810.312872     Continuing - TR expand     0.187924      122         Intersect TR bound
+Optimizing with theta = 12.39574 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.883117 2598.464958   Continuing - TR contract     0.000013        4         Intersect TR bound
+  40   5458.877617  350.858939                 Continuing     0.000001        4         Intersect TR bound
+  50   5458.877414   66.121367                 Continuing     0.000000        5         Intersect TR bound
+  60   5458.876703   98.349529     Continuing - TR expand     0.000034       11         Intersect TR bound
+  70   5458.875953  156.663067                 Continuing     0.000019       14         Intersect TR bound
+ 100   5430.245599 2694.548072                 Continuing     0.105707       95         Intersect TR bound
+ 210   5328.198617    2.084855   Continuing - TR contract     0.000573      182         Intersect TR bound
+  80   5458.872237  234.667187                 Continuing     0.000029       20         Intersect TR bound
+ 320   5327.966475    0.003946   Continuing - TR contract     0.000896     1909          Reached tolerance
+  90   5458.670952  420.827406                 Continuing     0.005220      100         Intersect TR bound
+ 110   5411.294322 1443.151128     Continuing - TR expand     3.210852      238         Intersect TR bound
+ 120   5375.633788 6507.417679     Continuing - TR expand     4.063735      311         Intersect TR bound
+ 100   5436.52469711065.124014                 Continuing     0.317121      243         Intersect TR bound
+ 330   5327.966475    0.050784                 Continuing     0.000021      245         Intersect TR bound
+ 110   5425.856224 3021.343714                 Continuing     0.003716       35         Negative curvature
+Optimizing with theta = 13.37565 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.883118 2598.465111   Continuing - TR contract     0.000013        4         Intersect TR bound
+  40   5458.877829  579.018295   Continuing - TR contract     0.000000        3         Intersect TR bound
+  50   5458.877543  119.513544   Continuing - TR contract     0.000000        6         Intersect TR bound
+ 340   5327.966475    0.008643     Continuing - TR expand     0.000018      239         Intersect TR bound
+ 220   5328.198086   21.674942   Continuing - TR contract     0.017417     2000      Exceeded max CG iters
+  60   5458.877315  123.038142                 Continuing     0.000002       11         Intersect TR bound
+ 130   5368.940768  120.708078     Continuing - TR expand     0.285731      153         Intersect TR bound
+ 120   5412.49703811480.758489     Continuing - TR expand     2.031867      247         Intersect TR bound
+  70   5458.876724  233.871877   Continuing - TR contract     0.000038       23         Intersect TR bound
+  80   5458.875584  178.233841     Continuing - TR expand     0.000014       14         Intersect TR bound
+ 350   5327.966475    0.000032   Continuing - TR contract     0.000001       13         Negative curvature
+  90   5458.721136  236.193539                 Continuing     0.010440       95         Intersect TR bound
+ 130   5389.96234718173.394125     Continuing - TR expand     3.428776      278         Intersect TR bound
+Optimizing with theta = 11.86461 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+ 100   5369.90413820426.885071   Continuing - TR contract     2.854091      130         Intersect TR bound
+  30   5458.883117 2598.479576   Continuing - TR contract     0.000013        3         Intersect TR bound
+  40   5458.877518  113.517717                 Continuing     0.000001        4         Intersect TR bound
+  50   5458.877411   99.407067                 Continuing     0.000001        5         Intersect TR bound
+  60   5458.876766  128.363789                 Continuing     0.000006       10         Intersect TR bound
+ 360   5327.966475    0.001010   Continuing - TR contract     0.000000      410         Intersect TR bound
+  70   5458.875595  107.255866   Continuing - TR contract     0.000011       14         Intersect TR bound
+ 110   5366.403498 6117.042298   Continuing - TR contract     0.200678      295         Intersect TR bound
+  80   5458.872019   80.155351                 Continuing     0.000032       21         Intersect TR bound
+ 230   5328.198083   17.949010     Continuing - TR expand     0.000612      206         Intersect TR bound
+  90   5458.624066 1015.542918     Continuing - TR expand     0.023490       90         Intersect TR bound
+ 370   5327.966475    0.000022   Continuing - TR contract     0.000000       98         Intersect TR bound
+
+Iteration has terminated
+ 375   5327.966475    0.000022Radius of trust region is less than stop.trust.radius
+
+ 140   5376.07221614281.320376   Continuing - TR contract     0.482172      297         Intersect TR bound
+ 140   5341.630287 2082.641904   Continuing - TR contract     0.361629      238         Intersect TR bound
+ 120   5361.77467510339.649793   Continuing - TR contract     1.015934      363         Intersect TR bound
+ 100   5440.85189013893.332088                 Continuing     1.427045      191         Intersect TR bound
+ 150   5340.944968  452.002045     Continuing - TR expand     0.076281      133         Intersect TR bound
+ 130   5357.804209 3226.250831                 Continuing     0.285731      330         Intersect TR bound
+ 150   5361.965878 3739.653121   Continuing - TR contract     0.813665      351         Intersect TR bound
+ 160   5340.869880 1436.575320     Continuing - TR expand     0.005364       25         Intersect TR bound
+ 240   5328.198073   13.149280                 Continuing     0.000517      374         Intersect TR bound
+ 110   5412.52421110977.125113   Continuing - TR contract     0.602035      279         Intersect TR bound
+ 140   5350.947217 4902.084525   Continuing - TR contract     0.241086      385         Intersect TR bound
+ 120   5379.694490  646.108445   Continuing - TR contract     0.761950       87         Intersect TR bound
+ 160   5354.599147 1250.613725   Continuing - TR contract     0.114422      156         Intersect TR bound
+ 130   5369.319142 3268.552794                 Continuing     0.642896      249         Intersect TR bound
+ 170   5331.475122 9968.128287   Continuing - TR contract     5.865000     1450          Reached tolerance
+ 250   5328.198071   11.604265                 Continuing     0.000872      397         Intersect TR bound
+ 150   5337.44590511774.738111     Continuing - TR expand    14.645964      396         Intersect TR bound
+Optimizing with theta = 14.22645 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.883120 2612.018095   Continuing - TR contract     0.000013        4         Intersect TR bound
+  40   5458.877911 1166.325321                 Continuing     0.000001        6         Intersect TR bound
+ 140   5363.607986 1085.587149                 Continuing     0.090407      167         Intersect TR bound
+ 170   5345.706355 9775.257537   Continuing - TR contract     0.579259      440         Intersect TR bound
+  50   5458.877721   97.793726                 Continuing     0.000000        2         Intersect TR bound
+  60   5458.877658  158.899776     Continuing - TR expand     0.000002        9         Intersect TR bound
+  70   5458.877368  107.643459                 Continuing     0.000001       11         Intersect TR bound
+  80   5458.876600  104.364053   Continuing - TR contract     0.000021       32         Intersect TR bound
+ 160   5334.637807 3508.307822   Continuing - TR contract     0.171632      314         Intersect TR bound
+  90   5458.859015 1401.389052     Continuing - TR expand     0.002610       78         Intersect TR bound
+ 180   5330.123739  228.953258   Continuing - TR contract     0.068730      282         Intersect TR bound
+ 150   5355.115169 1511.442296   Continuing - TR contract     0.915373      329         Intersect TR bound
+ 170   5332.695410 3635.798482   Continuing - TR contract     0.868889      457         Intersect TR bound
+ 100   5390.02904142965.968856   Continuing - TR contract     4.281136      239         Negative curvature
+ 180   5333.40767728420.064458     Continuing - TR expand    17.595001      467         Intersect TR bound
+ 160   5351.020431 1403.802612   Continuing - TR contract     0.128724      229         Intersect TR bound
+ 190   5328.887668 1113.475666     Continuing - TR expand     4.175376      365         Intersect TR bound
+ 110   5381.024782 1521.508410   Continuing - TR contract     0.050170      195         Intersect TR bound
+ 180   5331.23024131943.537011   Continuing - TR contract     0.366563      379         Intersect TR bound
+ 120   5379.493099 8611.667204     Continuing - TR expand     0.253983      203         Intersect TR bound
+ 170   5342.823587 3256.645708   Continuing - TR contract     0.651667      434         Intersect TR bound
+Optimizing with theta = 12.90043 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.883117 2598.460014   Continuing - TR contract     0.000013        4         Intersect TR bound
+  40   5458.877730  457.385842   Continuing - TR contract     0.000000        4         Intersect TR bound
+  50   5458.877523   97.766573                 Continuing     0.000001        5         Intersect TR bound
+  60   5458.877122  135.434384     Continuing - TR expand     0.000017       13         Intersect TR bound
+  70   5458.876580  155.010307     Continuing - TR expand     0.000057       16         Intersect TR bound
+ 190   5328.495917 1415.303329   Continuing - TR contract     3.711446     1742          Reached tolerance
+  80   5458.875176   71.022715     Continuing - TR expand     0.000011       11         Intersect TR bound
+ 130   5364.85424437871.812584   Continuing - TR contract     0.107149      231         Intersect TR bound
+  90   5458.763900  480.188553     Continuing - TR expand     0.007830       94         Intersect TR bound
+ 200   5328.668234  384.823320   Continuing - TR contract     0.048930      297         Intersect TR bound
+ 190   5330.780455 1683.934883   Continuing - TR contract     0.206191      429         Intersect TR bound
+ 180   5331.864922 2192.953857     Continuing - TR expand     9.897188      524         Intersect TR bound
+ 100   5445.86812922037.221679                 Continuing     0.237841      195         Intersect TR bound
+ 140   5361.830571 2334.471208                 Continuing     0.090407      116         Intersect TR bound
+ 110   5400.847599 5295.433536   Continuing - TR contract     0.200678      112         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.198068    0.000074   Continuing - TR contract     0.000123     2000      Exceeded max CG iters
+ 210   5328.214022 2034.659056     Continuing - TR expand     2.972509      509         Intersect TR bound
+ 200   5328.305471  574.937087   Continuing - TR contract     0.043494      368         Intersect TR bound
+ 120   5388.72382611067.512416   Continuing - TR contract     0.084661      142         Intersect TR bound
+ 200   5330.351092  386.387045                 Continuing     0.057991      267         Intersect TR bound
+ 150   5352.650199 5055.596193   Continuing - TR contract     0.228843      343         Intersect TR bound
+ 210   5328.267425  571.229143     Continuing - TR expand     0.220186      360         Intersect TR bound
+ 130   5370.73325621216.676634     Continuing - TR expand     7.714746      386         Intersect TR bound
+ 190   5328.526188   19.270331   Continuing - TR contract     0.019330      154         Intersect TR bound
+ 140   5347.84339310769.427319   Continuing - TR contract     0.045204      217         Intersect TR bound
+ 220   5328.251146  378.188290     Continuing - TR expand     0.185782      351         Intersect TR bound
+ 160   5345.169115 9038.050379     Continuing - TR expand     1.158519      355         Intersect TR bound
+ 150   5346.48138914745.922520   Continuing - TR contract     0.001589       20         Negative curvature
+ 200   5328.261025  233.944519   Continuing - TR contract     0.097860       67         Negative curvature
+ 210   5328.243516   29.582714     Continuing - TR expand     0.041285      191         Intersect TR bound
+ 160   5343.690634 1682.743638   Continuing - TR contract     0.868889      447         Intersect TR bound
+ 270   5328.198068    0.000074   Continuing - TR contract     0.000000      188         Intersect TR bound
+ 220   5328.186939   99.305622                 Continuing     0.034834      304         Intersect TR bound
+ 170   5341.894034 1073.893775                 Continuing     0.061094      249         Intersect TR bound
+ 280   5328.198068    0.005558   Continuing - TR contract     0.000000      120         Intersect TR bound
+ 170   5329.17988318719.317368   Continuing - TR contract     0.977500      728         Intersect TR bound
+
+Iteration has terminated
+ 283   5328.198068    0.005558Radius of trust region is less than stop.trust.radius
+
+ 220   5328.068803    1.137396   Continuing - TR contract     0.005806       97         Intersect TR bound
+ 230   5328.068176    2.108336     Continuing - TR expand     0.000408       87         Intersect TR bound
+ 210   5328.197097    6.813092   Continuing - TR contract     0.293581     1817          Reached tolerance
+ 230   5328.164804   85.340141                 Continuing     0.014696      329         Intersect TR bound
+ 180   5328.956717 3176.505567     Continuing - TR expand     0.137461      314         Intersect TR bound
+ 240   5328.068003  184.853112     Continuing - TR expand     0.006200      236         Intersect TR bound
+ 240   5328.149896 1027.967493   Continuing - TR contract     0.003100      241         Intersect TR bound
+ 230   5328.192743    1.719727   Continuing - TR contract     0.026126     1845          Reached tolerance
+ 180   5331.63934022352.752329   Continuing - TR contract     0.927861      622         Intersect TR bound
+ 250   5328.067758    3.793655     Continuing - TR expand     0.047079      666         Intersect TR bound
+ 190   5328.729034 5343.491476     Continuing - TR expand     0.231965      336         Intersect TR bound
+ 250   5328.142986  200.309218                 Continuing     0.031386      319         Intersect TR bound
+ 220   5328.177338   92.033450   Continuing - TR contract     0.003440       55         Negative curvature
+ 190   5329.940377  418.086522     Continuing - TR expand     0.130481      257         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.127460  203.859049   Continuing - TR contract     0.006621       83         Negative curvature
+ 230   5328.163621  372.789792     Continuing - TR expand     0.313507      358         Intersect TR bound
+ 200   5329.730734  907.595080   Continuing - TR contract     0.055046      305         Intersect TR bound
+ 270   5328.126743    3.137504                 Continuing     0.000931      359         Intersect TR bound
+ 280   5328.126682   28.720226   Continuing - TR contract     0.007070      308         Negative curvature
+ 210   5328.552802 5877.041063   Continuing - TR contract     0.557345      581         Intersect TR bound
+ 240   5328.191344    0.032425   Continuing - TR contract     0.000102     1773          Reached tolerance
+ 290   5328.126648   18.824202     Continuing - TR expand     0.017896      455         Intersect TR bound
+ 220   5328.392945  179.279554   Continuing - TR contract     0.006531      265         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.067735    0.011968   Continuing - TR contract     0.000092     1682          Reached tolerance
+ 200   5328.207967    3.485681   Continuing - TR contract     0.195721     2000      Exceeded max CG iters
+ 270   5328.067734    0.195993   Continuing - TR contract     0.000078      405         Negative curvature
+ 250   5328.191343    0.000082   Continuing - TR contract     0.000086     2000      Exceeded max CG iters
+ 230   5328.180175    0.625865   Continuing - TR contract     0.793564     2000      Exceeded max CG iters
+ 280   5328.067734    0.273605   Continuing - TR contract     0.000003      216         Intersect TR bound
+ 240   5328.160527    0.329185   Continuing - TR contract     0.001225     1917          Reached tolerance
+ 290   5328.067734    0.015607   Continuing - TR contract     0.000002      317         Intersect TR bound
+ 300   5328.067734    0.005912   Continuing - TR contract     0.000000       42         Intersect TR bound
+
+Iteration has terminated
+ 308   5328.067734    0.005912Radius of trust region is less than stop.trust.radius
+
+ 250   5328.160479    0.799724   Continuing - TR contract     0.000172      281         Negative curvature
+ 210   5328.202307  367.635277     Continuing - TR expand     0.013762      328         Intersect TR bound
+ 300   5328.126621    0.003576   Continuing - TR contract     0.000210     2000      Exceeded max CG iters
+ 220   5328.202179   79.647418   Continuing - TR contract     0.005806      344         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.191343    0.000076   Continuing - TR contract     0.000001     1024          Reached tolerance
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.160475    0.000249   Continuing - TR contract     0.000145      180         Intersect TR bound
+ 240   5328.180175    0.625865   Continuing - TR contract     0.000775      211         Intersect TR bound
+ 310   5328.126621    0.034649     Continuing - TR expand     0.000015      272         Intersect TR bound
+ 230   5328.202153    9.707793     Continuing - TR expand     0.000816      297         Intersect TR bound
+ 270   5328.160475    0.000249   Continuing - TR contract     0.000000      100         Intersect TR bound
+ 280   5328.160475    0.000249   Continuing - TR contract     0.000000        1         Intersect TR bound
+
+Iteration has terminated
+ 281   5328.160475    0.000249Radius of trust region is less than stop.trust.radius
+
+ 250   5328.179992    2.384633     Continuing - TR expand     0.000654      271         Intersect TR bound
+ 240   5328.202144   62.936217   Continuing - TR contract     0.000029      128         Negative curvature
+ 270   5328.191343    0.000076   Continuing - TR contract     0.000000        1         Intersect TR bound
+
+Iteration has terminated
+ 276   5328.191343    0.000284Radius of trust region is less than stop.trust.radius
+
+ 320   5328.126621    0.081876   Continuing - TR contract     0.000012      448         Negative curvature
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.179988    1.043828     Continuing - TR expand     0.000276      220         Intersect TR bound
+ 330   5328.126621    0.081876   Continuing - TR contract     0.000000       43         Intersect TR bound
+
+Iteration has terminated
+ 337   5328.126621    0.081876Radius of trust region is less than stop.trust.radius
+
+ 250   5328.202133    7.708399   Continuing - TR contract     0.000436      392         Intersect TR bound
+ 270   5328.179983    6.210314   Continuing - TR contract     0.000058      251         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.202130   10.772220   Continuing - TR contract     0.000736      362         Intersect TR bound
+ 280   5328.179983    0.664143   Continuing - TR contract     0.000025      186         Negative curvature
+ 270   5328.202128    1.549079     Continuing - TR expand     0.000103      292         Intersect TR bound
+ 280   5328.202126   25.924013   Continuing - TR contract     0.000131      392         Intersect TR bound
+ 290   5328.179982    0.007157   Continuing - TR contract     0.002237     1786          Reached tolerance
+ 290   5328.202125    6.365219   Continuing - TR contract     0.000018      155         Negative curvature
+ 300   5328.202125    0.490345   Continuing - TR contract     0.000008      216         Intersect TR bound
+ 310   5328.202125    0.490345   Continuing - TR contract     0.000000       49         Intersect TR bound
+
+Iteration has terminated
+ 317   5328.202125    0.490345Radius of trust region is less than stop.trust.radius
+
+ 300   5328.179982    0.000023                 Continuing     0.000009     1868          Reached tolerance
+ 310   5328.179982    0.026524   Continuing - TR contract     0.000000       28         Intersect TR bound
+
+Iteration has terminated
+ 319   5328.179982    0.026524Radius of trust region is less than stop.trust.radius
+
+Optimizing with theta = 14.5969 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.883156 2850.375891   Continuing - TR contract     0.000013        4         Intersect TR bound
+  40   5458.877909  822.428021   Continuing - TR contract     0.000000        6         Intersect TR bound
+  50   5458.877779  135.517694   Continuing - TR contract     0.000000        4         Intersect TR bound
+  60   5458.877749  327.708401                 Continuing     0.000001        9         Intersect TR bound
+  70   5458.877654  110.874407     Continuing - TR expand     0.000001        8         Intersect TR bound
+  80   5458.877334  190.233490   Continuing - TR contract     0.000009       25         Intersect TR bound
+  90   5458.877068  123.212963     Continuing - TR expand     0.000010       18         Intersect TR bound
+ 100   5458.850331 2149.552772     Continuing - TR expand     0.003716       87         Intersect TR bound
+ 110   5445.12750519470.399815   Continuing - TR contract     0.169322      222         Negative curvature
+ 120   5413.43382117112.194280                 Continuing     0.428597      340         Intersect TR bound
+ 130   5381.43617271244.180023   Continuing - TR contract     1.084886      354         Intersect TR bound
+ 140   5359.57817241343.782504   Continuing - TR contract     1.830745      401         Intersect TR bound
+ 150   5353.214208 4919.448048   Continuing - TR contract     0.257449      352         Intersect TR bound
+ 160   5342.56357013865.749956     Continuing - TR expand     1.303333      361         Intersect TR bound
+ 170   5339.29540223604.359778   Continuing - TR contract     0.549844      387         Intersect TR bound
+ 180   5336.046857 7147.736610                 Continuing     0.154644      298         Intersect TR bound
+ 190   5333.01456113820.942533     Continuing - TR expand     0.391442      287         Intersect TR bound
+ 200   5331.264972 2033.084163     Continuing - TR expand     0.165139      238         Intersect TR bound
+ 210   5329.947684 1612.231762   Continuing - TR contract     0.278673      385         Intersect TR bound
+ 220   5329.137774 4180.318873   Continuing - TR contract     0.470260      371         Intersect TR bound
+ 230   5328.833406  504.928874   Continuing - TR contract     0.066130      353         Intersect TR bound
+ 240   5328.206975    2.027244   Continuing - TR contract     0.334785     1849          Reached tolerance
+ 250   5328.205086   44.594044     Continuing - TR expand     0.003923      253         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.204679   32.894248   Continuing - TR contract     0.000276      301         Intersect TR bound
+ 270   5328.204655    8.118064     Continuing - TR expand     0.008379      353         Intersect TR bound
+ 280   5328.204635   19.718459     Continuing - TR expand     0.000589      248         Intersect TR bound
+ 290   5328.204630   12.168630   Continuing - TR contract     0.000249      315         Negative curvature
+ 300   5328.204625    0.003867   Continuing - TR contract     0.000210     1930          Reached tolerance
+Optimizing with theta = 15.92581 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.91257744466.739319                 Continuing     0.000004        2         Intersect TR bound
+  40   5458.877931 2477.658188   Continuing - TR contract     0.000000        8         Intersect TR bound
+  50   5458.877789  101.564596                 Continuing     0.000000        4         Intersect TR bound
+ 310   5328.204625    0.982591   Continuing - TR contract     0.000001      323         Intersect TR bound
+  60   5458.877776  201.580166                 Continuing     0.000000       11         Intersect TR bound
+  70   5458.877743  128.365747                 Continuing     0.000000       11         Intersect TR bound
+ 320   5328.204625    0.001665   Continuing - TR contract     0.000000       41         Intersect TR bound
+  80   5458.877666  134.450111                 Continuing     0.000001       17         Intersect TR bound
+ 330   5328.204625    0.006119   Continuing - TR contract     0.000000       28         Intersect TR bound
+
+Iteration has terminated
+ 332   5328.204625    0.006119Radius of trust region is less than stop.trust.radius
+
+  90   5458.877108  222.907724                 Continuing     0.000009       40         Intersect TR bound
+ 100   5458.57757567116.949522     Continuing - TR expand     0.059460      155         Intersect TR bound
+ 110   5402.373458175562.855688   Continuing - TR contract     0.451526      284         Negative curvature
+ 120   5377.771550197398.406417   Continuing - TR contract     2.285851      365         Intersect TR bound
+ 130   5354.29040067484.597195     Continuing - TR expand     3.857373      377         Intersect TR bound
+ 140   5348.62007855800.764592                 Continuing     1.084886      358         Intersect TR bound
+ 150   5342.050780 8138.689350     Continuing - TR expand     0.915373      302         Intersect TR bound
+ 160   5336.20843133298.014070     Continuing - TR expand     1.544691      343         Intersect TR bound
+ 170   5334.02183740535.179561                 Continuing     0.434444      366         Intersect TR bound
+ 180   5331.910160 4017.119141   Continuing - TR contract     0.366563      353         Intersect TR bound
+ 190   5330.11492215066.629806   Continuing - TR contract     0.618574      359         Intersect TR bound
+ 200   5329.317029 4704.843281   Continuing - TR contract     0.086987      362         Intersect TR bound
+Optimizing with theta = 14.92768 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.883419 4634.876387   Continuing - TR contract     0.000013        4         Intersect TR bound
+  40   5458.877894  641.852990   Continuing - TR contract     0.000000        6         Intersect TR bound
+ 210   5328.854484 3433.291475     Continuing - TR expand     0.146791      297         Intersect TR bound
+  50   5458.877782  103.853940   Continuing - TR contract     0.000000        4         Intersect TR bound
+  60   5458.877760  114.270608   Continuing - TR contract     0.000000        9         Intersect TR bound
+  70   5458.877669  167.278378                 Continuing     0.000000       11         Intersect TR bound
+  80   5458.877458  154.983910                 Continuing     0.000001       16         Intersect TR bound
+  90   5458.876563  303.069088                 Continuing     0.000027       32         Intersect TR bound
+ 220   5328.530803 7013.436754     Continuing - TR expand     0.247709      320         Intersect TR bound
+ 100   5457.91755132742.904006     Continuing - TR expand     0.178381      158         Intersect TR bound
+ 110   5407.36621177758.533997   Continuing - TR contract     0.150509      122         Intersect TR bound
+ 230   5328.355417 9203.372598     Continuing - TR expand     0.418009      364         Intersect TR bound
+ 120   5369.648761121931.456062   Continuing - TR contract     0.380975      347         Intersect TR bound
+ 240   5328.302034 5597.028647   Continuing - TR contract     0.058783      363         Intersect TR bound
+Optimizing with theta = 15.4625 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.88945722931.612664   Continuing - TR contract     0.000013        4         Intersect TR bound
+ 130   5361.37268235938.026215   Continuing - TR contract     0.160724      320         Intersect TR bound
+  40   5458.877851 1038.176694     Continuing - TR expand     0.000001        5         Intersect TR bound
+  50   5458.877789  110.008557                 Continuing     0.000000        2         Intersect TR bound
+  60   5458.877773  176.697183                 Continuing     0.000000        9         Intersect TR bound
+ 250   5328.256859 3673.182989     Continuing - TR expand     0.099196      293         Intersect TR bound
+  70   5458.877704  143.855370                 Continuing     0.000000        9         Intersect TR bound
+  80   5458.877493  264.801324     Continuing - TR expand     0.000016       19         Intersect TR bound
+  90   5458.877067  279.350471                 Continuing     0.000009       27         Intersect TR bound
+ 100   5458.701164 4763.644219     Continuing - TR expand     0.029730      130         Intersect TR bound
+ 140   5353.70995150855.609518   Continuing - TR contract     2.440994      359         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.229742 5244.040344     Continuing - TR expand     0.167392      357         Intersect TR bound
+ 110   5414.38537543006.740981   Continuing - TR contract     0.903052      330         Intersect TR bound
+Optimizing with theta = 15.21679 
+Beginning optimization
+ 150   5348.85625550847.157173                 Continuing     0.686530      321         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.88473610542.204389   Continuing - TR contract     0.000013        4         Intersect TR bound
+  40   5458.877830  765.133962                 Continuing     0.000000        5         Intersect TR bound
+  50   5458.877787   70.932437                 Continuing     0.000000        3         Intersect TR bound
+  60   5458.877756  111.120258   Continuing - TR contract     0.000000       13         Intersect TR bound
+ 270   5328.221733 1585.420036   Continuing - TR contract     0.023540      363         Intersect TR bound
+  70   5458.877689  202.375005                 Continuing     0.000002       14         Intersect TR bound
+  80   5458.877559  123.493704                 Continuing     0.000001       14         Intersect TR bound
+ 120   5382.16051491629.632861   Continuing - TR contract     4.571702      380         Intersect TR bound
+  90   5458.876211  269.614690                 Continuing     0.000018       45         Intersect TR bound
+ 160   5340.76319219800.132881   Continuing - TR contract     0.579259      367         Intersect TR bound
+ 100   5452.33286321635.241711     Continuing - TR expand     1.070284      191         Intersect TR bound
+Optimizing with theta = 15.9859 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.918649 8342.283076   Continuing - TR contract     0.000002        2         Intersect TR bound
+  40   5458.878656 3383.696475   Continuing - TR contract     0.000001        7         Intersect TR bound
+  50   5458.877815  821.444819   Continuing - TR contract     0.000000        8         Intersect TR bound
+  60   5458.877788   62.703370                 Continuing     0.000000        4         Intersect TR bound
+ 130   5363.66211374187.570177   Continuing - TR contract     0.642896      348         Intersect TR bound
+  70   5458.877768  208.103685                 Continuing     0.000000       13         Intersect TR bound
+  80   5458.877732  154.712893     Continuing - TR expand     0.000001       13         Intersect TR bound
+ 110   5381.590272121700.571979   Continuing - TR contract     0.451526      192         Negative curvature
+  90   5458.877633  137.741563     Continuing - TR expand     0.000004       20         Intersect TR bound
+Optimizing with theta = 15.81808 
+ 170   5335.642661 7037.216701   Continuing - TR contract     0.977500      373         Intersect TR bound
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+ 100   5458.877152  158.206392     Continuing - TR expand     0.000013       34         Intersect TR bound
+  30   5458.90615232398.600280                 Continuing     0.000004        2         Intersect TR bound
+  40   5458.877888 2059.388921   Continuing - TR contract     0.000000        8         Intersect TR bound
+  50   5458.877790  144.917763     Continuing - TR expand     0.000000        2         Intersect TR bound
+  60   5458.877780   97.708069     Continuing - TR expand     0.000000        6         Intersect TR bound
+  70   5458.877755  142.824790                 Continuing     0.000000       10         Intersect TR bound
+ 110   5457.59807950197.921137     Continuing - TR expand     0.253983      195         Intersect TR bound
+  80   5458.877677  162.447136                 Continuing     0.000001       17         Intersect TR bound
+ 120   5374.50649436595.603631     Continuing - TR expand     0.380975      219         Intersect TR bound
+  90   5458.877390  160.103225     Continuing - TR expand     0.000014       26         Intersect TR bound
+ 140   5350.40966890983.038346   Continuing - TR contract     3.254659      360         Intersect TR bound
+ 100   5458.71774320643.419796     Continuing - TR expand     0.029730      131         Intersect TR bound
+ 180   5333.15708318210.795636   Continuing - TR contract     0.137461      319         Intersect TR bound
+ 110   5378.321413110986.901491   Continuing - TR contract     1.354578      151         Negative curvature
+ 280   5328.208746    0.166939   Continuing - TR contract     0.079446     2000      Exceeded max CG iters
+ 120   5383.858521212210.188339   Continuing - TR contract     0.321448      273         Intersect TR bound
+ 130   5357.26350365941.689580   Continuing - TR contract     0.080362      261         Intersect TR bound
+ 150   5344.36451034082.612831                 Continuing     0.915373      347         Intersect TR bound
+ 120   5360.29036813624.260135   Continuing - TR contract     3.428776      362         Negative curvature
+ 130   5372.42838733626.923422                 Continuing     0.022602       82         Intersect TR bound
+ 190   5331.39583725003.217526   Continuing - TR contract     0.231965      244         Negative curvature
+ 130   5354.81548627446.354321   Continuing - TR contract     0.482172      364         Intersect TR bound
+ 140   5351.46904230403.814739   Continuing - TR contract     1.220497      332         Intersect TR bound
+ 140   5366.24112122355.268312     Continuing - TR expand     0.343265      312         Intersect TR bound
+ 160   5338.727772 7141.804650   Continuing - TR contract     0.772346      352         Intersect TR bound
+ 140   5346.41499421010.389481   Continuing - TR contract     0.813665      290         Intersect TR bound
+ 200   5330.32401214403.002030   Continuing - TR contract     1.761487      758         Intersect TR bound
+ 150   5348.16247622476.043608   Continuing - TR contract     0.171632      228         Negative curvature
+ 150   5339.95327045478.601466   Continuing - TR contract     0.114422      276         Intersect TR bound
+ 170   5334.47066416195.628768     Continuing - TR expand     1.303333      331         Intersect TR bound
+ 150   5337.266901100553.036864   Continuing - TR contract     0.434444      317         Intersect TR bound
+ 160   5340.35506379237.196655   Continuing - TR contract     2.606667      371         Intersect TR bound
+ 160   5334.38243042986.319631   Continuing - TR contract     0.579259      356         Intersect TR bound
+ 210   5329.683697 1535.582444   Continuing - TR contract     0.247709      406         Intersect TR bound
+ 160   5333.393053207115.118409   Continuing - TR contract     2.199375      359         Negative curvature
+ 180   5332.58365011707.879182   Continuing - TR contract     0.183281      359         Intersect TR bound
+ 170   5332.426187 3205.225222                 Continuing     0.162917      289         Intersect TR bound
+ 290   5328.208736    2.081457   Continuing - TR contract     0.000155      406         Intersect TR bound
+ 170   5336.549750 3793.727962     Continuing - TR expand     0.366563      340         Intersect TR bound
+ 220   5329.01571516347.069794   Continuing - TR contract     1.254027      497         Intersect TR bound
+Optimizing with theta = 15.66333 
+Beginning optimization
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+  10   5459.341381   29.510972   Continuing - TR contract     0.097656        1         Intersect TR bound
+ 180   5330.753807 5291.114968                 Continuing     0.274922      356         Intersect TR bound
+  20   5458.94792411807.086419   Continuing - TR contract     0.000191        2         Intersect TR bound
+  30   5458.90170743112.454581   Continuing - TR contract     0.000004        4         Intersect TR bound
+  40   5458.877956 1909.836589   Continuing - TR contract     0.000000        7         Intersect TR bound
+  50   5458.877789  112.210892                 Continuing     0.000000        2         Intersect TR bound
+ 170   5332.490702 4614.885873     Continuing - TR expand     0.309287      294         Intersect TR bound
+  60   5458.877779  212.846479                 Continuing     0.000000        9         Intersect TR bound
+  70   5458.877741  103.945987     Continuing - TR expand     0.000001       11         Intersect TR bound
+ 300   5328.208733    1.614596   Continuing - TR contract     0.000131      232         Negative curvature
+  80   5458.877648  138.328251                 Continuing     0.000000       11         Intersect TR bound
+ 190   5330.64309720311.828127   Continuing - TR contract     0.309287      357         Intersect TR bound
+  90   5458.877325  207.132184   Continuing - TR contract     0.000010       38         Intersect TR bound
+ 180   5333.84192817412.597444                 Continuing     0.309287      332         Intersect TR bound
+ 230   5328.860904 3855.209016   Continuing - TR contract     0.014696      132         Negative curvature
+ 190   5329.76296031718.408646                 Continuing     0.463931      355         Intersect TR bound
+ 100   5458.873578 1922.439731   Continuing - TR contract     0.000310       91         Intersect TR bound
+ 310   5328.208733    2.128508   Continuing - TR contract     0.000001      186         Intersect TR bound
+ 320   5328.208733    0.476185   Continuing - TR contract     0.000000       52         Intersect TR bound
+ 110   5453.92058830251.584664     Continuing - TR expand     1.015934      209         Intersect TR bound
+
+Iteration has terminated
+ 326   5328.208733    0.476185Radius of trust region is less than stop.trust.radius
+
+ 200   5328.97463211197.487745   Continuing - TR contract     0.391442      371         Intersect TR bound
+ 240   5328.58427216914.279065   Continuing - TR contract     0.223190      370         Intersect TR bound
+ 200   5329.430636 4277.068597   Continuing - TR contract     0.521922      353         Intersect TR bound
+ 190   5332.057529 3986.354138   Continuing - TR contract     0.260961      351         Intersect TR bound
+ 120   5406.94778035121.187898   Continuing - TR contract     0.428597      269         Intersect TR bound
+ 210   5328.66582310221.606300   Continuing - TR contract     0.055046      356         Intersect TR bound
+ 130   5379.13708380091.311692     Continuing - TR expand     4.339545      321         Intersect TR bound
+ 210   5328.773013 7713.303527     Continuing - TR expand     0.880743      354         Intersect TR bound
+ 200   5330.332104 5123.711423   Continuing - TR contract     0.440372      352         Intersect TR bound
+ 180   5328.95748320577.915573   Continuing - TR contract     0.086987      296         Intersect TR bound
+ 250   5328.36631910729.050838   Continuing - TR contract     0.094158      370         Intersect TR bound
+ 140   5356.16327120283.528011   Continuing - TR contract     0.305124      325         Intersect TR bound
+ 190   5328.337558 1471.775203     Continuing - TR expand     0.036698      225         Intersect TR bound
+ 210   5329.223794 7012.883398   Continuing - TR contract     0.743127      374         Intersect TR bound
+ 220   5328.51485533549.990791   Continuing - TR contract     0.371564      385         Intersect TR bound
+ 150   5347.99065920449.636773   Continuing - TR contract     0.514897      355         Intersect TR bound
+ 220   5328.226637 6263.772958   Continuing - TR contract     0.139336     2000      Exceeded max CG iters
+ 160   5339.65849134846.666742                 Continuing     0.144815      346         Intersect TR bound
+ 220   5328.913296 8580.190462     Continuing - TR expand     0.627014      340         Intersect TR bound
+ 200   5328.254572 5013.711922   Continuing - TR contract     0.185782      880         Intersect TR bound
+ 230   5328.211568  896.230801   Continuing - TR contract     0.001633       56         Negative curvature
+ 240   5328.210698  267.401487     Continuing - TR expand     0.008266      308         Intersect TR bound
+ 170   5336.78023568484.877007                 Continuing     0.733125      358         Intersect TR bound
+ 230   5328.546145 1934.838506                 Continuing     0.088174      337         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.206238    0.282489   Continuing - TR contract     0.158892     1907          Reached tolerance
+ 210   5328.213720 2942.360569                 Continuing     0.052251      372         Intersect TR bound
+ 230   5328.208244   70.017179   Continuing - TR contract     0.940520     1995          Reached tolerance
+ 180   5333.39303311747.286522     Continuing - TR expand     0.618574      329         Intersect TR bound
+ 240   5328.386639 1037.159904   Continuing - TR contract     0.074397      346         Intersect TR bound
+ 220   5328.209015   91.543357     Continuing - TR expand     0.001837      353         Intersect TR bound
+ 190   5330.98451027526.327160     Continuing - TR expand     1.043844      363         Intersect TR bound
+ 250   5328.293724 1867.290341     Continuing - TR expand     0.125544      346         Intersect TR bound
+ 250   5328.208565    0.032853   Continuing - TR contract     0.013949     2000      Exceeded max CG iters
+ 230   5328.208940  174.482058   Continuing - TR contract     0.004650      153         Negative curvature
+ 200   5329.48458918349.427555     Continuing - TR expand     1.761487      360         Intersect TR bound
+ 240   5328.208918  128.715417     Continuing - TR expand     0.005885      338         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.238469 1113.344259     Continuing - TR expand     0.211856      348         Intersect TR bound
+ 240   5328.208244   70.017179   Continuing - TR contract     0.000918      287         Intersect TR bound
+ 210   5329.105572 6123.849455   Continuing - TR contract     0.247709      365         Intersect TR bound
+ 250   5328.207953  111.302374                 Continuing     0.000065       63         Intersect TR bound
+ 270   5328.206218  334.523401                 Continuing     0.000310        1         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.208565    4.846580     Continuing - TR expand     0.000082       23         Intersect TR bound
+ 270   5328.215760 1222.030487     Continuing - TR expand     0.357507      369         Intersect TR bound
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.207928   10.149475                 Continuing     0.000163      167         Intersect TR bound
+ 220   5328.809948 5613.136984   Continuing - TR contract     0.034834      363         Intersect TR bound
+ 270   5328.208565    5.900796   Continuing - TR contract     0.000207      366         Intersect TR bound
+ 270   5328.207868   11.195867   Continuing - TR contract     0.001241       95         Negative curvature
+ 280   5328.206198   18.471696     Continuing - TR expand     0.001571      348         Intersect TR bound
+ 280   5328.208564    1.371810     Continuing - TR expand     0.000349      363         Intersect TR bound
+ 280   5328.207868    1.620540     Continuing - TR expand     0.000029      213         Intersect TR bound
+ 230   5328.556311 7480.416629   Continuing - TR contract     0.176348      360         Intersect TR bound
+ 290   5328.207864   36.230411   Continuing - TR contract     0.000221      338         Negative curvature
+ 240   5328.366333 2945.448504                 Continuing     0.049598      352         Intersect TR bound
+ 290   5328.206197    0.000092   Continuing - TR contract     0.001326      205         Negative curvature
+ 290   5328.208564    0.000014   Continuing - TR contract     0.000025       66         Negative curvature
+ 300   5328.207860    0.001071   Continuing - TR contract     0.002237     2000      Exceeded max CG iters
+ 250   5328.208819    0.007685   Continuing - TR contract     0.000276     2000      Exceeded max CG iters
+ 300   5328.206197    0.000092   Continuing - TR contract     0.000001      193         Intersect TR bound
+ 250   5328.280682 2809.274868   Continuing - TR contract     0.041848      357         Intersect TR bound
+ 310   5328.206197    0.003924   Continuing - TR contract     0.000000      181         Intersect TR bound
+
+Iteration has terminated
+ 319   5328.206197    0.000431Radius of trust region is less than stop.trust.radius
+
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.241608 2685.017663                 Continuing     0.035309      357         Intersect TR bound
+ 280   5328.207210    0.108206   Continuing - TR contract     0.002793     2000      Exceeded max CG iters
+
+iter           f        nrm_gr                     status          rad  CG iter                  CG result
+ 260   5328.208819    0.279673   Continuing - TR contract     0.000010      297         Intersect TR bound
+ 300   5328.208564    0.000013   Continuing - TR contract     0.000000     1990          Reached tolerance
+ 270   5328.208819    0.348699   Continuing - TR contract     0.000000       88         Intersect TR bound
+ 280   5328.208819    0.348699   Continuing - TR contract     0.000000        3         Intersect TR bound
+
+Iteration has terminated
+ 280   5328.208819    0.348699Radius of trust region is less than stop.trust.radius
+
+ 270   5328.208300    0.157329   Continuing - TR contract     0.357507     1902          Reached tolerance
+ 290   5328.207205    9.589742   Continuing - TR contract     0.000033      255         Intersect TR bound
+ 310   5328.208564    0.000013   Continuing - TR contract     0.000000        9         Intersect TR bound
+
+Iteration has terminated
+ 312   5328.208564    0.000013Radius of trust region is less than stop.trust.radius
+
+ 310   5328.207860    0.001071   Continuing - TR contract     0.000002      272         Intersect TR bound
+ 300   5328.207205    0.694293   Continuing - TR contract     0.000166      249         Negative curvature
+ 320   5328.207860    0.029703   Continuing - TR contract     0.000000       86         Intersect TR bound
+ 310   5328.207205    0.519636   Continuing - TR contract     0.000012      350         Intersect TR bound
+ 330   5328.207860    0.029703   Continuing - TR contract     0.000000       15         Intersect TR bound
+
+Iteration has terminated
+ 330   5328.207860    0.029703Radius of trust region is less than stop.trust.radius
+
+ 320   5328.207205    0.519636   Continuing - TR contract     0.000000       73         Intersect TR bound
+
+Iteration has terminated
+ 327   5328.207205    0.519636Radius of trust region is less than stop.trust.radius
+
+ 280   5328.208300    0.157329   Continuing - TR contract     0.000349     1902          Reached tolerance
+ 290   5328.208289    3.428235   Continuing - TR contract     0.000025      360         Intersect TR bound
+ 300   5328.208288    1.535644   Continuing - TR contract     0.000001       89         Intersect TR bound
+ 310   5328.208288    0.836097                 Continuing     0.000000        7         Intersect TR bound
+
+Iteration has terminated
+ 315   5328.208288    0.836097Radius of trust region is less than stop.trust.radius
+
+Time taken for optimization with  40  values of theta: 7940.039 seconds.
+     user    system   elapsed 
+15627.933    81.087  2063.591 
