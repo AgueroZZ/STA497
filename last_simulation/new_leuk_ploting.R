@@ -54,7 +54,7 @@ model_data$A$tpi$Ad <- model_data$diffmat %*% model_data$A$tpi$A
 model_data$Xd <- model_data$diffmat %*% model_data$X
 
 model_data$thetagrid <- mvQuad::createNIGrid(dim = 1,type = "GLe",level = 40)
-mvQuad::rescale(model_data$thetagrid,domain = c(0,18))
+mvQuad::rescale(model_data$thetagrid,domain = c(0,16))
 thetalist <- split(mvQuad::getNodes(model_data$thetagrid),rep(1:nrow(mvQuad::getNodes(model_data$thetagrid))))
 
 
