@@ -4,8 +4,8 @@ source("~/STA497/last_simulation/01-functions.R")
 set.seed(123)
 PLOT_TEXT_SIZE = 8
 
-options(mc.cores = 8L)
-cores <- 8
+options(mc.cores = 10L)
+cores <- 10
 RW2BINS <- 50
 PARALLEL_EXECUTION <- T
 N <- nrow(Leuk)
