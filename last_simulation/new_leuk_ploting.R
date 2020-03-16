@@ -197,7 +197,7 @@ y <- as.numeric(predict.gam(b,data_frame(tpi = x,sex=rep(1,length(x)),age = rep(
 #Plot:
 PLOT_TEXT_SIZE = 8
 simplot <- tibble(
-  x = sort(unique(model_data$A$exposure$u)),
+  x = sort(unique(model_data$A$tpi$u)),
   mymean = margmeanall,
   mymeanlower = mymean - 2*margsd,
   mymeanupper = mymean + 2*margsd
