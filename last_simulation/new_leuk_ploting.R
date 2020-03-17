@@ -238,4 +238,3 @@ ggsave(filename = "~/STA497/Leuk_PosterSigma.pdf", plot = sigmapostplot1)
 
 
 
-brinla::bri.basehaz.plot(Inlaresult)
