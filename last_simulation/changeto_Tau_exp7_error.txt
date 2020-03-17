@@ -40,15 +40,3 @@ The following object is masked from ‘package:base’:
 Warning message:
 `data_frame()` is deprecated, use `tibble()`.
 This warning is displayed once per session. 
-Saving 7 x 7 in image
-Error: All columns in a tibble must be 1d or 2d objects:
-* Column `x` is NULL
-Backtrace:
-    █
- 1. ├─`%>%`(...)
- 2. │ └─base::eval(lhs, parent, parent)
- 3. │   └─base::eval(lhs, parent, parent)
- 4. └─tibble::tibble(...)
- 5.   └─tibble:::lst_to_tibble(xlq$output, .rows, .name_repair, lengths = xlq$lengths)
- 6.     └─tibble:::check_valid_cols(x)
-Execution halted
