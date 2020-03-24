@@ -34,7 +34,7 @@ model_data$theta_logprior <- function(theta,prior_alpha = .5,prior_u = 2) {
   lambda <- -log(prior_alpha)/prior_u
   log(lambda/2) - lambda * exp(-theta/2) - theta/2
 }
-model_data$beta_logprec <- log(.05)
+model_data$beta_logprec <- log(.001)
 
 
 model_data$p <- 3
@@ -177,7 +177,7 @@ prior.prec <- list(prec = list(prior = "pc.prec",
                                param = c(3, 0.5)))
 
 formula <- inla.surv(times,censoring) ~ sex + age + wbc + f(tpi_binned,model = 'rw2',constr = F, extraconstr = list(A=cnsA1,e=conse), hyper = prior.prec)
-Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE), control.fixed = list(prec = 0.05), data = data, family = "coxph")
+Inlaresult <- inla(formula = formula, control.compute = list(dic=TRUE),control.inla = list(strategy = 'gaussian',int.strategy = 'grid', correct = FALSE), control.fixed = list(prec = .001), data = data, family = "coxph")
 fhat <- Inlaresult$summary.random$tpi_binned$mean
 fhat[model_data$vectorofcolumnstoremove] = 0
 meanhere <- fhat
@@ -205,12 +205,12 @@ simplot <- tibble(
   ggplot(aes(x = x)) +
   theme_light() +
   geom_ribbon(aes(ymin = mymeanlower,ymax = mymeanupper),fill = "lightgrey",alpha = .5) +
-  geom_line(aes(y = mymeanupper),colour = "black",linetype = "blank") +
-  geom_line(aes(y = mymeanlower),colour = "black",linetype = "blank") +
+  geom_line(aes(y = mymeanupper),colour = "black",linetype = "dotted") +
+  geom_line(aes(y = mymeanlower),colour = "black",linetype = "dotted") +
   geom_line(aes(y = mymean),colour = 'black',linetype = 'solid') + 
   xlab("tpi") +
   ylab("risk function") + 
-  theme_classic()
+  theme_classic(base_size = 18)
 
 
 new_compare <- simplot + geom_line(aes(y = meanhere),colour = "black",linetype = "dashed") 
@@ -229,11 +229,12 @@ datainla_sigma <- data_frame(sigma = sigma[-c(1:8)], sigma_dens = sigma_dens[-c(
 sigmapostplot1 <- margpost1$margpost %>%
   mutate(sigma_post = exp(sigmalogmargpost)) %>%
   ggplot(aes(x = sigma)) +
-  theme_classic() +
+  theme_classic(base_size = 18) +
   geom_line(aes(y = sigma_post),colour = "black",linetype = "solid",size = 0.5) +
-  labs(x = "",y = "") +
+  labs(x = "",y = "density") +
   geom_line(aes(y = priorfuncsigma(sigma)),colour = 'black',linetype = 'dashed',size = 0.5) + 
   geom_line(data = datainla_sigma, aes(y = sigma_dens, x = sigma),colour = 'black',linetype = 'dotdash',size = 0.5)
+
 ggsave(filename = "~/STA497/Leuk_PosterSigma.pdf", plot = sigmapostplot1)
 
 

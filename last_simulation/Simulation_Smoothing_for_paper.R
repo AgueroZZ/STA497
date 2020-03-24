@@ -107,7 +107,7 @@ model_data$lambdainv <- create_full_dtcp_matrix(model_data$n)
 model_data$A$exposure$Ad <- model_data$diffmat %*% model_data$A$exposure$A
 
 
-model_data$thetagrid <- mvQuad::createNIGrid(dim = 1,type = "GLe",level = 20)
+model_data$thetagrid <- mvQuad::createNIGrid(dim = 1,type = "GLe",level = 50)
 mvQuad::rescale(model_data$thetagrid,domain = c(-3,3))
 thetalist <- split(mvQuad::getNodes(model_data$thetagrid),rep(1:nrow(mvQuad::getNodes(model_data$thetagrid))))
 
